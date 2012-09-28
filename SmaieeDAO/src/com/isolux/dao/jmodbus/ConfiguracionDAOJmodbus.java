@@ -1,0 +1,383 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.isolux.dao.jmodbus;
+
+import com.isolux.bo.*;
+import com.isolux.dao.modbus.DAO4j;
+import com.isolux.dao.modbus.DAOJmodbus;
+import com.isolux.dao.properties.PropHandler;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+/**
+ *
+ * @author EAFIT
+ */
+public class ConfiguracionDAOJmodbus {
+
+    //date
+    private short dia = 0;
+    private short diaSemana = 0;
+    private short mes = 0;
+    private short anho = 0;
+    private short h = 0;
+    private short m = 0;
+    private short s = 0;
+    
+    //rol
+    private String rol = "";
+    
+    //network
+    private String type = "";
+    private String ip = "";
+    private String mask = "";
+    private String gateway = "";
+    private String port = "";
+    
+    private static DAOJmodbus dao;
+
+    //CONSTRUCTOR
+    public ConfiguracionDAOJmodbus(DAOJmodbus dao) {
+        this.dao  = dao;
+    }
+    
+    /**
+     * Write a single register.
+     */
+    public static void setSingleReg(int pos, int mode){
+        int[] values = {mode};
+        dao.setRegValue(pos, values);
+    }
+    
+    /**
+     * Get a single register.
+     */
+    public static int[] getSingleReg(int pos){
+        return dao.getRegValue(pos, 1);
+    }
+
+    
+    /**
+     * Saves the date
+     * @param fecha 
+     */
+    public void saveDate(Fecha fecha) {
+        try {
+
+            int dateOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.date"));
+            int[] dateArray = new int[Integer.parseInt(PropHandler.getProperty("memory.date.size"))];
+
+            System.out.println("SAVING DATE-TIME");
+            //MODO
+            setSingleReg(0, 1);
+            
+            dateArray[0] = fecha.getDiaSemana();        
+            dateArray[1] = fecha.getDia();              
+            dateArray[2] = fecha.getMes();
+            dateArray[3] = fecha.getAno();
+            dateArray[4] = fecha.getH();
+            dateArray[5] = fecha.getM();
+            dateArray[6] = fecha.getS();
+            
+            //Save array
+            dao.setRegValue(dateOffset, dateArray);
+            
+            //Confirmacion
+            setSingleReg(1, 1);
+            
+            //MODO
+            setSingleReg(0, 0);
+            System.out.println("DATE-TIME saved");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Save the rol of the card.
+     * @param rol 
+     */
+    public void saveRol(String rol){
+//        DAO4j dao = new DAO4j();
+        int rolOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.rol"));
+        
+        //MODO
+        setSingleReg(0, 1);
+        
+        setSingleReg(rolOffset, Integer.parseInt(rol));
+        
+        //MODO
+         setSingleReg(0, 0);
+    }
+    
+    /**
+     * Save network configuration.
+     * @param type
+     * @param ip
+     * @param mask
+     * @param gateway
+     * @param port
+     */
+    public void saveNetworkConf(String type, String ip, String mask, String gateway, String port) {
+        try {
+
+            int networkOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.network"));
+            int[] network = new int[Integer.parseInt(PropHandler.getProperty("memory.network.size"))];
+            
+            
+            System.out.println("SAVING NETWORK CONF");
+            
+            //MODO
+            setSingleReg(0, 1);
+
+            //TYPE - DHCP/STATIC
+            network[0] = Integer.parseInt(type);
+
+            
+            //STATIC IP
+            String[] ipArray = ip.split(".");
+            network[1] = Integer.parseInt(ipArray[0]);
+            network[2] = Integer.parseInt(ipArray[1]);
+            network[3] = Integer.parseInt(ipArray[2]);
+            network[4] = Integer.parseInt(ipArray[3]);
+            
+            //MASK
+            String[] maskArray = mask.split(".");
+            network[5] = Integer.parseInt(maskArray[0]);
+            network[6] = Integer.parseInt(maskArray[1]);
+            network[7] = Integer.parseInt(maskArray[2]);
+            network[8] = Integer.parseInt(maskArray[3]);
+
+            //GATEWAY
+            String[] gatewayArray = gateway.split(".");
+            network[9] = Integer.parseInt(gatewayArray[0]);
+            network[10] = Integer.parseInt(gatewayArray[1]);
+            network[11] = Integer.parseInt(gatewayArray[2]);
+            network[12] = Integer.parseInt(gatewayArray[3]);
+            
+            //PORT
+            network[13] = Integer.parseInt(port);
+           
+            //Save array
+            dao.setRegValue(networkOffset, network);
+            
+            //CONFIRM
+            setSingleReg(1, 1);
+            
+            //MODO
+            setSingleReg(0, 0);
+            System.out.println("NETWORK CONF saved");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Loads the information from the local memory file.
+     */
+    public void loadData() {
+        try {
+
+//            System.out.println("READING GENERAL CONF");
+            
+            //DATE
+            int dateOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.date"));
+            int[] dateArray = dao.getRegValue(dateOffset, Integer.parseInt(PropHandler.getProperty("memory.date.size")));
+            
+            //dia de la semana
+            diaSemana = new Integer(dateArray[0]).shortValue();
+
+            //dia del mes.
+            dia = new Integer(dateArray[1]).shortValue();
+
+            //mes
+            mes = new Integer(dateArray[2]).shortValue();
+
+            //año
+            anho = new Integer(dateArray[3]).shortValue();
+
+            //hora
+            h = new Integer(dateArray[4]).shortValue();
+
+            //minutos
+            m = new Integer(dateArray[5]).shortValue();
+
+            //segundos.
+            s = new Integer(dateArray[6]).shortValue();
+            
+            
+            
+            //ROL
+            int rolOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.rol"));
+            rol = String.valueOf(getSingleReg(rolOffset)[0]);
+            
+            
+            //NETWORK
+            int networkOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.network"));
+            
+            //READ NETWORK
+            setSingleReg(2, 1);
+            int[] networkArray = dao.getRegValue(networkOffset, Integer.parseInt(PropHandler.getProperty("memory.network.size")));
+            
+            type = String.valueOf(networkArray[0]);
+                
+            //ip
+            String ip1 = String.valueOf(networkArray[1]);
+            networkOffset++;
+            String ip2 = String.valueOf(networkArray[2]);
+            networkOffset++;
+            String ip3 = String.valueOf(networkArray[3]);
+            networkOffset++;
+            String ip4 = String.valueOf(networkArray[4]);
+            networkOffset++;
+            ip = ip1 + "." + ip2 + "." + ip3 + "." + ip4;
+
+
+            //mask
+            String mask1 = String.valueOf(networkArray[5]);
+            networkOffset++;
+            String mask2 = String.valueOf(networkArray[6]);
+            networkOffset++;
+            String mask3 = String.valueOf(networkArray[7]);
+            networkOffset++;
+            String mask4 = String.valueOf(networkArray[8]);
+            networkOffset++;
+            mask = mask1 + "." + mask2 + "." + mask3 + "." + mask4;
+
+
+            //gateway
+            String gateway1 = String.valueOf(networkArray[9]);
+            networkOffset++;
+            String gateway2 = String.valueOf(networkArray[10]);
+            networkOffset++;
+            String gateway3 = String.valueOf(networkArray[11]);
+            networkOffset++;
+            String gateway4 = String.valueOf(networkArray[12]);
+            networkOffset++;
+            gateway = gateway1 + "." + gateway2 + "." + gateway3 + "." + gateway4;
+            
+            
+            //port
+            port = String.valueOf(networkArray[13]);
+            
+//            System.out.println("GENERAL CONF readed");
+
+        } catch (Exception e) {
+            System.out.println("No se pudo cargar la fecha desde el archivo local.");
+        }
+    }
+
+    
+    /*
+     * GETS
+     */
+    public Date getDate() {
+        Date fecha = null;
+        try {
+
+            String storedDate =
+                    String.valueOf(dia) + "/"
+                    + String.valueOf(mes) + "/"
+                    + String.valueOf(anho + 1900);
+            fecha = new SimpleDateFormat("dd/MM/yyyy").parse(storedDate);
+            
+            Calendar calen = Calendar.getInstance();
+            calen.set(anho,mes-1,dia);
+            diaSemana = new Integer(calen.get(Calendar.DAY_OF_WEEK)).shortValue();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return fecha;
+    }
+
+    public String getTime() {
+        String time = null;
+        try {
+            
+            String hour = String.valueOf(h).length() == 1 ? "0"+String.valueOf(h) : String.valueOf(h);
+            String minute = String.valueOf(m).length() == 1 ? "0"+String.valueOf(m) : String.valueOf(m);
+            String second = String.valueOf(s).length() == 1 ? "0"+String.valueOf(s) : String.valueOf(s);
+            time = hour + ":" + minute + ":" + second;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return time;
+    }
+    
+    /**
+     * Save program to the flash memory.
+     */
+    public static void saveToFlash(){
+        System.out.println("Guardando en flash");
+        try{
+            setSingleReg(1, 10);
+            System.out.println("Guardado");
+        }catch(Exception e){
+            System.out.println("Excepcion al guardar en Flash");
+        }
+        
+    }
+    
+    
+    /**
+     * Save program to the flash memory.
+     */
+    public static void readFromFlash(){
+        System.out.println("Leyendo de flash");
+        try{
+            setSingleReg(1, 11);
+        }catch(Exception e){}
+        System.out.println("Leido");
+    }
+    
+    
+    /**
+     * Erase the flash memory.
+     */
+    public static void eraseMemory(){
+        System.out.println("Borrando la memoria");
+        try{
+            setSingleReg(1, 7);
+        }catch(Exception e){}
+        System.out.println("Borrada");
+    }
+    
+    public String getRol(){
+        return rol;
+    }
+    
+    public String getType(){
+        return type;
+    }
+    
+    public String getIp(){
+        return ip;
+    }
+    
+    public String getMask(){
+        return mask;
+    }
+    
+    public String getGateway(){
+        return gateway;
+    }
+    
+    public String getPort(){
+        return port;
+    }
+    
+    //TEST
+//    public static void main(String [] args){
+//        Calendar calen = Calendar.getInstance();
+//        calen.set(2011, 10, 13);
+//        System.out.println(calen.getTime());
+//        System.out.println(new Integer(calen.get(Calendar.DAY_OF_WEEK)).shortValue());
+//    }
+}

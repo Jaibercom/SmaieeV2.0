@@ -1,0 +1,727 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.isolux.control;
+
+import com.isolux.bo.*;
+import com.isolux.dao.jmodbus.EventoDAOJmodbus;
+import com.isolux.dao.modbus.DAOJamod;
+import com.isolux.dao.properties.PropHandler;
+import com.isolux.utils.Validation;
+import com.isolux.view.PpalView;
+import com.isolux.view.ViewUtils;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JCheckBox;
+import javax.swing.JList;
+import javax.swing.ListModel;
+import javax.swing.text.Position;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreePath;
+
+/**
+ *
+ * @author Juan Diego Toro
+ */
+public class EventControl {
+    
+    /**
+     * Saves an event.
+     */
+    public void saveEvent(PpalView ppalView) {
+        boolean connectionStatus = true; //DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
+        new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
+        if (connectionStatus) {
+            ppalView.getStatusLabel().setText("Guardando evento");
+            //event number
+            boolean isUpdate = !ppalView.getjLabel64().getText().equals("#");
+
+            int eventNumber = ppalView.getjLabel64().getText().equals("#") ? Integer.parseInt(ppalView.getjTextField13().getText()) : Integer.parseInt(ppalView.getjLabel64().getText());
+//            int eventNumber = ppalView.getjLabel64().getText().equals("#") ? PropHandler.getEventNumber() : Integer.parseInt(ppalView.getjLabel64().getText());
+            
+            String name = ppalView.getjTextField11().getText();
+            int porFechaODias = ppalView.getjCheckBox1().isSelected() ? 2 : 1;
+
+            int dia = 0;
+            int mes = 0;
+            int anho = 0;
+            int hora = 0;
+            int minuto = 0;
+            int diaYrepetir = 0;
+            int[] nivelBalasto = new int[Integer.parseInt(PropHandler.getProperty("balast.max.number"))];
+            int[] balastosAfectados = new int[Integer.parseInt(PropHandler.getProperty("balast.max.number"))];
+            int[] nivelGrupo = new int[Integer.parseInt(PropHandler.getProperty("group.max.number"))];
+            int[] gruposAfectados = new int[Integer.parseInt(PropHandler.getProperty("group.max.number"))];
+            int[] escenasAfectadas = new int[Integer.parseInt(PropHandler.getProperty("scene.max.number"))];
+            int tipoSalida = 0;
+            if (ppalView.getjCheckBox13().isSelected()) {
+                tipoSalida = 1;
+            } else if (ppalView.getjCheckBox14().isSelected()) {
+                tipoSalida = 2;
+            } else if (ppalView.getjCheckBox15().isSelected()) {
+                tipoSalida = 3;
+            }
+
+            if (ppalView.getjCheckBox1().isSelected()) { //Por dias
+                int[] dias = new int[16];
+                dias[0] = ppalView.getjCheckBox9().isSelected() ? 1 : 0;
+                dias[1] = ppalView.getjCheckBox3().isSelected() ? 1 : 0;
+                dias[2] = ppalView.getjCheckBox4().isSelected() ? 1 : 0;
+                dias[3] = ppalView.getjCheckBox5().isSelected() ? 1 : 0;
+                dias[4] = ppalView.getjCheckBox6().isSelected() ? 1 : 0;
+                dias[5] = ppalView.getjCheckBox7().isSelected() ? 1 : 0;
+                dias[6] = ppalView.getjCheckBox8().isSelected() ? 1 : 0;
+                dias[7] = 0;
+                dias[8] = 0;
+                dias[9] = 0;
+                dias[10] = 0;
+                dias[11] = 0;
+                dias[12] = 0;
+                dias[13] = 0;
+                dias[14] = 0;
+                dias[15] = 0;
+                
+                String selectedDays = new String();
+                for (int diaSelected : dias) {
+                    selectedDays += String.valueOf(diaSelected);
+                }
+                
+                diaYrepetir = new BigInteger(selectedDays, 2).intValue();
+                
+            } else { //por fecha.
+                String[] date = new SimpleDateFormat("dd/MM/yyyy").format(ppalView.getjDateChooser2().getDate()).split("/");
+
+                dia = Integer.parseInt(date[0]);
+                mes = Integer.parseInt(date[1]);
+                anho = Integer.parseInt(date[2]);
+
+                String[] time = ppalView.getjFormattedTextField2().getText().split(":");
+                hora = Integer.parseInt(time[0]);
+                minuto = Integer.parseInt(time[1]);
+            }
+
+            //Afected elements.
+            ppalView.setEventOutType(ppalView.getjCheckBox13().isSelected() ? 1 : ppalView.getjCheckBox14().isSelected() ? 2 : ppalView.getjCheckBox15().isSelected() ? 3 : 0);
+            balastosAfectados = ppalView.getEventOutType() == ViewUtils.getIntProperty("in.out.type.balast") ? getSelectedEventItems(ppalView)
+                    : new int[Integer.parseInt(PropHandler.getProperty("balast.max.number"))];
+            gruposAfectados = ppalView.getEventOutType() == ViewUtils.getIntProperty("in.out.type.group") ? getSelectedEventItems(ppalView)
+                    : new int[Integer.parseInt(PropHandler.getProperty("group.max.number"))];
+            escenasAfectadas = ppalView.getEventOutType() == ViewUtils.getIntProperty("in.out.type.scene") ? getSelectedEventItems(ppalView)
+                    : new int[Integer.parseInt(PropHandler.getProperty("scene.max.number"))];
+
+            //Balasts/group values.
+            if (ppalView.getjCheckBox13().isSelected()) {
+                ListModel selectedElements = ppalView.getjList13().getModel();
+                for (int i = 0; i < selectedElements.getSize(); i++) {
+                    try {
+                        String item = selectedElements.getElementAt(i).toString();
+                        String[] level = item.split(": ");
+                        nivelBalasto[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length - 1]);
+                    } catch (Exception e) {
+                    }
+                }
+            }
+            if (ppalView.getjCheckBox14().isSelected()) {
+                ListModel selectedElements = ppalView.getjList13().getModel();
+                for (int i = 0; i < selectedElements.getSize(); i++) {
+                    try {
+                        String item = selectedElements.getElementAt(i).toString();
+                        String[] level = item.split(": ");
+                        nivelGrupo[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length - 1]);
+                    } catch (Exception e) {
+                    }
+                }
+            }
+
+            Evento newEvent = new Evento(
+                    eventNumber,
+                    name,
+                    porFechaODias,
+                    dia,
+                    mes,
+                    anho,
+                    hora,
+                    minuto,
+                    diaYrepetir,
+                    nivelBalasto,
+                    balastosAfectados,
+                    nivelGrupo,
+                    gruposAfectados,
+                    escenasAfectadas,
+                    tipoSalida);
+
+
+            //Saves the balast remotelly
+            EventoDAOJmodbus dao = new EventoDAOJmodbus(ppalView.getDao());
+            boolean resultado = dao.saveEvent(newEvent);
+
+            if (isUpdate) {
+                //Update event locally.
+                ppalView.getEvents().remove(String.valueOf(newEvent.getNumeroEvento()));
+                ppalView.getEvents().put(String.valueOf(newEvent.getNumeroEvento()), newEvent);
+
+                if (resultado) {
+                    ppalView.getStatusLabel().setText("Evento actualizado.");
+                } else {
+                    ppalView.getStatusLabel().setText("Ocurrió un error guardando el evento.");
+                }
+
+                //Update name in the tree.
+                String eventText = PropHandler.getProperty("events.menu.name");
+
+                TreePath path = ppalView.getjTree1().getNextMatch(eventText, 0, Position.Bias.Forward);
+                MutableTreeNode eventNode = (MutableTreeNode) path.getLastPathComponent();
+                Enumeration events = eventNode.children();
+
+                while (events.hasMoreElements()) {
+                    DefaultMutableTreeNode updatedScene = (DefaultMutableTreeNode) events.nextElement();
+                    String[] numberName = updatedScene.getUserObject().toString().split(" - ");
+                    if (numberName[0].equals(String.valueOf(newEvent.getNumeroEvento()))) {
+                        updatedScene.setUserObject(numberName[0] + " - " + newEvent.getNombre());
+                    }
+                }
+
+            } else {
+                if (new BalastosControlJmodbus().validateBalastoForm()) {
+                    ppalView.getEvents().put(String.valueOf(newEvent.getNumeroEvento()), newEvent);
+
+                    if (resultado) {
+                        ppalView.getStatusLabel().setText("Evento guardado");
+                    } else {
+                        ppalView.getStatusLabel().setText("Ocurrió un error guardando el evento.");
+                    }
+
+                    //Update name in the tree.
+                    String eventText = PropHandler.getProperty("events.menu.name");
+
+                    //Show balast in tree
+                    DefaultTreeModel model = (DefaultTreeModel) ppalView.getjTree1().getModel();
+                    TreePath path = ppalView.getjTree1().getNextMatch(eventText, 0, Position.Bias.Forward);
+                    MutableTreeNode eventNode = (MutableTreeNode) path.getLastPathComponent();
+                    DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(String.valueOf(newEvent.getNumeroEvento()) + " - " + newEvent.getNombre());
+                    model.insertNodeInto(newNode, eventNode, eventNode.getChildCount());
+
+                    ppalView.getjLabel63().setText(String.valueOf(eventNumber));
+                }
+            }
+        }
+    }
+
+    /**
+     * Deletes a scene.
+     */
+    public void deleteEvent(PpalView ppalView) {
+        if (ppalView.getSelectedEventNumber() != null && !ppalView.getSelectedEventNumber().equals("")) {
+            DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getjTree1().getLastSelectedPathComponent();
+            DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getjTree1().getModel();
+            EventoDAOJmodbus dao = new EventoDAOJmodbus(ppalView.getDao());
+            dao.deleteEvent(ppalView.getSelectedEventNumber());
+            treeModel.removeNodeFromParent(nodeToDelete);
+            ppalView.getEvents().remove(ppalView.getSelectedEventNumber());
+            cleanEventView(ppalView);
+        } else {
+            Validation.showAlertMessage("Debe seleccionar un evento primero!");
+        }
+    }
+
+    /**
+     * Shows the selected group.
+     */
+    public void showSelectedEvent(String eventNumber, PpalView ppalView) {
+        Evento selectedEvent = ppalView.getEvents().get(eventNumber);
+        HashMap<String, Balasto> balasts = ppalView.getBalasts();
+
+        ppalView.getjTextField11().setText(selectedEvent.getNombre());
+        ppalView.getjLabel41().setText(String.valueOf(selectedEvent.getNumeroEvento()));
+        
+        boolean porFechaODias = selectedEvent.getPorFechaODias() == 1 ? false : true;
+        ppalView.getjCheckBox1().setSelected(porFechaODias);
+        ppalView.getjLabel64().setText(eventNumber);
+        
+        if (porFechaODias) { //true: pordias, false: por fecha.
+            
+        } else {
+            Date date = new Date();
+            try {
+//            date = new SimpleDateFormat("dd/MM/yyyy").parse(selectedEvent.getDia() + "/" + selectedEvent.getMes() + "/" + selectedEvent.getAnho());
+                date = new SimpleDateFormat("dd/MM/yyyy").parse(selectedEvent.getDia() + "/" + selectedEvent.getMes() + "/" + (selectedEvent.getAnho()));
+            } catch (ParseException ex) {
+                Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ppalView.getjDateChooser2().setDate(date);
+            ppalView.getjFormattedTextField2().setText(selectedEvent.getHora() + ":" + selectedEvent.getMinuto());
+        }
+        
+        //Show in type.
+        if (selectedEvent.getTipoSalida() == 1) {
+            
+            //BALASTS = 1
+            //Afected balasts
+            DefaultListModel sceneBalastsL = new DefaultListModel();
+            int[] selectedBalasts = selectedEvent.getBalastosAfectados();
+            int[] selectedBalastsLevels = selectedEvent.getNivelBalasto();
+            ArrayList sel = new ArrayList();
+            for (int i = 0; i < selectedBalasts.length; i++) {
+                if (selectedBalasts[i] == 1) {
+                    new BalastosControlJmodbus().readBalastos(ppalView);
+                    Balasto sce = balasts.get(String.valueOf(i));
+                    sceneBalastsL.addElement(sce.getBalastNumber() + " - " + sce.getName() + ": " + selectedBalastsLevels[i]);
+                    sel.add(String.valueOf(i));
+                }
+            }
+            ppalView.getjList13().setModel(sceneBalastsL);
+
+            //Available balasts
+            DefaultListModel modelo = new DefaultListModel();
+            ArrayList<String> addedBalasts = PropHandler.getAddedBalasts(ppalView.getDao());
+            for (String balastNumber : addedBalasts) {
+                if (!sel.contains(balastNumber)) {
+                    Balasto balasto = balasts.get(balastNumber);
+                    modelo.addElement(balasto.getBalastNumber() + " - " + balasto.getName());
+                }
+            }
+            ppalView.getjCheckBox13().setSelected(true);
+            ppalView.getjCheckBox14().setEnabled(false);
+            ppalView.getjCheckBox15().setEnabled(false);
+            ppalView.getjList12().setModel(modelo);
+        } else if (selectedEvent.getTipoSalida() == 2) {
+            //GROUPS = 2
+            //Afected groups
+            DefaultListModel sceneGroupsL = new DefaultListModel();
+            int[] selectedGroups = selectedEvent.getGruposAfectados();
+            int[] selectedGroupLevels = selectedEvent.getNivelGrupo();
+            ArrayList selGroups = new ArrayList();
+            for (int i = 0; i < selectedGroups.length; i++) {
+                if (selectedGroups[i] == 1) {
+                    new GroupsControl().readGroups(ppalView);
+                    Grupo group = ppalView.getGroups().get(String.valueOf(i));
+                    sceneGroupsL.addElement(group.getGroupNumber() + " - " + group.getName() + ": " + selectedGroupLevels[i]);
+                    selGroups.add(String.valueOf(i));
+                }
+            }
+            ppalView.getjList13().setModel(sceneGroupsL);
+
+            //Available groups
+            DefaultListModel modelGroups = new DefaultListModel();
+            ArrayList<String> addedGroups = PropHandler.getAddedGroups(ppalView.getDao());
+            for (String groupNumber : addedGroups) {
+                if (!selGroups.contains(groupNumber)) {
+                    Grupo group = ppalView.getGroups().get(groupNumber);
+                    modelGroups.addElement(group.getGroupNumber() + " - " + group.getName());
+                }
+            }
+            ppalView.getjCheckBox14().setSelected(true);
+            ppalView.getjCheckBox13().setEnabled(false);
+            ppalView.getjCheckBox15().setEnabled(false);
+            ppalView.getjList12().setModel(modelGroups);
+
+        } else if (selectedEvent.getTipoSalida() == 3) {
+            //SCENES = 3
+            //Afected scenes
+            DefaultListModel sceneScenesL = new DefaultListModel();
+            int[] selectedScenes = selectedEvent.getEscenasAfectadas();
+            ArrayList selScenes = new ArrayList();
+            for (int i = 0; i < selectedScenes.length; i++) {
+                if (selectedScenes[i] == 1) {
+                    new SceneControlJmodbus().readScenes(ppalView);
+                    Escena sce = ppalView.getScenes().get(String.valueOf(i));
+                    sceneScenesL.addElement(sce.getNumeroEscena() + " - " + sce.getNombre());
+                    selScenes.add(String.valueOf(i));
+                }
+            }
+            ppalView.getjList13().setModel(sceneScenesL);
+
+            //Available scenes
+            DefaultListModel modelScenes = new DefaultListModel();
+            ArrayList<String> addedScenes = PropHandler.getAddedScenes(ppalView.getDao());
+            for (String sceneNumber : addedScenes) {
+                if (!selScenes.contains(sceneNumber)) {
+                    Escena escena = ppalView.getScenes().get(sceneNumber);
+                    modelScenes.addElement(escena.getNumeroEscena() + " - " + escena.getNombre());
+                }
+            }
+            ppalView.getjCheckBox15().setSelected(true);
+            ppalView.getjCheckBox14().setEnabled(false);
+            ppalView.getjCheckBox13().setEnabled(false);
+            ppalView.getjList12().setModel(modelScenes);
+        }
+
+    }
+    
+    /**
+     * Show the available events in the tree.
+     * @param ppalView 
+     */
+    public void showAvailableEvents(PpalView ppalView) {
+        readEvents(ppalView);
+        DefaultListModel modelo = new DefaultListModel();
+
+        ArrayList<String> addedEvents = PropHandler.getAddedEvents(ppalView.getDao());
+        for (String eventNumber : addedEvents) {
+            Evento event = ppalView.getEvents().get(eventNumber);
+            modelo.addElement(event.getNumeroEvento() + " - " + event.getNombre());
+        }
+        ppalView.getjList2().setModel(modelo);
+        ppalView.getjList2().setLayoutOrientation(JList.VERTICAL_WRAP);
+    }
+
+    /**
+     * Gets the inserted evetns.
+     */
+    public void readEvents(PpalView ppalView) {
+        if (ppalView.getEvents() == null || ppalView.getEvents().size() == 0) {
+            EventoDAOJmodbus dao = new EventoDAOJmodbus(ppalView.getDao());
+            ppalView.setEvents(new HashMap<String, Evento>());
+
+            //Added in numbers.
+            ArrayList<String> addedEvents = PropHandler.getAddedEvents(ppalView.getDao());
+
+            //In.
+            for (String eventNumber : addedEvents) {
+                ppalView.getEvents().put(eventNumber, dao.readEvent(Integer.parseInt(eventNumber)));
+            }
+        }
+    }
+
+    /**
+     * Clean values fror group form.
+     */
+    public void cleanEventView(PpalView ppalView) {
+        ppalView.getjTextField11().setText("event");
+        ppalView.getjLabel64().setText("#");
+        ppalView.getjCheckBox1().setSelected(false);
+        ppalView.getjDateChooser2().setDate(null);
+        ppalView.getjFormattedTextField2().setText("00:00");
+        ppalView.getjTextField25().setText("0");
+        ppalView.getjLabel23().setText("#");
+        ppalView.getjCheckBox13().setSelected(false);
+        ppalView.getjCheckBox14().setSelected(false);
+        ppalView.getjCheckBox15().setSelected(false);
+        ppalView.getjCheckBox13().setEnabled(true);
+        ppalView.getjCheckBox14().setEnabled(true);
+        ppalView.getjCheckBox15().setEnabled(true);
+        
+        DefaultListModel model = new DefaultListModel();
+        ppalView.getjList12().setModel(model);
+        ppalView.getjList13().setModel(model);
+        
+    }
+
+    /**
+     * Filter the used groups (add existing groups to the menu).
+     */
+    public void filterAddedEvent(PpalView ppalView) {
+        if (!ppalView.getEventStauts()) {
+            ppalView.getStatusLabel().setText("Leyendo eventos de la tarjeta...");
+            readEvents(ppalView);
+            int startRow = 0;
+            String prefix = PropHandler.getProperty("events.menu.name");
+            TreePath path = ppalView.getjTree1().getNextMatch(prefix, startRow, Position.Bias.Forward);
+
+            DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) path.getLastPathComponent();
+            ArrayList<String> addedEvents = PropHandler.getAddedEvents(ppalView.getDao());
+            DefaultTreeModel model = (DefaultTreeModel) ppalView.getjTree1().getModel();
+
+            //Remove the used balast numbers from the list and add them to the menu.
+            for (String eventNumber : addedEvents) {
+                Evento event = ppalView.getEvents().get(eventNumber);
+                DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(eventNumber + " - " + event.getNombre());
+                model.insertNodeInto(newNode, selectedNode, selectedNode.getChildCount());
+            }
+            ppalView.setEventStauts(true);
+            ppalView.getStatusLabel().setText("Eventos leidos.");
+        }
+    }
+    
+
+    /**
+     * Sets the in type.
+     * @param node 
+     */
+    public void eventSetType(String node, PpalView ppalView) {
+        String btns = PropHandler.getProperty("btns.menu.name");
+        String ftcld = PropHandler.getProperty("ftcl.menu.name");
+        String sensor = PropHandler.getProperty("sensors.menu.name");
+
+        if (node.equals(btns)) {
+            ppalView.setInType(Integer.parseInt(PropHandler.getProperty("in.type.btns")));
+        }
+        if (node.equals(ftcld)) {
+            ppalView.setInType(Integer.parseInt(PropHandler.getProperty("in.type.ftcld")));
+        }
+        if (node.equals(sensor)) {
+            ppalView.setInType(Integer.parseInt(PropHandler.getProperty("in.type.sensor")));
+        }
+    }
+
+    /**
+     * Get a string with the selected items.
+     */
+    private int[] getSelectedEventItems(PpalView ppalView) {
+        String selected = new String();
+        int arrayLength = 0;
+        JList selectedList = ppalView.getjList13();
+
+        //Gets the array length
+        if (ppalView.getEventOutType() == ViewUtils.getIntProperty("in.out.type.balast")) { //balasts
+            arrayLength = ViewUtils.getIntProperty("balast.max.number");
+        } else if (ppalView.getEventOutType() == ViewUtils.getIntProperty("in.out.type.group")) { //groups
+            arrayLength = ViewUtils.getIntProperty("group.max.number");
+        } else if (ppalView.getEventOutType() == ViewUtils.getIntProperty("in.out.type.scene")) { //scenes
+            arrayLength = ViewUtils.getIntProperty("scene.max.number");
+        }
+
+        //Array with selected items.
+        int[] selectedItems = new int[arrayLength];
+
+        //fill selected items array
+        for (int i = 0; i < selectedList.getModel().getSize(); i++) {
+            selected += selectedList.getModel().getElementAt(i).toString().split(" - ")[0] + ",";
+        }
+        String[] selectedIdx = selected.split(",");
+        for (int i = 0; i < selectedIdx.length; i++) {
+            selectedItems[Integer.parseInt(selectedIdx[i])] = 1;
+        }
+
+        return selectedItems;
+    }
+
+    /**
+     * Gets the selection JList
+     * @return 
+     */
+    private JList getEventSelectionList(PpalView ppalView) {
+        JList selectedList = new JList();
+        if (ppalView.getInType() == ViewUtils.getIntProperty("in.type.btns")) { //Botonera
+            selectedList = ppalView.getjList15();
+        }
+        if (ppalView.getInType() == ViewUtils.getIntProperty("in.type.ftcld")) { //Fotocelda
+            selectedList = ppalView.getjList9();
+        }
+        if (ppalView.getInType() == ViewUtils.getIntProperty("in.type.sensor")) { //Sensor
+            selectedList = ppalView.getjList17();
+        }
+
+        return selectedList;
+    }
+    
+    /**
+     * Show the in items.
+     */
+    public void showEventItems(JList available, JList affected, Entrada selectedIn, PpalView ppalView) {
+        int prefixBalast = Integer.parseInt(PropHandler.getProperty("in.out.type.balast"));
+        int prefixGroup = Integer.parseInt(PropHandler.getProperty("in.out.type.group"));
+        int prefixScene = Integer.parseInt(PropHandler.getProperty("in.out.type.scene"));
+        HashMap<String, Balasto> balasts = ppalView.getBalasts();
+        
+        if (ppalView.getInOutType() == prefixBalast) {  //Balastos
+            //Afected balasts
+            new BalastosControlJmodbus().readBalastos(ppalView);
+            DefaultListModel inAffecBalasts = new DefaultListModel();
+            int[] selectedBalasts = selectedIn.getBalastos();
+            ArrayList sel = new ArrayList();
+            for (int i = 0; i < selectedBalasts.length; i++) {
+                if (selectedBalasts[i] == 1) {
+                    Balasto sce = balasts.get(String.valueOf(i));
+                    if (sce != null) {
+                        inAffecBalasts.addElement(sce.getBalastNumber() + " - " + sce.getName());
+                        sel.add(String.valueOf(i));
+                    }
+                }
+            }
+            affected.setModel(inAffecBalasts);
+
+            //Available balasts
+            DefaultListModel modelo = new DefaultListModel();
+            ArrayList<String> addedBalasts = PropHandler.getAddedBalasts(ppalView.getDao());
+            for (String balastNumber : addedBalasts) {
+                if (!sel.contains(balastNumber)) {
+                    Balasto balasto = balasts.get(balastNumber);
+                    modelo.addElement(balasto.getBalastNumber() + " - " + balasto.getName());
+                }
+            }
+            available.setModel(modelo);
+        } else if (ppalView.getInOutType() == prefixGroup) { //Grupos
+            //Afected balasts
+            new GroupsControl().readGroups(ppalView);
+            DefaultListModel groupBalasts = new DefaultListModel();
+            int[] selectedGroups = selectedIn.getGrupos();
+            ArrayList sel = new ArrayList();
+            for (int i = 0; i < selectedGroups.length; i++) {
+                if (selectedGroups[i] == 1) {
+                    Grupo sce = ppalView.getGroups().get(String.valueOf(i));
+                    if (sce != null) {
+                        groupBalasts.addElement(sce.getGroupNumber() + " - " + sce.getName());
+                        sel.add(String.valueOf(i));
+                    }
+                }
+            }
+            affected.setModel(groupBalasts);
+
+            //Available balasts
+            DefaultListModel modelo = new DefaultListModel();
+            ArrayList<String> addedGroups = PropHandler.getAddedGroups(ppalView.getDao());
+            for (String groupNumber : addedGroups) {
+                if (sel.size() > 0 && !sel.contains(groupNumber)) {
+                    Grupo grupo = ppalView.getGroups().get(groupNumber);
+                    modelo.addElement(grupo.getGroupNumber() + " - " + grupo.getName());
+                }
+            }
+            available.setModel(modelo);
+        } else if (ppalView.getInOutType() == prefixScene) {    //Escenas
+            //Afected balasts
+            new SceneControlJmodbus().readScenes(ppalView);
+            DefaultListModel sceneBalastsL = new DefaultListModel();
+            int[] selectedBalasts = selectedIn.getEscenas();
+            ArrayList sel = new ArrayList();
+            for (int i = 0; i < selectedBalasts.length; i++) {
+                if (selectedBalasts[i] == 1) {
+                    Escena sce = ppalView.getScenes().get(String.valueOf(i));
+                    if (sce != null) {
+                        sceneBalastsL.addElement(sce.getNumeroEscena() + " - " + sce.getNombre());
+                        sel.add(String.valueOf(i));
+                    }
+                }
+            }
+            affected.setModel(sceneBalastsL);
+
+            //Available balasts
+            DefaultListModel modelo = new DefaultListModel();
+            ArrayList<String> addedBalasts = PropHandler.getAddedScenes(ppalView.getDao());
+            for (String balastNumber : addedBalasts) {
+                if (!sel.contains(balastNumber)) {
+                    Balasto balasto = balasts.get(balastNumber);
+                    modelo.addElement(balasto.getBalastNumber() + " - " + balasto.getName());
+                }
+            }
+            available.setModel(modelo);
+        }
+    }
+
+    /**
+     * Update scene balast value.
+     */
+    private void updateEventItemLevel(PpalView ppalView) {
+        String level = ppalView.getjTextField23().getText();
+        String[] selectedBalast = ppalView.getjList5().getSelectedValue().toString().split(": ");
+        String selectedBalastIdx = ppalView.getjLabel19().getText();
+        DefaultListModel model = new DefaultListModel();
+
+        String newValue = selectedBalast[0] + ": " + level;
+
+        //Insert the modified balast value in the list.
+        if (!selectedBalastIdx.equals("#")) {
+            ListModel selected = ppalView.getjList5().getModel();
+            for (int i = 0; i < selected.getSize(); i++) {
+
+                if (selected.getElementAt(i).toString().split(" - ")[0].equals(selectedBalastIdx)) {
+                    model.addElement(newValue);
+                } else {
+                    model.addElement(selected.getElementAt(i).toString());
+                }
+            }
+            ppalView.getjList5().setModel(model);
+        } else {
+            Validation.showAlertMessage("Seleccione un balasto");
+        }
+
+    }
+    
+    /**
+     * Select the type of event.
+     */
+    public void selectByDays(PpalView ppalView){
+        if (ppalView.getjCheckBox1().isSelected()) {
+            //por dias
+            ppalView.getjLabel16().setEnabled(true);
+            ppalView.getjLabel25().setEnabled(true);
+            ppalView.getjCheckBox2().setEnabled(true);
+            ppalView.getjCheckBox3().setEnabled(true);
+            ppalView.getjCheckBox4().setEnabled(true);
+            ppalView.getjCheckBox5().setEnabled(true);
+            ppalView.getjCheckBox6().setEnabled(true);
+            ppalView.getjCheckBox7().setEnabled(true);
+            ppalView.getjCheckBox8().setEnabled(true);
+            ppalView.getjCheckBox9().setEnabled(true);
+            
+            ppalView.getjFormattedTextField3().setEnabled(true);
+            
+            //por fecha
+            ppalView.getjDateChooser2().setEnabled(false);
+            ppalView.getjLabel15().setEnabled(false);
+            ppalView.getjLabel24().setEnabled(false);
+            ppalView.getjFormattedTextField2().setEnabled(false);
+            
+        } else {
+            ppalView.getjLabel16().setEnabled(false);
+            ppalView.getjLabel25().setEnabled(false);
+            ppalView.getjCheckBox2().setEnabled(false);
+            ppalView.getjCheckBox3().setEnabled(false);
+            ppalView.getjCheckBox4().setEnabled(false);
+            ppalView.getjCheckBox5().setEnabled(false);
+            ppalView.getjCheckBox6().setEnabled(false);
+            ppalView.getjCheckBox7().setEnabled(false);
+            ppalView.getjCheckBox8().setEnabled(false);
+            ppalView.getjCheckBox9().setEnabled(false);
+            
+            ppalView.getjFormattedTextField3().setEnabled(false);
+            
+            //por fecha
+            ppalView.getjDateChooser2().setEnabled(true);
+            ppalView.getjLabel15().setEnabled(true);
+            ppalView.getjLabel24().setEnabled(true);
+            ppalView.getjFormattedTextField2().setEnabled(true);
+        }
+    }
+    
+    public void selectElements(PpalView ppalView){
+        String[] balasto = ppalView.getjList13().getSelectedValue().toString().split(": ");
+        String balastNumber = ppalView.getjList13().getSelectedValue().toString().split(" - ")[0];
+        if (balasto.length > 1) {
+            ppalView.getjLabel23().setText(balastNumber);
+            ppalView.getjTextField25().setText(balasto[balasto.length - 1]);
+        } else {
+            ppalView.getjLabel23().setText(balastNumber);
+            ppalView.getjTextField25().setText("0");
+        }
+    }
+    
+    public void updateLevel(PpalView ppalView){
+        String level = ppalView.getjTextField25().getText();
+        String[] selectedBalast = ppalView.getjList13().getSelectedValue().toString().split(": ");
+        String selectedBalastIdx = ppalView.getjLabel23().getText();
+        DefaultListModel model = new DefaultListModel();
+
+        String newValue = selectedBalast[0] + ": " + level;
+
+        //Insert the modified balast value in the list.
+        if (!selectedBalastIdx.equals("#")) {
+            ListModel selected = ppalView.getjList13().getModel();
+            for (int i = 0; i < selected.getSize(); i++) {
+
+                if (selected.getElementAt(i).toString().split(" - ")[0].equals(selectedBalastIdx)) {
+                    model.addElement(newValue);
+                } else {
+                    model.addElement(selected.getElementAt(i).toString());
+                }
+            }
+            ppalView.getjList13().setModel(model);
+        } else {
+            Validation.showAlertMessage("Seleccione un balasto");
+        }
+    }
+    
+    
+    
+}
