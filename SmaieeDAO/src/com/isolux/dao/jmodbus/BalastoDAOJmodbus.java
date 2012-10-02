@@ -408,7 +408,7 @@ public class BalastoDAOJmodbus {
                 //Get the bytes from the card.
                 for (int i = 0; i < bytesToRead; i++) {
 //                    affectedBalasts.add(new BigInteger(String.valueOf(dao.getRegValue(balastsOffset)&0xFFFF)));
-                    affectedBalasts.add(new BigInteger(String.valueOf(addedB[i]&0xFFFF)));
+                    affectedBalasts.add(new BigInteger(String.valueOf(addedB[i]&0x00FF)));
                 }
                 
                 String balastName = "";

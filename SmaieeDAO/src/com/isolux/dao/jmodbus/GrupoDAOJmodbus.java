@@ -355,42 +355,43 @@ public class GrupoDAOJmodbus {
             numgrupos = 16;
         }
         
-        int[] balastos = new int[numgrupos];
+        int[] gruposAdheridos = new int[numgrupos];
         try {
                 int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
                 int usedRegisters = Integer.parseInt(PropHandler.getProperty("group.memory.registers"));
                 
                 int balastsOffset = initOffset;
-                int tamReg = 16;
+                int tamReg = 8;
                 
-                float bytesToRead = (balastos.length / tamReg) < 1 ? 1 : (balastos.length / tamReg);
+                int bytesToRead = (gruposAdheridos.length / tamReg);
                 ArrayList<BigInteger> affectedGroups = new ArrayList<BigInteger>();
+                
                 int[] addedIns = dao.getRegValue(initOffset, usedRegisters);
 
                 //Get the bytes from the card.
                 for (int i = 0; i < bytesToRead; i++) {
-                    affectedGroups.add(new BigInteger(String.valueOf(addedIns[i]&0xFFFF)));
+                    affectedGroups.add(new BigInteger(String.valueOf(addedIns[i]&0x00FF)));
                 }
                 
                 String balastName = "";
                 for (BigInteger nameByte : affectedGroups) {
                     String value = nameByte.toString(2);
                     value = Utils.getCeros(value);
-                    balastName = value + balastName;
+                    balastName = balastName+value ;
                 }
                 
                 int j=0;
-                for (int i = balastos.length -1; i >= 0; i--) {
+                for (int i = gruposAdheridos.length -1; i >= 0; i--) {
                     String bit = String.valueOf(balastName.charAt(i));
-                    balastos[j] = Integer.parseInt(bit);
+                    gruposAdheridos[j] = Integer.parseInt(bit);
                     j++;
                 }
                 
             } catch (Exception e) {
-                System.out.println("Error al leer los balastos añadidos.");
+                System.out.println("Error al leer los grupos añadidos.");
             }
         
-        return balastos;
+        return gruposAdheridos;
     }
     
     
@@ -403,7 +404,7 @@ public class GrupoDAOJmodbus {
         try {
             int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
             
-            int[] grupos = getAddedGroupsCardArray();// no carga bien los grupos adheridos
+            int[] grupos = getAddedGroupsCardArray();// Corregida. Ya carga bien los grupos adheridos
             
             //Add the new Group.
             grupos[writtenGroupNumber] = 1;
