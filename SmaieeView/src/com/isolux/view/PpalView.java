@@ -254,8 +254,8 @@ public class PpalView extends javax.swing.JFrame {
         jLabel57 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        enviarGrupo_jButton = new javax.swing.JButton();
+        eliminarGrupo_jButton = new javax.swing.JButton();
         jLabel58 = new javax.swing.JLabel();
         jComboBox5 = new javax.swing.JComboBox();
         panelEscenas = new javax.swing.JPanel();
@@ -865,17 +865,17 @@ public class PpalView extends javax.swing.JFrame {
 
         jLabel4.setText("Nombre");
 
-        jButton6.setText("Enviar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        enviarGrupo_jButton.setText("Enviar");
+        enviarGrupo_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                enviarGrupo_jButtonActionPerformed(evt);
             }
         });
 
-        jButton7.setText("Eliminar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        eliminarGrupo_jButton.setText("Eliminar");
+        eliminarGrupo_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                eliminarGrupo_jButtonActionPerformed(evt);
             }
         });
 
@@ -904,9 +904,9 @@ public class PpalView extends javax.swing.JFrame {
                         .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelGruposLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jButton6)
+                        .addComponent(enviarGrupo_jButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7)))
+                        .addComponent(eliminarGrupo_jButton)))
                 .addContainerGap())
         );
         panelGruposLayout.setVerticalGroup(
@@ -922,8 +922,8 @@ public class PpalView extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelGruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton6))
+                    .addComponent(eliminarGrupo_jButton)
+                    .addComponent(enviarGrupo_jButton))
                 .addContainerGap())
         );
 
@@ -2712,17 +2712,17 @@ public class PpalView extends javax.swing.JFrame {
      * Send the group.
      * @param evt 
      */
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void enviarGrupo_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarGrupo_jButtonActionPerformed
         this.groupsCtrl.saveGroup(this);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_enviarGrupo_jButtonActionPerformed
 
     /**
      * Deletes a group
      * @param evt 
      */
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void eliminarGrupo_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarGrupo_jButtonActionPerformed
         this.groupsCtrl.deleteGroup(this);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_eliminarGrupo_jButtonActionPerformed
 
     /**
      * Add balasts to the scene.
@@ -3252,6 +3252,8 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.ButtonGroup botoneraTipoContacto;
     private javax.swing.JCheckBox cbIsStaticConfiguration;
     private javax.swing.ButtonGroup confRol;
+    private javax.swing.JButton eliminarGrupo_jButton;
+    private javax.swing.JButton enviarGrupo_jButton;
     private javax.swing.JFormattedTextField fieldGateway;
     protected javax.swing.JFormattedTextField fieldIp;
     private javax.swing.JFormattedTextField fieldMask;
@@ -3302,8 +3304,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton jButton47;
     private javax.swing.JButton jButton48;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
@@ -4224,19 +4224,19 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JButton getjButton6() {
-        return jButton6;
+        return enviarGrupo_jButton;
     }
 
     public void setjButton6(JButton jButton6) {
-        this.jButton6 = jButton6;
+        this.enviarGrupo_jButton = jButton6;
     }
 
     public JButton getjButton7() {
-        return jButton7;
+        return eliminarGrupo_jButton;
     }
 
     public void setjButton7(JButton jButton7) {
-        this.jButton7 = jButton7;
+        this.eliminarGrupo_jButton = jButton7;
     }
 
     public JButton getjButton8() {

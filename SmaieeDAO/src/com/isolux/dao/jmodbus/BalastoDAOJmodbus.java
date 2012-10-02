@@ -338,11 +338,11 @@ public class BalastoDAOJmodbus {
         
         
         try {
-                int initOffset = Integer.parseInt(PropHandler.getProperty("balast.memory.added"));
-                int usedRegisters = Integer.parseInt(PropHandler.getProperty("balast.memory.registers"));
+                int initOffset = Integer.parseInt(PropHandler.getProperty("balast.memory.added"));//dir 10
+                int usedRegisters = Integer.parseInt(PropHandler.getProperty("balast.memory.registers"));// 4
                 
-                int balastsOffset = initOffset;
-                int tamReg = 16;
+               
+                int tamReg = 8;
                 int[] balastos = new int[numBalastos];
                 float bytesToRead = balastos.length / tamReg;
                 ArrayList<BigInteger> affectedBalasts = new ArrayList<BigInteger>();
@@ -351,7 +351,7 @@ public class BalastoDAOJmodbus {
                 //Get the bytes from the card.
                 for (int i = 0; i < bytesToRead; i++) {
 //                    affectedBalasts.add(new BigInteger(String.valueOf(dao.getRegValue(balastsOffset)&0xFFFF)));
-                    affectedBalasts.add(new BigInteger(String.valueOf(addedB[i]&0xFFFF)));
+                    affectedBalasts.add(new BigInteger(String.valueOf(addedB[i]&0x00FF)));
                 }
                 
                 String balastName = "";
@@ -360,6 +360,9 @@ public class BalastoDAOJmodbus {
                     value = Utils.getCeros(value);
                     balastName = value + balastName;
                 }
+                
+             
+                
                 
                 int j=0;
                 for (int i = balastos.length -1; i >= 0; i--) {

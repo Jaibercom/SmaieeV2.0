@@ -92,6 +92,13 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel4.setText("Ip");
 
+        ipTextField.setText("192.168.0.120");
+        ipTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ipTextFieldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -165,6 +172,10 @@ public class Inicio extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_conectar_jButtonActionPerformed
+
+    private void ipTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ipTextFieldActionPerformed
 
     /**
      * Set the application theme

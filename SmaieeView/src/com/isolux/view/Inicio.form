@@ -132,6 +132,12 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="ipTextField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="192.168.0.120"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ipTextFieldActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

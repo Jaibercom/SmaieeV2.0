@@ -24,9 +24,10 @@ public class GrupoDAOJmodbus {
     public GrupoDAOJmodbus(DAOJmodbus dao) {
         this.dao  = dao;
     }
-    
     /**
-     * Write a single register.
+     * Escribe un registro individual
+     * @param pos Posicion de registro
+     * @param mode El modo en el que se quiere ese registro
      */
     public static void setSingleReg(int pos, int mode){
         int[] values = {mode};
@@ -43,7 +44,7 @@ public class GrupoDAOJmodbus {
 
         try {
 
-            //MODO
+            //MODO Configuracion
             setSingleReg(0, 1);
 
             //Init offset.
@@ -52,10 +53,12 @@ public class GrupoDAOJmodbus {
             int[] groupsArray = new int[Integer.parseInt(PropHandler.getProperty("group.memory.size"))];
             
             //Group number
-            groupsArray[0] = groupNumber;
-            groupsArray[0] = 1;
+//            Es de 10 caracteres porque el nombre es de 10 caracteres
+            groupsArray[0] = groupNumber;// hay que validar el numero de grupo
+            groupsArray[1] = 1;// ojo, esto si esta correcto?
 
             //name
+//            Con esta rutina se calcula el nombre
             try {
                 int nameOffset = 2;
                 ArrayList<BigInteger> balastNameBytes = Utils.getNameBytesReverse(group.getName());
@@ -294,23 +297,24 @@ public class GrupoDAOJmodbus {
                 int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
                 int usedRegisters = Integer.parseInt(PropHandler.getProperty("group.memory.registers"));
                 
-                int balastsOffset = initOffset;
-                int tamReg = 16;
+//                int balastsOffset = initOffset;
+                int tamReg = 8;//cambiado por extencion de signo
                 int[] grupos = new int[numGrupos];
                 float bytesToRead = (grupos.length / tamReg) < 1 ? 1 : (grupos.length / tamReg);
                 ArrayList<BigInteger> affectedGroups = new ArrayList<BigInteger>();
-                int[] addedIns = dao.getRegValue(initOffset, usedRegisters);
+                int[] addedG = dao.getRegValue(initOffset, usedRegisters);
 //En este lugar esta el problema de los nombres de los grupos
                 //Get the bytes from the card.
                 for (int i = 0; i < bytesToRead; i++) {
-                    affectedGroups.add(new BigInteger(String.valueOf(addedIns[i]&0xFFFF)));
+                    affectedGroups.add(new BigInteger(String.valueOf(addedG[i]&0x00FF)));
                 }
                 
                 String balastName = "";
                 for (BigInteger nameByte : affectedGroups) {
                     String value = nameByte.toString(2);
                     value = Utils.getCeros(value);
-                    balastName = value + balastName;
+//                    balastName = value + balastName;
+                    balastName= balastName+value;
                 }
                 
                 int j=0;
@@ -346,12 +350,12 @@ public class GrupoDAOJmodbus {
      * @return 
      */
     public static int[] getAddedGroupsCardArray() {
-        int numBalastos = Integer.parseInt(PropHandler.getProperty("group.max.number"));
-        if (numBalastos < 16) {
-            numBalastos = 16;
+        int numgrupos = Integer.parseInt(PropHandler.getProperty("group.max.number"));
+        if (numgrupos < 16) {
+            numgrupos = 16;
         }
         
-        int[] balastos = new int[numBalastos];
+        int[] balastos = new int[numgrupos];
         try {
                 int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
                 int usedRegisters = Integer.parseInt(PropHandler.getProperty("group.memory.registers"));
@@ -391,29 +395,29 @@ public class GrupoDAOJmodbus {
     
     
     /**
-     * Add a new balast.
+     * Add a new group.
      * @param key
      * @return 
      */
-    public static void addGroup(int writtenBalastNumber) {
+    public static void addGroup(int writtenGroupNumber) {
         try {
             int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
             
-            int[] balastos = getAddedGroupsCardArray();
+            int[] grupos = getAddedGroupsCardArray();// no carga bien los grupos adheridos
             
-            //Add the new balast.
-            balastos[writtenBalastNumber] = 1;
+            //Add the new Group.
+            grupos[writtenGroupNumber] = 1;
             
             //Get a string with the bits of the selected values.
-            String seleBal = "";
-            for (int i : balastos) {
-                seleBal = String.valueOf(i) + seleBal;
+            String seleGrupo = "";
+            for (int i : grupos) {
+                seleGrupo = String.valueOf(i) + seleGrupo;
             }
             
             
             
             //Get BitIntegers every 16 bits and store them in the card.
-            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal);
+            ArrayList<BigInteger> name = Utils.getSelectedItems(seleGrupo);
             for (int i = name.size() - 1; i >= 0; i--) {
                 int[] nameValues = {name.get(i).intValue()};
                 dao.setRegValue(initOffset, nameValues);
@@ -428,7 +432,7 @@ public class GrupoDAOJmodbus {
     
     
     /**
-     * Delete the balast.
+     * Borra el grupo.
      * @param key
      * @return 
      */
@@ -436,20 +440,20 @@ public class GrupoDAOJmodbus {
         try {
             int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
             
-            int[] balastos = getAddedGroupsCardArray();
+            int[] grupos = getAddedGroupsCardArray();
 //            System.out.println("Offset: " + initOffset + ", group balasts: " + balastos);
             
-            //Delete the specified balast.
-            balastos[writtenBalastNumber] = 0;
+            //Delete the specified grupo.
+            grupos[writtenBalastNumber] = 0;
             
             //Get a string with the bits of the selected values.
-            String seleBal = "";
-            for (int i : balastos) {
-                seleBal = String.valueOf(i) + seleBal;
+            String seleGrupo = "";
+            for (int i : grupos) {
+                seleGrupo = String.valueOf(i) + seleGrupo;
             }
             
             //Get BitIntegers every 16 bits and store them in the card.
-            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal);
+            ArrayList<BigInteger> name = Utils.getSelectedItems(seleGrupo);
             for (int i = name.size() - 1; i >= 0; i--) {
                 int[] nameValues = {name.get(i).intValue()};
                 dao.setRegValue(initOffset, nameValues);
@@ -457,63 +461,9 @@ public class GrupoDAOJmodbus {
             }
             
         } catch (Exception e) {
-            System.out.println("No se pudo eliminar el balasto especificado!");
+            System.out.println("No se pudo eliminar el grupo especificado!");
             e.printStackTrace();
         } 
     }
     
-    /**
-     * Gets the number of the next balast to write.
-     * @param key
-     * @return 
-     */
-//    public static int getGroupNumber() {
-//        ArrayList<String> addedBalasts = new ArrayList<String>();
-//        DAO4j dao = new DAO4j();
-//        int numBalastos = Integer.parseInt(PropHandler.getProperty("group.max.number"));
-//        if (numBalastos < 16) {
-//            numBalastos = 16;
-//        }
-//        
-//        try {
-//                int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
-//                int balastsOffset = initOffset;
-//                int tamReg = 16;
-//                int[] balastos = new int[numBalastos];
-//                float bytesToRead = (balastos.length / tamReg) < 1 ? 1 : (balastos.length / tamReg);
-//                ArrayList<BigInteger> affectedBalasts = new ArrayList<BigInteger>();
-//
-//                //Get the bytes from the card.
-//                for (int i = 0; i < bytesToRead; i++) {
-//                    affectedBalasts.add(new BigInteger(String.valueOf(dao.getRegValue(balastsOffset)&0xFFFF)));
-//                    balastsOffset++;
-//                }
-//                
-//                String balastName = "";
-//                for (BigInteger nameByte : affectedBalasts) {
-//                    String value = nameByte.toString(2);
-//                    value = Utils.getCeros(value);
-//                    balastName = value + balastName;
-//                }
-//                
-//                int j=0;
-//                for (int i = balastos.length -1; i >= 0; i--) {
-//                    String bit = String.valueOf(balastName.charAt(i));
-//                    balastos[j] = Integer.parseInt(bit);
-//                    j++;
-//                }
-//                
-//                //Get an ArrayList with the result
-//                for (int i = 0; i < balastos.length; i++) {
-//                    if (balastos[i] != 0) {
-//                       addedBalasts.add(String.valueOf(balastos[i]));
-//                    }
-//                    
-//                }
-//                
-//            } catch (Exception e) {
-//                System.out.println("Error al leer los balastos añadidos.");
-//            }
-//        return addedBalasts.size();
-//    }
-}
+  }

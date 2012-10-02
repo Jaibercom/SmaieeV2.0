@@ -103,9 +103,9 @@ public class Utils {
         BigInteger bitsBI = new BigInteger(bits, 2);
 
         int length = bits.length();
-        if (length < 16) {
+        if (length < 8) {
 
-            int missingCeros = 16 - length;
+            int missingCeros = 8 - length;
             String mising = "";
 
             for (int i = 0; i < missingCeros; i++) {
