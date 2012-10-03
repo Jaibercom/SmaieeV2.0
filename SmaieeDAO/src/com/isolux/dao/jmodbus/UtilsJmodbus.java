@@ -313,4 +313,56 @@ public class UtilsJmodbus {
 
         return elementosadheridos;
     }
+
+    /**
+     * Metodo que retorna el array de elementos de enteros que representa a los
+     * elementos en memoria
+     *
+     * @param numBalastos
+     * @param dao
+     * @param initOffset
+     * @param usedRegisters
+     * @param tamReg
+     * @return
+     */
+    public static int[] getElementosEnMemoriaInt(int numBalastos, DAOJmodbus dao, int initOffset, int usedRegisters, int tamReg) {
+//    int numBalastos = Integer.parseInt(PropHandler.getProperty("balast.max.number"));
+
+        int[] balastos = new int[numBalastos];
+        try {
+//            int initOffset = Integer.parseInt(PropHandler.getProperty("balast.memory.added"));
+//            int usedRegisters = Integer.parseInt(PropHandler.getProperty("balast.memory.registers"));
+//            int tamReg = 16;
+
+            float bytesToRead = balastos.length / tamReg;
+            ArrayList<BigInteger> affectedBalasts = new ArrayList<BigInteger>();
+            int[] addedB = dao.getRegValue(initOffset, usedRegisters);
+
+            //Get the bytes from the card.
+            for (int i = 0; i < bytesToRead; i++) {
+//                    affectedBalasts.add(new BigInteger(String.valueOf(dao.getRegValue(balastsOffset)&0xFFFF)));
+                affectedBalasts.add(new BigInteger(String.valueOf(addedB[i] & 0x00FF)));
+            }
+
+            String balastName = "";
+            for (BigInteger nameByte : affectedBalasts) {
+                String value = nameByte.toString(2);
+                value = Utils.getCeros(value);
+                balastName = value + balastName;
+            }
+
+            int j = 0;
+            for (int i = balastos.length - 1; i >= 0; i--) {
+                String bit = String.valueOf(balastName.charAt(i));
+                balastos[j] = Integer.parseInt(bit);
+                j++;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al leer los balastos añadidos.");
+        }
+
+        return balastos;
+
+    }
 }
