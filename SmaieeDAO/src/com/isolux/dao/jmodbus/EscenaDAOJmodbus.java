@@ -16,25 +16,26 @@ import java.util.ArrayList;
  * @author Juan Diego Toro Cano
  */
 public class EscenaDAOJmodbus {
-    
+
     private static DAOJmodbus dao;
-    
+
     //CONSTRUCTOR
     public EscenaDAOJmodbus(DAOJmodbus dao) {
-        this.dao  = dao;
+        this.dao = dao;
     }
-    
+
     /**
      * Write a single register.
      */
-    public static void setSingleReg(int pos, int mode){
+    public static void setSingleReg(int pos, int mode) {
         int[] values = {mode};
         dao.setRegValue(pos, values);
     }
-    
+
     /**
      * Saves the group.
-     * @param escena 
+     *
+     * @param escena
      */
     public static boolean saveScene(Escena escena) {
         boolean state = false;
@@ -48,9 +49,9 @@ public class EscenaDAOJmodbus {
             //Init offset.
             int initOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.scene"));
             int[] sceneArray = new int[Integer.parseInt(PropHandler.getProperty("scene.memory.size"))];
-            
+
             System.out.println("SAVING SCENE NUMBER: " + escenaNumber);
-            
+
             //scene number
             sceneArray[0] = escenaNumber;
 
@@ -70,9 +71,10 @@ public class EscenaDAOJmodbus {
                     }
                     nameOffset++;
                 }
-            } catch (Exception e) {}
-            
-            
+            } catch (Exception e) {
+            }
+
+
             //niveles balastos
             int balastsLevels = 7;
             int[] nivelBalastos = escena.getNivelBalasto();
@@ -80,17 +82,17 @@ public class EscenaDAOJmodbus {
                 sceneArray[balastsLevels] = nivelBalastos[i];
                 balastsLevels++;
             }
-            
-            
+
+
             //balastos afectados
             int[] balastos = escena.getBalastosAfectados();
-            
+
             //Get a string with the bits of the selected values.
             String seleBal = "";
             for (int i : balastos) {
                 seleBal = String.valueOf(i) + seleBal;
             }
-            
+
             //Get BitIntegers every 16 bits and store them in the card.
             ArrayList<BigInteger> affectedBalasts = UtilsJmodbus.getSelectedItems(seleBal);
             int pos = 71;
@@ -99,11 +101,11 @@ public class EscenaDAOJmodbus {
                 pos++;
             }
 
-            
+
             dao.setRegValue(initOffset, sceneArray);
             PropHandler.addScene(escenaNumber, dao);
             System.out.println("Scene number " + escenaNumber + " saved");
-            
+
             //MODO
             setSingleReg(0, 0);
 
@@ -118,8 +120,9 @@ public class EscenaDAOJmodbus {
 
     /**
      * Deletes the group.
+     *
      * @param groupNumbers
-     * @return 
+     * @return
      */
     public static boolean deleteScene(String sceneNumbers) {
         boolean state = false;
@@ -134,9 +137,9 @@ public class EscenaDAOJmodbus {
             //Init offset.
             int initOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.scene"));
             int[] sceneArray = new int[Integer.parseInt(PropHandler.getProperty("scene.memory.size"))];
-            
+
             System.out.println("DELETING SCENE NUMBER: " + escenaNumber);
-            
+
             //scene number
             sceneArray[0] = escenaNumber;
 
@@ -150,9 +153,10 @@ public class EscenaDAOJmodbus {
                     sceneArray[nameOffset] = 0;
                     nameOffset++;
                 }
-            } catch (Exception e) {}
-            
-            
+            } catch (Exception e) {
+            }
+
+
             //niveles balastos
             int balastsLevels = 7;
             int[] nivelBalastos = escena.getNivelBalasto();
@@ -160,17 +164,17 @@ public class EscenaDAOJmodbus {
                 sceneArray[balastsLevels] = 0;
                 balastsLevels++;
             }
-            
-            
+
+
             //balastos afectados
             int[] balastos = escena.getBalastosAfectados();
-            
+
             //Get a string with the bits of the selected values.
             String seleBal = "";
             for (int i : balastos) {
                 seleBal = String.valueOf(i) + seleBal;
             }
-            
+
             //Get BitIntegers every 16 bits and store them in the card.
             ArrayList<BigInteger> affectedBalasts = UtilsJmodbus.getSelectedItems(seleBal);
             int pos = 71;
@@ -178,11 +182,11 @@ public class EscenaDAOJmodbus {
                 sceneArray[pos] = 0;
                 pos++;
             }
-            
+
             dao.setRegValue(initOffset, sceneArray);
             PropHandler.deleteScene(escenaNumber, dao);
             System.out.println("Scene number " + escenaNumber + " deleted");
-            
+
             //MODO
             setSingleReg(0, 0);
 
@@ -197,19 +201,20 @@ public class EscenaDAOJmodbus {
 
     /**
      * Get a group from the card.
-     * @param sceneNumber 
+     *
+     * @param sceneNumber
      */
     public static Escena readScene(int sceneNumber) {
         Escena escene = new Escena();
 
         try {
-            
+
             //MODO
-            setSingleReg(0,1);
-            
+            setSingleReg(0, 1);
+
             System.out.println("READING SCENE No.:" + sceneNumber);
             int initOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.scene"));             //2000
-            
+
             setSingleReg(initOffset, sceneNumber);
             int[] sceneArray = dao.getRegValue(initOffset, Integer.parseInt(PropHandler.getProperty("scene.memory.size")));
 
@@ -241,7 +246,7 @@ public class EscenaDAOJmodbus {
                 //Recreates the entire name bytes and sets the name to the balast.
                 BigInteger totalBytes = new BigInteger(balastName, 2);
                 escene.setNombre(new String(totalBytes.toByteArray()));
-                
+
             } catch (Exception e) {
                 System.out.println("Error al leer el nombre de la escena.");
             }
@@ -266,19 +271,19 @@ public class EscenaDAOJmodbus {
 
                 //Get the bytes from the card.
                 for (int i = 0; i < bytesToRead; i++) {
-                    affectedBalasts.add(new BigInteger(String.valueOf(sceneArray[balastsOffset]&0xFFFF)));
+                    affectedBalasts.add(new BigInteger(String.valueOf(sceneArray[balastsOffset] & 0xFFFF)));
                     balastsOffset++;
                 }
-                
+
                 String balastName = "";
                 for (BigInteger nameByte : affectedBalasts) {
                     String value = nameByte.toString(2);
                     value = UtilsJmodbus.getCeros(value);
                     balastName = value + balastName;
                 }
-                
-                int j=0;
-                for (int i = balastos.length -1; i >= 0; i--) {
+
+                int j = 0;
+                for (int i = balastos.length - 1; i >= 0; i--) {
                     String bit = String.valueOf(balastName.charAt(i));
                     balastos[j] = Integer.parseInt(bit);
                     j++;
@@ -286,12 +291,12 @@ public class EscenaDAOJmodbus {
             } catch (Exception e) {
                 System.out.println("Error al leer los balastos afectados por la escena.");
             }
-            
-            
+
+
             System.out.println("Scene number " + sceneNumber + " readed.");
-            
+
             //MODO
-            setSingleReg(0,0);
+            setSingleReg(0, 0);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -299,144 +304,158 @@ public class EscenaDAOJmodbus {
 
         return escene;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     public static ArrayList<String> getAddedScenes() {
-        ArrayList<String> addedScenes = new ArrayList<String>();
-//        DAO4j dao = new DAO4j();
-        int numBalastos = Integer.parseInt(PropHandler.getProperty("scene.max.number"));
-        if (numBalastos < 16) {
-            numBalastos = 16;
-        }
-        
-        
-        try {
-                int initOffset = Integer.parseInt(PropHandler.getProperty("scene.memory.added"));
-                int usedRegisters = Integer.parseInt(PropHandler.getProperty("scene.memory.registers"));
-                
-                
-                int balastsOffset = initOffset;
-                int tamReg = 16;
-                int[] balastos = new int[numBalastos];
-                float bytesToRead = (balastos.length / tamReg) < 1 ? 1 : (balastos.length / tamReg);
-                ArrayList<BigInteger> affectedScenes = new ArrayList<BigInteger>();
-                int[] addedB = dao.getRegValue(initOffset, usedRegisters);
 
-                //Get the bytes from the card.
-                for (int i = 0; i < bytesToRead; i++) {
-//                    affectedBalasts.add(new BigInteger(String.valueOf(dao.getRegValue(balastsOffset)&0xFFFF)));
-                    affectedScenes.add(new BigInteger(String.valueOf(addedB[i]&0xFFFF)));
-                }
-                
-                String balastName = "";
-                for (BigInteger nameByte : affectedScenes) {
-                    String value = nameByte.toString(2);
-                    value = Utils.getCeros(value);
-                    balastName = value + balastName;
-                }
-                
-                int j=0;
-                for (int i = balastos.length -1; i >= 0; i--) {
-                    String bit = String.valueOf(balastName.charAt(i));
-                    balastos[j] = Integer.parseInt(bit);
-                    j++;
-                }
-                
-                //Get an ArrayList with the result
-                for (int i = 0; i < balastos.length; i++) {
-                    if (balastos[i] != 0) {
-                       addedScenes.add(String.valueOf(i));
-                    }
-                    
-                }
-                
-            } catch (Exception e) {
-                System.out.println("Error al leer los balastos añadidos.");
-            }
-        
-        return addedScenes;
+    public static ArrayList<String> getAddedScenes() {
+        //       //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
+        ArrayList<String> addedScenes = new ArrayList<String>();
+        ////        DAO4j dao = new DAO4j();
+        //        int numBalastos = Integer.parseInt(PropHandler.getProperty("scene.max.number"));
+        //        if (numBalastos < 16) {
+        //            numBalastos = 16;
+        //        }
+        //
+        //
+        //        try {
+        //                int initOffset = Integer.parseInt(PropHandler.getProperty("scene.memory.added"));
+        //                int usedRegisters = Integer.parseInt(PropHandler.getProperty("scene.memory.registers"));
+        //
+        //
+        //                int balastsOffset = initOffset;
+        //                int tamReg = 16;
+        //                int[] balastos = new int[numBalastos];
+        //                float bytesToRead = (balastos.length / tamReg) < 1 ? 1 : (balastos.length / tamReg);
+        //                ArrayList<BigInteger> affectedScenes = new ArrayList<BigInteger>();
+        //                int[] addedB = dao.getRegValue(initOffset, usedRegisters);
+        //
+        //                //Get the bytes from the card.
+        //                for (int i = 0; i < bytesToRead; i++) {
+        ////                    affectedBalasts.add(new BigInteger(String.valueOf(dao.getRegValue(balastsOffset)&0xFFFF)));
+        //                    affectedScenes.add(new BigInteger(String.valueOf(addedB[i]&0xFFFF)));
+        //                }
+        //
+        //                String balastName = "";
+        //                for (BigInteger nameByte : affectedScenes) {
+        //                    String value = nameByte.toString(2);
+        //                    value = Utils.getCeros(value);
+        //                    balastName = value + balastName;
+        //                }
+        //
+        //                int j=0;
+        //                for (int i = balastos.length -1; i >= 0; i--) {
+        //                    String bit = String.valueOf(balastName.charAt(i));
+        //                    balastos[j] = Integer.parseInt(bit);
+        //                    j++;
+        //                }
+        //
+        //                //Get an ArrayList with the result
+        //                for (int i = 0; i < balastos.length; i++) {
+        //                    if (balastos[i] != 0) {
+        //                       addedScenes.add(String.valueOf(i));
+        //                    }
+        //
+        //                }
+        //
+        //            } catch (Exception e) {
+        //                System.out.println("Error al leer los balastos añadidos.");
+        //            }
+        //
+        //        return addedScenes;
+        //</editor-fold>
+
+        ArrayList<String> elementosEnMemoria;
+        try {
+
+            int numGrupos = Integer.parseInt(PropHandler.getProperty("scene.max.number"));
+            int initOffset = Integer.parseInt(PropHandler.getProperty("scene.memory.added"));
+            int usedRegisters = Integer.parseInt(PropHandler.getProperty("scene.memory.registers"));
+            int tamReg = 8;
+//            int tamReg = Integer.parseInt(PropHandler.getProperty("registro.tamanio.lectura"));
+            elementosEnMemoria = UtilsJmodbus.getElementosEnMemoria(numGrupos, dao, initOffset, usedRegisters, tamReg);
+
+
+
+        } catch (Exception e) {
+            System.out.println("No se encontraron los archivos de configuración");
+            e.printStackTrace();
+            return null;
+        }
+        return elementosEnMemoria;
+
     }
-    
+
     /**
      * Returns the an array with the added balasts.
-     * @return 
+     *
+     * @return
      */
     public static int[] getAddedScenesCardArray() {
         int numBalastos = Integer.parseInt(PropHandler.getProperty("scene.max.number"));
         if (numBalastos < 16) {
             numBalastos = 16;
         }
-        
+
         int[] balastos = new int[numBalastos];
         try {
-                int initOffset = Integer.parseInt(PropHandler.getProperty("scene.memory.added"));
-                int usedRegisters = Integer.parseInt(PropHandler.getProperty("scene.memory.registers"));
-                
-                int balastsOffset = initOffset;
-                int tamReg = 16;
-                
-                float bytesToRead = (balastos.length / tamReg) < 1 ? 1 : (balastos.length / tamReg);
-                ArrayList<BigInteger> affectedScenes = new ArrayList<BigInteger>();
-                int[] addedB = dao.getRegValue(initOffset, usedRegisters);
+            int initOffset = Integer.parseInt(PropHandler.getProperty("scene.memory.added"));
+            int usedRegisters = Integer.parseInt(PropHandler.getProperty("scene.memory.registers"));
 
-                //Get the bytes from the card.
-                for (int i = 0; i < bytesToRead; i++) {
+            int balastsOffset = initOffset;
+            int tamReg = 16;
+
+            float bytesToRead = (balastos.length / tamReg) < 1 ? 1 : (balastos.length / tamReg);
+            ArrayList<BigInteger> affectedScenes = new ArrayList<BigInteger>();
+            int[] addedB = dao.getRegValue(initOffset, usedRegisters);
+
+            //Get the bytes from the card.
+            for (int i = 0; i < bytesToRead; i++) {
 //                    affectedScenes.add(new BigInteger(String.valueOf(dao.getRegValue(balastsOffset)&0xFFFF)));
-                    affectedScenes.add(new BigInteger(String.valueOf(addedB[i]&0xFFFF)));
-                }
-                
-                String balastName = "";
-                for (BigInteger nameByte : affectedScenes) {
-                    String value = nameByte.toString(2);
-                    value = Utils.getCeros(value);
-                    balastName = value + balastName;
-                }
-                
-                int j=0;
-                for (int i = balastos.length -1; i >= 0; i--) {
-                    String bit = String.valueOf(balastName.charAt(i));
-                    balastos[j] = Integer.parseInt(bit);
-                    j++;
-                }
-                
-            } catch (Exception e) {
-                System.out.println("Error al leer los balastos añadidos.");
+                affectedScenes.add(new BigInteger(String.valueOf(addedB[i] & 0xFFFF)));
             }
-        
+
+            String balastName = "";
+            for (BigInteger nameByte : affectedScenes) {
+                String value = nameByte.toString(2);
+                value = Utils.getCeros(value);
+                balastName = value + balastName;
+            }
+
+            int j = 0;
+            for (int i = balastos.length - 1; i >= 0; i--) {
+                String bit = String.valueOf(balastName.charAt(i));
+                balastos[j] = Integer.parseInt(bit);
+                j++;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al leer los balastos añadidos.");
+        }
+
         return balastos;
     }
-    
-    
+
     /**
      * Add a new balast.
+     *
      * @param key
-     * @return 
+     * @return
      */
     public static void addScene(int writtenBalastNumber) {
         try {
             int initOffset = Integer.parseInt(PropHandler.getProperty("scene.memory.added"));
-            
+
             int[] balastos = getAddedScenesCardArray();
-            
+
             //Add the new balast.
             balastos[writtenBalastNumber] = 1;
-            
+
             //Get a string with the bits of the selected values.
             String seleBal = "";
             for (int i : balastos) {
                 seleBal = String.valueOf(i) + seleBal;
             }
-            
-            
-            
+
+
+
             //Get BitIntegers every 16 bits and store them in the card.
             ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal);
             for (int i = name.size() - 1; i >= 0; i--) {
@@ -444,36 +463,36 @@ public class EscenaDAOJmodbus {
                 dao.setRegValue(initOffset, nameValues);
                 initOffset++;
             }
-            
+
         } catch (Exception e) {
             System.out.println("No se pudo escribir el balasto especificado!");
             e.printStackTrace();
-        } 
+        }
     }
-    
-    
+
     /**
      * Delete the balast.
+     *
      * @param key
-     * @return 
+     * @return
      */
     public static void deleteScene(int writtenBalastNumber) {
-        
+
         try {
             int initOffset = Integer.parseInt(PropHandler.getProperty("scene.memory.added"));
-            
+
             int[] balastos = getAddedScenesCardArray();
 //            System.out.println("Offset: " + initOffset + ", group balasts: " + balastos);
-            
+
             //Delete the specified balast.
             balastos[writtenBalastNumber] = 0;
-            
+
             //Get a string with the bits of the selected values.
             String seleBal = "";
             for (int i : balastos) {
                 seleBal = String.valueOf(i) + seleBal;
             }
-            
+
             //Get BitIntegers every 16 bits and store them in the card.
             ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal);
             for (int i = name.size() - 1; i >= 0; i--) {
@@ -481,11 +500,10 @@ public class EscenaDAOJmodbus {
                 dao.setRegValue(initOffset, nameValues);
                 initOffset++;
             }
-            
+
         } catch (Exception e) {
             System.out.println("No se pudo eliminar el balasto especificado!");
             e.printStackTrace();
-        } 
+        }
     }
-    
 }
