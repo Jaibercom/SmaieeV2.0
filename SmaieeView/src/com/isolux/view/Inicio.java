@@ -13,10 +13,12 @@ package com.isolux.view;
 import com.isolux.dao.modbus.DAOJamod;
 import com.isolux.dao.modbus.DAO4j;
 import com.isolux.dao.properties.PropHandler;
+import java.awt.HeadlessException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -143,34 +145,38 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void conectar_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conectar_jButtonActionPerformed
-        jLabel3.setText("Conectando...");
-        int port = 502;
-        String ip = ipTextField.getText();
-        
-        if (ipValidator(ip)) {
-            //        System.out.println("Connection state: " + DAOJamod.testConnection(ip, port));
+        try {
+            jLabel3.setText("Conectando...");
+            int port = 502;
+            String ip = ipTextField.getText();
             
-            PropHandler.setProperty("general.ip", ip);
-            PropHandler.setProperty("general.port", String.valueOf(port));
-            if (DAOJamod.testConnection(ip, port)) {
-                //TODO: Get info and give it to the ppal
-                //Getting info...
-//                DAO4j.readMemory();
+            if (ipValidator(ip)) {
+                //        System.out.println("Connection state: " + DAOJamod.testConnection(ip, port));
                 
-                //Show the main view.
-                PpalView ppal = new PpalView();
-                ppal.setLocationRelativeTo(null);
-                ppal.setVisible(true);
-                this.dispose(); //oculta la ventana actual (Inicio.java)
+                PropHandler.setProperty("general.ip", ip);
+                PropHandler.setProperty("general.port", String.valueOf(port));
+                if (DAOJamod.testConnection(ip, port)) {
+                    //TODO: Get info and give it to the ppal
+                    //Getting info...
+//                DAO4j.readMemory();
+
+                    //Show the main view.
+                    PpalView ppal = new PpalView();
+                    ppal.setLocationRelativeTo(null);
+                    ppal.setVisible(true);
+                    this.dispose(); //oculta la ventana actual (Inicio.java)
+                } else {
+                    jLabel3.setText("No se puede establecer una conexion!");
+                    JOptionPane.showMessageDialog(rootPane, "No se pudo conectar a la tarjeta. Revise su conexion", "Error de conexión", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                jLabel3.setText("No se puede establecer una conexion!");
-            }
-        } else {
-            jLabel3.setText("Revise la ip y el puerto.");
+                jLabel3.setText("Revise la ip y el puerto.");
 //            JOptionPane.showConfirmDialog(null, "No se pudo establecer la conexion." +
 //                    "\nRevise la ip y el puerto.", "Error", -1, JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (HeadlessException headlessException) {
+            headlessException.printStackTrace();
         }
-        
     }//GEN-LAST:event_conectar_jButtonActionPerformed
 
     private void ipTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipTextFieldActionPerformed

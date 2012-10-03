@@ -365,4 +365,65 @@ public class UtilsJmodbus {
         return balastos;
 
     }
+
+    /**
+     * Método que desencripta un nombre dentro de un array
+     *
+     * @param groupsArray array de enteros que contiene la cadena a desencriptar
+     * @param nameOffset numero inicial en el registro
+     * @param name cadena de texto que contiene la representacion de unos y
+     * ceros
+     * @param bits numero de bits o largo del nombre. Típicamente en este caso
+     * es 5.
+     */
+    public static void decifrarNombre(int[] groupsArray, int nameOffset, String name, int bits) {
+        //name
+//            Con esta rutina se calcula el nombre
+        try {
+//                int nameOffset = 2;
+            ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(name);
+            int size = balastNameBytes.size();
+            for (int i = 0; i < bits; i++) {
+                if (i < size) {
+                    groupsArray[nameOffset] = balastNameBytes.get(i).intValue();
+                } else {
+                    groupsArray[nameOffset] = 0;
+                }
+                nameOffset++;
+            }
+        } catch (Exception e) {
+            System.out.println("Hubo problemas desencriptando el nombre del elemento");
+        }
+    }
+
+    /**
+     * Método que desencripta el nombre que ets en bits en un arreglo
+     * @param arrayElementos array de elementos en el que se encuentra el nombre encriptado
+     * @param nameOffset valor desde el cual se quiere desencriptar
+     * @param tam Es el tamannio de la palabra a desencriptar en bits, en este caso tipicamente es 5
+     * @return 
+     */
+    
+    public static String desencriptarNombre(int[] arrayElementos, int nameOffset, int tam) {
+        //name
+//        int nameOffset = 3;
+        ArrayList<BigInteger> balastNameBytes = new ArrayList<BigInteger>();
+        String balastName = "";
+        //Get the bytes from the card.
+        for (int i = 0; i < tam; i++) {
+            int tales = 0;
+            tales |= arrayElementos[nameOffset] & 0xFFFF;
+            balastNameBytes.add(new BigInteger(String.valueOf(tales)));
+            nameOffset++;
+        }
+        //Join the bytes using a string
+        for (BigInteger nameByte : balastNameBytes) {
+            String value = nameByte.toString(2);
+            balastName = UtilsJmodbus.getCeros(value) + balastName;
+        }
+        //Recreates the entire name bytes and sets the name to the balast.
+        BigInteger totalBytes = new BigInteger(balastName, 2);
+        String nombre = new String(totalBytes.toByteArray());
+        return nombre;
+    }
 }

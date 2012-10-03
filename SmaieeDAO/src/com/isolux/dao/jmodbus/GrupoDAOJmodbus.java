@@ -62,19 +62,33 @@ public class GrupoDAOJmodbus {
 
             //name
 //            Con esta rutina se calcula el nombre
-            try {
-                int nameOffset = 2;
-                ArrayList<BigInteger> balastNameBytes = Utils.getNameBytesReverse(group.getName());
-                int size = balastNameBytes.size();
-                for (int i = 0; i < 5; i++) {
-                    if (i < size) {
-                        groupsArray[nameOffset] = balastNameBytes.get(i).intValue();
-                    } else {
-                        groupsArray[nameOffset] = 0;
-                    }
-                    nameOffset++;
+            //<editor-fold defaultstate="collapsed" desc="Codigo anterior">
+            //            try {
+            //                int nameOffset = 2;
+            //                ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(group.getName());
+            //                int size = balastNameBytes.size();
+            //                for (int i = 0; i < 5; i++) {
+            //                    if (i < size) {
+            //                        groupsArray[nameOffset] = balastNameBytes.get(i).intValue();
+            //                    } else {
+            //                        groupsArray[nameOffset] = 0;
+            //                    }
+            //                    nameOffset++;
+            //                }
+            //            } catch (Exception e) {
+            //            }
+            //</editor-fold>
+
+            int nameOffset = 2;
+            ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(group.getName());
+            int size = balastNameBytes.size();
+            for (int i = 0; i < 5; i++) {
+                if (i < size) {
+                    groupsArray[nameOffset] = balastNameBytes.get(i).intValue();
+                } else {
+                    groupsArray[nameOffset] = 0;
                 }
-            } catch (Exception e) {
+                nameOffset++;
             }
 
             //balastos afectados
@@ -209,29 +223,37 @@ public class GrupoDAOJmodbus {
 
             //name
             try {
-                int nameOffset = 2;
-                ArrayList<BigInteger> balastNameBytes = new ArrayList<BigInteger>();
-                String balastName = "";
-                //Get the bytes from the card.
-                for (int i = 0; i < 5; i++) {
-                    int tales = 0;
-                    tales |= groupArray[nameOffset] & 0xFFFF;
-                    balastNameBytes.add(new BigInteger(String.valueOf(tales)));
-                    nameOffset++;
-                }
-                //Join the bytes using a string
-                for (BigInteger nameByte : balastNameBytes) {
-                    String value = nameByte.toString(2);
-                    balastName = Utils.getCeros(value) + balastName;
-                }
-                //Recreates the entire name bytes and sets the name to the balast.
-                BigInteger totalBytes = new BigInteger(balastName, 2);
-                grupo.setName(new String(totalBytes.toByteArray()));
+
+                //           //<editor-fold defaultstate="collapsed" desc="codigo antiguo">
+
+                //                int nameOffset = 2;
+                //                ArrayList<BigInteger> balastNameBytes = new ArrayList<BigInteger>();
+                //                String balastName = "";
+                //                //Get the bytes from the card.
+                //                for (int i = 0; i < 5; i++) {
+                //                    int tales = 0;
+                //                    tales |= groupArray[nameOffset] & 0x00FF;
+                //                    balastNameBytes.add(new BigInteger(String.valueOf(tales)));
+                //                    nameOffset++;
+                //                }
+                //                //Join the bytes using a string
+                //                for (BigInteger nameByte : balastNameBytes) {
+                //                    String value = nameByte.toString(2);
+                //                    balastName = Utils.getCeros(value) + balastName;
+                //                }
+                //                //Recreates the entire name bytes and sets the name to the balast.
+                //                BigInteger totalBytes = new BigInteger(balastName, 2);
+                //                grupo.setName(new String(totalBytes.toByteArray()));
+                //
+                //           
+                //</editor-fold>
+
+                String nomb = UtilsJmodbus.desencriptarNombre(groupArray, 2, 5);
+                grupo.setName(nomb);
 
             } catch (Exception e) {
                 System.out.println("Error al leer el nombre del grupo.");
             }
-
 
             //balastos afectados
             try {
@@ -345,7 +367,7 @@ public class GrupoDAOJmodbus {
             int numGrupos = Integer.parseInt(PropHandler.getProperty("group.max.number"));
             int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
             int usedRegisters = Integer.parseInt(PropHandler.getProperty("group.memory.registers"));
-            int tamReg=8;
+            int tamReg = 8;
 //            int tamReg = Integer.parseInt(PropHandler.getProperty("registro.tamanio.lectura"));
             elementosEnMemoria = UtilsJmodbus.getElementosEnMemoria(numGrupos, dao, initOffset, usedRegisters, tamReg);
 
@@ -368,48 +390,57 @@ public class GrupoDAOJmodbus {
      * @return
      */
     public static int[] getAddedGroupsCardArray() {
-        int numgrupos = Integer.parseInt(PropHandler.getProperty("group.max.number"));
-        if (numgrupos < 16) {
-            numgrupos = 16;
-        }
 
-        int[] gruposAdheridos = new int[numgrupos];
-        try {
-            int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
-            int usedRegisters = Integer.parseInt(PropHandler.getProperty("group.memory.registers"));
+        //       //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
+//        int numgrupos = Integer.parseInt(PropHandler.getProperty("group.max.number"));
+        //        if (numgrupos < 16) {
+        //            numgrupos = 16;
+        //        }
+        //
+        //        int[] gruposAdheridos = new int[numgrupos];
+        //        try {
+        //            int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
+        //            int usedRegisters = Integer.parseInt(PropHandler.getProperty("group.memory.registers"));
+        //
+        //            int balastsOffset = initOffset;
+        //            int tamReg = 8;
+        //
+        //            int bytesToRead = (gruposAdheridos.length / tamReg);
+        //            ArrayList<BigInteger> affectedGroups = new ArrayList<BigInteger>();
+        //
+        //            int[] addedIns = dao.getRegValue(initOffset, usedRegisters);
+        //
+        //            //Get the bytes from the card.
+        //            for (int i = 0; i < bytesToRead; i++) {
+        //                affectedGroups.add(new BigInteger(String.valueOf(addedIns[i] & 0x00FF)));
+        //            }
+        //
+        //            String balastName = "";
+        //            for (BigInteger nameByte : affectedGroups) {
+        //                String value = nameByte.toString(2);
+        //                value = Utils.getCeros(value);
+        //                balastName = balastName + value;
+        //            }
+        //
+        //            int j = 0;
+        //            for (int i = gruposAdheridos.length - 1; i >= 0; i--) {
+        //                String bit = String.valueOf(balastName.charAt(i));
+        //                gruposAdheridos[j] = Integer.parseInt(bit);
+        //                j++;
+        //            }
+        //
+        //        } catch (Exception e) {
+        //            System.out.println("Error al leer los grupos añadidos.");
+        //        }
+        //
+        //        return gruposAdheridos;
+        //</editor-fold>
 
-            int balastsOffset = initOffset;
-            int tamReg = 8;
-
-            int bytesToRead = (gruposAdheridos.length / tamReg);
-            ArrayList<BigInteger> affectedGroups = new ArrayList<BigInteger>();
-
-            int[] addedIns = dao.getRegValue(initOffset, usedRegisters);
-
-            //Get the bytes from the card.
-            for (int i = 0; i < bytesToRead; i++) {
-                affectedGroups.add(new BigInteger(String.valueOf(addedIns[i] & 0x00FF)));
-            }
-
-            String balastName = "";
-            for (BigInteger nameByte : affectedGroups) {
-                String value = nameByte.toString(2);
-                value = Utils.getCeros(value);
-                balastName = balastName + value;
-            }
-
-            int j = 0;
-            for (int i = gruposAdheridos.length - 1; i >= 0; i--) {
-                String bit = String.valueOf(balastName.charAt(i));
-                gruposAdheridos[j] = Integer.parseInt(bit);
-                j++;
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error al leer los grupos añadidos.");
-        }
-
-        return gruposAdheridos;
+        int numBalastos = Integer.parseInt(PropHandler.getProperty("group.max.number"));
+        int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
+        int usedRegisters = Integer.parseInt(PropHandler.getProperty("group.memory.registers"));
+        int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
+        return UtilsJmodbus.getElementosEnMemoriaInt(numBalastos, dao, initOffset, usedRegisters, tamReg);
     }
 
     /**

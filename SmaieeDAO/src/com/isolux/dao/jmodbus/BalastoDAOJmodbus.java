@@ -170,25 +170,29 @@ public class BalastoDAOJmodbus {
             balasto.setLevel(balastArray[1]);
             balasto.setActivation(balastArray[2]);
 
+            //           //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
             //name
-            int nameOffset = 3;
-            ArrayList<BigInteger> balastNameBytes = new ArrayList<BigInteger>();
-            String balastName = "";
-            //Get the bytes from the card.
-            for (int i = 0; i < 5; i++) {
-                int tales = 0;
-                tales |= balastArray[nameOffset] & 0xFFFF;
-                balastNameBytes.add(new BigInteger(String.valueOf(tales)));
-                nameOffset++;
-            }
-            //Join the bytes using a string
-            for (BigInteger nameByte : balastNameBytes) {
-                String value = nameByte.toString(2);
-                balastName = UtilsJmodbus.getCeros(value) + balastName;
-            }
-            //Recreates the entire name bytes and sets the name to the balast.
-            BigInteger totalBytes = new BigInteger(balastName, 2);
-            balasto.setName(new String(totalBytes.toByteArray()));
+            //            int nameOffset = 3;
+            //            ArrayList<BigInteger> balastNameBytes = new ArrayList<BigInteger>();
+            //            String balastName = "";
+            //            //Get the bytes from the card.
+            //            for (int i = 0; i < 5; i++) {
+            //                int tales = 0;
+            //                tales |= balastArray[nameOffset] & 0xFFFF;
+            //                balastNameBytes.add(new BigInteger(String.valueOf(tales)));
+            //                nameOffset++;
+            //            }
+            //            //Join the bytes using a string
+            //            for (BigInteger nameByte : balastNameBytes) {
+            //                String value = nameByte.toString(2);
+            //                balastName = UtilsJmodbus.getCeros(value) + balastName;
+            //            }
+            //            //Recreates the entire name bytes and sets the name to the balast.
+            //            BigInteger totalBytes = new BigInteger(balastName, 2);
+            //            balasto.setName(new String(totalBytes.toByteArray()));
+            //</editor-fold>
+            
+            balasto.setName(UtilsJmodbus.desencriptarNombre(balastArray, 3, 5));
 
             balasto.setDir(balastArray[8]);
             balasto.setMin(balastArray[9]);
