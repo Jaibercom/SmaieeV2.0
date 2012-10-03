@@ -2940,7 +2940,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="enviar_jButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton23" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="398" pref="398" max="398" attributes="0"/>
@@ -2970,7 +2970,7 @@
                                       </Group>
                                       <EmptySpace pref="370" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="enviar_jButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jButton23" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -3186,12 +3186,12 @@
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JButton" name="jButton1">
+                    <Component class="javax.swing.JButton" name="enviar_jButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Enviar"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enviar_jButtonActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="jButton23">

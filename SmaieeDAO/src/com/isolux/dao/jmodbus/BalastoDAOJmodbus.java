@@ -40,7 +40,7 @@ public class BalastoDAOJmodbus {
         int balastNumber = balasto.getBalastNumber();
 
         try {
-            //MODO
+            //MODO Escritura
             setSingleReg(0, 1);
 
             //Init offset.

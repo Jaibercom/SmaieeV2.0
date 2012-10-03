@@ -418,7 +418,7 @@ public class PpalView extends javax.swing.JFrame {
         jTextField33 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        enviar_jButton = new javax.swing.JButton();
         jButton23 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jTextField20 = new javax.swing.JTextField();
@@ -2240,10 +2240,10 @@ public class PpalView extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre");
 
-        jButton1.setText("Enviar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        enviar_jButton.setText("Enviar");
+        enviar_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                enviar_jButtonActionPerformed(evt);
             }
         });
 
@@ -2296,7 +2296,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(panelBalastosLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jButton1)
+                .addComponent(enviar_jButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton23)
                 .addGap(398, 398, 398))
@@ -2321,7 +2321,7 @@ public class PpalView extends javax.swing.JFrame {
                             .addComponent(jLabel41))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
                         .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(enviar_jButton)
                             .addComponent(jButton23)))
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -2638,9 +2638,9 @@ public class PpalView extends javax.swing.JFrame {
      * Send balast
      * @param evt 
      */
-    protected void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    protected void enviar_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviar_jButtonActionPerformed
         this.balastosCtrl.saveBalast(this);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_enviar_jButtonActionPerformed
 
     /**
      * Show the selection file window. (Real time control).
@@ -3254,6 +3254,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.ButtonGroup confRol;
     private javax.swing.JButton eliminarGrupo_jButton;
     private javax.swing.JButton enviarGrupo_jButton;
+    private javax.swing.JButton enviar_jButton;
     private javax.swing.JFormattedTextField fieldGateway;
     protected javax.swing.JFormattedTextField fieldIp;
     private javax.swing.JFormattedTextField fieldMask;
@@ -3262,7 +3263,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JCheckBox grupos_jCheckBox;
     private javax.swing.JPanel header;
     private javax.swing.JLabel headerImage;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -3896,11 +3896,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JButton getjButton1() {
-        return jButton1;
+        return enviar_jButton;
     }
 
     public void setjButton1(JButton jButton1) {
-        this.jButton1 = jButton1;
+        this.enviar_jButton = jButton1;
     }
 
     public JButton getjButton10() {

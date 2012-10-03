@@ -255,8 +255,7 @@ public class UtilsJmodbus {
      * @param initOffset ofset inicial a partir del cual se quiere recuperar la
      * informacion de los registros
      * @param usedRegisters Cuantos registros son usados a partir de la posicion
-     * @param tamReg Tama;o del registro
-     * inicial de memoria que se pretende usar
+     * @param tamReg Tama;o del registro inicial de memoria que se pretende usar
      * @return Objeto de tipo ArrayList<String> que contiene la lista de los
      * elementos que estan en 1 o 0
      */
@@ -283,8 +282,8 @@ public class UtilsJmodbus {
             for (BigInteger nameByte : elementosAfectados) {
                 String value = nameByte.toString(2);
                 value = Utils.getCeros(value);
-//                    balastName = value + balastName;
-                balastName = balastName + value;
+                balastName = value + balastName;
+//                balastName = balastName + value;
             }
 
             int j = 0;
