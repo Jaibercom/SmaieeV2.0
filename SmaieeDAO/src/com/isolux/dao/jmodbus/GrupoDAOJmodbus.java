@@ -4,9 +4,8 @@
  */
 package com.isolux.dao.jmodbus;
 
-import com.isolux.dao.Utils;
 import com.isolux.bo.Grupo;
-import com.isolux.dao.modbus.DAO4j;
+import com.isolux.dao.Utils;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import java.math.BigInteger;
@@ -58,7 +57,7 @@ public class GrupoDAOJmodbus {
             //Group number
 //            Es de 10 caracteres porque el nombre es de 10 caracteres
             groupsArray[0] = groupNumber;// hay que validar el numero de grupo
-            groupsArray[1] = 1;// ojo, esto si esta correcto?
+            groupsArray[1] = 1;
 
             //name
 //            Con esta rutina se calcula el nombre
@@ -79,17 +78,21 @@ public class GrupoDAOJmodbus {
             //            }
             //</editor-fold>
 
-            int nameOffset = 2;
-            ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(group.getName());
-            int size = balastNameBytes.size();
-            for (int i = 0; i < 5; i++) {
-                if (i < size) {
-                    groupsArray[nameOffset] = balastNameBytes.get(i).intValue();
-                } else {
-                    groupsArray[nameOffset] = 0;
-                }
-                nameOffset++;
-            }
+            //<editor-fold defaultstate="collapsed" desc="Codigo anterior">
+            //            int nameOffset = 2;
+            //            ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(group.getName());
+            //            int size = balastNameBytes.size();
+            //            for (int i = 0; i < 5; i++) {
+            //                if (i < size) {
+            //                    groupsArray[nameOffset] = balastNameBytes.get(i).intValue();
+            //                } else {
+            //                    groupsArray[nameOffset] = 0;
+            //                }
+            //                nameOffset++;
+            //            }
+            //</editor-fold>
+            
+            UtilsJmodbus.encriptarNombre(groupsArray, 2, group.getName(), 5);
 
             //balastos afectados
             int[] balastos = group.getBalastosAfectados();
@@ -208,10 +211,11 @@ public class GrupoDAOJmodbus {
 
             System.out.println("READING GROUP NUMBER: " + groupNumber);
             int initOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.groups"));
+            int tamGrupo=Integer.parseInt(PropHandler.getProperty("group.memory.size"));
 
             //Group number
             setSingleReg(initOffset, groupNumber);
-            int[] groupArray = dao.getRegValue(initOffset, Integer.parseInt(PropHandler.getProperty("group.memory.size")));
+            int[] groupArray = dao.getRegValue(initOffset,tamGrupo );
 
 
             //Group number
@@ -254,9 +258,14 @@ public class GrupoDAOJmodbus {
             } catch (Exception e) {
                 System.out.println("Error al leer el nombre del grupo.");
             }
-
+//
+//             int balastOffset = 7;
+//            int tamReg = 16;
+//            int[] balastos = grupo.getBalastosAfectados();
+//            float bytesToRead = balastos.length / tamReg;
+            
             //balastos afectados
-            //<editor-fold defaultstate="collapsed" desc="Balastros afectados">
+            //            <editor-fold defaultstate="collapsed" desc="Balastros afectados codigo antiguo">
             try {
                 int balastsOffset = 7;
                 int tamReg = 16;
@@ -284,10 +293,22 @@ public class GrupoDAOJmodbus {
                     j++;
                 }
                 
+//                agregamos los balastos al objeto grupo
+                grupo.setBalastosAfectados(balastos);
             } catch (Exception e) {
                 System.out.println("Error al leer los balastos afectados por el grupo.");
             }
             //</editor-fold>
+            
+//            try {
+//                balastos = UtilsJmodbus.getElementosEnMemoriaInt(balastos.length, dao, balastOffset, tamReg, 8);
+//                
+//                grupo.setBalastosAfectados(balastos);
+//            } catch (Exception e) {
+//                System.out.println("Problemas cargando los balastos afectados");
+//                e.printStackTrace();
+//            }
+            
             //MODO
             setSingleReg(0, 0);
 

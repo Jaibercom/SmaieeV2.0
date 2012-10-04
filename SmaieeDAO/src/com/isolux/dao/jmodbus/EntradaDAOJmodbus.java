@@ -418,57 +418,78 @@ public class EntradaDAOJmodbus {
     
     
     public static ArrayList<String> getAddedIns() {
-        ArrayList<String> addedBalasts = new ArrayList<String>();
-//        DAO4j dao = new DAO4j();
-        int numBalastos = Integer.parseInt(PropHandler.getProperty("in.max.number"));
-        if (numBalastos < 16) {
-            numBalastos = 16;
-        }
+        //       //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
+//        ArrayList<String> addedBalasts = new ArrayList<String>();
+        ////        DAO4j dao = new DAO4j();
+        //        int numBalastos = Integer.parseInt(PropHandler.getProperty("in.max.number"));
+        //        if (numBalastos < 16) {
+        //            numBalastos = 16;
+        //        }
+        //
+        //
+        //        try {
+        //                int initOffset = Integer.parseInt(PropHandler.getProperty("in.memory.added"));
+        //                int usedRegisters = Integer.parseInt(PropHandler.getProperty("in.memory.registers"));
+        //
+        //                int balastsOffset = initOffset;
+        //                int tamReg = 16;
+        //                int[] balastos = new int[numBalastos];
+        //                float bytesToRead = (balastos.length / tamReg) < 1 ? 1 : (balastos.length / tamReg);
+        //                ArrayList<BigInteger> affectedIns = new ArrayList<BigInteger>();
+        //                int[] addedIns = dao.getRegValue(initOffset, usedRegisters);
+        //
+        //                //Get the bytes from the card.
+        //                for (int i = 0; i < bytesToRead; i++) {
+        //                    affectedIns.add(new BigInteger(String.valueOf( (addedIns[i]+256) &0xFFFF)));
+        //                }
+        //
+        //                String balastName = "";
+        //                for (BigInteger nameByte : affectedIns) {
+        //                    String value = nameByte.toString(2);
+        //                    value = Utils.getCeros(value);
+        //                    balastName = value + balastName;
+        //                }
+        //
+        //                int j=0;
+        //                for (int i = balastos.length -1; i >= 0; i--) {
+        //                    String bit = String.valueOf(balastName.charAt(i));
+        //                    balastos[j] = Integer.parseInt(bit);
+        //                    j++;
+        //                }
+        //
+        //                //Get an ArrayList with the result
+        //                for (int i = 0; i < balastos.length; i++) {
+        //                    if (balastos[i] != 0) {
+        //                       addedBalasts.add(String.valueOf(i));
+        //                    }
+        //
+        //                }
+        //
+        //            } catch (Exception e) {
+        //                System.out.println("Error al leer los balastos añadidos.");
+        //            }
+        //
+        //        return addedBalasts;
+        //</editor-fold>
         
-        
+          ArrayList<String> elementosEnMemoria;
         try {
-                int initOffset = Integer.parseInt(PropHandler.getProperty("in.memory.added"));
-                int usedRegisters = Integer.parseInt(PropHandler.getProperty("in.memory.registers"));
-                
-                int balastsOffset = initOffset;
-                int tamReg = 16;
-                int[] balastos = new int[numBalastos];
-                float bytesToRead = (balastos.length / tamReg) < 1 ? 1 : (balastos.length / tamReg);
-                ArrayList<BigInteger> affectedIns = new ArrayList<BigInteger>();
-                int[] addedIns = dao.getRegValue(initOffset, usedRegisters);
 
-                //Get the bytes from the card.
-                for (int i = 0; i < bytesToRead; i++) {
-                    affectedIns.add(new BigInteger(String.valueOf( (addedIns[i]+256) &0xFFFF)));
-                }
-                
-                String balastName = "";
-                for (BigInteger nameByte : affectedIns) {
-                    String value = nameByte.toString(2);
-                    value = Utils.getCeros(value);
-                    balastName = value + balastName;
-                }
-                
-                int j=0;
-                for (int i = balastos.length -1; i >= 0; i--) {
-                    String bit = String.valueOf(balastName.charAt(i));
-                    balastos[j] = Integer.parseInt(bit);
-                    j++;
-                }
-                
-                //Get an ArrayList with the result
-                for (int i = 0; i < balastos.length; i++) {
-                    if (balastos[i] != 0) {
-                       addedBalasts.add(String.valueOf(i));
-                    }
-                    
-                }
-                
-            } catch (Exception e) {
-                System.out.println("Error al leer los balastos añadidos.");
-            }
-        
-        return addedBalasts;
+            int numIn = Integer.parseInt(PropHandler.getProperty("in.max.number"));
+            int initOffset = Integer.parseInt(PropHandler.getProperty("in.memory.added"));
+            int usedRegisters = Integer.parseInt(PropHandler.getProperty("in.memory.registers"));
+            int tamReg = 8;
+//            int tamReg = Integer.parseInt(PropHandler.getProperty("registro.tamanio.lectura"));
+            elementosEnMemoria = UtilsJmodbus.getElementosEnMemoria(numIn, dao, initOffset, usedRegisters, tamReg);
+
+
+
+        } catch (Exception e) {
+            System.out.println("No se encontraron los archivos de configuración");
+            e.printStackTrace();
+            return null;
+        }
+        return elementosEnMemoria;
     }
     
     /**

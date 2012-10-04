@@ -53,17 +53,22 @@ public class BalastoDAOJmodbus {
             balastArray[1] = balasto.getLevel();            //2001
             balastArray[2] = balasto.getActivation();       //2002
 
-            int nameOffset = 3;
-            ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(balasto.getName());
-            int size = balastNameBytes.size();
-            for (int i = 0; i < 5; i++) {
-                if (i < size) {
-                    balastArray[nameOffset] = balastNameBytes.get(i).intValue();
-                } else {
-                    balastArray[nameOffset] = 0;
-                }
-                nameOffset++;
-            }
+            //            //<editor-fold defaultstate="collapsed" desc="codigo antiguo">
+//            int nameOffset = 3;
+            //            ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(balasto.getName());
+            //            int size = balastNameBytes.size();
+            //            for (int i = 0; i < 5; i++) {
+            //                if (i < size) {
+            //                    balastArray[nameOffset] = balastNameBytes.get(i).intValue();
+            //                } else {
+            //                    balastArray[nameOffset] = 0;
+            //                }
+            //                nameOffset++;
+            //            }
+            //</editor-fold>
+            
+//            codifica el nombre y lo mete en el array
+            UtilsJmodbus.encriptarNombre(balastArray, 3, balasto.getName(), 5);
 
             balastArray[8] = balasto.getDir();              //2008
             balastArray[9] = balasto.getMin();              //2009

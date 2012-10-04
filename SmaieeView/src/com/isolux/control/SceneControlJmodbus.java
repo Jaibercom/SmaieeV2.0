@@ -36,14 +36,16 @@ public class SceneControlJmodbus {
 
             int balastsMaxNumber = Integer.parseInt(PropHandler.getProperty("balast.max.number"));
             int[] balastsLevels = new int[balastsMaxNumber];
-            ListModel selectedBalasts = ppalView.getjList5().getModel();
+            ListModel selectedBalasts = ppalView.getBalastosAfectados_jList().getModel();
             for (int i = 0; i < selectedBalasts.getSize(); i++) {
                 String item = selectedBalasts.getElementAt(i).toString();
-                String[] level = item.split(": ");
-                balastsLevels[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length - 1]);
+                String[] level = item.split(" - ");
+              balastsLevels[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length-1]);
+//                balastsLevels[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length - 1]);
+                
             }
 
-            Escena newScene = new Escena(sceneNumber, 1, ppalView.getjTextField4().getText(), balastsLevels, getSelectedSceneBalasts(ppalView));
+            Escena newScene = new Escena(sceneNumber, 1, ppalView.getNombreEscenaJTextField().getText(), balastsLevels, getSelectedSceneBalasts(ppalView));
 
             //Saves the balast remotelly
             EscenaDAOJmodbus dao = new EscenaDAOJmodbus(ppalView.getDao());
@@ -122,7 +124,7 @@ public class SceneControlJmodbus {
         Escena selectedScene = ppalView.getScenes().get(sceneNumber);
         HashMap<String, Balasto> balasts = ppalView.getBalasts();
 
-        ppalView.getjTextField4().setText(selectedScene.getNombre());
+        ppalView.getNombreEscenaJTextField().setText(selectedScene.getNombre());
 //        ppalView.getjTextField24().setText(String.valueOf(selectedScene.getActivacion()));
         ppalView.getjLabel61().setText(sceneNumber);
 
@@ -138,7 +140,7 @@ public class SceneControlJmodbus {
                 sel.add(String.valueOf(i));
             }
         }
-        ppalView.getjList5().setModel(sceneBalastsL);
+        ppalView.getBalastosAfectados_jList().setModel(sceneBalastsL);
 
         //Available balasts
         DefaultListModel modelo = new DefaultListModel();
@@ -177,13 +179,13 @@ public class SceneControlJmodbus {
         ppalView.getjComboBox6().setSelectedIndex(0);
         ppalView.getjLabel61().setText("#");
         ppalView.getjLabel19().setText("#");
-        ppalView.getjTextField4().setText("");
+        ppalView.getNombreEscenaJTextField().setText("");
         ppalView.getjTextField23().setText("0");
         ppalView.setSelectedSceneNumber("");
 
         DefaultListModel model = new DefaultListModel();
         ppalView.getjList4().setModel(model);
-        ppalView.getjList5().setModel(model);
+        ppalView.getBalastosAfectados_jList().setModel(model);
     }
 
     /**
@@ -235,8 +237,8 @@ public class SceneControlJmodbus {
         String selected = new String();
         int[] selectedBalasts = new int[Integer.parseInt(PropHandler.getProperty("balast.max.number"))];
 
-        for (int i = 0; i < ppalView.getjList5().getModel().getSize(); i++) {
-            selected += ppalView.getjList5().getModel().getElementAt(i).toString().split(" - ")[0] + ",";
+        for (int i = 0; i < ppalView.getBalastosAfectados_jList().getModel().getSize(); i++) {
+            selected += ppalView.getBalastosAfectados_jList().getModel().getElementAt(i).toString().split(" - ")[0] + ",";
         }
         String[] selectedIdx = selected.split(",");
         for (int i = 0; i < selectedIdx.length; i++) {
@@ -250,8 +252,8 @@ public class SceneControlJmodbus {
      * Select a scene balast.
      */
     public void selectEsceneBalast(PpalView ppalView) {
-        String[] balasto = ppalView.getjList5().getSelectedValue().toString().split(": ");
-        String balastNumber = ppalView.getjList5().getSelectedValue().toString().split(" - ")[0];
+        String[] balasto = ppalView.getBalastosAfectados_jList().getSelectedValue().toString().split(": ");
+        String balastNumber = ppalView.getBalastosAfectados_jList().getSelectedValue().toString().split(" - ")[0];
         if (balasto.length > 1) {
             ppalView.getjLabel19().setText(balastNumber);
             ppalView.getjTextField23().setText(balasto[balasto.length - 1]);
@@ -266,7 +268,7 @@ public class SceneControlJmodbus {
      */
     public void updateEsceneBalastLevel(PpalView ppalView) {
         String level = ppalView.getjTextField23().getText();
-        String[] selectedBalast = ppalView.getjList5().getSelectedValue().toString().split(": ");
+        String[] selectedBalast = ppalView.getBalastosAfectados_jList().getSelectedValue().toString().split(": ");
         String selectedBalastIdx = ppalView.getjLabel19().getText();
         DefaultListModel model = new DefaultListModel();
 
@@ -274,7 +276,7 @@ public class SceneControlJmodbus {
 
         //Insert the modified balast value in the list.
         if (!selectedBalastIdx.equals("#")) {
-            ListModel selected = ppalView.getjList5().getModel();
+            ListModel selected = ppalView.getBalastosAfectados_jList().getModel();
             for (int i = 0; i < selected.getSize(); i++) {
 
                 if (selected.getElementAt(i).toString().split(" - ")[0].equals(selectedBalastIdx)) {
@@ -283,7 +285,7 @@ public class SceneControlJmodbus {
                     model.addElement(selected.getElementAt(i).toString());
                 }
             }
-            ppalView.getjList5().setModel(model);
+            ppalView.getBalastosAfectados_jList().setModel(model);
         } else {
             Validation.showAlertMessage("Seleccione un balasto");
         }

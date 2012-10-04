@@ -5,7 +5,7 @@
 package com.isolux.control;
 
 import com.isolux.bo.*;
-import com.isolux.dao.jmodbus.GrupoDAOJmodbus;
+import com.isolux.dao.jmodbus.*;
 import com.isolux.dao.modbus.DAOJamod;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.view.PpalView;
@@ -45,6 +45,7 @@ public class GroupsControl {
             Grupo newGroup = new Grupo(groupNumber, 0, ppalView.getjTextField3().getText(), getSelectedBalasts(ppalView));
 
             //Saves the balast remotelly
+            
             GrupoDAOJmodbus gDao = new GrupoDAOJmodbus(ppalView.getDao());
             boolean resultado = gDao.saveGroup(newGroup);
 

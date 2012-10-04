@@ -250,7 +250,9 @@ public class UtilsJmodbus {
      * Método que devuelve un array de elementos que están en memoria. sirve
      * para obtener los grupos, balastos, o escenas.
      *
-     * @param numGrupos
+     * @param numElementos tama;o del arreglo de elementos. En el caso de grupos
+     * Por lo general el tama;o es 16 porque solo 
+     * se pueden crear 16 grupos.
      * @param dao Objeto de tipo DAOJmodbus
      * @param initOffset ofset inicial a partir del cual se quiere recuperar la
      * informacion de los registros
@@ -259,7 +261,7 @@ public class UtilsJmodbus {
      * @return Objeto de tipo ArrayList<String> que contiene la lista de los
      * elementos que estan en 1 o 0
      */
-    public static ArrayList<String> getElementosEnMemoria(int numGrupos, DAOJmodbus dao, int initOffset, int usedRegisters, int tamReg) {
+    public static ArrayList<String> getElementosEnMemoria(int numElementos, DAOJmodbus dao, int initOffset, int usedRegisters, int tamReg) {
         ArrayList<String> elementosadheridos = new ArrayList<String>();
         //int numGrupos = Integer.parseInt(PropHandler.getProperty("group.max.number"));
         try {
@@ -268,7 +270,7 @@ public class UtilsJmodbus {
 
 //                int balastsOffset = initOffset;
 //            int tamReg = 8;//cambiado por extencion de signo (lectura)
-            int[] grupos = new int[numGrupos];
+            int[] grupos = new int[numElementos];
             float bytesToRead = (grupos.length / tamReg) < 1 ? 1 : (grupos.length / tamReg);
             ArrayList<BigInteger> elementosAfectados = new ArrayList<BigInteger>();
             int[] addedG = dao.getRegValue(initOffset, usedRegisters);
@@ -318,17 +320,21 @@ public class UtilsJmodbus {
      * Metodo que retorna el array de elementos de enteros que representa a los
      * elementos en memoria
      *
-     * @param numBalastos
-     * @param dao
-     * @param initOffset
-     * @param usedRegisters
-     * @param tamReg
-     * @return
+     * @param numElementos Tama;o del agreglo de elementos. En el caso de grupos 
+     * es 16 porque ese es el numero maximo de grupos que se pueden crear
+     * @param dao objeto del tipo DaoJmodbus que posee cad clase que instancia este método
+     * @param initOffset posicion inicial del registro a partir del cual se va a hacer el 
+     * procesamiento de informacion
+     * @param usedRegisters cuantos registros son usados a partir de la posicion inicial?
+     * @param tamReg tama;o del registro inical de memoria que se pretende usar en caso de lectura es 8.
+     * 
+     * @return array de enteros que representan los valores binarios de los elementos activados y desactivados
+     * para activados es 1 y 0 en el caso contrario.
      */
-    public static int[] getElementosEnMemoriaInt(int numBalastos, DAOJmodbus dao, int initOffset, int usedRegisters, int tamReg) {
+    public static int[] getElementosEnMemoriaInt(int numElementos, DAOJmodbus dao, int initOffset, int usedRegisters, int tamReg) {
 //    int numBalastos = Integer.parseInt(PropHandler.getProperty("balast.max.number"));
 
-        int[] balastos = new int[numBalastos];
+        int[] balastos = new int[numElementos];
         try {
 //            int initOffset = Integer.parseInt(PropHandler.getProperty("balast.memory.added"));
 //            int usedRegisters = Integer.parseInt(PropHandler.getProperty("balast.memory.registers"));
@@ -367,7 +373,7 @@ public class UtilsJmodbus {
     }
 
     /**
-     * Método que desencripta un nombre dentro de un array
+     * Método que encripta un nombre dentro de un array
      *
      * @param groupsArray array de enteros que contiene la cadena a desencriptar
      * @param nameOffset numero inicial en el registro
@@ -376,7 +382,7 @@ public class UtilsJmodbus {
      * @param bits numero de bits o largo del nombre. Típicamente en este caso
      * es 5.
      */
-    public static void decifrarNombre(int[] groupsArray, int nameOffset, String name, int bits) {
+    public static void encriptarNombre(int[] groupsArray, int nameOffset, String name, int bits) {
         //name
 //            Con esta rutina se calcula el nombre
         try {
@@ -397,7 +403,7 @@ public class UtilsJmodbus {
     }
 
     /**
-     * Método que desencripta el nombre que ets en bits en un arreglo
+     * Método que desencripta el nombre que esté en bits en un arreglo
      * @param arrayElementos array de elementos en el que se encuentra el nombre encriptado
      * @param nameOffset valor desde el cual se quiere desencriptar
      * @param tam Es el tamannio de la palabra a desencriptar en bits, en este caso tipicamente es 5
@@ -426,4 +432,6 @@ public class UtilsJmodbus {
         String nombre = new String(totalBytes.toByteArray());
         return nombre;
     }
+    
+    
 }

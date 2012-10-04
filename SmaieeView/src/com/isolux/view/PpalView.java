@@ -259,26 +259,26 @@ public class PpalView extends javax.swing.JFrame {
         jLabel58 = new javax.swing.JLabel();
         jComboBox5 = new javax.swing.JComboBox();
         panelEscenas = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
+        nombreEscena_jLabel = new javax.swing.JLabel();
+        nivelEscena_jLabel = new javax.swing.JLabel();
+        nombreEscena_jTextField = new javax.swing.JTextField();
+        numeroEscena_jComboBox = new javax.swing.JComboBox();
+        nivelEscena_jTextField = new javax.swing.JTextField();
+        actualizarNivelEscena_jButton = new javax.swing.JButton();
+        enviarEscena_jButton = new javax.swing.JButton();
+        eliminarEscena_jButton = new javax.swing.JButton();
+        escenasBalastos_jPanel = new javax.swing.JPanel();
+        agregarBalastoEscena_jButton = new javax.swing.JButton();
+        removerBalastoEscena_jButton = new javax.swing.JButton();
+        agregarTodosBalastosEscena_jButton = new javax.swing.JButton();
+        removerTodosBalastosEscenas_jButton = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList();
+        balastrosDisponibles_jList = new javax.swing.JList();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jList5 = new javax.swing.JList();
+        balastosAfectados_jList = new javax.swing.JList();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jTextField23 = new javax.swing.JTextField();
         jLabel61 = new javax.swing.JLabel();
-        jButton39 = new javax.swing.JButton();
-        jComboBox6 = new javax.swing.JComboBox();
         panelEntradas = new javax.swing.JPanel();
         panelConfEntradas = new javax.swing.JPanel();
         panelEntradaInit = new javax.swing.JPanel();
@@ -931,97 +931,106 @@ public class PpalView extends javax.swing.JFrame {
 
         panelEscenas.setBorder(javax.swing.BorderFactory.createTitledBorder("Escenas"));
 
-        jLabel5.setText("Nivel");
+        nombreEscena_jLabel.setText("Escena");
 
-        jLabel6.setText("Escena");
+        nivelEscena_jLabel.setText("Nivel");
 
-        jButton8.setText("Enviar");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        numeroEscena_jComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione una", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" }));
+
+        actualizarNivelEscena_jButton.setText("Actualizar nivel");
+        actualizarNivelEscena_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                actualizarNivelEscena_jButtonActionPerformed(evt);
             }
         });
 
-        jButton9.setText("Eliminar");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        enviarEscena_jButton.setText("Enviar");
+        enviarEscena_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                enviarEscena_jButtonActionPerformed(evt);
             }
         });
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Balastos"));
-
-        jButton10.setText("<");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        eliminarEscena_jButton.setText("Eliminar");
+        eliminarEscena_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                eliminarEscena_jButtonActionPerformed(evt);
             }
         });
 
-        jButton11.setText(">");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        escenasBalastos_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Balastos"));
+
+        agregarBalastoEscena_jButton.setText(">");
+        agregarBalastoEscena_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                agregarBalastoEscena_jButtonActionPerformed(evt);
             }
         });
 
-        jButton12.setText(">>");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        removerBalastoEscena_jButton.setText("<");
+        removerBalastoEscena_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                removerBalastoEscena_jButtonActionPerformed(evt);
             }
         });
 
-        jButton13.setText("<<");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        agregarTodosBalastosEscena_jButton.setText(">>");
+        agregarTodosBalastosEscena_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                agregarTodosBalastosEscena_jButtonActionPerformed(evt);
             }
         });
 
-        jScrollPane5.setViewportView(jList4);
+        removerTodosBalastosEscenas_jButton.setText("<<");
+        removerTodosBalastosEscenas_jButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerTodosBalastosEscenas_jButtonActionPerformed(evt);
+            }
+        });
 
-        jList5.addMouseListener(new java.awt.event.MouseAdapter() {
+        jScrollPane5.setViewportView(balastrosDisponibles_jList);
+
+        balastosAfectados_jList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 selectBalast(evt);
             }
         });
-        jScrollPane6.setViewportView(jList5);
+        jScrollPane6.setViewportView(balastosAfectados_jList);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout escenasBalastos_jPanelLayout = new javax.swing.GroupLayout(escenasBalastos_jPanel);
+        escenasBalastos_jPanel.setLayout(escenasBalastos_jPanelLayout);
+        escenasBalastos_jPanelLayout.setHorizontalGroup(
+            escenasBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(escenasBalastos_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER, false)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(escenasBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER, false)
+                    .addComponent(agregarBalastoEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(removerBalastoEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(agregarTodosBalastosEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(removerTodosBalastosEscenas_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        escenasBalastos_jPanelLayout.setVerticalGroup(
+            escenasBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escenasBalastos_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(escenasBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(escenasBalastos_jPanelLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                .addComponent(agregarBalastoEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                .addComponent(removerBalastoEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                .addComponent(agregarTodosBalastosEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                .addComponent(removerTodosBalastosEscenas_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -1032,15 +1041,6 @@ public class PpalView extends javax.swing.JFrame {
         jLabel61.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel61.setText("#");
 
-        jButton39.setText("Actualizar nivel");
-        jButton39.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton39ActionPerformed(evt);
-            }
-        });
-
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione una", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" }));
-
         javax.swing.GroupLayout panelEscenasLayout = new javax.swing.GroupLayout(panelEscenas);
         panelEscenas.setLayout(panelEscenasLayout);
         panelEscenasLayout.setHorizontalGroup(
@@ -1048,15 +1048,15 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(panelEscenasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(escenasBalastos_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelEscenasLayout.createSequentialGroup()
                         .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5))
+                            .addComponent(nombreEscena_jLabel)
+                            .addComponent(nivelEscena_jLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                            .addComponent(jTextField23, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(nombreEscena_jTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                            .addComponent(nivelEscena_jTextField, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelEscenasLayout.createSequentialGroup()
@@ -1067,13 +1067,13 @@ public class PpalView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelEscenasLayout.createSequentialGroup()
-                                .addComponent(jButton39)
+                                .addComponent(actualizarNivelEscena_jButton)
                                 .addGap(153, 153, 153))
-                            .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(numeroEscena_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelEscenasLayout.createSequentialGroup()
-                        .addComponent(jButton8)
+                        .addComponent(enviarEscena_jButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9)))
+                        .addComponent(eliminarEscena_jButton)))
                 .addContainerGap())
         );
         panelEscenasLayout.setVerticalGroup(
@@ -1081,23 +1081,23 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(panelEscenasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreEscena_jLabel)
+                    .addComponent(nombreEscena_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel61)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(numeroEscena_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(nivelEscena_jLabel)
                     .addComponent(jLabel18)
                     .addComponent(jLabel19)
-                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton39))
+                    .addComponent(nivelEscena_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(actualizarNivelEscena_jButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(escenasBalastos_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(enviarEscena_jButton)
+                    .addComponent(eliminarEscena_jButton))
                 .addContainerGap())
         );
 
@@ -1721,7 +1721,7 @@ public class PpalView extends javax.swing.JFrame {
         jLabel63.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel63.setText("#");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione uno", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione uno", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" }));
         jComboBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox4ActionPerformed(evt);
@@ -2728,49 +2728,49 @@ public class PpalView extends javax.swing.JFrame {
      * Add balasts to the scene.
      * @param evt 
      */
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        ViewUtils.addSelected(jList4, jList5);
-    }//GEN-LAST:event_jButton11ActionPerformed
+    private void agregarBalastoEscena_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBalastoEscena_jButtonActionPerformed
+        ViewUtils.addSelected(balastrosDisponibles_jList, balastosAfectados_jList);
+    }//GEN-LAST:event_agregarBalastoEscena_jButtonActionPerformed
 
     /**
      * Remove selected balasts from the scene.
      * @param evt 
      */
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        ViewUtils.remSelected(jList4, jList5);
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void removerBalastoEscena_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerBalastoEscena_jButtonActionPerformed
+        ViewUtils.remSelected(balastrosDisponibles_jList, balastosAfectados_jList);
+    }//GEN-LAST:event_removerBalastoEscena_jButtonActionPerformed
 
     /**
      * Add all available balasts to the scene.
      * @param evt 
      */
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        ViewUtils.addAll(jList4, jList5);
-    }//GEN-LAST:event_jButton12ActionPerformed
+    private void agregarTodosBalastosEscena_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTodosBalastosEscena_jButtonActionPerformed
+        ViewUtils.addAll(balastrosDisponibles_jList, balastosAfectados_jList);
+    }//GEN-LAST:event_agregarTodosBalastosEscena_jButtonActionPerformed
 
     /**
      * Remove all selected balasts from the scene.
      * @param evt 
      */
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        ViewUtils.remAll(jList4, jList5);
-    }//GEN-LAST:event_jButton13ActionPerformed
+    private void removerTodosBalastosEscenas_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerTodosBalastosEscenas_jButtonActionPerformed
+        ViewUtils.remAll(balastrosDisponibles_jList, balastosAfectados_jList);
+    }//GEN-LAST:event_removerTodosBalastosEscenas_jButtonActionPerformed
 
     /**
      * Save a scene
      * @param evt 
      */
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void enviarEscena_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarEscena_jButtonActionPerformed
         this.sceneCtrl.saveScene(this);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_enviarEscena_jButtonActionPerformed
 
     /**
      * Deletes a scene.
      * @param evt 
      */
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void eliminarEscena_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEscena_jButtonActionPerformed
         this.sceneCtrl.deleteScene(this);
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_eliminarEscena_jButtonActionPerformed
 
     /**
      * Select a scene balast
@@ -2784,9 +2784,9 @@ public class PpalView extends javax.swing.JFrame {
      * Update scene balast level.
      * @param evt 
      */
-    private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
+    private void actualizarNivelEscena_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarNivelEscena_jButtonActionPerformed
         this.sceneCtrl.updateEsceneBalastLevel(this);
-    }//GEN-LAST:event_jButton39ActionPerformed
+    }//GEN-LAST:event_actualizarNivelEscena_jButtonActionPerformed
 
     /**
      * Select element Btns (ins)
@@ -3247,14 +3247,22 @@ public class PpalView extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc="Variable declarations">
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton actualizarNivelEscena_jButton;
+    private javax.swing.JButton agregarBalastoEscena_jButton;
+    private javax.swing.JButton agregarTodosBalastosEscena_jButton;
+    private javax.swing.JList balastosAfectados_jList;
+    private javax.swing.JList balastrosDisponibles_jList;
     private javax.swing.JCheckBox balastros_jCheckBox;
     private javax.swing.ButtonGroup botoneraComportamiento;
     private javax.swing.ButtonGroup botoneraTipoContacto;
     private javax.swing.JCheckBox cbIsStaticConfiguration;
     private javax.swing.ButtonGroup confRol;
+    private javax.swing.JButton eliminarEscena_jButton;
     private javax.swing.JButton eliminarGrupo_jButton;
+    private javax.swing.JButton enviarEscena_jButton;
     private javax.swing.JButton enviarGrupo_jButton;
     private javax.swing.JButton enviar_jButton;
+    private javax.swing.JPanel escenasBalastos_jPanel;
     private javax.swing.JFormattedTextField fieldGateway;
     protected javax.swing.JFormattedTextField fieldIp;
     private javax.swing.JFormattedTextField fieldMask;
@@ -3263,10 +3271,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JCheckBox grupos_jCheckBox;
     private javax.swing.JPanel header;
     private javax.swing.JLabel headerImage;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
@@ -3293,7 +3297,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton38;
-    private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
@@ -3304,8 +3307,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton jButton47;
     private javax.swing.JButton jButton48;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
@@ -3328,7 +3329,6 @@ public class PpalView extends javax.swing.JFrame {
     protected javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JComboBox jComboBox5;
-    private javax.swing.JComboBox jComboBox6;
     protected com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
@@ -3370,14 +3370,12 @@ public class PpalView extends javax.swing.JFrame {
     protected javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
@@ -3397,8 +3395,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JList jList17;
     protected javax.swing.JList jList2;
     private javax.swing.JList jList3;
-    private javax.swing.JList jList4;
-    private javax.swing.JList jList5;
     private javax.swing.JList jList8;
     private javax.swing.JList jList9;
     private javax.swing.JMenu jMenu1;
@@ -3412,7 +3408,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -3449,7 +3444,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField2;
     protected javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField25;
     protected javax.swing.JTextField jTextField26;
     protected javax.swing.JTextField jTextField27;
@@ -3463,7 +3457,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField34;
     private javax.swing.JTextField jTextField35;
     private javax.swing.JTextField jTextField36;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
@@ -3476,6 +3469,11 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JLabel labelMascara;
     private javax.swing.JLabel labelPuerto;
     private javax.swing.JMenuBar mainMenuBar;
+    private javax.swing.JLabel nivelEscena_jLabel;
+    private javax.swing.JTextField nivelEscena_jTextField;
+    private javax.swing.JLabel nombreEscena_jLabel;
+    private javax.swing.JTextField nombreEscena_jTextField;
+    private javax.swing.JComboBox numeroEscena_jComboBox;
     private javax.swing.JPanel panelBalastos;
     private javax.swing.JPanel panelBienvenida;
     private javax.swing.JPanel panelBotonera;
@@ -3493,6 +3491,8 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel panelTiempoReal;
     private javax.swing.JRadioButton rbIsMaster;
     private javax.swing.JRadioButton rbIsSlave;
+    private javax.swing.JButton removerBalastoEscena_jButton;
+    private javax.swing.JButton removerTodosBalastosEscenas_jButton;
     private javax.swing.JPanel statusBar;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JPanel tabConfiguracion;
@@ -3904,35 +3904,35 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JButton getjButton10() {
-        return jButton10;
+        return removerBalastoEscena_jButton;
     }
 
     public void setjButton10(JButton jButton10) {
-        this.jButton10 = jButton10;
+        this.removerBalastoEscena_jButton = jButton10;
     }
 
     public JButton getjButton11() {
-        return jButton11;
+        return agregarBalastoEscena_jButton;
     }
 
     public void setjButton11(JButton jButton11) {
-        this.jButton11 = jButton11;
+        this.agregarBalastoEscena_jButton = jButton11;
     }
 
     public JButton getjButton12() {
-        return jButton12;
+        return agregarTodosBalastosEscena_jButton;
     }
 
     public void setjButton12(JButton jButton12) {
-        this.jButton12 = jButton12;
+        this.agregarTodosBalastosEscena_jButton = jButton12;
     }
 
     public JButton getjButton13() {
-        return jButton13;
+        return removerTodosBalastosEscenas_jButton;
     }
 
     public void setjButton13(JButton jButton13) {
-        this.jButton13 = jButton13;
+        this.removerTodosBalastosEscenas_jButton = jButton13;
     }
 
     public JButton getjButton14() {
@@ -4136,11 +4136,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JButton getjButton39() {
-        return jButton39;
+        return actualizarNivelEscena_jButton;
     }
 
     public void setjButton39(JButton jButton39) {
-        this.jButton39 = jButton39;
+        this.actualizarNivelEscena_jButton = jButton39;
     }
 
     public JButton getjButton4() {
@@ -4240,19 +4240,19 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JButton getjButton8() {
-        return jButton8;
+        return enviarEscena_jButton;
     }
 
     public void setjButton8(JButton jButton8) {
-        this.jButton8 = jButton8;
+        this.enviarEscena_jButton = jButton8;
     }
 
     public JButton getjButton9() {
-        return jButton9;
+        return eliminarEscena_jButton;
     }
 
     public void setjButton9(JButton jButton9) {
-        this.jButton9 = jButton9;
+        this.eliminarEscena_jButton = jButton9;
     }
 
     public JCheckBox getjCheckBox1() {
@@ -4760,11 +4760,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JLabel getjLabel5() {
-        return jLabel5;
+        return nivelEscena_jLabel;
     }
 
     public void setjLabel5(JLabel jLabel5) {
-        this.jLabel5 = jLabel5;
+        this.nivelEscena_jLabel = jLabel5;
     }
 
     public JLabel getjLabel53() {
@@ -4816,11 +4816,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JLabel getjLabel6() {
-        return jLabel6;
+        return nombreEscena_jLabel;
     }
 
     public void setjLabel6(JLabel jLabel6) {
-        this.jLabel6 = jLabel6;
+        this.nombreEscena_jLabel = jLabel6;
     }
 
     public JLabel getjLabel61() {
@@ -4976,19 +4976,19 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JList getjList4() {
-        return jList4;
+        return balastrosDisponibles_jList;
     }
 
     public void setjList4(JList jList4) {
-        this.jList4 = jList4;
+        this.balastrosDisponibles_jList = jList4;
     }
 
-    public JList getjList5() {
-        return jList5;
+    public JList getBalastosAfectados_jList() {
+        return balastosAfectados_jList;
     }
 
     public void setjList5(JList jList5) {
-        this.jList5 = jList5;
+        this.balastosAfectados_jList = jList5;
     }
 
     public JList getjList8() {
@@ -5088,11 +5088,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JPanel getjPanel4() {
-        return jPanel4;
+        return escenasBalastos_jPanel;
     }
 
     public void setjPanel4(JPanel jPanel4) {
-        this.jPanel4 = jPanel4;
+        this.escenasBalastos_jPanel = jPanel4;
     }
 
     public JPanel getjPanel5() {
@@ -5368,11 +5368,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JTextField getjTextField23() {
-        return jTextField23;
+        return nivelEscena_jTextField;
     }
 
     public void setjTextField23(JTextField jTextField23) {
-        this.jTextField23 = jTextField23;
+        this.nivelEscena_jTextField = jTextField23;
     }
 
     public JTextField getjTextField25() {
@@ -5479,12 +5479,12 @@ public class PpalView extends javax.swing.JFrame {
         this.jTextField36 = jTextField36;
     }
 
-    public JTextField getjTextField4() {
-        return jTextField4;
+    public JTextField getNombreEscenaJTextField() {
+        return nombreEscena_jTextField;
     }
 
-    public void setjTextField4(JTextField jTextField4) {
-        this.jTextField4 = jTextField4;
+    public void setNombreEscenaJTextField(JTextField jTextField4) {
+        this.nombreEscena_jTextField = jTextField4;
     }
 
     public JTextField getjTextField5() {
@@ -5768,11 +5768,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JComboBox getjComboBox6() {
-        return jComboBox6;
+        return numeroEscena_jComboBox;
     }
 
     public void setjComboBox6(JComboBox jComboBox6) {
-        this.jComboBox6 = jComboBox6;
+        this.numeroEscena_jComboBox = jComboBox6;
     }
 
     public JTextField getjTextField13() {

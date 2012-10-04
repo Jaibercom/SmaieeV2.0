@@ -370,7 +370,7 @@ public class DAOJamod {
 
             //2. Open the connection	
             con.setPort(port);
-            con.setTimeout(4000);
+            con.setTimeout(2000);
             con.connect();
 
             connectionState = true;

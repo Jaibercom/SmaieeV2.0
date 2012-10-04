@@ -614,7 +614,7 @@ public class EventControl {
      */
     private void updateEventItemLevel(PpalView ppalView) {
         String level = ppalView.getjTextField23().getText();
-        String[] selectedBalast = ppalView.getjList5().getSelectedValue().toString().split(": ");
+        String[] selectedBalast = ppalView.getBalastosAfectados_jList().getSelectedValue().toString().split(": ");
         String selectedBalastIdx = ppalView.getjLabel19().getText();
         DefaultListModel model = new DefaultListModel();
 
@@ -622,7 +622,7 @@ public class EventControl {
 
         //Insert the modified balast value in the list.
         if (!selectedBalastIdx.equals("#")) {
-            ListModel selected = ppalView.getjList5().getModel();
+            ListModel selected = ppalView.getBalastosAfectados_jList().getModel();
             for (int i = 0; i < selected.getSize(); i++) {
 
                 if (selected.getElementAt(i).toString().split(" - ")[0].equals(selectedBalastIdx)) {
@@ -631,7 +631,7 @@ public class EventControl {
                     model.addElement(selected.getElementAt(i).toString());
                 }
             }
-            ppalView.getjList5().setModel(model);
+            ppalView.getBalastosAfectados_jList().setModel(model);
         } else {
             Validation.showAlertMessage("Seleccione un balasto");
         }

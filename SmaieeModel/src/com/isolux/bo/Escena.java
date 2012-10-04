@@ -4,7 +4,7 @@ import com.isolux.properties.PropHandler;
 import java.util.ArrayList;
 
 /**
- *
+ *Clase que crea el modelo del objeto escena y guarda toda la información respecto a este.
  * @author Juan Diego Toro Cano
  */
 public class Escena {
@@ -21,6 +21,14 @@ public class Escena {
         nivelBalasto = new int[numBalastos];
     }
     
+    /**
+     * Modelo que guarda la informacion de una escena
+     * @param numeroEscena numero de la escena que se pretende guardar
+     * @param activacion Entero que indica si la escena esta activada puede ser 1 o 0
+     * @param nombre Nombre de la escena a crear
+     * @param nivelBalasto array de niveles de los balastos que estan afectados por la escena
+     * @param balastosAfectados  Array de los balastos que son afectados por la escena
+     */
     public Escena(int numeroEscena, int activacion, String nombre, int[] nivelBalasto, int[] balastosAfectados) {
         this.numeroEscena = numeroEscena;
         this.activacion = activacion;

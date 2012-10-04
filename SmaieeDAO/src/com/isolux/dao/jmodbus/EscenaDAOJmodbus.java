@@ -59,20 +59,24 @@ public class EscenaDAOJmodbus {
             sceneArray[1] = 1;
 
             //name
-            try {
-                int nameOffset = 2;
-                ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(escena.getNombre());
-                int size = balastNameBytes.size();
-                for (int i = 0; i < 5; i++) {
-                    if (i < size) {
-                        sceneArray[nameOffset] = balastNameBytes.get(i).intValue();
-                    } else {
-                        sceneArray[nameOffset] = 0;
-                    }
-                    nameOffset++;
-                }
-            } catch (Exception e) {
-            }
+            //        //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
+//            try {
+            //                int nameOffset = 2;
+            //                ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(escena.getNombre());
+            //                int size = balastNameBytes.size();
+            //                for (int i = 0; i < 5; i++) {
+            //                    if (i < size) {
+            //                        sceneArray[nameOffset] = balastNameBytes.get(i).intValue();
+            //                    } else {
+            //                        sceneArray[nameOffset] = 0;
+            //                    }
+            //                    nameOffset++;
+            //                }
+            //            } catch (Exception e) {
+            //            }
+            //</editor-fold>
+
+            UtilsJmodbus.encriptarNombre(sceneArray, 2, escena.getNombre(), 5);
 
 
             //niveles balastos
@@ -365,12 +369,12 @@ public class EscenaDAOJmodbus {
         ArrayList<String> elementosEnMemoria;
         try {
 
-            int numGrupos = Integer.parseInt(PropHandler.getProperty("scene.max.number"));
+            int numEscenas = Integer.parseInt(PropHandler.getProperty("scene.max.number"));
             int initOffset = Integer.parseInt(PropHandler.getProperty("scene.memory.added"));
             int usedRegisters = Integer.parseInt(PropHandler.getProperty("scene.memory.registers"));
             int tamReg = 8;
 //            int tamReg = Integer.parseInt(PropHandler.getProperty("registro.tamanio.lectura"));
-            elementosEnMemoria = UtilsJmodbus.getElementosEnMemoria(numGrupos, dao, initOffset, usedRegisters, tamReg);
+            elementosEnMemoria = UtilsJmodbus.getElementosEnMemoria(numEscenas, dao, initOffset, usedRegisters, tamReg);
 
 
 
