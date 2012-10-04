@@ -432,6 +432,7 @@ public class EscenaDAOJmodbus {
 
         } catch (Exception e) {
             System.out.println("Error al leer los balastos añadidos.");
+            e.printStackTrace();
         }
 
         return balastos;

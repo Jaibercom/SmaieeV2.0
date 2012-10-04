@@ -579,6 +579,7 @@ public class EventoDAOJmodbus {
                 
             } catch (Exception e) {
                 System.out.println("Error al leer los balastos añadidos.");
+                e.printStackTrace();
             }
         
         return balastos;
@@ -708,6 +709,7 @@ public class EventoDAOJmodbus {
                 
             } catch (Exception e) {
                 System.out.println("Error al leer los balastos añadidos.");
+                e.printStackTrace();
             }
         return addedBalasts.size();
     }

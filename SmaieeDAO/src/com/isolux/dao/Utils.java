@@ -95,6 +95,7 @@ public class Utils {
 
     /**
      * Get the missing ceros at the begining of the bites.
+     * Función que obtiene la cadena completa de 1 y 0. Funciona para 8 bits.
      * @param bits
      * @return 
      */
@@ -122,6 +123,37 @@ public class Utils {
         return bits;
     }
 
+    /**
+     * Get the missing ceros at the begining of the bites.
+     * @param bits
+     * @param cuantosBits Es un entero que define si se llenan con 8 o 16 bits. es decir, la funcion
+     * complementa el numero de bits que hagan falta para llegar a este numero.
+     * @return la cadena de texto completa que contiene el numero de unos y ceros adecuados
+     */
+    public static String getCeros(String bits, int cuantosBits) {
+
+        BigInteger bitsBI = new BigInteger(bits, 2);
+
+        int length = bits.length();
+        if (length < cuantosBits) {
+
+            int missingCeros = cuantosBits - length;
+            String mising = "";
+
+            for (int i = 0; i < missingCeros; i++) {
+                mising += "0";
+            }
+
+            BigInteger comparator = new BigInteger(mising + bits, 2);
+
+            if (comparator.equals(bitsBI)) {
+                bits = mising + bits;
+            }
+        }
+
+        return bits;
+    }
+    
     /**
      * Copy a file into a new location.
      * @param fromFileName
