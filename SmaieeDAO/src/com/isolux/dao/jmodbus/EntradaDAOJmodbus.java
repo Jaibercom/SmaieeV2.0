@@ -254,9 +254,10 @@ public class EntradaDAOJmodbus {
     }
 
     /**
-     * Get a balast from the card.
+     * Obtiene una entrada desde la tarjeta. Carga todos los parametros de la
+     * entrada que corresponde a
      *
-     * @param balasto
+     * @param inNumber Numero de la entrada
      */
     public static Entrada readIn(int inNumber) {
         Entrada in = new Entrada();
@@ -269,11 +270,12 @@ public class EntradaDAOJmodbus {
 
             System.out.println("READING IN NUMBER: " + inNumber);
             int initOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.ins"));
+            int tam = Integer.parseInt(PropHandler.getProperty("in.memory.size"));
 
 
             //In number
             setSingleReg(initOffset, inNumber);
-            int[] inArray = dao.getRegValue(initOffset, Integer.parseInt(PropHandler.getProperty("in.memory.size")));
+            int[] inArray = dao.getRegValue(initOffset, tam);
 
             in.setNumeroEntrada(inNumber);
             in.setActivacion(inArray[1]);
@@ -323,77 +325,107 @@ public class EntradaDAOJmodbus {
             //
             //</editor-fold>
 
-            int balastsOffset = 12;
+            int balastsOffset = 13;
 //              int tamReg = 16;
             int[] balastos = in.getBalastos();
 //            float bytesToRead = balastos.length / tamReg;
             System.out.println("Leyendo balastros afectados por la entrada");
-            balastos = UtilsJmodbus.obtenerBalastrosAfectados(inArray, balastsOffset, 64, 16, 16);
+            balastos = UtilsJmodbus.obtenerElementosAfectados(inArray, balastsOffset, 64, 16, 16);
             in.setBalastos(balastos);
 
-            //grupo
+//            //grupo
+            //<editor-fold defaultstate="collapsed" desc="Codigo antiguo de obtener grupos afectados ">
+            //            try {
+            //                int groupsOffset = 16;
+            //                int tamReg = 8;
+            //                int[] grupos = in.getGrupos();
+            //                float bytesToRead = grupos.length / tamReg;
+            //                ArrayList<BigInteger> affectedGroups = new ArrayList<BigInteger>();
+            //
+            //                //Get the bytes from the card.
+            //                for (int i = 0; i < bytesToRead; i++) {
+            //                    affectedGroups.add(new BigInteger(String.valueOf(inArray[groupsOffset] & 0xFFFF)));
+            //                    groupsOffset++;
+            //                }
+            //
+            //                String groupName = "";
+            //                for (BigInteger nameByte : affectedGroups) {
+            //                    String value = nameByte.toString(2);
+            //                    value = UtilsJmodbus.getCeros(value);
+            //                    groupName = value + groupName;
+            //                }
+            //
+            //                int j = 0;
+            //                for (int i = grupos.length - 1; i >= 0; i--) {
+            //                    String bit = String.valueOf(groupName.charAt(i));
+            //                    grupos[j] = Integer.parseInt(bit);
+            //                    j++;
+            //                }
+            //            } catch (Exception e) {
+            //                System.out.println("Error al leer los balastos afectados por la escena.");
+            //            }
+            //</editor-fold>
+
             try {
-                int groupsOffset = 16;
+                int groupsOffset = 17;
                 int tamReg = 16;
                 int[] grupos = in.getGrupos();
-                float bytesToRead = grupos.length / tamReg;
-                ArrayList<BigInteger> affectedGroups = new ArrayList<BigInteger>();
+                grupos = UtilsJmodbus.obtenerElementosAfectados(inArray, groupsOffset, 16, tamReg, 16);
+                in.setGrupos(grupos);
 
-                //Get the bytes from the card.
-                for (int i = 0; i < bytesToRead; i++) {
-                    affectedGroups.add(new BigInteger(String.valueOf(inArray[groupsOffset] & 0xFFFF)));
-                    groupsOffset++;
-                }
 
-                String groupName = "";
-                for (BigInteger nameByte : affectedGroups) {
-                    String value = nameByte.toString(2);
-                    value = UtilsJmodbus.getCeros(value);
-                    groupName = value + groupName;
-                }
-
-                int j = 0;
-                for (int i = grupos.length - 1; i >= 0; i--) {
-                    String bit = String.valueOf(groupName.charAt(i));
-                    grupos[j] = Integer.parseInt(bit);
-                    j++;
-                }
             } catch (Exception e) {
-                System.out.println("Error al leer los balastos afectados por la escena.");
+                System.out.println("Problemas cargando los grupos afectados por la entrada " + in.toString());
+                e.printStackTrace();
             }
 
 
+            //escenas afectadas
+            //<editor-fold defaultstate="collapsed" desc="Escenas afectadas antiguo">
+            //            try {
+            //                int sceneOffset = 17;
+            //                int tamReg = 16;
+            //                int[] escenas = in.getEscenas();
+            //                float bytesToRead = escenas.length / tamReg;
+            //                ArrayList<BigInteger> affectedScenes = new ArrayList<BigInteger>();
+            //
+            //                //Get the bytes from the card.
+            //                for (int i = 0; i < bytesToRead; i++) {
+            //                    affectedScenes.add(new BigInteger(String.valueOf(inArray[sceneOffset] & 0xFFFF)));
+            //                    sceneOffset++;
+            //                }
+            //
+            //                String sceneName = "";
+            //                for (BigInteger nameByte : affectedScenes) {
+            //                    String value = nameByte.toString(2);
+            //                    value = UtilsJmodbus.getCeros(value);
+            //                    sceneName = value + sceneName;
+            //                }
+            //
+            //                int j = 0;
+            //                for (int i = escenas.length - 1; i >= 0; i--) {
+            //                    String bit = String.valueOf(sceneName.charAt(i));
+            //                    escenas[j] = Integer.parseInt(bit);
+            //                    j++;
+            //                }
+            //            } catch (Exception e) {
+            //                System.out.println("Error al leer los balastos afectados por la escena.");
+            //            }
+            //</editor-fold>
 
-            //escenas
             try {
-                int sceneOffset = 17;
+                int sceneOffset = 18;
                 int tamReg = 16;
                 int[] escenas = in.getEscenas();
-                float bytesToRead = escenas.length / tamReg;
-                ArrayList<BigInteger> affectedScenes = new ArrayList<BigInteger>();
 
-                //Get the bytes from the card.
-                for (int i = 0; i < bytesToRead; i++) {
-                    affectedScenes.add(new BigInteger(String.valueOf(inArray[sceneOffset] & 0xFFFF)));
-                    sceneOffset++;
-                }
+                escenas = UtilsJmodbus.obtenerElementosAfectados(inArray, sceneOffset, 16, tamReg, 16);
+                in.setEscenas(escenas);
 
-                String sceneName = "";
-                for (BigInteger nameByte : affectedScenes) {
-                    String value = nameByte.toString(2);
-                    value = UtilsJmodbus.getCeros(value);
-                    sceneName = value + sceneName;
-                }
-
-                int j = 0;
-                for (int i = escenas.length - 1; i >= 0; i--) {
-                    String bit = String.valueOf(sceneName.charAt(i));
-                    escenas[j] = Integer.parseInt(bit);
-                    j++;
-                }
             } catch (Exception e) {
-                System.out.println("Error al leer los balastos afectados por la escena.");
+                System.out.println("Error cargando las escenas afectadas por la entrada " + in.toString());
+                e.printStackTrace();
             }
+
 
             //valor ADC
             in.setValorADC(inArray[18]);
@@ -471,12 +503,12 @@ public class EntradaDAOJmodbus {
         ArrayList<String> elementosEnMemoria;
         try {
 
-            int numGrupos = Integer.parseInt(PropHandler.getProperty("in.max.number"));
+            int numEntradas = Integer.parseInt(PropHandler.getProperty("in.max.number"));
             int initOffset = Integer.parseInt(PropHandler.getProperty("in.memory.added"));
             int usedRegisters = Integer.parseInt(PropHandler.getProperty("in.memory.registers"));
             int tamReg = 8;
 //            int tamReg = Integer.parseInt(PropHandler.getProperty("registro.tamanio.lectura"));
-            elementosEnMemoria = UtilsJmodbus.getElementosEnMemoria(numGrupos, dao, initOffset, usedRegisters, tamReg);
+            elementosEnMemoria = UtilsJmodbus.getElementosEnMemoria(numEntradas, dao, initOffset, usedRegisters, 2, 2, tamReg);
 
 
 
@@ -540,13 +572,13 @@ public class EntradaDAOJmodbus {
         //
         //        return balastos;
         //</editor-fold> 
-        
+
         int numBalastos = Integer.parseInt(PropHandler.getProperty("in.max.number"));
         int initOffset = Integer.parseInt(PropHandler.getProperty("in.memory.added"));
         int usedRegisters = Integer.parseInt(PropHandler.getProperty("in.memory.registers"));
         int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
-        return UtilsJmodbus.getElementosEnMemoriaInt(numBalastos, dao, initOffset, usedRegisters, tamReg,16);
-        
+        return UtilsJmodbus.getElementosEnMemoriaInt(numBalastos, dao, initOffset, usedRegisters, tamReg, 16);
+
     }
 
     /**
@@ -622,7 +654,6 @@ public class EntradaDAOJmodbus {
             e.printStackTrace();
         }
     }
-
     /**
      * Gets the number of the next balast to write.
      *
@@ -678,35 +709,35 @@ public class EntradaDAOJmodbus {
 //            }
 //        return addedBalasts.size();
 //    }
-    public static void main(String args[]) {
-        EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(new DAOJmodbus());
-
-        //Add balasts
-        System.out.println("Escribiendo...");
-        jDao.addIn(2);
-//        addIn(19);
-//        addIn(8);
-//        addIn(5);
-//        
-//        //Read balasts
-//        System.out.println();
-        System.out.println("Leyendo...");
-        ArrayList<String> array = jDao.getAddedIns();
-        for (String string : array) {
-            System.out.println("Entrada: " + string);
-        }
-//        
-//        System.out.println();
-//        System.out.println("Eliminando...");
-//        deleteInCard(5);
-//        
-//        System.out.println();
+//    public static void main(String args[]) {
+//        EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(new DAOJmodbus());
+//
+//        //Add balasts
+//        System.out.println("Escribiendo...");
+//        jDao.addIn(2);
+////        addIn(19);
+////        addIn(8);
+////        addIn(5);
+////        
+////        //Read balasts
+////        System.out.println();
 //        System.out.println("Leyendo...");
-//        System.out.println("Numero: " + getInNumberCard());
-//        array = getAddedInsCard();
+//        ArrayList<String> array = jDao.getAddedIns();
 //        for (String string : array) {
 //            System.out.println("Entrada: " + string);
 //        }
-
-    }
+////        
+////        System.out.println();
+////        System.out.println("Eliminando...");
+////        deleteInCard(5);
+////        
+////        System.out.println();
+////        System.out.println("Leyendo...");
+////        System.out.println("Numero: " + getInNumberCard());
+////        array = getAddedInsCard();
+////        for (String string : array) {
+////            System.out.println("Entrada: " + string);
+////        }
+//
+//    }
 }

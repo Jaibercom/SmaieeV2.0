@@ -318,7 +318,7 @@ public class UtilsJmodbus {
         return elementosadheridos;
     }
 
-     /**
+    /**
      * Método que devuelve un array de elementos que están en memoria. sirve
      * para obtener los grupos, balastos, o escenas.
      *
@@ -354,7 +354,7 @@ public class UtilsJmodbus {
             String balastName = "";
             for (BigInteger nameByte : elementosAfectados) {
                 String value = nameByte.toString(2);
-                value = Utils.getCeros(value,completacionCeros);
+                value = Utils.getCeros(value, completacionCeros);
                 balastName = value + balastName;
 //                balastName = balastName + value;
             }
@@ -389,7 +389,83 @@ public class UtilsJmodbus {
         return elementosadheridos;
     }
 
-    
+    /**
+     * Método que devuelve un array de elementos que están en memoria. sirve
+     * para obtener los grupos, balastos, o escenas.
+     *
+     * @param numElementos tama;o del arreglo de elementos. En el caso de grupos
+     * Por lo general el tama;o es 16 porque solo se pueden crear 16 grupos.
+     * @param dao Objeto de tipo DAOJmodbus
+     * @param initOffset ofset inicial a partir del cual se quiere recuperar la
+     * informacion de los registros
+     * @param usedRegisters Cuantos registros son usados a partir de la posicion
+     * @param tamReg Tamaño del registro inicial de memoria que se pretende usar
+     * @param bytesToRead Cantidad de bits a leer. Las cadenas estan divididas
+     * en bloques de a 2 bytes de 8 bits para lectura, de esa manera con 2 bytes
+     * se completan los 16 bits que se necesitan por registro. Esto varia
+     * dependiendo del mapa de memoria.
+     * @param completacionCeros Completa la cantidad de ceros en la cadena de 1
+     * y 0's
+     * @return Objeto de tipo ArrayList<String> que contiene la lista de los
+     * elementos que estan en 1 o 0
+     */
+    public static ArrayList<String> getElementosEnMemoria(int numElementos, DAOJmodbus dao, int initOffset, int usedRegisters, int tamReg, int bytesToRead, int completacionCeros) {
+        ArrayList<String> elementosadheridos = new ArrayList<String>();
+        //int numGrupos = Integer.parseInt(PropHandler.getProperty("group.max.number"));
+        try {
+//                int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
+//                int usedRegisters = Integer.parseInt(PropHandler.getProperty("group.memory.registers"));
+
+//                int balastsOffset = initOffset;
+//            int tamReg = 8;//cambiado por extencion de signo (lectura)
+            int[] grupos = new int[numElementos];
+//            float bytesToRead = (grupos.length / tamReg) < 1 ? 1 : (grupos.length / tamReg);
+            ArrayList<BigInteger> elementosAfectados = new ArrayList<BigInteger>();
+            int[] addedG = dao.getRegValue(initOffset, usedRegisters);
+//En este lugar esta el problema de los nombres de los grupos
+            //Get the bytes from the card.
+            for (int i = 0; i < bytesToRead; i++) {
+                elementosAfectados.add(new BigInteger(String.valueOf(addedG[i] & 0x00FF)));
+            }
+
+            String balastName = "";
+            for (BigInteger nameByte : elementosAfectados) {
+                String value = nameByte.toString(2);
+                value = Utils.getCeros(value, completacionCeros);
+                balastName = value + balastName;
+//                balastName = balastName + value;
+            }
+
+            int j = 0;
+            // lee los 16 bits littlendian de derecha a izquierda
+//            for (int i = grupos.length - 1; i >= 0; i--) {
+            int k = balastName.length()-1;
+            while (j < grupos.length) {
+
+//            for (int i = balastName.length() - 1; i >= 0; i--) {
+                String bit = String.valueOf(balastName.charAt(k));
+                grupos[j] = Integer.parseInt(bit);
+                j++;
+                k--;
+            }
+
+            //Get an ArrayList with the result
+            for (int i = 0; i < grupos.length; i++) {
+                if (grupos[i] != 0) {
+                    elementosadheridos.add(String.valueOf(i));//se agrega a la lista de elementos adheridos
+                }
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al leer los elementos añadidos.");
+            JOptionPane.showMessageDialog(null, "Error al leer los elementos añadidos.", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+
+        return elementosadheridos;
+    }
+
     /**
      * Metodo que retorna el array de elementos de enteros que representa a los
      * elementos en memoria
@@ -451,11 +527,11 @@ public class UtilsJmodbus {
 
     }
 
-     /**
+    /**
      * Metodo que retorna el array de elementos de enteros que representa a los
      * elementos en memoria
      *
-     * @param numElementos Tama;o del agreglo de elementos. En el caso de grupos
+     * @param numElementos Tamaño del agreglo de elementos. En el caso de grupos
      * es 16 porque ese es el numero maximo de grupos que se pueden crear
      * @param dao objeto del tipo DaoJmodbus que posee cad clase que instancia
      * este método
@@ -465,14 +541,14 @@ public class UtilsJmodbus {
      * inicial?
      * @param tamReg tama;o del registro inical de memoria que se pretende usar
      * en caso de lectura es 8.
-     * @param completacionCeros numero que determina de cuantos bits va a ser la cadena. puede
-     * ser de 8 o 16
+     * @param completacionCeros numero que determina de cuantos bits va a ser la
+     * cadena. puede ser de 8 o 16
      *
      * @return array de enteros que representan los valores binarios de los
      * elementos activados y desactivados para activados es 1 y 0 en el caso
      * contrario.
      */
-    public static int[] getElementosEnMemoriaInt(int numElementos, DAOJmodbus dao, int initOffset, int usedRegisters, int tamReg,int completacionCeros) {
+    public static int[] getElementosEnMemoriaInt(int numElementos, DAOJmodbus dao, int initOffset, int usedRegisters, int tamReg, int completacionCeros) {
 //    int numBalastos = Integer.parseInt(PropHandler.getProperty("balast.max.number"));
 
         int[] balastos = new int[numElementos];
@@ -494,7 +570,7 @@ public class UtilsJmodbus {
             String balastName = "";
             for (BigInteger nameByte : affectedBalasts) {
                 String value = nameByte.toString(2);
-                value = Utils.getCeros(value,completacionCeros);
+                value = Utils.getCeros(value, completacionCeros);
                 balastName = value + balastName;
             }
 
@@ -514,7 +590,6 @@ public class UtilsJmodbus {
 
     }
 
-    
     /**
      * Método que encripta un nombre dentro de un array
      *
@@ -583,7 +658,8 @@ public class UtilsJmodbus {
      * @param array arreglo de int que contiene los elementos que se quieren
      * buscar
      * @param arrayOffset Lugar desde el cual se quiere buscar
-     * @param cuantosElementos numero de elementos a procesar. En el caso de los balastos es 64
+     * @param cuantosElementos numero de elementos a procesar. En el caso de los
+     * balastos es 64
      * @param tamReg Tamanio del registro. Puede ser 8 o 16. En el caso de los
      * balastros afectados el tamanio es 16
      * @param completacionDeCeros es un numero que puede ser 8 o 16. en el caso
@@ -591,7 +667,7 @@ public class UtilsJmodbus {
      * @return Un array de enteros que esta compuestos por unos y ceros, y que
      * representan los balastros afectados.
      */
-    public static int[] obtenerBalastrosAfectados(int[] array, int arrayOffset,int cuantosElementos, int tamReg, int completacionDeCeros) {
+    public static int[] obtenerElementosAfectados(int[] array, int arrayOffset, int cuantosElementos, int tamReg, int completacionDeCeros) {
         try {
 //               balastsOffset = 7;
 //                int tamReg = 16;
@@ -626,8 +702,9 @@ public class UtilsJmodbus {
 //              
 
         } catch (Exception e) {
-            System.out.println("Error al leer los balastos afectados.");
-            JOptionPane.showMessageDialog(null, "Error al cargar los balastros afectados", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Error al leer los elementos afectados.");
+            JOptionPane.showMessageDialog(null, "Error al cargar los elementos afectados "+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
             return null;
         }
     }

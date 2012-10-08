@@ -300,7 +300,7 @@ public class GrupoDAOJmodbus {
 //            }
             //</editor-fold>
 
-            balastos=UtilsJmodbus.obtenerBalastrosAfectados(groupArray, balastOffset,64, tamReg, 16);
+            balastos=UtilsJmodbus.obtenerElementosAfectados(groupArray, balastOffset,64, tamReg, 16);
             grupo.setBalastosAfectados(balastos);
             
             //MODO
