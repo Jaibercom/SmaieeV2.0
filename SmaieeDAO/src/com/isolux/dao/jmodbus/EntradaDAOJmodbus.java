@@ -64,6 +64,8 @@ public class EntradaDAOJmodbus {
             float nivel = (in.getNivelDeseado() / (in.getNivIlumxvoltio() * 10)) * 100;
             inArray[10] = (int) nivel;
             inArray[11] = in.getTipoSalida();
+            //valor ADC
+            inArray[12] = in.getValorADC(); //in.getValorADC();
 
 
 
@@ -76,9 +78,9 @@ public class EntradaDAOJmodbus {
                 seleBal = String.valueOf(i) + seleBal;
             }
 
-            //Get BitIntegers every 16 bits and store them in the card.
+            //Organizamos los balastros afectados
             ArrayList<BigInteger> name = UtilsJmodbus.getSelectedItems(seleBal);
-            int affectedBalasts = 12;
+            int affectedBalasts = 13;
             for (int i = name.size() - 1; i >= 0; i--) {
                 inArray[affectedBalasts] = name.get(i).intValue();
                 affectedBalasts++;
@@ -86,7 +88,7 @@ public class EntradaDAOJmodbus {
 
 
 
-            //grupo
+            //grupos afectados
             int[] grupos = in.getGrupos();
 
             //Get a string with the bits of the selected values.
@@ -97,7 +99,7 @@ public class EntradaDAOJmodbus {
 
             //Get BitIntegers every 16 bits and store them in the card.
             ArrayList<BigInteger> groups = UtilsJmodbus.getSelectedItems(seleGroup);
-            int affectedGroups = 16;
+            int affectedGroups = 17;
             for (int i = groups.size() - 1; i >= 0; i--) {
                 inArray[affectedGroups] = groups.get(i).intValue();
                 affectedGroups++;
@@ -114,16 +116,15 @@ public class EntradaDAOJmodbus {
                 seleScene = String.valueOf(i) + seleScene;
             }
 
-            //Get BitIntegers every 16 bits and store them in the card.
+            //Escenas afectadas, las escribimos en el array
             ArrayList<BigInteger> scenes = UtilsJmodbus.getSelectedItems(seleScene);
-            int affectedScenes = 17;
+            int affectedScenes = 18;
             for (int i = scenes.size() - 1; i >= 0; i--) {
                 inArray[affectedScenes] = scenes.get(i).intValue();
                 affectedScenes++;
             }
 
-            //valor ADC
-            inArray[18] = 0; //in.getValorADC();
+            
 
             dao.setRegValue(initOffset, inArray);
             addIn(inNumber);
@@ -325,14 +326,17 @@ public class EntradaDAOJmodbus {
             //
             //</editor-fold>
 
-            int balastsOffset = 13;
-//              int tamReg = 16;
-            int[] balastos = in.getBalastos();
+            try {
+                int balastsOffset = 13;
+                int tamReg = 8;
+                int[] balastos = in.getBalastos();
 //            float bytesToRead = balastos.length / tamReg;
-            System.out.println("Leyendo balastros afectados por la entrada");
-            balastos = UtilsJmodbus.obtenerElementosAfectados(inArray, balastsOffset, 64, 16, 16);
-            in.setBalastos(balastos);
-
+                System.out.println("Leyendo balastros afectados por la entrada");
+                balastos = UtilsJmodbus.obtenerElementosAfectados(inArray, balastsOffset, 64, tamReg, 8);
+                in.setBalastos(balastos);
+            } catch (Exception e) {
+                 System.out.println("Problemas cargando los grupos afectados por la entrada " + in.toString());
+            }
 //            //grupo
             //<editor-fold defaultstate="collapsed" desc="Codigo antiguo de obtener grupos afectados ">
             //            try {
@@ -367,10 +371,11 @@ public class EntradaDAOJmodbus {
             //</editor-fold>
 
             try {
-                int groupsOffset = 17;
-                int tamReg = 16;
+//                lectura de grupos, por lo cual el offset es 21
+                int groupsOffset = 21;
+                int tamReg = 8;
                 int[] grupos = in.getGrupos();
-                grupos = UtilsJmodbus.obtenerElementosAfectados(inArray, groupsOffset, 16, tamReg, 16);
+                grupos = UtilsJmodbus.obtenerElementosAfectados(inArray, groupsOffset, 16, tamReg, 8);
                 in.setGrupos(grupos);
 
 
@@ -414,11 +419,11 @@ public class EntradaDAOJmodbus {
             //</editor-fold>
 
             try {
-                int sceneOffset = 18;
-                int tamReg = 16;
+                int sceneOffset = 23;
+                int tamReg = 8;
                 int[] escenas = in.getEscenas();
 
-                escenas = UtilsJmodbus.obtenerElementosAfectados(inArray, sceneOffset, 16, tamReg, 16);
+                escenas = UtilsJmodbus.obtenerElementosAfectados(inArray, sceneOffset, 16, tamReg, 8);
                 in.setEscenas(escenas);
 
             } catch (Exception e) {
@@ -577,22 +582,22 @@ public class EntradaDAOJmodbus {
         int initOffset = Integer.parseInt(PropHandler.getProperty("in.memory.added"));
         int usedRegisters = Integer.parseInt(PropHandler.getProperty("in.memory.registers"));
         int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
-        return UtilsJmodbus.getElementosEnMemoriaInt(numBalastos, dao, initOffset, usedRegisters, tamReg, 16);
-
+        return UtilsJmodbus.getElementosEnMemoriaInt(numBalastos, dao, initOffset, usedRegisters,tamReg,2,8);
     }
 
     /**
-     * Add a new balast.
+     * Método que agrega una nueva entrada al array de entradas activas
      *
-     * @param key
-     * @return
+     * @param writtenBalastNumber Numero de la entrada que ha de ser agregada al 
+     * array de entradas activas
+     * 
      */
     public static void addIn(int writtenBalastNumber) {
 
         try {
             int initOffset = Integer.parseInt(PropHandler.getProperty("in.memory.added"));
 
-            int[] balastos = getAddedInsCardArray();
+                int[] balastos = getAddedInsCardArray();
 
             //Add the new balast.
             balastos[writtenBalastNumber] = 1;

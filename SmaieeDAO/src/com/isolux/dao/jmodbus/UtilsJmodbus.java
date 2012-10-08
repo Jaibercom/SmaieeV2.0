@@ -439,7 +439,7 @@ public class UtilsJmodbus {
             int j = 0;
             // lee los 16 bits littlendian de derecha a izquierda
 //            for (int i = grupos.length - 1; i >= 0; i--) {
-            int k = balastName.length()-1;
+            int k = balastName.length() - 1;
             while (j < grupos.length) {
 
 //            for (int i = balastName.length() - 1; i >= 0; i--) {
@@ -589,6 +589,62 @@ public class UtilsJmodbus {
         return balastos;
 
     }
+    /**
+     * Método que carga los elementos que se encuentran en memoria.
+     * @param numElementos
+     * @param dao
+     * @param initOffset
+     * @param usedRegisters
+     * @param tamReg
+     * @param bytesToRead
+     * @param completacionCeros
+     * @return 
+     */
+     public static int[] getElementosEnMemoriaInt(int numElementos, DAOJmodbus dao, int initOffset, int usedRegisters, int tamReg,int bytesToRead, int completacionCeros) {
+//    int numBalastos = Integer.parseInt(PropHandler.getProperty("balast.max.number"));
+
+        int[] array = new int[numElementos];
+        try {
+//            int initOffset = Integer.parseInt(PropHandler.getProperty("balast.memory.added"));
+//            int usedRegisters = Integer.parseInt(PropHandler.getProperty("balast.memory.registers"));
+//            int tamReg = 16;
+
+//            float bytesToRead = balastos.length / tamReg;
+            ArrayList<BigInteger> affectedBalasts = new ArrayList<BigInteger>();
+            int[] addedB = dao.getRegValue(initOffset, usedRegisters);
+
+            //Get the bytes from the card.
+            for (int i = 0; i < bytesToRead; i++) {
+//                    affectedBalasts.add(new BigInteger(String.valueOf(dao.getRegValue(balastsOffset)&0xFFFF)));
+                affectedBalasts.add(new BigInteger(String.valueOf(addedB[i] & 0x00FF)));
+            }
+
+            String balastName = "";
+            for (BigInteger nameByte : affectedBalasts) {
+                String value = nameByte.toString(2);
+                value = Utils.getCeros(value, completacionCeros);
+                balastName = value + balastName;
+            }
+
+            int k = balastName.length() - 1;
+            int j = 0;
+            while (j < array.length) {
+
+                String bit = String.valueOf(balastName.charAt(k));
+                array[j] = Integer.parseInt(bit);
+                j++;
+                k--;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al leer los balastos añadidos.");
+            e.printStackTrace();
+        }
+
+        return array;
+
+    }
+    
 
     /**
      * Método que encripta un nombre dentro de un array
@@ -703,7 +759,7 @@ public class UtilsJmodbus {
 
         } catch (Exception e) {
             System.out.println("Error al leer los elementos afectados.");
-            JOptionPane.showMessageDialog(null, "Error al cargar los elementos afectados "+ e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error al cargar los elementos afectados " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return null;
         }

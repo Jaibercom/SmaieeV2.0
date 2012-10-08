@@ -284,8 +284,9 @@ public class GeneralControl {
                     clIns.show(ppalView.getPanelConfEntradas(), "card4"); //Sensores
                     break;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+         } catch (Exception e) {
+             JOptionPane.showMessageDialog(ppalView, "Error cargando elementos desde la interfaz: "+e.getMessage(), null, 2);
+                  e.printStackTrace();
         }
 
     }
