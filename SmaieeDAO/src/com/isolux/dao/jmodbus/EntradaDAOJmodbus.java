@@ -124,9 +124,27 @@ public class EntradaDAOJmodbus {
                 affectedScenes++;
             }
 
+//          Escribimos todo el conjunto
+            dao.setRegValue(initOffset, inArray);
+            
+            //<editor-fold defaultstate="collapsed" desc="Codigo antiguo corregido">
+//            dao.setRegValue(initOffset, inArray);
+            //             int offsetTemporal = 13;
+            //            for (int i = 0; i < 4; i++) {
+            //               int byteBalastros = inArray[offsetTemporal];
+            //                setSingleReg(initOffset+offsetTemporal, byteBalastros);
+            //                offsetTemporal += 2;
+            //
+            //            }
+            //</editor-fold>
+//            escribimos luego por partes, los balastros, las escenas y los grupos afectados
+            UtilsJmodbus.escribirPorPartes(initOffset, 13, 4, inArray, dao);//balastos afectados
+            UtilsJmodbus.escribirPorPartes(initOffset, 21, 2, inArray, dao);//grupos afectados
+            UtilsJmodbus.escribirPorPartes(initOffset, 23, 2, inArray, dao);//escenas afectadas
+            //ojo... falta por corregir
             
 
-            dao.setRegValue(initOffset, inArray);
+//            Agregamos el numero entrada a los elementos activos
             addIn(inNumber);
 
             System.out.println("In number " + inNumber + " saved.");
@@ -335,7 +353,7 @@ public class EntradaDAOJmodbus {
                 balastos = UtilsJmodbus.obtenerElementosAfectados(inArray, balastsOffset, 64, tamReg, 8);
                 in.setBalastos(balastos);
             } catch (Exception e) {
-                 System.out.println("Problemas cargando los grupos afectados por la entrada " + in.toString());
+                System.out.println("Problemas cargando los grupos afectados por la entrada " + in.toString());
             }
 //            //grupo
             //<editor-fold defaultstate="collapsed" desc="Codigo antiguo de obtener grupos afectados ">
@@ -582,22 +600,22 @@ public class EntradaDAOJmodbus {
         int initOffset = Integer.parseInt(PropHandler.getProperty("in.memory.added"));
         int usedRegisters = Integer.parseInt(PropHandler.getProperty("in.memory.registers"));
         int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
-        return UtilsJmodbus.getElementosEnMemoriaInt(numBalastos, dao, initOffset, usedRegisters,tamReg,2,8);
+        return UtilsJmodbus.getElementosEnMemoriaInt(numBalastos, dao, initOffset, usedRegisters, tamReg, 2, 8);
     }
 
     /**
      * Método que agrega una nueva entrada al array de entradas activas
      *
-     * @param writtenBalastNumber Numero de la entrada que ha de ser agregada al 
+     * @param writtenBalastNumber Numero de la entrada que ha de ser agregada al
      * array de entradas activas
-     * 
+     *
      */
     public static void addIn(int writtenBalastNumber) {
 
         try {
             int initOffset = Integer.parseInt(PropHandler.getProperty("in.memory.added"));
 
-                int[] balastos = getAddedInsCardArray();
+            int[] balastos = getAddedInsCardArray();
 
             //Add the new balast.
             balastos[writtenBalastNumber] = 1;
@@ -659,90 +677,4 @@ public class EntradaDAOJmodbus {
             e.printStackTrace();
         }
     }
-    /**
-     * Gets the number of the next balast to write.
-     *
-     * @param key
-     * @return
-     */
-//    public static int getInNumber() {
-//        ArrayList<String> addedBalasts = new ArrayList<String>();
-//        DAO4j dao = new DAO4j();
-//        int numBalastos = Integer.parseInt(PropHandler.getProperty("in.max.number"));
-//        if (numBalastos < 16) {
-//            numBalastos = 16;
-//        }
-//        
-//        try {
-//                int initOffset = Integer.parseInt(PropHandler.getProperty("in.memory.added"));
-//                int balastsOffset = initOffset;
-//                int tamReg = 16;
-//                int[] balastos = new int[numBalastos];
-//                float bytesToRead = (balastos.length / tamReg) < 1 ? 1 : (balastos.length / tamReg);
-//                ArrayList<BigInteger> affectedBalasts = new ArrayList<BigInteger>();
-//
-//                //Get the bytes from the card.
-//                for (int i = 0; i < bytesToRead; i++) {
-//                    affectedBalasts.add(new BigInteger(String.valueOf(dao.getRegValue(balastsOffset)&0xFFFF)));
-//                    balastsOffset++;
-//                }
-//                
-//                String balastName = "";
-//                for (BigInteger nameByte : affectedBalasts) {
-//                    String value = nameByte.toString(2);
-//                    value = Utils.getCeros(value);
-//                    balastName = value + balastName;
-//                }
-//                
-//                int j=0;
-//                for (int i = balastos.length -1; i >= 0; i--) {
-//                    String bit = String.valueOf(balastName.charAt(i));
-//                    balastos[j] = Integer.parseInt(bit);
-//                    j++;
-//                }
-//                
-//                //Get an ArrayList with the result
-//                for (int i = 0; i < balastos.length; i++) {
-//                    if (balastos[i] != 0) {
-//                       addedBalasts.add(String.valueOf(balastos[i]));
-//                    }
-//                    
-//                }
-//                
-//            } catch (Exception e) {
-//                System.out.println("Error al leer los balastos añadidos.");
-//            }
-//        return addedBalasts.size();
-//    }
-//    public static void main(String args[]) {
-//        EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(new DAOJmodbus());
-//
-//        //Add balasts
-//        System.out.println("Escribiendo...");
-//        jDao.addIn(2);
-////        addIn(19);
-////        addIn(8);
-////        addIn(5);
-////        
-////        //Read balasts
-////        System.out.println();
-//        System.out.println("Leyendo...");
-//        ArrayList<String> array = jDao.getAddedIns();
-//        for (String string : array) {
-//            System.out.println("Entrada: " + string);
-//        }
-////        
-////        System.out.println();
-////        System.out.println("Eliminando...");
-////        deleteInCard(5);
-////        
-////        System.out.println();
-////        System.out.println("Leyendo...");
-////        System.out.println("Numero: " + getInNumberCard());
-////        array = getAddedInsCard();
-////        for (String string : array) {
-////            System.out.println("Entrada: " + string);
-////        }
-//
-//    }
 }

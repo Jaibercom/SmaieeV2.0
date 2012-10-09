@@ -764,4 +764,38 @@ public class UtilsJmodbus {
             return null;
         }
     }
+    
+    /**
+     * Metodo que se usa para escribir por partes los conjuntos de array que anteriormente estaban contiguos.
+     * El ejemplo mas claro es el array que contiene los balastos afectados por una entrada
+     * determinada. Escribe de manera coherente, de tal forma que la escritura y la lectura se
+     * manejan con el mismo indice en el mapa de memoria.
+     * @param initOffset ofset inical en el registro. En el caso de las entradas es el 1000
+     * @param offsetTemporal Es el ofset en el array que contiene los elementos, es decir, desde donde se
+     * va a comenzar el proceso.
+     * @param cuantosBloques Cuantos bloques de 16 bits se van a procesar. En el caso de las entradas
+     * son 4 bloques.
+     * @param inArray Array que contiene los elementos a ser procesados
+     * @param dao Es el objeto dao generico que contiene cada clase daojmodbus
+     */
+    public static void escribirPorPartes( int initOffset,int offsetTemporal,int cuantosBloques,int[] inArray,DAOJmodbus dao){
+          try {
+            for (int i = 0; i < cuantosBloques; i++) {
+                int byteBalastros = inArray[offsetTemporal];
+                setSingleReg(initOffset + offsetTemporal, byteBalastros, dao);
+                offsetTemporal += 2;
+                
+            }
+        } catch (Exception e) {
+             System.out.println("Error al leer los elementos afectados.");
+            JOptionPane.showMessageDialog(null, "Error al cargar los elementos afectados " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+    
+     public static void setSingleReg(int pos, int mode, DAOJmodbus dao) {
+        int[] values = {mode};
+        dao.setRegValue(pos, values);
+    }
+            
 }
