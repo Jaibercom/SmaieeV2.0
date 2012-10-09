@@ -10,6 +10,7 @@ import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -91,7 +92,7 @@ public class GrupoDAOJmodbus {
             //                nameOffset++;
             //            }
             //</editor-fold>
-            
+
             UtilsJmodbus.encriptarNombre(groupsArray, 2, group.getName(), 5);
 
             //balastos afectados
@@ -211,11 +212,11 @@ public class GrupoDAOJmodbus {
 
             System.out.println("READING GROUP NUMBER: " + groupNumber);
             int initOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.groups"));
-            int tamGrupo=Integer.parseInt(PropHandler.getProperty("group.memory.size"));
+            int tamGrupo = Integer.parseInt(PropHandler.getProperty("group.memory.size"));
 
             //Group number
             setSingleReg(initOffset, groupNumber);
-            int[] groupArray = dao.getRegValue(initOffset,tamGrupo );
+            int[] groupArray = dao.getRegValue(initOffset, tamGrupo);
 
 
             //Group number
@@ -259,11 +260,11 @@ public class GrupoDAOJmodbus {
                 System.out.println("Error al leer el nombre del grupo.");
             }
 //
-             int balastOffset = 7;
+            int balastOffset = 7;
             int tamReg = 16;
             int[] balastos = grupo.getBalastosAfectados();
 //            float bytesToRead = balastos.length / tamReg;
-            
+
             //balastos afectados
             //            <editor-fold defaultstate="collapsed" desc="Balastros afectados codigo antiguo corregido">
 //            try {
@@ -300,9 +301,9 @@ public class GrupoDAOJmodbus {
 //            }
             //</editor-fold>
 
-            balastos=UtilsJmodbus.obtenerElementosAfectados(groupArray, balastOffset,64, tamReg, 16);
+            balastos = UtilsJmodbus.obtenerElementosAfectados(groupArray, balastOffset, 64, tamReg, 16);
             grupo.setBalastosAfectados(balastos);
-            
+
             //MODO
             setSingleReg(0, 0);
 
@@ -491,8 +492,11 @@ public class GrupoDAOJmodbus {
             }
 
         } catch (Exception e) {
-            System.out.println("No se pudo escribir el balasto especificado!");
+            int errCode = 3001;
+            String err = "Error " + errCode + ". No se pudo escribir el grupo especificado!";
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, err, "Error 3002", JOptionPane.ERROR_MESSAGE);
+
         }
     }
 
@@ -527,7 +531,9 @@ public class GrupoDAOJmodbus {
             }
 
         } catch (Exception e) {
-            System.out.println("No se pudo eliminar el grupo especificado!");
+            int errCode = 3002;
+            String err = "Error " + errCode + ". No se pudo borrar el grupo especificado!";
+            JOptionPane.showMessageDialog(null, err, "Error 3002", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }

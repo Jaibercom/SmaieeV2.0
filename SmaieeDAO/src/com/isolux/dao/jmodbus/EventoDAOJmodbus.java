@@ -11,6 +11,7 @@ import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -529,7 +530,8 @@ public class EventoDAOJmodbus {
                 }
                 
             } catch (Exception e) {
-                System.out.println("Error al leer los balastos añadidos.");
+                JOptionPane.showMessageDialog(null, "Error al leer los eventos añadidos.", "Error", eventNum);
+                System.out.println("Error al leer los eventos añadidos.");
                 e.printStackTrace();
             }
         

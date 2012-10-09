@@ -99,7 +99,7 @@ public class EntradaDAOJmodbus {
 
             //Get BitIntegers every 16 bits and store them in the card.
             ArrayList<BigInteger> groups = UtilsJmodbus.getSelectedItems(seleGroup);
-            int affectedGroups = 17;
+            int affectedGroups = 21;
             for (int i = groups.size() - 1; i >= 0; i--) {
                 inArray[affectedGroups] = groups.get(i).intValue();
                 affectedGroups++;
@@ -118,7 +118,7 @@ public class EntradaDAOJmodbus {
 
             //Escenas afectadas, las escribimos en el array
             ArrayList<BigInteger> scenes = UtilsJmodbus.getSelectedItems(seleScene);
-            int affectedScenes = 18;
+            int affectedScenes = 23;
             for (int i = scenes.size() - 1; i >= 0; i--) {
                 inArray[affectedScenes] = scenes.get(i).intValue();
                 affectedScenes++;

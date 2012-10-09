@@ -38,37 +38,121 @@ public class EscenaDAOJmodbus {
      * @param escena
      */
     public static boolean saveScene(Escena escena) {
-        boolean state = false;
-        int escenaNumber = escena.getNumeroEscena();
+        //<editor-fold defaultstate="collapsed" desc="CODIGO ANTIGUO">
+        //        boolean state = false;
+        //        int escenaNumber = escena.getNumeroEscena();
+        //
+        //        try {
+        //
+        //            //MODO
+        //            setSingleReg(0, 1);
+        //
+        //            //Init offset.
+        //            int initOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.scene"));
+        //            int[] sceneArray = new int[Integer.parseInt(PropHandler.getProperty("scene.memory.size"))];
+        //
+        //            System.out.println("SAVING SCENE NUMBER: " + escenaNumber);
+        //
+        //            //scene number
+        //            sceneArray[0] = escenaNumber;
+        //
+        //            //activation
+        //            sceneArray[1] = 1;
+        //
+        //            //name
+        //            //        //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
+        ////            try {
+        //            //                int nameOffset = 2;
+        //            //                ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(escena.getNombre());
+        //            //                int size = balastNameBytes.size();
+        //            //                for (int i = 0; i < 5; i++) {
+        //            //                    if (i < size) {
+        //            //                        sceneArray[nameOffset] = balastNameBytes.get(i).intValue();
+        //            //                    } else {
+        //            //                        sceneArray[nameOffset] = 0;
+        //            //                    }
+        //            //                    nameOffset++;
+        //            //                }
+        //            //            } catch (Exception e) {
+        //            //            }
+        //            //</editor-fold>
+        //
+        //            UtilsJmodbus.encriptarNombre(sceneArray, 2, escena.getNombre(), 5);
+        //
+        //
+        //            //niveles balastos
+        //            int balastsLevels = 7;
+        //            int[] nivelBalastos = escena.getNivelBalasto();
+        //            for (int i = 0; i < nivelBalastos.length; i++) {
+        //                sceneArray[balastsLevels] = nivelBalastos[i];
+        //                balastsLevels++;
+        //            }
+        //
+        //
+        //            //balastos afectados
+        //            int[] balastos = escena.getBalastosAfectados();
+        //
+        //            //Get a string with the bits of the selected values.
+        //            String seleBal = "";
+        //            for (int i : balastos) {
+        //                seleBal = String.valueOf(i) + seleBal;
+        //            }
+        //
+        //            //Get BitIntegers every 16 bits and store them in the card.
+        //            ArrayList<BigInteger> affectedBalasts = UtilsJmodbus.getSelectedItems(seleBal);
+        //            int pos = 71;
+        //            for (int i = affectedBalasts.size() - 1; i >= 0; i--) {
+        //                sceneArray[pos] = affectedBalasts.get(i).intValue();
+        //                pos++;
+        //            }
+        //
+        //
+        //            dao.setRegValue(initOffset, sceneArray);
+        //            PropHandler.addScene(escenaNumber, dao);
+        //            System.out.println("Scene number " + escenaNumber + " saved");
+        //
+        //            //MODO
+        //            setSingleReg(0, 0);
+        //
+        //            state = true;
+        //        } catch (Exception e) {
+        //            state = false;
+        //            e.printStackTrace();
+        //        }
+        //
+        //        return state;
+        //</editor-fold>
+        
+          boolean state = false;
+        int escenaNumero = escena.getNumeroEscena();
 
         try {
 
-            //MODO
+            //MODO Configuracion
             setSingleReg(0, 1);
 
             //Init offset.
+            System.out.println("SAVING SCENE NUMBER: " + escenaNumero);
             int initOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.scene"));
-            int[] sceneArray = new int[Integer.parseInt(PropHandler.getProperty("scene.memory.size"))];
+            int[] escenasArray = new int[Integer.parseInt(PropHandler.getProperty("scene.memory.size"))];
 
-            System.out.println("SAVING SCENE NUMBER: " + escenaNumber);
-
-            //scene number
-            sceneArray[0] = escenaNumber;
-
-            //activation
-            sceneArray[1] = 1;
+            //Group number
+//            Es de 10 caracteres porque el nombre es de 10 caracteres
+            escenasArray[0] = escenaNumero;// hay que validar el numero de grupo
+            escenasArray[1] = 1;
 
             //name
-            //        //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
-//            try {
+//            Con esta rutina se calcula el nombre
+            //<editor-fold defaultstate="collapsed" desc="Codigo anterior">
+            //            try {
             //                int nameOffset = 2;
-            //                ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(escena.getNombre());
+            //                ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(group.getName());
             //                int size = balastNameBytes.size();
             //                for (int i = 0; i < 5; i++) {
             //                    if (i < size) {
-            //                        sceneArray[nameOffset] = balastNameBytes.get(i).intValue();
+            //                        groupsArray[nameOffset] = balastNameBytes.get(i).intValue();
             //                    } else {
-            //                        sceneArray[nameOffset] = 0;
+            //                        groupsArray[nameOffset] = 0;
             //                    }
             //                    nameOffset++;
             //                }
@@ -76,49 +160,52 @@ public class EscenaDAOJmodbus {
             //            }
             //</editor-fold>
 
-            UtilsJmodbus.encriptarNombre(sceneArray, 2, escena.getNombre(), 5);
+            //<editor-fold defaultstate="collapsed" desc="Codigo anterior">
+            //            int nameOffset = 2;
+            //            ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(group.getName());
+            //            int size = balastNameBytes.size();
+            //            for (int i = 0; i < 5; i++) {
+            //                if (i < size) {
+            //                    groupsArray[nameOffset] = balastNameBytes.get(i).intValue();
+            //                } else {
+            //                    groupsArray[nameOffset] = 0;
+            //                }
+            //                nameOffset++;
+            //            }
+            //</editor-fold>
 
-
-            //niveles balastos
-            int balastsLevels = 7;
-            int[] nivelBalastos = escena.getNivelBalasto();
-            for (int i = 0; i < nivelBalastos.length; i++) {
-                sceneArray[balastsLevels] = nivelBalastos[i];
-                balastsLevels++;
-            }
-
+            UtilsJmodbus.encriptarNombre(escenasArray, 2, escena.getNombre(), 5);
 
             //balastos afectados
-            int[] balastos = escena.getBalastosAfectados();
+            int[] escenas = escena.getBalastosAfectados();
 
             //Get a string with the bits of the selected values.
             String seleBal = "";
-            for (int i : balastos) {
+            for (int i : escenas) {
                 seleBal = String.valueOf(i) + seleBal;
             }
 
             //Get BitIntegers every 16 bits and store them in the card.
-            ArrayList<BigInteger> affectedBalasts = UtilsJmodbus.getSelectedItems(seleBal);
-            int pos = 71;
-            for (int i = affectedBalasts.size() - 1; i >= 0; i--) {
-                sceneArray[pos] = affectedBalasts.get(i).intValue();
-                pos++;
+            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal);
+            int affectedBalasts = 7;
+            for (int i = name.size() - 1; i >= 0; i--) {
+                escenasArray[affectedBalasts] = name.get(i).intValue();
+                affectedBalasts++;
             }
 
-
-            dao.setRegValue(initOffset, sceneArray);
-            PropHandler.addScene(escenaNumber, dao);
-            System.out.println("Scene number " + escenaNumber + " saved");
+            dao.setRegValue(initOffset, escenasArray);
+            addScene(escenaNumero);
 
             //MODO
             setSingleReg(0, 0);
+
+            System.out.println("Scene number " + escenaNumero + " saved.");
 
             state = true;
         } catch (Exception e) {
             state = false;
             e.printStackTrace();
         }
-
         return state;
     }
 
