@@ -227,25 +227,27 @@ public class UtilsJmodbus {
     }
 
     //TEST
-    public static void main(String[] args) {
-
-        //        ArrayList<BigInteger> name = getSelectedItems("00001011010100000110000100001101");
-        //        for (BigInteger nameByte : name) {
-        //            System.out.println("Numero: " + nameByte);
-        //        }
-        //
-        //        String balastName = "";
-        //        for (BigInteger nameByte : name) {
-        //            String value = nameByte.toString(2);
-        //            value = getCeros(value);
-        //            balastName += value;
-        //        }
-        //
-        //        System.out.println("String final: " + balastName);
-
-        copyFile("C:\\Users\\EAFIT\\Desktop\\fondos\\red.jpg", "C:\\Users\\EAFIT\\Desktop\\redCopy.jpg");
-
-    }
+    //<editor-fold defaultstate="collapsed" desc="Main">
+    //    public static void main(String[] args) {
+    //
+    //        //        ArrayList<BigInteger> name = getSelectedItems("00001011010100000110000100001101");
+    //        //        for (BigInteger nameByte : name) {
+    //        //            System.out.println("Numero: " + nameByte);
+    //        //        }
+    //        //
+    //        //        String balastName = "";
+    //        //        for (BigInteger nameByte : name) {
+    //        //            String value = nameByte.toString(2);
+    //        //            value = getCeros(value);
+    //        //            balastName += value;
+    //        //        }
+    //        //
+    //        //        System.out.println("String final: " + balastName);
+    //
+    //        copyFile("C:\\Users\\EAFIT\\Desktop\\fondos\\red.jpg", "C:\\Users\\EAFIT\\Desktop\\redCopy.jpg");
+    //
+    //    }
+    //</editor-fold>
 
     /**
      * Método que devuelve un array de elementos que están en memoria. sirve

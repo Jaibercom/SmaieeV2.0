@@ -138,7 +138,7 @@ public class EntradaDAOJmodbus {
             //            }
             //</editor-fold>
 //            escribimos luego por partes, los balastros, las escenas y los grupos afectados
-            UtilsJmodbus.escribirPorPartes(initOffset, 13, 4, inArray, dao);//balastos afectados
+            UtilsJmodbus.escribirPorPartes(initOffset, 13, 8, inArray, dao);//balastos afectados
             UtilsJmodbus.escribirPorPartes(initOffset, 21, 2, inArray, dao);//grupos afectados
             UtilsJmodbus.escribirPorPartes(initOffset, 23, 2, inArray, dao);//escenas afectadas
             //ojo... falta por corregir
