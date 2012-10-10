@@ -783,8 +783,8 @@ public class UtilsJmodbus {
     public static void escribirPorPartes( int initOffset,int offsetTemporal,int cuantosBloques,int[] inArray,DAOJmodbus dao){
           try {
             for (int i = 0; i < cuantosBloques; i++) {
-                int byteBalastros = inArray[offsetTemporal];
-                setSingleReg(initOffset + offsetTemporal, byteBalastros, dao);
+                int bytebalastos = inArray[offsetTemporal];
+                setSingleReg(initOffset + offsetTemporal, bytebalastos, dao);
                 offsetTemporal += 2;
                 
             }

@@ -83,7 +83,7 @@ public class EntradaDAOJmodbus {
             int affectedBalasts = 13;
             for (int i = name.size() - 1; i >= 0; i--) {
                 inArray[affectedBalasts] = name.get(i).intValue();
-                affectedBalasts++;
+                affectedBalasts=affectedBalasts+2;
             }
 
 
@@ -102,7 +102,7 @@ public class EntradaDAOJmodbus {
             int affectedGroups = 21;
             for (int i = groups.size() - 1; i >= 0; i--) {
                 inArray[affectedGroups] = groups.get(i).intValue();
-                affectedGroups++;
+                affectedGroups=affectedGroups+2;
             }
 
 
@@ -121,27 +121,13 @@ public class EntradaDAOJmodbus {
             int affectedScenes = 23;
             for (int i = scenes.size() - 1; i >= 0; i--) {
                 inArray[affectedScenes] = scenes.get(i).intValue();
-                affectedScenes++;
+                affectedScenes=affectedScenes+2;
             }
 
 //          Escribimos todo el conjunto
             dao.setRegValue(initOffset, inArray);
-            
-            //<editor-fold defaultstate="collapsed" desc="Codigo antiguo corregido">
-//            dao.setRegValue(initOffset, inArray);
-            //             int offsetTemporal = 13;
-            //            for (int i = 0; i < 4; i++) {
-            //               int byteBalastros = inArray[offsetTemporal];
-            //                setSingleReg(initOffset+offsetTemporal, byteBalastros);
-            //                offsetTemporal += 2;
-            //
-            //            }
-            //</editor-fold>
-//            escribimos luego por partes, los balastros, las escenas y los grupos afectados
-            UtilsJmodbus.escribirPorPartes(initOffset, 13, 8, inArray, dao);//balastos afectados
-            UtilsJmodbus.escribirPorPartes(initOffset, 21, 2, inArray, dao);//grupos afectados
-            UtilsJmodbus.escribirPorPartes(initOffset, 23, 2, inArray, dao);//escenas afectadas
-            //ojo... falta por corregir
+         
+   
             
 
 //            Agregamos el numero entrada a los elementos activos
