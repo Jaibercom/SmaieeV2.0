@@ -530,7 +530,7 @@ public class EventoDAOJmodbus {
                 }
                 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al leer los eventos añadidos.", "Error", eventNum);
+                JOptionPane.showMessageDialog(null, "Error al leer los eventos añadidos.", "Error", JOptionPane.ERROR_MESSAGE);
                 System.out.println("Error al leer los eventos añadidos.");
                 e.printStackTrace();
             }

@@ -248,7 +248,6 @@ public class UtilsJmodbus {
     //
     //    }
     //</editor-fold>
-
     /**
      * Método que devuelve un array de elementos que están en memoria. sirve
      * para obtener los grupos, balastos, o escenas.
@@ -591,8 +590,10 @@ public class UtilsJmodbus {
         return balastos;
 
     }
+
     /**
      * Método que carga los elementos que se encuentran en memoria.
+     *
      * @param numElementos
      * @param dao
      * @param initOffset
@@ -600,9 +601,9 @@ public class UtilsJmodbus {
      * @param tamReg
      * @param bytesToRead
      * @param completacionCeros
-     * @return 
+     * @return
      */
-     public static int[] getElementosEnMemoriaInt(int numElementos, DAOJmodbus dao, int initOffset, int usedRegisters, int tamReg,int bytesToRead, int completacionCeros) {
+    public static int[] getElementosEnMemoriaInt(int numElementos, DAOJmodbus dao, int initOffset, int usedRegisters, int tamReg, int bytesToRead, int completacionCeros) {
 //    int numBalastos = Integer.parseInt(PropHandler.getProperty("balast.max.number"));
 
         int[] array = new int[numElementos];
@@ -646,7 +647,6 @@ public class UtilsJmodbus {
         return array;
 
     }
-    
 
     /**
      * Método que encripta un nombre dentro de un array
@@ -738,7 +738,7 @@ public class UtilsJmodbus {
             //Get the bytes from the card.
             for (int i = 0; i < bytesToRead; i++) {
                 affectedBalasts.add(new BigInteger(String.valueOf(array[arrayOffset] & 0xFFFF)));//Pendiente por leer de a 8 bits
-                arrayOffset++;
+                arrayOffset = arrayOffset + 1;
             }
 
             String balastName = "";
@@ -765,39 +765,86 @@ public class UtilsJmodbus {
             e.printStackTrace();
             return null;
         }
-    }
+      }
+
+    public static int[] obtenerElementosAfectados(int[] array, int arrayOffset, int cuantosElementos, int tamReg, int bytesToRead, int completacionDeCeros) {
+        try {
+//               balastsOffset = 7;
+//                int tamReg = 16;
+             /*tiene por largo el numero de elementos del arreglo grouparray por ejemplo
+             * balastros deberian ser 64*/
+            int[] balastos = new int[cuantosElementos];
+//            float bytesToRead = balastos.length / tamReg;
+            ArrayList<BigInteger> affectedBalasts = new ArrayList<BigInteger>();
+
+            //Get the bytes from the card.
+            for (int i = 0; i < bytesToRead; i++) {
+                affectedBalasts.add(new BigInteger(String.valueOf(array[arrayOffset] & 0xFFFF)));//Pendiente por leer de a 8 bits
+                arrayOffset = arrayOffset + 1;
+            }
+
+            String balastName = "";
+            for (BigInteger nameByte : affectedBalasts) {
+                String value = nameByte.toString(2);
+//                    Se establece que la completacion de ceros es de 16 bits, porque depende del tamanio del
+//                    registro. esto es especialmente verdad para la carga de los balasrtos afectados
+                value = Utils.getCeros(value, completacionDeCeros);
+                balastName = value + balastName;
+            }
+
+            int j = 0;
+            for (int i = balastos.length - 1; i >= 0; i--) {
+                String bit = String.valueOf(balastName.charAt(i));
+                balastos[j] = Integer.parseInt(bit);
+                j++;
+            }
+            return balastos;
+//              
+
+        } catch (Exception e) {
+            System.out.println("Error al leer los elementos afectados.");
+            JOptionPane.showMessageDialog(null, "Error al cargar los elementos afectados " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return null;
+        }
+}
+
+        /**
+         * Metodo que se usa para escribir por partes los conjuntos de array que
+         * anteriormente estaban contiguos. El ejemplo mas claro es el array que
+         * contiene los balastos afectados por una entrada determinada. Escribe
+         * de manera coherente, de tal forma que la escritura y la lectura se
+         * manejan con el mismo indice en el mapa de memoria.
+         *
+         * @param initOffset ofset inical en el registro. En el caso de las
+         * entradas es el 1000
+         * @param offsetTemporal Es el ofset en el array que contiene los
+         * elementos, es decir, desde donde se va a comenzar el proceso.
+         * @param cuantosBloques Cuantos bloques de 16 bits se van a procesar.
+         * En el caso de las entradas son 4 bloques.
+         * @param inArray Array que contiene los elementos a ser procesados
+         * @param dao Es el objeto dao generico que contiene cada clase
+         * daojmodbus
+         */
     
-    /**
-     * Metodo que se usa para escribir por partes los conjuntos de array que anteriormente estaban contiguos.
-     * El ejemplo mas claro es el array que contiene los balastos afectados por una entrada
-     * determinada. Escribe de manera coherente, de tal forma que la escritura y la lectura se
-     * manejan con el mismo indice en el mapa de memoria.
-     * @param initOffset ofset inical en el registro. En el caso de las entradas es el 1000
-     * @param offsetTemporal Es el ofset en el array que contiene los elementos, es decir, desde donde se
-     * va a comenzar el proceso.
-     * @param cuantosBloques Cuantos bloques de 16 bits se van a procesar. En el caso de las entradas
-     * son 4 bloques.
-     * @param inArray Array que contiene los elementos a ser procesados
-     * @param dao Es el objeto dao generico que contiene cada clase daojmodbus
-     */
-    public static void escribirPorPartes( int initOffset,int offsetTemporal,int cuantosBloques,int[] inArray,DAOJmodbus dao){
-          try {
+
+    public static void escribirPorPartes(int initOffset, int offsetTemporal, int cuantosBloques, int[] inArray, DAOJmodbus dao) {
+        try {
             for (int i = 0; i < cuantosBloques; i++) {
                 int bytebalastos = inArray[offsetTemporal];
                 setSingleReg(initOffset + offsetTemporal, bytebalastos, dao);
                 offsetTemporal += 2;
-                
+
             }
         } catch (Exception e) {
-             System.out.println("Error al leer los elementos afectados.");
+            System.out.println("Error al leer los elementos afectados.");
             JOptionPane.showMessageDialog(null, "Error al cargar los elementos afectados " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
-    
-     public static void setSingleReg(int pos, int mode, DAOJmodbus dao) {
+
+    public static void setSingleReg(int pos, int mode, DAOJmodbus dao) {
         int[] values = {mode};
         dao.setRegValue(pos, values);
     }
-            
 }

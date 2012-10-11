@@ -105,11 +105,11 @@ public class GrupoDAOJmodbus {
             }
 
             //Get BitIntegers every 16 bits and store them in the card.
-            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal);
+            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal,16);
             int affectedBalasts = 7;
             for (int i = name.size() - 1; i >= 0; i--) {
                 groupsArray[affectedBalasts] = name.get(i).intValue();
-                affectedBalasts++;
+                affectedBalasts+=2;
             }
 
             dao.setRegValue(initOffset, groupsArray);
@@ -262,7 +262,7 @@ public class GrupoDAOJmodbus {
             }
 //
             int balastOffset = 7;
-            int tamReg = 16;
+            int tamReg = 8;
             int[] balastos = grupo.getBalastosAfectados();
 //            float bytesToRead = balastos.length / tamReg;
 
@@ -302,7 +302,7 @@ public class GrupoDAOJmodbus {
 //            }
             //</editor-fold>
 
-            balastos = UtilsJmodbus.obtenerElementosAfectados(groupArray, balastOffset, 64, tamReg, 16);
+            balastos = UtilsJmodbus.obtenerElementosAfectados(groupArray, balastOffset, 64, tamReg,8,8);
             grupo.setBalastosAfectados(balastos);
 
             //MODO

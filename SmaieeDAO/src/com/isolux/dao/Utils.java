@@ -92,6 +92,27 @@ public class Utils {
         }
         return name;
     }
+    
+     public static ArrayList<BigInteger> getSelectedItems(String itemsBits,int bitsToRead ) {
+        ArrayList<BigInteger> name = new ArrayList<BigInteger>();
+
+        String nameBits = itemsBits;
+
+//        int bitsToRead = 16;
+        String twoBytes = "";
+
+        //name
+        for (int i = 0; i < nameBits.length();) {
+            //16 bits
+            while ((twoBytes.length() < bitsToRead) && (i < nameBits.length())) {
+                twoBytes += nameBits.charAt(i);
+                i++;
+            }
+            name.add(new BigInteger(twoBytes, 2));
+            twoBytes = "";
+        }
+        return name;
+    }
 
     /**
      * Get the missing ceros at the begining of the bites.

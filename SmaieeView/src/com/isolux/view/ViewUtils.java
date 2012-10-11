@@ -378,4 +378,14 @@ public class ViewUtils {
         return statusWindow;
     }
     
+    /**
+     * Metodo que limpia las listas que se le pase por parametro
+     * @param lista1
+     * @param lista2 
+     */
+    public void limpiarListas(JList lista1, JList lista2){
+        
+      
+        
+    }
 }

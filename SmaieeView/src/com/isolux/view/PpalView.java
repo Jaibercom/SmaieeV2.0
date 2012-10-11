@@ -325,7 +325,6 @@ public class PpalView extends javax.swing.JFrame {
         jList9 = new javax.swing.JList();
         jCheckBox10 = new javax.swing.JCheckBox();
         jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
         jLabel14 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
         jButton15 = new javax.swing.JButton();
@@ -343,6 +342,7 @@ public class PpalView extends javax.swing.JFrame {
         jList17 = new javax.swing.JList();
         jCheckBox19 = new javax.swing.JCheckBox();
         jCheckBox20 = new javax.swing.JCheckBox();
+        fotoceldas_entrada_escenas_jCheckBox = new javax.swing.JCheckBox();
         jButton16 = new javax.swing.JButton();
         jButton42 = new javax.swing.JButton();
         jLabel66 = new javax.swing.JLabel();
@@ -1414,13 +1414,6 @@ public class PpalView extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox12.setText("Escena");
-        jCheckBox12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox12ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -1442,8 +1435,7 @@ public class PpalView extends javax.swing.JFrame {
                         .addComponent(jCheckBox10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox12)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -1451,8 +1443,7 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox10)
-                    .addComponent(jCheckBox11)
-                    .addComponent(jCheckBox12))
+                    .addComponent(jCheckBox11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
@@ -1602,6 +1593,13 @@ public class PpalView extends javax.swing.JFrame {
             }
         });
 
+        fotoceldas_entrada_escenas_jCheckBox.setText("Escena");
+        fotoceldas_entrada_escenas_jCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fotoceldas_entrada_escenas_jCheckBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -1622,7 +1620,10 @@ public class PpalView extends javax.swing.JFrame {
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jCheckBox19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox20)))
+                        .addComponent(jCheckBox20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fotoceldas_entrada_escenas_jCheckBox)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -1630,7 +1631,8 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox19)
-                    .addComponent(jCheckBox20))
+                    .addComponent(jCheckBox20)
+                    .addComponent(fotoceldas_entrada_escenas_jCheckBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
@@ -2868,7 +2870,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt 
      */
     private void jCheckBox10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox10ActionPerformed
-        inOutType = ViewUtils.selectCheks(jCheckBox10, jCheckBox11, jCheckBox12);
+        inOutType = ViewUtils.selectCheks(jCheckBox10, jCheckBox11, fotoceldas_entrada_escenas_jCheckBox);
         this.generalCtrl.showAvailableBalasts(jList8, jList9, this);
     }//GEN-LAST:event_jCheckBox10ActionPerformed
 
@@ -2877,18 +2879,9 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt 
      */
     private void jCheckBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox11ActionPerformed
-        inOutType = ViewUtils.selectCheks(jCheckBox10, jCheckBox11, jCheckBox12);
+        inOutType = ViewUtils.selectCheks(jCheckBox10, jCheckBox11, fotoceldas_entrada_escenas_jCheckBox);
         this.generalCtrl.showAvailableGroups(jList8, jList9, this);
     }//GEN-LAST:event_jCheckBox11ActionPerformed
-
-     /**
-     * Select scenes items ftcld.
-     * @param evt 
-     */
-    private void jCheckBox12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox12ActionPerformed
-        inOutType = ViewUtils.selectCheks(jCheckBox10, jCheckBox11, jCheckBox12);
-        this.generalCtrl.showAvailableScenes(jList8, jList9, this);
-    }//GEN-LAST:event_jCheckBox12ActionPerformed
 
     /**
      * Select balasts items Btns
@@ -3222,6 +3215,15 @@ public class PpalView extends javax.swing.JFrame {
        this.generalCtrl.treeSelection(this, realCtrl);
     }//GEN-LAST:event_jTree1MousePressed
 
+     /**
+     * Select scenes items ftcld.
+     * @param evt 
+     */
+    private void fotoceldas_entrada_escenas_jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotoceldas_entrada_escenas_jCheckBoxActionPerformed
+        inOutType = ViewUtils.selectCheks(jCheckBox19, jCheckBox20, fotoceldas_entrada_escenas_jCheckBox);
+        this.generalCtrl.showAvailableScenes(jList16, jList17, this);
+    }//GEN-LAST:event_fotoceldas_entrada_escenas_jCheckBoxActionPerformed
+
 //    private void startCheckingThread(java.awt.event.FocusEvent evt) {
 //        this.realCtrl.checkBalasts(this);
 //    }
@@ -3275,6 +3277,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField fieldMask;
     private javax.swing.JFormattedTextField fieldPort;
     private javax.swing.JTextField fieldPuerto;
+    private javax.swing.JCheckBox fotoceldas_entrada_escenas_jCheckBox;
     private javax.swing.JCheckBox grupos_jCheckBox;
     private javax.swing.JPanel header;
     private javax.swing.JLabel headerImage;
@@ -3317,7 +3320,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
     private javax.swing.JCheckBox jCheckBox13;
     private javax.swing.JCheckBox jCheckBox14;
     private javax.swing.JCheckBox jCheckBox15;
@@ -4287,11 +4289,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JCheckBox getjCheckBox12() {
-        return jCheckBox12;
+        return fotoceldas_entrada_escenas_jCheckBox;
     }
 
     public void setjCheckBox12(JCheckBox jCheckBox12) {
-        this.jCheckBox12 = jCheckBox12;
+        this.fotoceldas_entrada_escenas_jCheckBox = jCheckBox12;
     }
 
     public JCheckBox getjCheckBox13() {

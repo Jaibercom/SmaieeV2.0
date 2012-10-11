@@ -1804,8 +1804,7 @@
                                                   <Component id="jCheckBox10" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="jCheckBox11" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jCheckBox12" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -1818,7 +1817,6 @@
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jCheckBox10" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jCheckBox11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jCheckBox12" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" attributes="0">
@@ -1936,14 +1934,6 @@
                                   </Properties>
                                   <Events>
                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox11ActionPerformed"/>
-                                  </Events>
-                                </Component>
-                                <Component class="javax.swing.JCheckBox" name="jCheckBox12">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="Escena"/>
-                                  </Properties>
-                                  <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox12ActionPerformed"/>
                                   </Events>
                                 </Component>
                               </SubComponents>
@@ -2080,6 +2070,9 @@
                                                   <Component id="jCheckBox19" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="jCheckBox20" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="fotoceldas_entrada_escenas_jCheckBox" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -2092,6 +2085,7 @@
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jCheckBox19" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jCheckBox20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="fotoceldas_entrada_escenas_jCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -2209,6 +2203,14 @@
                                   </Properties>
                                   <Events>
                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox20ActionPerformed"/>
+                                  </Events>
+                                </Component>
+                                <Component class="javax.swing.JCheckBox" name="fotoceldas_entrada_escenas_jCheckBox">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Escena"/>
+                                  </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fotoceldas_entrada_escenas_jCheckBoxActionPerformed"/>
                                   </Events>
                                 </Component>
                               </SubComponents>
