@@ -203,6 +203,7 @@ public class GrupoDAOJmodbus {
      * @param groupNumber
      */
     public static Grupo readGroup(int groupNumber) {
+       
         Grupo grupo = new Grupo();
 
         try {

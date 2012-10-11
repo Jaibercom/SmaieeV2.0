@@ -550,6 +550,9 @@ public class PpalView extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTree1MouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTree1MousePressed(evt);
+            }
         });
         jTree1.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
             public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
@@ -3212,8 +3215,12 @@ public class PpalView extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox4ActionPerformed
 
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
-        this.generalCtrl.treeSelection(this, realCtrl);
+        
     }//GEN-LAST:event_jTree1MouseClicked
+
+    private void jTree1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MousePressed
+       this.generalCtrl.treeSelection(this, realCtrl);
+    }//GEN-LAST:event_jTree1MousePressed
 
 //    private void startCheckingThread(java.awt.event.FocusEvent evt) {
 //        this.realCtrl.checkBalasts(this);

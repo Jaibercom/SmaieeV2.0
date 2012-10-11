@@ -737,7 +737,7 @@ public class UtilsJmodbus {
 
             //Get the bytes from the card.
             for (int i = 0; i < bytesToRead; i++) {
-                affectedBalasts.add(new BigInteger(String.valueOf(array[arrayOffset] & 0xFFFF)));
+                affectedBalasts.add(new BigInteger(String.valueOf(array[arrayOffset] & 0xFFFF)));//Pendiente por leer de a 8 bits
                 arrayOffset++;
             }
 

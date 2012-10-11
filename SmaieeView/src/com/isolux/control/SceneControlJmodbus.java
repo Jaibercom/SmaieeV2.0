@@ -40,7 +40,7 @@ public class SceneControlJmodbus {
             for (int i = 0; i < selectedBalasts.getSize(); i++) {
                 String item = selectedBalasts.getElementAt(i).toString();
                 String[] level = item.split(" - ");
-              balastsLevels[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length-1]);
+              balastsLevels[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length-2]);
 //                balastsLevels[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length - 1]);
                 
             }

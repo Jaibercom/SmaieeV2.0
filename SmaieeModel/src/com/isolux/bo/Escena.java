@@ -1,7 +1,6 @@
 package com.isolux.bo;
 
 import com.isolux.properties.PropHandler;
-import java.util.ArrayList;
 
 /**
  *Clase que crea el modelo del objeto escena y guarda toda la información respecto a este.
