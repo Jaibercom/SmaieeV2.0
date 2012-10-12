@@ -39,7 +39,7 @@ public class EventControl {
     /**
      * Saves an event.
      */
-    public void saveEvent(PpalView ppalView) {
+    public void saveEvent(PpalView ppalView) throws Exception{
         boolean connectionStatus = true; //DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
         new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
         if (connectionStatus) {

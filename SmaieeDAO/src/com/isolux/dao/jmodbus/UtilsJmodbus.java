@@ -6,17 +6,12 @@ package com.isolux.dao.jmodbus;
 
 import com.isolux.dao.Utils;
 import com.isolux.dao.modbus.DAOJmodbus;
-import com.isolux.dao.properties.PropHandler;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -419,40 +414,40 @@ public class UtilsJmodbus {
 
 //                int balastsOffset = initOffset;
 //            int tamReg = 8;//cambiado por extencion de signo (lectura)
-            int[] grupos = new int[numElementos];
+            int[] elementos = new int[numElementos];
 //            float bytesToRead = (grupos.length / tamReg) < 1 ? 1 : (grupos.length / tamReg);
-            ArrayList<BigInteger> elementosAfectados = new ArrayList<BigInteger>();
+            ArrayList<BigInteger> elementosEnMemoria = new ArrayList<BigInteger>();
             int[] addedG = dao.getRegValue(initOffset, usedRegisters);
-//En este lugar esta el problema de los nombres de los grupos
+
             //Get the bytes from the card.
             for (int i = 0; i < bytesToRead; i++) {
-                elementosAfectados.add(new BigInteger(String.valueOf(addedG[i] & 0x00FF)));
+                elementosEnMemoria.add(new BigInteger(String.valueOf(addedG[i] & 0x00FF)));
             }
 
-            String balastName = "";
-            for (BigInteger nameByte : elementosAfectados) {
+            String cadenaDeBits = "";
+            for (BigInteger nameByte : elementosEnMemoria) {
                 String value = nameByte.toString(2);
                 value = Utils.getCeros(value, completacionCeros);
-                balastName = value + balastName;
+                cadenaDeBits = value + cadenaDeBits;
 //                balastName = balastName + value;
             }
 
             int j = 0;
             // lee los 16 bits littlendian de derecha a izquierda
 //            for (int i = grupos.length - 1; i >= 0; i--) {
-            int k = balastName.length() - 1;
-            while (j < grupos.length) {
+            int k = cadenaDeBits.length() - 1;
+            while (j < elementos.length) {
 
 //            for (int i = balastName.length() - 1; i >= 0; i--) {
-                String bit = String.valueOf(balastName.charAt(k));
-                grupos[j] = Integer.parseInt(bit);
+                String bit = String.valueOf(cadenaDeBits.charAt(k));
+                elementos[j] = Integer.parseInt(bit);
                 j++;
                 k--;
             }
 
             //Get an ArrayList with the result
-            for (int i = 0; i < grupos.length; i++) {
-                if (grupos[i] != 0) {
+            for (int i = 0; i < elementos.length; i++) {
+                if (elementos[i] != 0) {
                     elementosadheridos.add(String.valueOf(i));//se agrega a la lista de elementos adheridos
                 }
 
@@ -717,7 +712,7 @@ public class UtilsJmodbus {
      * buscar
      * @param arrayOffset Lugar desde el cual se quiere buscar
      * @param cuantosElementos numero de elementos a procesar. En el caso de los
-     * balastos es 64
+     * balastos es 64 y el de escenas y grupos es 16
      * @param tamReg Tamanio del registro. Puede ser 8 o 16. En el caso de los
      * balastros afectados el tamanio es 16
      * @param completacionDeCeros es un numero que puede ser 8 o 16. en el caso

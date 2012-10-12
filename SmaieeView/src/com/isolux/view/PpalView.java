@@ -34,6 +34,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu.Separator;
 import javax.swing.JRadioButton;
@@ -391,9 +392,9 @@ public class PpalView extends javax.swing.JFrame {
         jCheckBox2 = new javax.swing.JCheckBox();
         jLabel25 = new javax.swing.JLabel();
         jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jButton17 = new javax.swing.JButton();
+        enviarEventos_jButton = new javax.swing.JButton();
+        eliminarEvento_jButton = new javax.swing.JButton();
         jLabel64 = new javax.swing.JLabel();
-        jButton43 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jTextField13 = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
@@ -2037,22 +2038,22 @@ public class PpalView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton17.setText("Enviar");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        enviarEventos_jButton.setText("Enviar");
+        enviarEventos_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                enviarEventos_jButtonActionPerformed(evt);
+            }
+        });
+
+        eliminarEvento_jButton.setText("Eliminar");
+        eliminarEvento_jButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarEvento_jButtonActionPerformed(evt);
             }
         });
 
         jLabel64.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel64.setText("#");
-
-        jButton43.setText("Eliminar");
-        jButton43.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton43ActionPerformed(evt);
-            }
-        });
 
         jCheckBox1.setText("Por días");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -2096,9 +2097,9 @@ public class PpalView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelEventosLayout.createSequentialGroup()
-                        .addComponent(jButton17)
+                        .addComponent(enviarEventos_jButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton43)))
+                        .addComponent(eliminarEvento_jButton)))
                 .addContainerGap())
         );
         panelEventosLayout.setVerticalGroup(
@@ -2120,8 +2121,8 @@ public class PpalView extends javax.swing.JFrame {
                 .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton17)
-                    .addComponent(jButton43))
+                    .addComponent(enviarEventos_jButton)
+                    .addComponent(eliminarEvento_jButton))
                 .addContainerGap())
         );
 
@@ -3070,9 +3071,17 @@ public class PpalView extends javax.swing.JFrame {
      * Envio de evento.
      * @param evt 
      */
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        this.eventCtrl.saveEvent(this);
-    }//GEN-LAST:event_jButton17ActionPerformed
+    private void enviarEventos_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarEventos_jButtonActionPerformed
+       try {
+            this.eventCtrl.saveEvent(this);
+        } catch (Exception ex) {
+            System.out.println("Problema guardando el evento");
+            Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Problema guardando el evento: "+ex.toString());
+            JOptionPane.showMessageDialog(null, "Error guardando el evento "+ex.getLocalizedMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            
+        }
+    }//GEN-LAST:event_enviarEventos_jButtonActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
@@ -3147,9 +3156,9 @@ public class PpalView extends javax.swing.JFrame {
      * Delete events.
      * @param evt 
      */
-    private void jButton43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton43ActionPerformed
+    private void eliminarEvento_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEvento_jButtonActionPerformed
         this.eventCtrl.deleteEvent(this);
-    }//GEN-LAST:event_jButton43ActionPerformed
+    }//GEN-LAST:event_eliminarEvento_jButtonActionPerformed
 
     /**
      * Saves balast state.
@@ -3267,8 +3276,10 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbIsStaticConfiguration;
     private javax.swing.ButtonGroup confRol;
     private javax.swing.JButton eliminarEscena_jButton;
+    private javax.swing.JButton eliminarEvento_jButton;
     private javax.swing.JButton eliminarGrupo_jButton;
     private javax.swing.JButton enviarEscena_jButton;
+    private javax.swing.JButton enviarEventos_jButton;
     private javax.swing.JButton enviarGrupo_jButton;
     private javax.swing.JButton enviar_jButton;
     private javax.swing.JPanel escenasBalastos_jPanel;
@@ -3284,7 +3295,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
@@ -3311,7 +3321,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
     private javax.swing.JButton jButton42;
-    private javax.swing.JButton jButton43;
     private javax.swing.JButton jButton44;
     private javax.swing.JButton jButton46;
     private javax.swing.JButton jButton47;
@@ -3969,11 +3978,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JButton getjButton17() {
-        return jButton17;
+        return enviarEventos_jButton;
     }
 
     public void setjButton17(JButton jButton17) {
-        this.jButton17 = jButton17;
+        this.enviarEventos_jButton = jButton17;
     }
 
     public JButton getjButton18() {
@@ -4185,11 +4194,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JButton getjButton43() {
-        return jButton43;
+        return eliminarEvento_jButton;
     }
 
     public void setjButton43(JButton jButton43) {
-        this.jButton43 = jButton43;
+        this.eliminarEvento_jButton = jButton43;
     }
 
     public JButton getjButton44() {

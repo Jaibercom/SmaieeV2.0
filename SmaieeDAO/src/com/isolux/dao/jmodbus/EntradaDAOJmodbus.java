@@ -659,7 +659,7 @@ public class EntradaDAOJmodbus {
             }
 
         } catch (Exception e) {
-            System.out.println("No se pudo eliminar el balasto especificado!");
+            System.out.println("No se pudo eliminar la entrada especificada!");
             e.printStackTrace();
         }
     }
