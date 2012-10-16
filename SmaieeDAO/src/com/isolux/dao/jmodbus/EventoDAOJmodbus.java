@@ -47,7 +47,7 @@ public class EventoDAOJmodbus {
 
         try {
 
-            //MODO
+            //MODO Config
             setSingleReg(0, 1);
 
             //Init offset
@@ -101,8 +101,8 @@ public class EventoDAOJmodbus {
                 eventArray[gruposOffset] = nivelGrupos[i];
                 gruposOffset++;
             }
-            
-            
+
+
             //           //<editor-fold defaultstate="collapsed" desc="Codigo viejo Grupos afectados">
             //            //gruposAfectados
             //            int[] groups = evento.getGruposAfectados();
@@ -122,7 +122,7 @@ public class EventoDAOJmodbus {
             //            }
             //
             //</editor-fold>
-           
+
             //grupos afectados
             int[] grupos = evento.getGruposAfectados();
 
@@ -137,7 +137,7 @@ public class EventoDAOJmodbus {
             int affectedGroups = 95;
             for (int i = groups.size() - 1; i >= 0; i--) {
                 eventArray[affectedGroups] = groups.get(i).intValue();
-                affectedGroups=affectedGroups+2;
+                affectedGroups = affectedGroups + 2;
             }
 
 
@@ -159,7 +159,7 @@ public class EventoDAOJmodbus {
             //                affectedScenes++;
             //            }
             //</editor-fold>
-             //escenas
+            //escenas
             int[] escenas = evento.getEscenasAfectadas();
 
             //Get a string with the bits of the selected values.
@@ -173,10 +173,10 @@ public class EventoDAOJmodbus {
             int affectedScenes = 97;
             for (int i = scenes.size() - 1; i >= 0; i--) {
                 eventArray[affectedScenes] = scenes.get(i).intValue();
-                affectedScenes=affectedScenes+2;
+                affectedScenes = affectedScenes + 2;
             }
-             
-            
+
+
 
             ////<editor-fold defaultstate="collapsed" desc="codigo viejo balastos afectados">
             //            //balastosAfectados
@@ -196,7 +196,7 @@ public class EventoDAOJmodbus {
             //                affectedBalasts++;
             //            }
             //</editor-fold>
-              //balasto
+            //balasto
             int[] balastos = evento.getBalastosAfectados();
 
             //Get a string with the bits of the selected values.
@@ -210,10 +210,10 @@ public class EventoDAOJmodbus {
             int affectedBalasts = 99;
             for (int i = name.size() - 1; i >= 0; i--) {
                 eventArray[affectedBalasts] = name.get(i).intValue();
-                affectedBalasts=affectedBalasts+2;
+                affectedBalasts = affectedBalasts + 2;
             }
 
-            
+
 //          Guardamos la info con el dao
             dao.setRegValue(initOffset, eventArray);
             addEvent(eventNumber);
@@ -374,44 +374,54 @@ public class EventoDAOJmodbus {
             setSingleReg(0, 1);
 
             System.out.println("READING EVENT NUMBER: " + eventNumber);
-            int initOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.events"));
+            int eventoOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.events"));
 
             //numeroEvento
-            setSingleReg(initOffset, eventNumber);
-            int[] eventArray = dao.getRegValue(initOffset, Integer.parseInt(PropHandler.getProperty("event.memory.size")));
+            setSingleReg(eventoOffset, eventNumber);
+            int[] eventArray = dao.getRegValue(eventoOffset, Integer.parseInt(PropHandler.getProperty("event.memory.size")));
 
-            //nombre
-            int nameOffset = 1;
-            ArrayList<BigInteger> balastNameBytes = new ArrayList<BigInteger>();
-            String balastName = "";
-            //Get the bytes from the card.
-            for (int i = 0; i < 5; i++) {
-                int tales = 0;
-                tales |= eventArray[nameOffset] & 0xFFFF;
-                balastNameBytes.add(new BigInteger(String.valueOf(tales)));
-                nameOffset++;
-            }
-            //Join the bytes using a string
-            for (BigInteger nameByte : balastNameBytes) {
-                String value = nameByte.toString(2);
-                balastName = Utils.getCeros(value) + balastName;
-            }
-            //Recreates the entire name bytes and sets the name to the balast.
-            BigInteger totalBytes = new BigInteger(balastName, 2);
-            evento.setNombre(new String(totalBytes.toByteArray()));
+            // activacion
+            evento.setTipoSalida(eventArray[1]);
+
+            //Out type
+            evento.setTipoSalida(eventArray[2]);
 
 
-            evento.setPorFechaODias(eventArray[6]);
-            evento.setDia(eventArray[7]);
-            evento.setMes(eventArray[8]);
-            evento.setAnho(eventArray[9] + 256);
-            evento.setHora(eventArray[10]);
-            evento.setMinuto(eventArray[11]);
-            evento.setDiaYrepetir(eventArray[12]);
+            //nombre//<editor-fold defaultstate="collapsed" desc="Codigo antiguo obtener nombre">
+            //            int nameOffset = 3;
+            //            ArrayList<BigInteger> balastNameBytes = new ArrayList<BigInteger>();
+            //            String balastName = "";
+            //            //Get the bytes from the card.
+            //            for (int i = 0; i < 5; i++) {
+            //                int tales = 0;
+            //                tales |= eventArray[nameOffset] & 0xFFFF;
+            //                balastNameBytes.add(new BigInteger(String.valueOf(tales)));
+            //                nameOffset++;
+            //            }
+            //            //Join the bytes using a string
+            //            for (BigInteger nameByte : balastNameBytes) {
+            //                String value = nameByte.toString(2);
+            //                balastName = Utils.getCeros(value) + balastName;
+            //            }
+            //            //Recreates the entire name bytes and sets the name to the balast.
+            //            BigInteger totalBytes = new BigInteger(balastName, 2);
+            //</editor-fold>
+            String nombreDesencriptado = UtilsJmodbus.desencriptarNombre(eventArray, 3, 5);
+
+            evento.setNombre(nombreDesencriptado);
+
+
+            evento.setPorFechaODias(eventArray[8]);
+            evento.setDia(eventArray[9]);
+            evento.setMes(eventArray[10]);
+            evento.setAnho(eventArray[11] + 256);
+            evento.setHora(eventArray[12]);
+            evento.setMinuto(eventArray[13]);
+            evento.setDiaYrepetir(eventArray[14]);
 
 
             //nivelBalasto
-            int balastsLevels = 13;
+            int balastsLevels = 15;
             int balastsMaxNumber = Integer.parseInt(PropHandler.getProperty("balast.max.number"));
             int[] nivelBalastos = new int[balastsMaxNumber];
             for (int i = 0; i < nivelBalastos.length; i++) {
@@ -420,39 +430,10 @@ public class EventoDAOJmodbus {
             }
             evento.setNivelBalasto(nivelBalastos);
 
-            //balastosAfectados
-            try {
-                int balastsOffset = 77;
-                int tamReg = 16;
-                int[] balastos = evento.getBalastosAfectados();
-                float bytesToRead = balastos.length / tamReg;
-                ArrayList<BigInteger> affectedBalasts = new ArrayList<BigInteger>();
 
-                //Get the bytes from the card.
-                for (int i = 0; i < bytesToRead; i++) {
-                    affectedBalasts.add(new BigInteger(String.valueOf(eventArray[balastsOffset] & 0xFFFF)));
-                    balastsOffset++;
-                }
-
-                String balastBitString = "";
-                for (BigInteger nameByte : affectedBalasts) {
-                    String value = nameByte.toString(2);
-                    value = Utils.getCeros(value);
-                    balastBitString = value + balastBitString;
-                }
-
-                int j = 0;
-                for (int i = balastos.length - 1; i >= 0; i--) {
-                    String bit = String.valueOf(balastBitString.charAt(i));
-                    balastos[j] = Integer.parseInt(bit);
-                    j++;
-                }
-            } catch (Exception e) {
-                System.out.println("Error al leer los balastos afectados por la escena.");
-            }
 
             //nivelGrupo
-            int groupLevels = 81;
+            int groupLevels = 79;
             int groupsMaxNumber = Integer.parseInt(PropHandler.getProperty("group.max.number"));
             int[] nivelGrupos = new int[groupsMaxNumber];
             for (int i = 0; i < nivelGrupos.length; i++) {
@@ -461,72 +442,117 @@ public class EventoDAOJmodbus {
             }
             evento.setNivelGrupo(nivelGrupos);
 
-            //gruposAfectados
-            try {
-                int groupsOffset = 97;
-                int tamReg = 16;
-                int[] grupos = evento.getGruposAfectados();
-                float bytesToRead = grupos.length / tamReg;
-                ArrayList<BigInteger> affectedGroups = new ArrayList<BigInteger>();
-
-                //Get the bytes from the card.
-                for (int i = 0; i < bytesToRead; i++) {
-                    affectedGroups.add(new BigInteger(String.valueOf(eventArray[groupsOffset] & 0xFFFF)));
-                    groupsOffset++;
-                }
-
-                String groupsBitString = "";
-                for (BigInteger nameByte : affectedGroups) {
-                    String value = nameByte.toString(2);
-                    value = Utils.getCeros(value);
-                    groupsBitString = value + groupsBitString;
-                }
-
-                int j = 0;
-                for (int i = grupos.length - 1; i >= 0; i--) {
-                    String bit = String.valueOf(groupsBitString.charAt(i));
-                    grupos[j] = Integer.parseInt(bit);
-                    j++;
-                }
-            } catch (Exception e) {
-                System.out.println("Error al leer los balastos afectados por la escena.");
-            }
+            int tamReg = 8;
+            
+            //gruposAfectados//<editor-fold defaultstate="collapsed" desc="Codigo viejo Grupos Afectados">
+            //            try {
+            //                int groupsOffset = 95;
+            //                int tamReg = 8;// Hay que verificar si es 8 o 16. Debe ser 8
+            //                int[] grupos = evento.getGruposAfectados();
+            //                float bytesToRead = grupos.length / tamReg;
+            //                ArrayList<BigInteger> affectedGroups = new ArrayList<BigInteger>();
+            //
+            //                //Get the bytes from the card.
+            //                for (int i = 0; i < bytesToRead; i++) {
+            //                    affectedGroups.add(new BigInteger(String.valueOf(eventArray[groupsOffset] & 0xFFFF)));
+            //                    groupsOffset++;
+            //                }
+            //
+            //                String groupsBitString = "";
+            //                for (BigInteger nameByte : affectedGroups) {
+            //                    String value = nameByte.toString(2);
+            //                    value = Utils.getCeros(value);
+            //                    groupsBitString = value + groupsBitString;
+            //                }
+            //
+            //                int j = 0;
+            //                for (int i = grupos.length - 1; i >= 0; i--) {
+            //                    String bit = String.valueOf(groupsBitString.charAt(i));
+            //                    grupos[j] = Integer.parseInt(bit);
+            //                    j++;
+            //                }
+            //            } catch (Exception e) {
+            //                System.out.println("Error al leer los grupos afectados por la escena.");
+            //            }
+            //</editor-fold>
+            int groupsOffset = 95;
+            int[] gruposAfectados = UtilsJmodbus.obtenerElementosAfectados(eventArray, groupsOffset, 16, 8, 2, 8);
+            evento.setGruposAfectados(gruposAfectados);
 
             //escenasAfectadas
-            try {
-                int sceneOffset = 98;
-                int tamReg = 16;
-                int[] escenas = evento.getEscenasAfectadas();
-                float bytesToRead = escenas.length / tamReg;
-                ArrayList<BigInteger> affectedScenes = new ArrayList<BigInteger>();
+            //           //<editor-fold defaultstate="collapsed" desc="Codigo viejo Escenas afectadas">
+//            try {
+            //                int sceneOffset = 97;
+            //                int tamReg = 8;
+            //                int[] escenas = evento.getEscenasAfectadas();
+            //                float bytesToRead = escenas.length / tamReg;
+            //                ArrayList<BigInteger> affectedScenes = new ArrayList<BigInteger>();
+            //
+            //                //Get the bytes from the card.
+            //                for (int i = 0; i < bytesToRead; i++) {
+            //                    affectedScenes.add(new BigInteger(String.valueOf(eventArray[sceneOffset] & 0xFFFF)));
+            //                    sceneOffset++;
+            //                }
+            //
+            //                String sceneName = "";
+            //                for (BigInteger nameByte : affectedScenes) {
+            //                    String value = nameByte.toString(2);
+            //                    value = Utils.getCeros(value);
+            //                    sceneName = value + sceneName;
+            //                }
+            //
+            //                int j = 0;
+            //                for (int i = escenas.length - 1; i >= 0; i--) {
+            //                    String bit = String.valueOf(sceneName.charAt(i));
+            //                    escenas[j] = Integer.parseInt(bit);
+            //                    j++;
+            //                }
+            //                eventoOffset = eventoOffset + new Float(bytesToRead).intValue();
+            //            } catch (Exception e) {
+            //                System.out.println("Error al leer los balastos afectados por la escena.");
+            //            }
+            //</editor-fold>
+            int sceneOffset = 97;
+            int[] escenasAfectadas = UtilsJmodbus.obtenerElementosAfectados(eventArray, sceneOffset, 16, tamReg, 2, 8);
+            evento.setEscenasAfectadas(escenasAfectadas);
 
-                //Get the bytes from the card.
-                for (int i = 0; i < bytesToRead; i++) {
-                    affectedScenes.add(new BigInteger(String.valueOf(eventArray[sceneOffset] & 0xFFFF)));
-                    sceneOffset++;
-                }
 
-                String sceneName = "";
-                for (BigInteger nameByte : affectedScenes) {
-                    String value = nameByte.toString(2);
-                    value = Utils.getCeros(value);
-                    sceneName = value + sceneName;
-                }
-
-                int j = 0;
-                for (int i = escenas.length - 1; i >= 0; i--) {
-                    String bit = String.valueOf(sceneName.charAt(i));
-                    escenas[j] = Integer.parseInt(bit);
-                    j++;
-                }
-                initOffset = initOffset + new Float(bytesToRead).intValue();
-            } catch (Exception e) {
-                System.out.println("Error al leer los balastos afectados por la escena.");
-            }
-
-
-            //Out type
-            evento.setTipoSalida(eventArray[99]);
+            //           //<editor-fold defaultstate="collapsed" desc="Codigo viejo Balastros Afectados">
+            //balastosAfectados
+            //            try {
+            //                int balastsOffset = 99;
+            //                int tamReg = 16;
+            //                int[] balastos = evento.getBalastosAfectados();
+            //                float bytesToRead = balastos.length / tamReg;
+            //                ArrayList<BigInteger> affectedBalasts = new ArrayList<BigInteger>();
+            //
+            //                //Get the bytes from the card.
+            //                for (int i = 0; i < bytesToRead; i++) {
+            //                    affectedBalasts.add(new BigInteger(String.valueOf(eventArray[balastsOffset] & 0xFFFF)));
+            //                    balastsOffset++;
+            //                }
+            //
+            //                String balastBitString = "";
+            //                for (BigInteger nameByte : affectedBalasts) {
+            //                    String value = nameByte.toString(2);
+            //                    value = Utils.getCeros(value);
+            //                    balastBitString = value + balastBitString;
+            //                }
+            //
+            //                int j = 0;
+            //                for (int i = balastos.length - 1; i >= 0; i--) {
+            //                    String bit = String.valueOf(balastBitString.charAt(i));
+            //                    balastos[j] = Integer.parseInt(bit);
+            //                    j++;
+            //                }
+            //            } catch (Exception e) {
+            //                System.out.println("Error al leer los balastos afectados por la escena.");
+            //            }
+            //
+            //</editor-fold>
+            int balastsOffset = 99;
+            int[] balastosAfectados = UtilsJmodbus.obtenerElementosAfectados(eventArray, balastsOffset, 64, tamReg, 8, 8);
+            evento.setBalastosAfectados(balastosAfectados);
 
             //MODO
             setSingleReg(0, 0);
@@ -679,7 +705,7 @@ public class EventoDAOJmodbus {
         int offsetInicial = Integer.parseInt(PropHandler.getProperty("event.memory.added"));
         int usedRegisters = Integer.parseInt(PropHandler.getProperty("event.memory.registers"));
         int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
-        int numElementos=numEventos/tamReg;
+        int numElementos = numEventos / tamReg;
         return UtilsJmodbus.getElementosEnMemoriaInt(numEventos, dao, offsetInicial, usedRegisters, tamReg, numElementos, 8);
     }
 

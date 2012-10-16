@@ -31,7 +31,10 @@ public class DAOJmodbus {
      */
     public int[] getRegValue(int pos, int length) {
         int[] result = new int[length];
-        if (length >= 60) {
+        if (length == 128) {
+            result = getRegValue128(pos, length);
+
+        } else if (length >= 60 && length < 128) {
             result = getRegValue60(pos, length);
         } else {
             result = getRegValueNormal(pos, length);
@@ -49,7 +52,10 @@ public class DAOJmodbus {
     public boolean setRegValue(int pos, int[] values) {
         int length = values.length;
         boolean result = false;
-        if (length >= 60) {
+        if (length == 128) {
+            result = setRegValue128(pos, values);
+
+        } else if (length >= 60) {
             result = setRegValue60(pos, values);
         } else {
             result = setRegValueNormal(pos, values); //??
@@ -109,7 +115,7 @@ public class DAOJmodbus {
         int[] result = new int[length];
         master.readInputRegisters(1, pos, length, 1, result);
 
-     
+
         //TEST
 //        master.readMultipleRegisters(1, pos, length, 1, result);
         return result;
@@ -121,6 +127,57 @@ public class DAOJmodbus {
      */
     private boolean setRegValueNormal(int pos, int[] values) {
         boolean result = master.writeMultipleRegisters(1, pos, values.length, 1, values);
+        return result;
+    }
+
+    private int[] getRegValue128(int pos, int length) {
+
+        int[] result = new int[0];
+
+        int len = 60;
+
+
+        int[] result1 = getRegValueNormal(pos, len);
+        pos = pos + len + 1;//new int[len];
+        int[] result2 = getRegValueNormal(pos, len);
+        pos = pos + len + 1;
+        int[] result3 = getRegValueNormal(pos, 8); //new int[length-len];
+
+        result = ArrayUtils.addAll(result1, result2);
+        result = ArrayUtils.addAll(result, result3);
+
+
+        return result;
+    }
+
+    /**
+     * Escribe un elemento que sea de 128 bits de tamanio
+     *
+     * @param pos
+     * @param values
+     * @return
+     */
+    private boolean setRegValue128(int pos, int[] values) {
+        boolean result = false;
+        int length = values.length;
+        if (length == 128) {
+            int len = length / 2;
+
+            int[] values1 = ArrayUtils.subarray(values, 0, len);
+            int[] values2 = ArrayUtils.subarray(values, len, length);
+            int[] values3 = ArrayUtils.subarray(values, len, length);
+
+            int[] totalValues = ArrayUtils.addAll(values1, values2);
+           
+            master.writeMultipleRegisters(1, pos, totalValues.length, 1, totalValues);
+            
+             totalValues = ArrayUtils.addAll(totalValues, values3);
+             master.writeMultipleRegisters(1, pos, totalValues.length, 1, totalValues);
+
+        } else {
+            result = master.writeMultipleRegisters(1, pos, values.length, 1, values);
+
+        }
         return result;
     }
 }

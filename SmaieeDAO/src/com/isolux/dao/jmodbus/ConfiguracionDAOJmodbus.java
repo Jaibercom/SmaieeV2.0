@@ -317,7 +317,9 @@ public class ConfiguracionDAOJmodbus {
     public static void saveToFlash(){
         System.out.println("Guardando en flash");
         try{
-            setSingleReg(1, 10);
+            setSingleReg(0, 1);// ponemos en modo configuracion
+            setSingleReg(1, 10);// escribimos el valor 
+            setSingleReg(0, 0);// volvemos a poner el modo run
             System.out.println("Guardado");
         }catch(Exception e){
             System.out.println("Excepcion al guardar en Flash");

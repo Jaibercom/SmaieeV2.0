@@ -444,13 +444,13 @@ public class PpalView extends javax.swing.JFrame {
         jButton46 = new javax.swing.JButton();
         jButton47 = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        archivo_jMenu = new javax.swing.JMenu();
+        guardarEnFlash_jMenuItem = new javax.swing.JMenuItem();
+        leerFlash_jMenuItem = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        formatear_jMenuItem = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        config_jMenuItem = new javax.swing.JMenuItem();
 
         jTextField2.setText("jTextField2");
 
@@ -2538,44 +2538,44 @@ public class PpalView extends javax.swing.JFrame {
 
         tabbedPane.addTab("Monitoreo y control en tiempo real", tabMonitoreo);
 
-        jMenu1.setText("Archivo");
+        archivo_jMenu.setText("Archivo");
 
-        jMenuItem5.setText("Guardar en flash");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        guardarEnFlash_jMenuItem.setText("Guardar en flash");
+        guardarEnFlash_jMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarEnFlash(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        archivo_jMenu.add(guardarEnFlash_jMenuItem);
 
-        jMenuItem6.setText("Leer flash");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        leerFlash_jMenuItem.setText("Leer flash");
+        leerFlash_jMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 readFromFlash(evt);
             }
         });
-        jMenu1.add(jMenuItem6);
-        jMenu1.add(jSeparator4);
+        archivo_jMenu.add(leerFlash_jMenuItem);
+        archivo_jMenu.add(jSeparator4);
 
-        jMenuItem2.setText("Formatear memoria");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        formatear_jMenuItem.setText("Formatear memoria");
+        formatear_jMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 formatearMemoria(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
-        jMenu1.add(jSeparator3);
+        archivo_jMenu.add(formatear_jMenuItem);
+        archivo_jMenu.add(jSeparator3);
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Configuración");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        config_jMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        config_jMenuItem.setText("Configuración");
+        config_jMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectConfiguracion(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        archivo_jMenu.add(config_jMenuItem);
 
-        mainMenuBar.add(jMenu1);
+        mainMenuBar.add(archivo_jMenu);
 
         setJMenuBar(mainMenuBar);
 
@@ -3268,6 +3268,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton actualizarNivelEscena_jButton;
     private javax.swing.JButton agregarBalastoEscena_jButton;
     private javax.swing.JButton agregarTodosBalastosEscena_jButton;
+    private javax.swing.JMenu archivo_jMenu;
     private javax.swing.JList balastosAfectados_jList;
     private javax.swing.JList balastrosDisponibles_jList;
     private javax.swing.JCheckBox balastros_jCheckBox;
@@ -3275,6 +3276,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.ButtonGroup botoneraTipoContacto;
     private javax.swing.JCheckBox cbIsStaticConfiguration;
     private javax.swing.ButtonGroup confRol;
+    private javax.swing.JMenuItem config_jMenuItem;
     private javax.swing.JButton eliminarEscena_jButton;
     private javax.swing.JButton eliminarEvento_jButton;
     private javax.swing.JButton eliminarGrupo_jButton;
@@ -3288,8 +3290,10 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField fieldMask;
     private javax.swing.JFormattedTextField fieldPort;
     private javax.swing.JTextField fieldPuerto;
+    private javax.swing.JMenuItem formatear_jMenuItem;
     private javax.swing.JCheckBox fotoceldas_entrada_escenas_jCheckBox;
     private javax.swing.JCheckBox grupos_jCheckBox;
+    private javax.swing.JMenuItem guardarEnFlash_jMenuItem;
     private javax.swing.JPanel header;
     private javax.swing.JLabel headerImage;
     private javax.swing.JButton jButton14;
@@ -3415,11 +3419,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JList jList3;
     private javax.swing.JList jList8;
     private javax.swing.JList jList9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
@@ -3486,6 +3485,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JLabel labelIp;
     private javax.swing.JLabel labelMascara;
     private javax.swing.JLabel labelPuerto;
+    private javax.swing.JMenuItem leerFlash_jMenuItem;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JLabel nivelEscena_jLabel;
     private javax.swing.JTextField nivelEscena_jTextField;
@@ -5026,35 +5026,35 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JMenu getjMenu1() {
-        return jMenu1;
+        return archivo_jMenu;
     }
 
     public void setjMenu1(JMenu jMenu1) {
-        this.jMenu1 = jMenu1;
+        this.archivo_jMenu = jMenu1;
     }
 
     public JMenuItem getjMenuItem1() {
-        return jMenuItem1;
+        return config_jMenuItem;
     }
 
     public void setjMenuItem1(JMenuItem jMenuItem1) {
-        this.jMenuItem1 = jMenuItem1;
+        this.config_jMenuItem = jMenuItem1;
     }
 
     public JMenuItem getjMenuItem5() {
-        return jMenuItem5;
+        return guardarEnFlash_jMenuItem;
     }
 
     public void setjMenuItem5(JMenuItem jMenuItem5) {
-        this.jMenuItem5 = jMenuItem5;
+        this.guardarEnFlash_jMenuItem = jMenuItem5;
     }
 
     public JMenuItem getjMenuItem6() {
-        return jMenuItem6;
+        return leerFlash_jMenuItem;
     }
 
     public void setjMenuItem6(JMenuItem jMenuItem6) {
-        this.jMenuItem6 = jMenuItem6;
+        this.leerFlash_jMenuItem = jMenuItem6;
     }
 
     public JPanel getjPanel10() {
