@@ -769,7 +769,7 @@ public class EventoDAOJmodbus {
             for (int i = name.size() - 1; i >= 0; i--) {
                 int[] nameValues = {name.get(i).intValue()};
                 dao.setRegValue(offsetInicial, nameValues);
-                offsetInicial++;
+                offsetInicial+=2;
             }
 
         } catch (Exception e) {
