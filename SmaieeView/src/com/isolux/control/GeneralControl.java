@@ -285,8 +285,9 @@ public class GeneralControl {
                     break;
             }
          } catch (Exception e) {
-             JOptionPane.showMessageDialog(ppalView, "Error cargando elementos desde la interfaz: "+e.getMessage(), null, 2);
-                  e.printStackTrace();
+             JOptionPane.showMessageDialog(ppalView, "Error cargando elementos desde la interfaz: "+e.getLocalizedMessage(), null, 2);
+             System.out.println("Error cargando los elementos desde la interfaz: ");     
+             e.printStackTrace();
         }
 
     }

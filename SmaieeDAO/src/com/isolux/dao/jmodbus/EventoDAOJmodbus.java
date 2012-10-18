@@ -635,7 +635,7 @@ public class EventoDAOJmodbus {
             int usedRegisters = Integer.parseInt(PropHandler.getProperty("event.memory.registers"));
 //            int usedRegisters = 64;
             int tamReg = 8;
-            int bytesToRead = 128;// si es correcto este valor? 128
+            int bytesToRead = numEventos/tamReg;// si es correcto este valor? 128
             int completacionCeros = 8;
 //            int tamReg = Integer.parseInt(PropHandler.getProperty("registro.tamanio.lectura"));
             elementosEnMemoria = UtilsJmodbus.getElementosEnMemoria(numEventos, dao, offsetInicial, usedRegisters, tamReg, bytesToRead, completacionCeros);

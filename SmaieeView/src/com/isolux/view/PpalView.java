@@ -3078,7 +3078,7 @@ public class PpalView extends javax.swing.JFrame {
             System.out.println("Problema guardando el evento");
             Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Problema guardando el evento: "+ex.toString());
-            JOptionPane.showMessageDialog(null, "Error guardando el evento "+ex.getLocalizedMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error guardando el evento. Revise los datos como la fecha e intente la acción nuevamente.", "Error guardando el evento", JOptionPane.ERROR_MESSAGE);
             
         }
     }//GEN-LAST:event_enviarEventos_jButtonActionPerformed
