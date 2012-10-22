@@ -106,7 +106,7 @@ public class GeneralControl {
      */
     public void treeSelection(PpalView ppalView, RealTimeControl realCtrl) {
         //Stops current threads.
-        ppalView.getThreadManager().stopAllCurrentThreads();
+        ppalView.getThreadManager().stopAllCurrentThreads();// aqui se puede estar presentando el problema de la grabada, porque se paran todos los hilos.
         
         
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) ppalView.getjTree1().getLastSelectedPathComponent();

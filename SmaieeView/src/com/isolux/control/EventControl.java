@@ -5,9 +5,11 @@
 package com.isolux.control;
 
 import com.isolux.bo.*;
+import com.isolux.dao.Utils;
 import com.isolux.dao.jmodbus.EventoDAOJmodbus;
-import com.isolux.dao.modbus.DAOJamod;
+import com.isolux.dao.jmodbus.UtilsJmodbus;
 import com.isolux.dao.properties.PropHandler;
+import com.isolux.utils.Conversion;
 import com.isolux.utils.Validation;
 import com.isolux.view.PpalView;
 import com.isolux.view.ViewUtils;
@@ -21,7 +23,6 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.ListModel;
 import javax.swing.text.Position;
@@ -29,17 +30,18 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
+import java.lang.Integer;
 
 /**
  *
  * @author Juan Diego Toro
  */
 public class EventControl {
-    
+
     /**
      * Saves an event.
      */
-    public void saveEvent(PpalView ppalView) throws Exception{
+    public void saveEvent(PpalView ppalView) throws Exception {
         boolean connectionStatus = true; //DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
         new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
         if (connectionStatus) {
@@ -49,7 +51,7 @@ public class EventControl {
 
             int eventNumber = ppalView.getjLabel64().getText().equals("#") ? Integer.parseInt(ppalView.getjTextField13().getText()) : Integer.parseInt(ppalView.getjLabel64().getText());
 //            int eventNumber = ppalView.getjLabel64().getText().equals("#") ? PropHandler.getEventNumber() : Integer.parseInt(ppalView.getjLabel64().getText());
-            
+
             String name = ppalView.getNombreevento_jTextField().getText();
             int porFechaODias = ppalView.getPorDiasEvento_jCheckBox().isSelected() ? 2 : 1;
 
@@ -91,14 +93,14 @@ public class EventControl {
                 dias[13] = 0;
                 dias[14] = 0;
                 dias[15] = 0;
-                
+
                 String selectedDays = new String();
                 for (int diaSelected : dias) {
-                    selectedDays = String.valueOf(diaSelected)+selectedDays;
+                    selectedDays = String.valueOf(diaSelected) + selectedDays;
                 }
-                
+
                 diaYrepetir = new BigInteger(selectedDays, 2).intValue();
-                
+
             } else { //por fecha.
                 String[] date = new SimpleDateFormat("dd/MM/yyyy").format(ppalView.getjDateChooser2().getDate()).split("/");
 
@@ -244,13 +246,21 @@ public class EventControl {
 
         ppalView.getNombreevento_jTextField().setText(selectedEvent.getNombre());
         ppalView.getjLabel41().setText(String.valueOf(selectedEvent.getNumeroEvento()));
-        
+
         boolean porFechaODias = selectedEvent.getPorFechaODias() == 1 ? false : true;
         ppalView.getPorDiasEvento_jCheckBox().setSelected(porFechaODias);
         ppalView.getjLabel64().setText(eventNumber);
-        
+
         if (porFechaODias) { //true: pordias, false: por fecha.
-            
+            this.selectByDays(ppalView);//habilita los checkbox de dias
+            //Seleccionamos los días que tiene el evento
+            Integer diaYrepetir = selectedEvent.getDiaYrepetir();
+            String by = (String) Integer.toBinaryString(diaYrepetir);
+            String ceros = Utils.getCeros(by, 7);
+            StringBuffer byn = new StringBuffer(ceros);
+
+            selectAffectedDays(byn, Conversion.LITTLEENDIAN, ppalView);
+
         } else {
             Date date = new Date();
             try {
@@ -262,10 +272,10 @@ public class EventControl {
             ppalView.getjDateChooser2().setDate(date);
             ppalView.getjFormattedTextField2().setText(selectedEvent.getHora() + ":" + selectedEvent.getMinuto());
         }
-        
+
         //Show in type.
         if (selectedEvent.getTipoSalida() == 1) {
-            
+
             //BALASTS = 1
             //Afected balasts
             DefaultListModel sceneBalastsL = new DefaultListModel();
@@ -358,10 +368,11 @@ public class EventControl {
         }
 
     }
-    
+
     /**
      * Show the available events in the tree.
-     * @param ppalView 
+     *
+     * @param ppalView
      */
     public void showAvailableEvents(PpalView ppalView) {
         readEvents(ppalView);
@@ -411,11 +422,11 @@ public class EventControl {
         ppalView.getselBalastosEvento_jCheckBox().setEnabled(true);
         ppalView.getSelGruposEntradas_jCheckBox().setEnabled(true);
         ppalView.getjCheckBox15().setEnabled(true);
-        
+
         DefaultListModel model = new DefaultListModel();
         ppalView.getjList12().setModel(model);
         ppalView.getjList13().setModel(model);
-        
+
     }
 
     /**
@@ -443,11 +454,11 @@ public class EventControl {
             ppalView.getStatusLabel().setText("Eventos leidos.");
         }
     }
-    
 
     /**
      * Sets the in type.
-     * @param node 
+     *
+     * @param node
      */
     public void eventSetType(String node, PpalView ppalView) {
         String btns = PropHandler.getProperty("btns.menu.name");
@@ -499,7 +510,8 @@ public class EventControl {
 
     /**
      * Gets the selection JList
-     * @return 
+     *
+     * @return
      */
     private JList getEventSelectionList(PpalView ppalView) {
         JList selectedList = new JList();
@@ -515,16 +527,18 @@ public class EventControl {
 
         return selectedList;
     }
-    
+
     /**
-     * Show the in items.
+     * Show the in items. Muestra los elementos que van a ser afectados como los
+     * balastos afectados, grupos afectados, escenas afectadas, etc
+     *
      */
     public void showEventItems(JList available, JList affected, Entrada selectedIn, PpalView ppalView) {
         int prefixBalast = Integer.parseInt(PropHandler.getProperty("in.out.type.balast"));
         int prefixGroup = Integer.parseInt(PropHandler.getProperty("in.out.type.group"));
         int prefixScene = Integer.parseInt(PropHandler.getProperty("in.out.type.scene"));
         HashMap<String, Balasto> balasts = ppalView.getBalasts();
-        
+
         if (ppalView.getInOutType() == prefixBalast) {  //Balastos
             //Afected balasts
             new BalastosControlJmodbus().readBalastos(ppalView);
@@ -637,11 +651,11 @@ public class EventControl {
         }
 
     }
-    
+
     /**
      * Select the type of event.
      */
-    public void selectByDays(PpalView ppalView){
+    public void selectByDays(PpalView ppalView) {
         if (ppalView.getPorDiasEvento_jCheckBox().isSelected()) {
             //por dias
             ppalView.getjLabel16().setEnabled(true);
@@ -654,15 +668,15 @@ public class EventControl {
             ppalView.getViernes_jCheckBox().setEnabled(true);
             ppalView.getSabado_jCheckBox().setEnabled(true);
             ppalView.getDomingo_jCheckBox().setEnabled(true);
-            
+
             ppalView.getjFormattedTextField3().setEnabled(true);
-            
+
             //por fecha
             ppalView.getjDateChooser2().setEnabled(false);
             ppalView.getjLabel15().setEnabled(false);
             ppalView.getjLabel24().setEnabled(false);
             ppalView.getjFormattedTextField2().setEnabled(false);
-            
+
         } else {
             ppalView.getjLabel16().setEnabled(false);
             ppalView.getjLabel25().setEnabled(false);
@@ -674,9 +688,17 @@ public class EventControl {
             ppalView.getViernes_jCheckBox().setEnabled(false);
             ppalView.getSabado_jCheckBox().setEnabled(false);
             ppalView.getDomingo_jCheckBox().setEnabled(false);
-            
+
+            ppalView.getLunes_jCheckBox().setSelected(false);
+            ppalView.getMartes_jCheckBox().setSelected(false);
+            ppalView.getMiercoles_jCheckBox().setSelected(false);
+            ppalView.getJuevesjCheckBox().setSelected(false);
+            ppalView.getViernes_jCheckBox().setSelected(false);
+            ppalView.getSabado_jCheckBox().setSelected(false);
+            ppalView.getDomingo_jCheckBox().setSelected(false);
+
             ppalView.getjFormattedTextField3().setEnabled(false);
-            
+
             //por fecha
             ppalView.getjDateChooser2().setEnabled(true);
             ppalView.getjLabel15().setEnabled(true);
@@ -684,8 +706,8 @@ public class EventControl {
             ppalView.getjFormattedTextField2().setEnabled(true);
         }
     }
-    
-    public void selectElements(PpalView ppalView){
+
+    public void selectElements(PpalView ppalView) {
         String[] balasto = ppalView.getjList13().getSelectedValue().toString().split(": ");
         String balastNumber = ppalView.getjList13().getSelectedValue().toString().split(" - ")[0];
         if (balasto.length > 1) {
@@ -696,8 +718,8 @@ public class EventControl {
             ppalView.getjTextField25().setText("0");
         }
     }
-    
-    public void updateLevel(PpalView ppalView){
+
+    public void updateLevel(PpalView ppalView) {
         String level = ppalView.getjTextField25().getText();
         String[] selectedBalast = ppalView.getjList13().getSelectedValue().toString().split(": ");
         String selectedBalastIdx = ppalView.getjLabel23().getText();
@@ -721,7 +743,70 @@ public class EventControl {
             Validation.showAlertMessage("Seleccione un balasto");
         }
     }
-    
-    
-    
+
+    /**
+     *
+     * @param by
+     * @param modo
+     * @param ppalView
+     */
+    private void selectAffectedDays(StringBuffer by, int modo, PpalView ppalView) {
+
+        if (modo == Conversion.BIGENDIAN) {
+            for (int i = 0; i < by.length(); i++) {
+                procesarDias(by, ppalView, i);
+            }
+
+        } else {
+            int j = 0;
+            for (int i = by.length() - 1; i >= 0; i--) {
+                if (by.charAt(j) == '1') {
+                    procesarDias(by, ppalView, i);
+                }
+                j++;
+            }
+        }
+    }
+
+    private void procesarDias(StringBuffer by, PpalView ppalView, int actual) {
+
+        switch (actual) {
+            case 0://domingo
+                ppalView.getDomingo_jCheckBox().setSelected(true);
+
+                break;
+            case 1://lunes
+                ppalView.getLunes_jCheckBox().setSelected(true);
+
+                break;
+            case 2://martes
+                ppalView.getMartes_jCheckBox().setSelected(true);
+
+                break;
+            case 3://miercoles
+                ppalView.getMiercoles_jCheckBox().setSelected(true);
+
+                break;
+            case 4://Jueves
+                ppalView.getJuevesjCheckBox().setSelected(true);
+
+                break;
+            case 5://Viernes
+                ppalView.getViernes_jCheckBox().setSelected(true);
+
+                break;
+            case 6://sabado
+                ppalView.getSabado_jCheckBox().setSelected(true);
+
+                break;
+            default:
+                ppalView.getDomingo_jCheckBox().setSelected(true);
+                ppalView.getLunes_jCheckBox().setSelected(true);
+                ppalView.getMartes_jCheckBox().setSelected(true);
+                ppalView.getMiercoles_jCheckBox().setSelected(true);
+                ppalView.getJuevesjCheckBox().setSelected(true);
+                ppalView.getViernes_jCheckBox().setSelected(true);
+                ppalView.getSabado_jCheckBox().setSelected(true);
+        }
+    }
 }

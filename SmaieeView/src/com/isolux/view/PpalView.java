@@ -187,6 +187,7 @@ public class PpalView extends javax.swing.JFrame {
         botoneraTipoContacto = new javax.swing.ButtonGroup();
         confRol = new javax.swing.ButtonGroup();
         repetirCiclo_jCheckBox = new javax.swing.JCheckBox();
+        dias_buttonGroup = new javax.swing.ButtonGroup();
         header = new javax.swing.JPanel();
         headerImage = new javax.swing.JLabel();
         statusBar = new javax.swing.JPanel();
@@ -345,12 +346,12 @@ public class PpalView extends javax.swing.JFrame {
         porDias_jCheckBox = new javax.swing.JCheckBox();
         jLabel36 = new javax.swing.JLabel();
         numEvento_jTextField = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
+        porFechaYHora_jPanel = new javax.swing.JPanel();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel15 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jPanel8 = new javax.swing.JPanel();
+        porDiasEvento_jPanel = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         lunes_jCheckBox = new javax.swing.JCheckBox();
         martes_jCheckBox = new javax.swing.JCheckBox();
@@ -1753,6 +1754,11 @@ public class PpalView extends javax.swing.JFrame {
         jLabel64.setText("#");
 
         porDias_jCheckBox.setText("Por días");
+        porDias_jCheckBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                porDias_jCheckBoxItemStateChanged(evt);
+            }
+        });
         porDias_jCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 porDias_jCheckBoxActionPerformed(evt);
@@ -1769,7 +1775,7 @@ public class PpalView extends javax.swing.JFrame {
             }
         });
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha y hora"));
+        porFechaYHora_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha y hora"));
 
         jLabel15.setText("Fecha");
 
@@ -1777,36 +1783,36 @@ public class PpalView extends javax.swing.JFrame {
 
         jFormattedTextField2.setText("00:00");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout porFechaYHora_jPanelLayout = new javax.swing.GroupLayout(porFechaYHora_jPanel);
+        porFechaYHora_jPanel.setLayout(porFechaYHora_jPanelLayout);
+        porFechaYHora_jPanelLayout.setHorizontalGroup(
+            porFechaYHora_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(porFechaYHora_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(porFechaYHora_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addComponent(jLabel24))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(porFechaYHora_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jFormattedTextField2)
                     .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        porFechaYHora_jPanelLayout.setVerticalGroup(
+            porFechaYHora_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(porFechaYHora_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(porFechaYHora_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(porFechaYHora_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
                     .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Días"));
+        porDiasEvento_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Días"));
 
         jLabel16.setText("Días");
         jLabel16.setEnabled(false);
@@ -1838,18 +1844,18 @@ public class PpalView extends javax.swing.JFrame {
         horaDiasEvento_jFormattedTextField.setText("00:00");
         horaDiasEvento_jFormattedTextField.setEnabled(false);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout porDiasEvento_jPanelLayout = new javax.swing.GroupLayout(porDiasEvento_jPanel);
+        porDiasEvento_jPanel.setLayout(porDiasEvento_jPanelLayout);
+        porDiasEvento_jPanelLayout.setHorizontalGroup(
+            porDiasEvento_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(porDiasEvento_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(porDiasEvento_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(porDiasEvento_jPanelLayout.createSequentialGroup()
                         .addComponent(jLabel25)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(horaDiasEvento_jFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addGroup(porDiasEvento_jPanelLayout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lunes_jCheckBox)
@@ -1867,11 +1873,11 @@ public class PpalView extends javax.swing.JFrame {
                         .addComponent(domingo_jCheckBox)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        porDiasEvento_jPanelLayout.setVerticalGroup(
+            porDiasEvento_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(porDiasEvento_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(porDiasEvento_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(lunes_jCheckBox)
                     .addComponent(martes_jCheckBox)
@@ -1881,7 +1887,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(sabado_jCheckBox)
                     .addComponent(domingo_jCheckBox))
                 .addGap(9, 9, 9)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(porDiasEvento_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
                     .addComponent(horaDiasEvento_jFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -2070,9 +2076,9 @@ public class PpalView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(numEvento_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelEventosLayout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(porFechaYHora_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(porDiasEvento_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelEventosLayout.createSequentialGroup()
                         .addComponent(enviarEventos_jButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2092,8 +2098,8 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jLabel36))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(porFechaYHora_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(porDiasEvento_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -3092,7 +3098,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void porDias_jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_porDias_jCheckBoxActionPerformed
-        this.eventCtrl.selectByDays(this);
+        
     }//GEN-LAST:event_porDias_jCheckBoxActionPerformed
 
     /**
@@ -3272,6 +3278,10 @@ public class PpalView extends javax.swing.JFrame {
         this.generalCtrl.showAvailableScenes(jList16, jList17, this);
     }//GEN-LAST:event_fotoceldas_entrada_escenas_jCheckBoxActionPerformed
 
+    private void porDias_jCheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_porDias_jCheckBoxItemStateChanged
+       this.eventCtrl.selectByDays(this);
+    }//GEN-LAST:event_porDias_jCheckBoxItemStateChanged
+
 //    private void startCheckingThread(java.awt.event.FocusEvent evt) {
 //        this.realCtrl.checkBalasts(this);
 //    }
@@ -3310,6 +3320,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbIsStaticConfiguration;
     private javax.swing.ButtonGroup confRol;
     private javax.swing.JMenuItem config_jMenuItem;
+    private javax.swing.ButtonGroup dias_buttonGroup;
     private javax.swing.JCheckBox domingo_jCheckBox;
     private javax.swing.JButton eliminarEscena_jButton;
     private javax.swing.JButton eliminarEvento_jButton;
@@ -3447,10 +3458,8 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
@@ -3533,7 +3542,9 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel panelPpal;
     private javax.swing.JPanel panelSensor;
     private javax.swing.JPanel panelTiempoReal;
+    private javax.swing.JPanel porDiasEvento_jPanel;
     private javax.swing.JCheckBox porDias_jCheckBox;
+    private javax.swing.JPanel porFechaYHora_jPanel;
     private javax.swing.JRadioButton rbIsMaster;
     private javax.swing.JRadioButton rbIsSlave;
     private javax.swing.JButton removerBalastoEscena_jButton;
@@ -5143,11 +5154,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JPanel getjPanel5() {
-        return jPanel5;
+        return porFechaYHora_jPanel;
     }
 
     public void setjPanel5(JPanel jPanel5) {
-        this.jPanel5 = jPanel5;
+        this.porFechaYHora_jPanel = jPanel5;
     }
 
     public JPanel getjPanel6() {
@@ -5167,11 +5178,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JPanel getjPanel8() {
-        return jPanel8;
+        return porDiasEvento_jPanel;
     }
 
     public void setjPanel8(JPanel jPanel8) {
-        this.jPanel8 = jPanel8;
+        this.porDiasEvento_jPanel = jPanel8;
     }
 
     public JPanel getjPanel9() {
