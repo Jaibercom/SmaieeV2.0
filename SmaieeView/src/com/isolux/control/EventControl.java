@@ -50,8 +50,8 @@ public class EventControl {
             int eventNumber = ppalView.getjLabel64().getText().equals("#") ? Integer.parseInt(ppalView.getjTextField13().getText()) : Integer.parseInt(ppalView.getjLabel64().getText());
 //            int eventNumber = ppalView.getjLabel64().getText().equals("#") ? PropHandler.getEventNumber() : Integer.parseInt(ppalView.getjLabel64().getText());
             
-            String name = ppalView.getjTextField11().getText();
-            int porFechaODias = ppalView.getjCheckBox1().isSelected() ? 2 : 1;
+            String name = ppalView.getNombreevento_jTextField().getText();
+            int porFechaODias = ppalView.getPorDiasEvento_jCheckBox().isSelected() ? 2 : 1;
 
             int dia = 0;
             int mes = 0;
@@ -65,23 +65,23 @@ public class EventControl {
             int[] gruposAfectados = new int[Integer.parseInt(PropHandler.getProperty("group.max.number"))];
             int[] escenasAfectadas = new int[Integer.parseInt(PropHandler.getProperty("scene.max.number"))];
             int tipoSalida = 0;
-            if (ppalView.getjCheckBox13().isSelected()) {
+            if (ppalView.getselBalastosEvento_jCheckBox().isSelected()) {
                 tipoSalida = 1;
-            } else if (ppalView.getjCheckBox14().isSelected()) {
+            } else if (ppalView.getSelGruposEntradas_jCheckBox().isSelected()) {
                 tipoSalida = 2;
             } else if (ppalView.getjCheckBox15().isSelected()) {
                 tipoSalida = 3;
             }
 
-            if (ppalView.getjCheckBox1().isSelected()) { //Por dias
+            if (ppalView.getPorDiasEvento_jCheckBox().isSelected()) { //Por dias
                 int[] dias = new int[16];
-                dias[0] = ppalView.getjCheckBox9().isSelected() ? 1 : 0;
-                dias[1] = ppalView.getjCheckBox3().isSelected() ? 1 : 0;
-                dias[2] = ppalView.getjCheckBox4().isSelected() ? 1 : 0;
-                dias[3] = ppalView.getjCheckBox5().isSelected() ? 1 : 0;
-                dias[4] = ppalView.getjCheckBox6().isSelected() ? 1 : 0;
-                dias[5] = ppalView.getjCheckBox7().isSelected() ? 1 : 0;
-                dias[6] = ppalView.getjCheckBox8().isSelected() ? 1 : 0;
+                dias[0] = ppalView.getDomingo_jCheckBox().isSelected() ? 1 : 0;//comienza la semana con domingo y no con lunes
+                dias[1] = ppalView.getLunes_jCheckBox().isSelected() ? 1 : 0;
+                dias[2] = ppalView.getMartes_jCheckBox().isSelected() ? 1 : 0;
+                dias[3] = ppalView.getMiercoles_jCheckBox().isSelected() ? 1 : 0;
+                dias[4] = ppalView.getJuevesjCheckBox().isSelected() ? 1 : 0;
+                dias[5] = ppalView.getViernes_jCheckBox().isSelected() ? 1 : 0;
+                dias[6] = ppalView.getSabado_jCheckBox().isSelected() ? 1 : 0;
                 dias[7] = 0;
                 dias[8] = 0;
                 dias[9] = 0;
@@ -94,7 +94,7 @@ public class EventControl {
                 
                 String selectedDays = new String();
                 for (int diaSelected : dias) {
-                    selectedDays += String.valueOf(diaSelected);
+                    selectedDays = String.valueOf(diaSelected)+selectedDays;
                 }
                 
                 diaYrepetir = new BigInteger(selectedDays, 2).intValue();
@@ -112,7 +112,7 @@ public class EventControl {
             }
 
             //Afected elements.
-            ppalView.setEventOutType(ppalView.getjCheckBox13().isSelected() ? 1 : ppalView.getjCheckBox14().isSelected() ? 2 : ppalView.getjCheckBox15().isSelected() ? 3 : 0);
+            ppalView.setEventOutType(ppalView.getselBalastosEvento_jCheckBox().isSelected() ? 1 : ppalView.getSelGruposEntradas_jCheckBox().isSelected() ? 2 : ppalView.getjCheckBox15().isSelected() ? 3 : 0);
             balastosAfectados = ppalView.getEventOutType() == ViewUtils.getIntProperty("in.out.type.balast") ? getSelectedEventItems(ppalView)
                     : new int[Integer.parseInt(PropHandler.getProperty("balast.max.number"))];
             gruposAfectados = ppalView.getEventOutType() == ViewUtils.getIntProperty("in.out.type.group") ? getSelectedEventItems(ppalView)
@@ -121,7 +121,7 @@ public class EventControl {
                     : new int[Integer.parseInt(PropHandler.getProperty("scene.max.number"))];
 
             //Balasts/group values.
-            if (ppalView.getjCheckBox13().isSelected()) {
+            if (ppalView.getselBalastosEvento_jCheckBox().isSelected()) {
                 ListModel selectedElements = ppalView.getjList13().getModel();
                 for (int i = 0; i < selectedElements.getSize(); i++) {
                     try {
@@ -132,7 +132,7 @@ public class EventControl {
                     }
                 }
             }
-            if (ppalView.getjCheckBox14().isSelected()) {
+            if (ppalView.getSelGruposEntradas_jCheckBox().isSelected()) {
                 ListModel selectedElements = ppalView.getjList13().getModel();
                 for (int i = 0; i < selectedElements.getSize(); i++) {
                     try {
@@ -242,11 +242,11 @@ public class EventControl {
         Evento selectedEvent = ppalView.getEvents().get(eventNumber);
         HashMap<String, Balasto> balasts = ppalView.getBalasts();
 
-        ppalView.getjTextField11().setText(selectedEvent.getNombre());
+        ppalView.getNombreevento_jTextField().setText(selectedEvent.getNombre());
         ppalView.getjLabel41().setText(String.valueOf(selectedEvent.getNumeroEvento()));
         
         boolean porFechaODias = selectedEvent.getPorFechaODias() == 1 ? false : true;
-        ppalView.getjCheckBox1().setSelected(porFechaODias);
+        ppalView.getPorDiasEvento_jCheckBox().setSelected(porFechaODias);
         ppalView.getjLabel64().setText(eventNumber);
         
         if (porFechaODias) { //true: pordias, false: por fecha.
@@ -291,8 +291,8 @@ public class EventControl {
                     modelo.addElement(balasto.getBalastNumber() + " - " + balasto.getName());
                 }
             }
-            ppalView.getjCheckBox13().setSelected(true);
-            ppalView.getjCheckBox14().setEnabled(false);
+            ppalView.getselBalastosEvento_jCheckBox().setSelected(true);
+            ppalView.getSelGruposEntradas_jCheckBox().setEnabled(false);
             ppalView.getjCheckBox15().setEnabled(false);
             ppalView.getjList12().setModel(modelo);
         } else if (selectedEvent.getTipoSalida() == 2) {
@@ -321,8 +321,8 @@ public class EventControl {
                     modelGroups.addElement(group.getGroupNumber() + " - " + group.getName());
                 }
             }
-            ppalView.getjCheckBox14().setSelected(true);
-            ppalView.getjCheckBox13().setEnabled(false);
+            ppalView.getSelGruposEntradas_jCheckBox().setSelected(true);
+            ppalView.getselBalastosEvento_jCheckBox().setEnabled(false);
             ppalView.getjCheckBox15().setEnabled(false);
             ppalView.getjList12().setModel(modelGroups);
 
@@ -352,8 +352,8 @@ public class EventControl {
                 }
             }
             ppalView.getjCheckBox15().setSelected(true);
-            ppalView.getjCheckBox14().setEnabled(false);
-            ppalView.getjCheckBox13().setEnabled(false);
+            ppalView.getSelGruposEntradas_jCheckBox().setEnabled(false);
+            ppalView.getselBalastosEvento_jCheckBox().setEnabled(false);
             ppalView.getjList12().setModel(modelScenes);
         }
 
@@ -398,18 +398,18 @@ public class EventControl {
      * Clean values fror group form.
      */
     public void cleanEventView(PpalView ppalView) {
-        ppalView.getjTextField11().setText("event");
+        ppalView.getNombreevento_jTextField().setText("event");
         ppalView.getjLabel64().setText("#");
-        ppalView.getjCheckBox1().setSelected(false);
+        ppalView.getPorDiasEvento_jCheckBox().setSelected(false);
         ppalView.getjDateChooser2().setDate(null);
         ppalView.getjFormattedTextField2().setText("00:00");
         ppalView.getjTextField25().setText("0");
         ppalView.getjLabel23().setText("#");
-        ppalView.getjCheckBox13().setSelected(false);
-        ppalView.getjCheckBox14().setSelected(false);
+        ppalView.getselBalastosEvento_jCheckBox().setSelected(false);
+        ppalView.getSelGruposEntradas_jCheckBox().setSelected(false);
         ppalView.getjCheckBox15().setSelected(false);
-        ppalView.getjCheckBox13().setEnabled(true);
-        ppalView.getjCheckBox14().setEnabled(true);
+        ppalView.getselBalastosEvento_jCheckBox().setEnabled(true);
+        ppalView.getSelGruposEntradas_jCheckBox().setEnabled(true);
         ppalView.getjCheckBox15().setEnabled(true);
         
         DefaultListModel model = new DefaultListModel();
@@ -642,18 +642,18 @@ public class EventControl {
      * Select the type of event.
      */
     public void selectByDays(PpalView ppalView){
-        if (ppalView.getjCheckBox1().isSelected()) {
+        if (ppalView.getPorDiasEvento_jCheckBox().isSelected()) {
             //por dias
             ppalView.getjLabel16().setEnabled(true);
             ppalView.getjLabel25().setEnabled(true);
-            ppalView.getjCheckBox2().setEnabled(true);
-            ppalView.getjCheckBox3().setEnabled(true);
-            ppalView.getjCheckBox4().setEnabled(true);
-            ppalView.getjCheckBox5().setEnabled(true);
-            ppalView.getjCheckBox6().setEnabled(true);
-            ppalView.getjCheckBox7().setEnabled(true);
-            ppalView.getjCheckBox8().setEnabled(true);
-            ppalView.getjCheckBox9().setEnabled(true);
+            ppalView.getRepetirCicloEvento_jCheckBox().setEnabled(true);
+            ppalView.getLunes_jCheckBox().setEnabled(true);
+            ppalView.getMartes_jCheckBox().setEnabled(true);
+            ppalView.getMiercoles_jCheckBox().setEnabled(true);
+            ppalView.getJuevesjCheckBox().setEnabled(true);
+            ppalView.getViernes_jCheckBox().setEnabled(true);
+            ppalView.getSabado_jCheckBox().setEnabled(true);
+            ppalView.getDomingo_jCheckBox().setEnabled(true);
             
             ppalView.getjFormattedTextField3().setEnabled(true);
             
@@ -666,14 +666,14 @@ public class EventControl {
         } else {
             ppalView.getjLabel16().setEnabled(false);
             ppalView.getjLabel25().setEnabled(false);
-            ppalView.getjCheckBox2().setEnabled(false);
-            ppalView.getjCheckBox3().setEnabled(false);
-            ppalView.getjCheckBox4().setEnabled(false);
-            ppalView.getjCheckBox5().setEnabled(false);
-            ppalView.getjCheckBox6().setEnabled(false);
-            ppalView.getjCheckBox7().setEnabled(false);
-            ppalView.getjCheckBox8().setEnabled(false);
-            ppalView.getjCheckBox9().setEnabled(false);
+            ppalView.getRepetirCicloEvento_jCheckBox().setEnabled(false);
+            ppalView.getLunes_jCheckBox().setEnabled(false);
+            ppalView.getMartes_jCheckBox().setEnabled(false);
+            ppalView.getMiercoles_jCheckBox().setEnabled(false);
+            ppalView.getJuevesjCheckBox().setEnabled(false);
+            ppalView.getViernes_jCheckBox().setEnabled(false);
+            ppalView.getSabado_jCheckBox().setEnabled(false);
+            ppalView.getDomingo_jCheckBox().setEnabled(false);
             
             ppalView.getjFormattedTextField3().setEnabled(false);
             

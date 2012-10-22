@@ -51,14 +51,14 @@ public class EventoDAOJmodbus {
             setSingleReg(0, 1);
 
             //Init offset
-            int initOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.events"));
+            int eventoInitOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.events"));
             int[] eventArray = new int[Integer.parseInt(PropHandler.getProperty("event.memory.size"))];
 
             System.out.println("SAVING EVENT NUMBER: " + eventNumber);
 
             //numeroEvento
             eventArray[0] = eventNumber;
-            eventArray[1] = 1;
+            eventArray[1] = 0;// activacion
             eventArray[2] = evento.getTipoSalida();
             //nombre
             int nameOffset = 3;
@@ -83,7 +83,7 @@ public class EventoDAOJmodbus {
             eventArray[11] = evento.getAnho();
             eventArray[12] = evento.getHora();
             eventArray[13] = evento.getMinuto();
-            eventArray[14] = evento.getDiaYrepetir();
+            eventArray[14] = evento.getDiaYrepetir();//dia afectado
 
             //nivelBalasto
             int balastosOffset = 15;
@@ -215,7 +215,7 @@ public class EventoDAOJmodbus {
 
 
 //          Guardamos la info con el dao
-            dao.setRegValue(initOffset, eventArray);
+            dao.setRegValue(eventoInitOffset, eventArray);
             addEvent(eventNumber);
 
             //MODO
@@ -233,13 +233,14 @@ public class EventoDAOJmodbus {
     }
 
     /**
-     * Deletes the event.
-     *
-     * @param eventNumbers
-     * @return
+     * Método que borra el evento como tal de la memoria. Borra toda la información
+     * que tiene un evento relacionada, como numero, nombre, etc. Modifica el registro
+     * a partir del offset en el mapa de memoria que en este caso es 5000 .
+     * @param eventNumbers Numero del evento que se pretende borrar.
+     * 
      */
     public static boolean deleteEvent(String eventNumbers) {
-//        DAO4j dao = new DAO4j();
+
         boolean state = false;
         int eventNumber = Integer.parseInt(eventNumbers);
 
@@ -331,7 +332,7 @@ public class EventoDAOJmodbus {
                 seleScene = String.valueOf(i) + seleScene;
             }
 
-            //Get BitIntegers every 16 bits and store them in the card.
+           
             ArrayList<BigInteger> scenesRegisters = Utils.getSelectedItems(seleScene);
             int affecedScenes = 98;
             for (int i = scenesRegisters.size() - 1; i >= 0; i--) {
@@ -343,7 +344,7 @@ public class EventoDAOJmodbus {
             eventArray[99] = 0;
 
             //SAVE EVENT
-            deleteEvent(eventNumber);
+            deleteAddedEvent(eventNumber);
             dao.setRegValue(initOffset, eventArray);
 
             //MODO
@@ -780,12 +781,15 @@ public class EventoDAOJmodbus {
     }
 
     /**
-     * Delete the balast.
+     * Método que borra un evento de la lista ed eventos adheridos.
+     * Lo que hace este método es que borra el bit correspondiente al evento adherido.
+     * En ningún momento borra la informacion del evento de la memoria. Sólo borra el 
+     * evento adherido.
      *
-     * @param key
-     * @return
+     * @param writtenEventNumber
+     * 
      */
-    public static void deleteEvent(int writtenEventNumber) {
+    public static void deleteAddedEvent(int writtenEventNumber) {
 
         //       //<editor-fold defaultstate="collapsed" desc="CodigoViejo">
 //        try {
@@ -818,7 +822,7 @@ public class EventoDAOJmodbus {
         //</editor-fold>
 
         try {
-            int initOffset = Integer.parseInt(PropHandler.getProperty("in.memory.added"));
+            int offsetInicialEntrada = Integer.parseInt(PropHandler.getProperty("event.memory.added"));
 
             int[] eventos = getAddedEventsCardArray();
 //            System.out.println("Offset: " + initOffset + ", group balasts: " + balastos);
@@ -836,8 +840,8 @@ public class EventoDAOJmodbus {
             ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal);
             for (int i = name.size() - 1; i >= 0; i--) {
                 int[] nameValues = {name.get(i).intValue()};
-                dao.setRegValue(initOffset, nameValues);
-                initOffset++;
+                dao.setRegValue(offsetInicialEntrada, nameValues);
+                offsetInicialEntrada++;
             }
 
         } catch (Exception e) {

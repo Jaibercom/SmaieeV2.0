@@ -570,6 +570,13 @@ public class GeneralControl {
         cDao.setSingleReg(0, 0);
     }
     
+    /**
+     * método que refresca todo el arbol de jerarquía.
+     */
+    public void refrescarArboldeJerarquia(){
+        
+    }
+    
     
     
     

@@ -236,7 +236,7 @@ public class InsControl {
             
             float nivelDeseado = (( ((int)selectedIn.getNivIlumxvoltio()) * 10) * (int)selectedIn.getNivelDeseado())/100;
             ppalView.getjTextField9().setText(String.valueOf((int)nivelDeseado));
-            ViewUtils.setInOutType(ppalView.getjCheckBox10(), ppalView.getjCheckBox11(), ppalView.getjCheckBox12(), selectedIn.getTipoSalida());
+            ViewUtils.setInOutType(ppalView.getjCheckBox10(), ppalView.getjCheckBox11(), ppalView.getFotoceldasEntradas_jCheckBox(), selectedIn.getTipoSalida());
             showInItems(ppalView.getjList8(), ppalView.getjList9(), selectedIn, ppalView);
         } else if (ppalView.getInType() == prefixSensor) {    //Sensor
             
@@ -302,10 +302,10 @@ public class InsControl {
         ppalView.getjList9().setModel(model);
         ppalView.getjCheckBox10().setSelected(false);
         ppalView.getjCheckBox11().setSelected(false);
-        ppalView.getjCheckBox12().setSelected(false);
+        ppalView.getFotoceldasEntradas_jCheckBox().setSelected(false);
         ppalView.getjCheckBox10().setEnabled(true);
         ppalView.getjCheckBox11().setEnabled(true);
-        ppalView.getjCheckBox12().setEnabled(true);
+        ppalView.getFotoceldasEntradas_jCheckBox().setEnabled(true);
         
         //Sensor
         ppalView.getjTextField34().setText("0");

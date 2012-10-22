@@ -301,7 +301,7 @@ public class PropHandler {
      */
     public static void deleteEvent(int writtenBalastNumber, DAOJmodbus dao) {
         EventoDAOJmodbus eDao = new EventoDAOJmodbus(dao);
-        eDao.deleteEvent(writtenBalastNumber);
+        eDao.deleteAddedEvent(writtenBalastNumber);
     }
     
     

@@ -24,25 +24,21 @@ import net.wimpi.modbus.procimg.SimpleDigitalOut;
  * @author Juan Toro
  */
 public class DAOJamod {
-    
+
     /*
      * GENERAL OPERATIONS
      */
-    public void getConnection(){
-        //TODO: Read all variables and save them in the database.
-        
-    }
-    
+   
     
 
     /*
      * REG OPERATIONS
      */
-    
     /**
      * Sets a single register value.
+     *
      * @param offset
-     * @param value 
+     * @param value
      */
     public static void setRegValue(int offset, int value) {
         WriteSingleRegisterRequest request = null;
@@ -82,21 +78,21 @@ public class DAOJamod {
             response = (WriteSingleRegisterResponse) trans.getResponse();
             System.out.println("The value in " + response.getReference() + " is: " + response.getRegisterValue());
 
-            
+
             con.close();
         } catch (Exception ex) {
             ex.printStackTrace();
-        } finally{
+        } finally {
             //6. Close the connection.
             con.close();
         }
     }
-    
-    
+
     /**
      * Sets a single register value.
+     *
      * @param offset
-     * @param value 
+     * @param value
      */
     public static void setRegArray(int offset, int value) {
         WriteSingleRegisterRequest request = null;
@@ -137,36 +133,36 @@ public class DAOJamod {
 
         } catch (Exception ex) {
             ex.printStackTrace();
-        } finally{
+        } finally {
             //6. Close the connection.
             con.close();
         }
     }
-    
-    
+
     /**
      * Gets a single register value.
-     * @param offset 
+     *
+     * @param offset
      */
     //Function 03
     public static void getRegValue(int offset) {
         ModbusTCPMaster master = null;
 
         try {
-            master = new ModbusTCPMaster(PropHandler.getProperty("general.ip"), 
+            master = new ModbusTCPMaster(PropHandler.getProperty("general.ip"),
                     Integer.parseInt(PropHandler.getProperty("general.port")));
             master.connect();
-            
+
             Register[] registers = master.readMultipleRegisters(offset, 1);
             Register register = registers[0];
             System.out.println("Valor: " + register.getValue());
         } catch (Exception ex) {
             ex.printStackTrace();
-        } finally{
+        } finally {
             master.disconnect();
         }
     }
-    
+
     //Function 04
     public static void getRegValue2(int offset) {
         ModbusTCPMaster master = null;
@@ -175,18 +171,17 @@ public class DAOJamod {
         try {
             master = new ModbusTCPMaster(PropHandler.getProperty("general.ip"), port);
             master.connect();
-            
+
             InputRegister[] registers = master.readInputRegisters(offset, 1);
             InputRegister register = registers[0];
             System.out.println("Valor: " + register.getValue());
         } catch (Exception ex) {
             ex.printStackTrace();
-        } finally{
+        } finally {
             master.disconnect();
         }
     }
-    
-    
+
     public static void setRegValue2(int offset, int value) {
         ModbusTCPMaster master = null;
         int port = Integer.parseInt(PropHandler.getProperty("general.port"));
@@ -194,16 +189,16 @@ public class DAOJamod {
         try {
             master = new ModbusTCPMaster(PropHandler.getProperty("general.ip"), port);
             master.connect();
-            
+
             SimpleRegister reg = new SimpleRegister(value);
             master.writeSingleRegister(offset, reg);
         } catch (Exception ex) {
             ex.printStackTrace();
-        } finally{
+        } finally {
             master.disconnect();
         }
     }
-    
+
     //Function 04
     public static void setRegValue3(int offset, int value) {
         ModbusTCPMaster master = null;
@@ -212,58 +207,55 @@ public class DAOJamod {
         try {
             master = new ModbusTCPMaster(PropHandler.getProperty("general.ip"), port);
             master.connect();
-            
+
             SimpleRegister reg = new SimpleRegister(value);
-            SimpleRegister [] registers = {reg};
+            SimpleRegister[] registers = {reg};
             master.writeMultipleRegisters(offset, registers);
         } catch (Exception ex) {
             ex.printStackTrace();
-        } finally{
+        } finally {
             master.disconnect();
         }
     }
-    
-    
+
     /**
      * Get a register
+     *
      * @param host
      * @param offset
-     * @throws Exception 
+     * @throws Exception
      */
     public void getRegisters(int offset) throws Exception {
         InetAddress address = InetAddress.getByName(PropHandler.getProperty("general.ip"));
         TCPMasterConnection connection = new TCPMasterConnection(address);
         connection.setPort(Integer.parseInt(PropHandler.getProperty("general.port")));
         connection.connect();
-        
-        ReadMultipleRegistersRequest request = new ReadMultipleRegistersRequest (offset, 1);
+
+        ReadMultipleRegistersRequest request = new ReadMultipleRegistersRequest(offset, 1);
         ReadMultipleRegistersResponse response = (ReadMultipleRegistersResponse) executeTransaction(connection, request);
         Register[] registers = response.getRegisters();
-        
-        for(int i = 0; i < registers.length; i++){
+
+        for (int i = 0; i < registers.length; i++) {
             System.out.println("Valor: " + registers[i].getValue());
         }
     }
-    
-    
+
     private static ModbusResponse executeTransaction(TCPMasterConnection connection, ModbusRequest request)
             throws ModbusIOException, ModbusSlaveException, ModbusException {
-        
+
         ModbusTCPTransaction transaction = new ModbusTCPTransaction(connection);
         transaction.setRequest(request);
         transaction.execute();
         return transaction.getResponse();
     }
-    
-    
-    
+
     /*
      * COIL OPERATIONS
      */
-    
     /**
      * Get single coil value
-     * @param offset 
+     *
+     * @param offset
      */
     public static void getCoilValue(int offset) {
         ModbusTCPMaster master = null;
@@ -278,21 +270,22 @@ public class DAOJamod {
 
         } catch (Exception ex) {
             ex.printStackTrace();
-        } finally{
-           master.disconnect();
+        } finally {
+            master.disconnect();
         }
     }
-    
+
     /**
      * Set single coil value.
+     *
      * @param offset
-     * @param value 
+     * @param value
      */
     public static void setCoilValue(int offset, boolean value) {
 
         WriteCoilRequest request = null;
         WriteCoilResponse response = null;
-        
+
         ModbusTCPTransaction trans = null; //the transaction
         TCPMasterConnection con = null;  //the connection
         InetAddress addr = null; //the address
@@ -306,7 +299,7 @@ public class DAOJamod {
             String astr = PropHandler.getProperty("general.ip");
             addr = InetAddress.getByName(astr);
             con = new TCPMasterConnection(addr);
-            
+
             sdo = new SimpleDigitalOut(value);
 
             //2. Open the connection	
@@ -315,7 +308,7 @@ public class DAOJamod {
             System.out.println("Connected... " + port + " " + ref);
 
             //65535
-            
+
             //3. Prepare the request and the response.
             request = new WriteCoilRequest(ref, value);
             response = new WriteCoilResponse();
@@ -329,24 +322,25 @@ public class DAOJamod {
             response = (WriteCoilResponse) trans.getResponse();
             System.out.println("The value is: " + response.getCoil());
 
-            
+
 
         } catch (Exception ex) {
             ex.printStackTrace();
-        } finally{
+        } finally {
             //6. Close the connection.
             con.close();
         }
 
     }
-    
+
     /**
      * Test the state of the connection.
-     * @return 
+     *
+     * @return
      */
-    public static boolean testConnection(String ip, int port){
+    public static boolean testConnection(String ip, int port) {
         boolean connectionState = false;
-        
+
 //        ModbusTCPMaster master = null;
 //        try {
 //            master = new ModbusTCPMaster(ip, port);
@@ -357,8 +351,8 @@ public class DAOJamod {
 //            ex.printStackTrace();
 //        } 
 //        return connectionState;
-        
-        
+
+
         TCPMasterConnection con = null;  //the connection
         InetAddress addr = null; //the address
 
@@ -375,8 +369,8 @@ public class DAOJamod {
 
             connectionState = true;
 
-            
-            
+
+
 //            con.close();
         } catch (Exception ex) {
             if (con.isConnected()) {
@@ -384,16 +378,15 @@ public class DAOJamod {
             }
             connectionState = false;
             ex.printStackTrace();
-            
-        } finally{
+
+        } finally {
             //6. Close the connection.
             con.close();
         }
-        
+
         return connectionState;
     }
 
-    
     /*
      * Main test.
      */
@@ -401,15 +394,15 @@ public class DAOJamod {
         //COILS
 //        new SmaieeModMaster().setCoilValue("127.0.0.1", 6, true);
 //        new SmaieeModMaster().getCoilValue("127.0.0.1", 6);
-        
+
         //REGISTERS 
         // Holding register 40108 is addressed as register 006B hex (107 decimal). Page
 //        new DAOJamod().setRegValue(0, 1);
 //        new DAOJamod().getRegValue(6);
 //        new DAOJamod().getRegValue2(6);
-        
+
 //        new DAOJamod().setRegValue3(6, 34);
-        
+
         try {
             new DAOJamod().getRegValue2(500);
         } catch (Exception ex) {
