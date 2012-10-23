@@ -539,6 +539,7 @@ public class InsControl {
      */
     public void refrescarVistaEntradas(PpalView ppalView) {
         cleanInView(ppalView);
+        
 //        filterAddedIn(ppalView);
         
     }
