@@ -246,10 +246,10 @@ public class BalastosControlJmodbus {
      * Refresca la vista de balastos cuando se ejecuta una operacion de escritura y borrado
      * @param ppalView 
      */
-    private void refrescaVistaBalastos(PpalView ppalView) {
+    public void refrescaVistaBalastos(PpalView ppalView) {
           cleanBalastosView(ppalView);
-          readBalastos(ppalView);
           filterAddedBalasts(ppalView);
+          
     }
     
     

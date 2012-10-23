@@ -22,6 +22,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -46,6 +47,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTree;
+import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
 /**
@@ -159,20 +161,27 @@ public class PpalView extends javax.swing.JFrame {
      * Creates new form ConfPpalView
      */
     public PpalView() {
-        applicationTheme();
-        initControls();
-        initModbus();
-        initSelections();
-        initAddedElements();
-        new GeneralControl().menuParents(this);
-        getConnectionProperties();
-        initInOutTypes();
-        initThreads();
+       
+            applicationTheme();
+            initControls();
+            initModbus();
+            initSelections();
+            initAddedElements();
+            new GeneralControl().menuParents(this);
+            getConnectionProperties();
+            initInOutTypes();
+            initThreads();
 
-        initComponents();
-//        generalCtrl.loadConfigurationViewData(this);
-        showAreas = true;
-//        new RealTimeControl().refreshBalastsLevels(this);
+            initComponents();
+    //        generalCtrl.loadConfigurationViewData(this);
+            showAreas = true;
+    //        new RealTimeControl().refreshBalastsLevels(this);
+            
+            CargaInicial c=new CargaInicial(this);
+            c.execute();
+            
+        
+        
     }
 
     /**
@@ -5876,6 +5885,34 @@ public class PpalView extends javax.swing.JFrame {
     // End of variables declaration                   
     //</editor-fold>
     
+   
+     private class CargaInicial extends SwingWorker<Boolean, Boolean>{
+
+        PpalView ppalView;
+
+        public CargaInicial(PpalView ppalView) {
+            this.ppalView = ppalView;
+        }
+        
+        
+        
+        @Override
+        protected Boolean doInBackground() throws Exception {
+            
+            return getGeneralCtrl().cargaInicial(ppalView, balastosCtrl, groupsCtrl, sceneCtrl, eventCtrl, insCtrl); 
+             
+        }
+
+        @Override
+        protected void done() {
+            super.done();
+        }
+
+       
+        
+        
+        
+    }
            
     
 }

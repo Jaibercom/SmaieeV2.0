@@ -27,19 +27,21 @@ import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 import javax.swing.tree.DefaultMutableTreeNode;
 import net.wimpi.modbus.net.TCPMasterConnection;
+import sun.misc.GC;
 
 /**
  *
  * @author EAFIT
  */
 public class GeneralControl {
-    
+
     private RefreshRTC rtc;
-    
-    public GeneralControl(){
+
+    public GeneralControl() {
         this.rtc = new RefreshRTC();
+       
     }
-    
+
     /**
      * Show the available balasts.
      */
@@ -49,7 +51,7 @@ public class GeneralControl {
         DefaultListModel cleanModelo = new DefaultListModel();
         show.setModel(modelo);
         remove.setModel(cleanModelo);
-        
+
 //        ArrayList<String> addedBalasts = PropHandler.getAddedBalasts(ppalView.getDao());
         HashMap<String, Balasto> balasts = ppalView.getBalasts();
         Set<String> addedBalasts = balasts.keySet();
@@ -60,7 +62,7 @@ public class GeneralControl {
         show.setModel(modelo);
         remove.removeAll();
     }
-    
+
     /**
      * Show the available balasts.
      */
@@ -79,7 +81,7 @@ public class GeneralControl {
         show.setModel(modelo);
         remove.removeAll();
     }
-    
+
     /**
      * Show the available balasts.
      */
@@ -98,17 +100,16 @@ public class GeneralControl {
         show.setModel(modelo);
         remove.removeAll();
     }
-    
-    
+
     /**
-     * Tree selection.
-     * Controla la seleccion del elemento en el arbol de jerarquia
+     * Tree selection. Controla la seleccion del elemento en el arbol de
+     * jerarquia
      */
     public void treeSelection(PpalView ppalView, RealTimeControl realCtrl) {
         //Stops current threads.
-        ppalView.getThreadManager().stopAllCurrentThreads();// aqui se puede estar presentando el problema de la grabada, porque se paran todos los hilos.
-        
-        
+//        ppalView.getThreadManager().stopAllCurrentThreads();// aqui se puede estar presentando el problema de la grabada, porque se paran todos los hilos.
+
+
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) ppalView.getjTree1().getLastSelectedPathComponent();
 
         if (node == null) {
@@ -180,8 +181,8 @@ public class GeneralControl {
                         //Verificamos que la conexion este activa
 //                        TCPMasterConnection con = null;
 ////                        con.isConnected();
-                        
-                        
+
+
                     }
                     cl.show(ppalView.getPanelPpal(), "card2"); //Balastos
                     break;
@@ -284,10 +285,10 @@ public class GeneralControl {
                     clIns.show(ppalView.getPanelConfEntradas(), "card4"); //Sensores
                     break;
             }
-         } catch (Exception e) {
-             JOptionPane.showMessageDialog(ppalView, "Error cargando elementos desde la interfaz: "+e.getLocalizedMessage(), null, 2);
-             System.out.println("Error cargando los elementos desde la interfaz: ");     
-             e.printStackTrace();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(ppalView, "Error cargando elementos desde la interfaz: " + e.getMessage(), null, 2);
+            System.out.println("Error cargando los elementos desde la interfaz: ");
+            e.printStackTrace();
         }
 
     }
@@ -311,12 +312,13 @@ public class GeneralControl {
         ppalView.getMenuParents().put(PropHandler.getProperty("ftcl.menu.name"), 'f');
         ppalView.getMenuParents().put(PropHandler.getProperty("sensors.menu.name"), 'h');
 
-     }
+    }
 
     /**
      * Creates a formatter
+     *
      * @param s
-     * @return 
+     * @return
      */
     protected MaskFormatter createFormatter(String s) {
         MaskFormatter formatter = null;
@@ -331,8 +333,9 @@ public class GeneralControl {
 
     /**
      * Validates a ip addres.
+     *
      * @param ip
-     * @return 
+     * @return
      */
     public boolean ipValidator(String ip) {
         boolean match = false;
@@ -350,8 +353,9 @@ public class GeneralControl {
 
     /**
      * Validates a port number.
+     *
      * @param port
-     * @return 
+     * @return
      */
     public boolean portValidator(String port) {
         boolean match = false;
@@ -370,8 +374,9 @@ public class GeneralControl {
 
     /**
      * Validates an hour.
+     *
      * @param hour
-     * @return 
+     * @return
      */
     public boolean hourValidator(String hour) {
         boolean match = false;
@@ -396,11 +401,11 @@ public class GeneralControl {
 
         return match;
     }
-    
+
     /**
      * Shows the connection status.
      */
-    public void updateConnectionStatus(boolean status, PpalView ppalView){
+    public void updateConnectionStatus(boolean status, PpalView ppalView) {
         if (status) {
             ppalView.getjLabel45().setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/connection.jpg")));
         } else {
@@ -561,31 +566,14 @@ public class GeneralControl {
                 JOptionPane.showConfirmDialog(null, "Ocurrio un error!!!."
                         + "\nIntente de nuevo.", "Alerta", -1, JOptionPane.ERROR_MESSAGE);
             }
-        } 
+        }
     }
-    
-    
-    public void setRunMode(PpalView ppalView){
+
+    public void setRunMode(PpalView ppalView) {
         ConfiguracionDAOJmodbus cDao = new ConfiguracionDAOJmodbus(ppalView.getDao());
         cDao.setSingleReg(0, 0);
     }
-    
-    /**
-     * método que refresca todo el arbol de jerarquía.
-     */
-    public void refrescarArboldeJerarquia(){
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     /**
      * Shows the configuration view.
      */
@@ -596,7 +584,6 @@ public class GeneralControl {
         ppalView.getThreadManager().startThreadIfTerminated(ThreadManager.RTC_REFRESHING);
         cl.show(ppalView.getPanelPpal(), "card3"); //Configuracion
     }
-
 //    /**
 //     * Loads the data to be showed in the view
 //     */
@@ -625,4 +612,36 @@ public class GeneralControl {
 //            rtc.interrupt();
 //        }
 //    }
+
+   /**
+    * 
+    * @param ppalView
+    * @param a
+    * @param b
+    * @param c
+    * @param d
+    * @param f
+    * @return 
+    */
+    public Boolean cargaInicial(PpalView ppalView,BalastosControlJmodbus a,GroupsControl b,SceneControlJmodbus c,EventControl d, InsControl f) {
+//        BalastosControlJmodbus a = new BalastosControlJmodbus();
+//        GroupsControl b = new GroupsControl();
+//        SceneControlJmodbus c =new SceneControlJmodbus();
+//        EventControl d = new EventControl();
+//        InsControl f = new InsControl();
+        
+        try {
+            a.refrescaVistaBalastos(ppalView);
+            b.refrescarVistaGrupos(ppalView);
+            c.refrescarVistaEscenas(ppalView);
+            d.refrescaEventos(ppalView);
+            f.refrescarVistaEntradas(ppalView);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        
+        
+    }
 }

@@ -26,8 +26,7 @@ import javax.swing.tree.TreePath;
  * @author EAFIT
  */
 public class GroupsControl {
-    
-    
+
     /**
      * Saves a group.
      */
@@ -35,7 +34,7 @@ public class GroupsControl {
         boolean connectionStatus = true; //DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
         new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
         if (connectionStatus) {
-            
+
             ppalView.getStatusLabel().setText("Guardando grupo");
             boolean isUpdate = !ppalView.getjLabel58().getText().equals("#");
 //            int groupNumber = ppalView.getjLabel58().getText().equals("#") ? PropHandler.getGroupNumber() : Integer.parseInt(ppalView.getjLabel58().getText());
@@ -45,7 +44,7 @@ public class GroupsControl {
             Grupo newGroup = new Grupo(groupNumber, 0, ppalView.getjTextField3().getText(), getSelectedBalasts(ppalView));
 
             //Saves the balast remotelly
-            
+
             GrupoDAOJmodbus gDao = new GrupoDAOJmodbus(ppalView.getDao());
             boolean resultado = gDao.saveGroup(newGroup);
 
@@ -175,7 +174,7 @@ public class GroupsControl {
      */
     public void cleanGroupView(PpalView ppalView) {
         ppalView.getjComboBox5().setSelectedIndex(0);
-        ppalView.getjLabel58().setText("#"); 
+        ppalView.getjLabel58().setText("#");
         ppalView.getjTextField3().setText("");
         ppalView.setSelectedGroupNumber("");
 
@@ -250,15 +249,15 @@ public class GroupsControl {
     }
 
     /**
-     * Método que refresca la vista de grupos cuando se ejecuta una operacion de 
+     * Método que refresca la vista de grupos cuando se ejecuta una operacion de
      * escritura o borrado.
-     * 
-     * @param ppalView 
+     *
+     * @param ppalView
      */
-    private void refrescarVistaGrupos(PpalView ppalView) {
+    public void refrescarVistaGrupos(PpalView ppalView) {
         cleanGroupView(ppalView);
-        readGroups(ppalView);
-        filterAddedGroups(ppalView);
-        
+        showAvailableBalasts(ppalView);
+        filterAddedGroups(ppalView);;
+
     }
 }

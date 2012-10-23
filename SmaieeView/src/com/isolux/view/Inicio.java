@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
 /**
@@ -148,52 +149,15 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void conectar_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conectar_jButtonActionPerformed
+ Conectar conn=new Conectar();
+ conn.execute();
+ 
 
-        try {
-
-            conectar_jButton.setEnabled(false);
-            jLabel3.setText("Conectando...");
-            int port = 502;
-            String ip = ipTextField.getText();
-
-            if (ipValidator(ip)) {
-                //        System.out.println("Connection state: " + DAOJamod.testConnection(ip, port));
-
-                PropHandler.setProperty("general.ip", ip);
-                PropHandler.setProperty("general.port", String.valueOf(port));
-                if (DAOJamod.testConnection(ip, port)) {
-                    //TODO: Get info and give it to the ppal
-                    //Getting info...
-//                DAO4j.readMemory();
-
-                    //Show the main view.
-                    PpalView ppal = new PpalView();
-                    ppal.setLocationRelativeTo(null);
-                    ppal.setVisible(true);
-                    this.dispose(); //oculta la ventana actual (Inicio.java)
-                } else {
-
-
-                    ConnectException ce = new ConnectException("La tarjeta no esta bien conectada");
-                    throw ce;
-                }
-//            } else {
-//                jLabel3.setText("Revise la ip y el puerto.");
-////            JOptionPane.showConfirmDialog(null, "No se pudo establecer la conexion." +
-////                    "\nRevise la ip y el puerto.", "Error", -1, JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (ConnectException ce) {
-            conectar_jButton.setEnabled(true);
-            jLabel3.setText("No se puede establecer una conexion!");
-            JOptionPane.showMessageDialog(rootPane, "No se pudo conectar a la tarjeta. Revise su conexion " + ce.getLocalizedMessage(), "Error de conexión", JOptionPane.ERROR_MESSAGE);
-
-
-//            ce.printStackTrace();
-        }
     }//GEN-LAST:event_conectar_jButtonActionPerformed
 
     private void ipTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipTextFieldActionPerformed
-        // TODO add your handling code here:
+      Conectar con=new Conectar();
+      con.execute();
     }//GEN-LAST:event_ipTextFieldActionPerformed
 
     /**
@@ -273,4 +237,71 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    private void conectar() {
+        try {
+
+            conectar_jButton.setEnabled(false);
+            ipTextField.setEnabled(false);
+            jLabel3.setText("Conectando...");
+           
+            int port = 502;
+            String ip = ipTextField.getText();
+
+            if (ipValidator(ip)) {
+                //        System.out.println("Connection state: " + DAOJamod.testConnection(ip, port));
+
+                PropHandler.setProperty("general.ip", ip);
+                PropHandler.setProperty("general.port", String.valueOf(port));
+                if (DAOJamod.testConnection(ip, port)) {
+                    //TODO: Get info and give it to the ppal
+                    //Getting info...
+//                DAO4j.readMemory();
+
+                    //Show the main view.
+                    PpalView ppal = new PpalView();
+                    ppal.setLocationRelativeTo(null);
+                    ppal.setVisible(true);
+                    this.dispose(); //oculta la ventana actual (Inicio.java)
+                } else {
+
+
+                    ConnectException ce = new ConnectException("La tarjeta no esta bien conectada");
+                    throw ce;
+                }
+//            } else {
+//                jLabel3.setText("Revise la ip y el puerto.");
+////            JOptionPane.showConfirmDialog(null, "No se pudo establecer la conexion." +
+////                    "\nRevise la ip y el puerto.", "Error", -1, JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (ConnectException ce) {
+            conectar_jButton.setEnabled(true);
+            ipTextField.setEnabled(true);
+            jLabel3.setText("No se puede establecer una conexion!");
+            JOptionPane.showMessageDialog(rootPane, "No se pudo conectar a la tarjeta. Revise su conexion " + ce.getLocalizedMessage(), "Error de conexión", JOptionPane.ERROR_MESSAGE);
+
+
+//            ce.printStackTrace();
+        }
+    }
+    
+    /**
+     * Clase interna que se encarga de la conexion en un hilo separado.
+     */
+    private class Conectar extends SwingWorker<String, Boolean>{
+
+        @Override
+        protected String doInBackground() throws Exception {
+            conectar();
+            return "Terminada";
+        }
+
+        @Override
+        protected void done() {
+            super.done();
+        }
+        
+    }
+            
+            
 }

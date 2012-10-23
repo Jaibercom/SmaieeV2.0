@@ -21,8 +21,7 @@ import javax.swing.tree.TreePath;
  * @author Juan Diego Toro Cano
  */
 public class SceneControlJmodbus {
-    
-    
+
     /**
      * Saves a scene.
      */
@@ -40,9 +39,9 @@ public class SceneControlJmodbus {
             for (int i = 0; i < selectedBalasts.getSize(); i++) {
                 String item = selectedBalasts.getElementAt(i).toString();
                 String[] level = item.split(" - ");
-              balastsLevels[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length-2]);
+                balastsLevels[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length - 2]);
 //                balastsLevels[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length - 1]);
-                
+
             }
 
             Escena newScene = new Escena(sceneNumber, 1, ppalView.getNombreEscenaJTextField().getText(), balastsLevels, getSelectedSceneBalasts(ppalView));
@@ -294,9 +293,9 @@ public class SceneControlJmodbus {
 
     }
 
-    private void refrescarVistaEscenas(PpalView ppalView) {
+    public void refrescarVistaEscenas(PpalView ppalView) {
         cleanSceneView(ppalView);
-        readScenes(ppalView);
+        showAvailableSceneBalasts(ppalView);
         filterAddedScenes(ppalView);
     }
 }

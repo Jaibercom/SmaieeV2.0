@@ -45,7 +45,7 @@ public class ThreadManager {
     public void stopAllCurrentThreads(){
         stopThread(REAL_TIME);
         stopThread(RTC_REFRESHING);
-        System.out.println("parados todos los hilos");
+//        System.out.println("parados todos los hilos");
     }
     
     /**
@@ -123,7 +123,7 @@ public class ThreadManager {
                     rtcRefreshing.setStopRTCRefreshing(true);
                     rtcRefreshing.interrupt();
                 }
-                System.out.println("Parado el Hilo RTC");
+//                System.out.println("Parado el Hilo RTC");
                 break;
                 
             case REAL_TIME:
@@ -133,7 +133,7 @@ public class ThreadManager {
                     realTime.interrupt();
                     
                 }
-                System.out.println("Parado el hilo REAL_Time");
+//                System.out.println("Parado el hilo REAL_Time");
                 break;
         }
     }

@@ -432,6 +432,7 @@ public class EventControl {
 
     /**
      * Filter the used Events (add existing events to the menu).
+     *
      * @param ppalView Vista que se está controlando
      */
     public void filterAddedEvent(PpalView ppalView) {
@@ -723,7 +724,8 @@ public class EventControl {
 
     /**
      * Metodo que actualiza el nivel del evento.
-     * @param ppalView 
+     *
+     * @param ppalView
      */
     public void updateLevel(PpalView ppalView) {
         String level = ppalView.getjTextField25().getText();
@@ -818,11 +820,12 @@ public class EventControl {
 
     /**
      * Método que refresca la vista de los eventos.
-     * @param ppalView 
+     *
+     * @param ppalView
      */
-    private void refrescaEventos(PpalView ppalView) {
+    public void refrescaEventos(PpalView ppalView) {
         cleanEventView(ppalView);
-        readEvents(ppalView);
+//        showAvailableEvents(ppalView);
         filterAddedEvent(ppalView);
     }
 }
