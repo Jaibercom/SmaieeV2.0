@@ -1123,7 +1123,7 @@ public class PpalView extends javax.swing.JFrame {
 
         jLabel10.setText("% OFF");
 
-        jTextField5.setText("0");
+        jTextField5.setText("100");
 
         jTextField6.setText("0");
 
@@ -1337,9 +1337,10 @@ public class PpalView extends javax.swing.JFrame {
 
         jLabel12.setText("Nivel ilum/voltio");
 
-        jTextField7.setText("0");
+        jTextField7.setText("5");
 
         jTextField8.setText("0");
+        jTextField8.setToolTipText("");
 
         jLabel13.setText("Nivel deseado");
 
@@ -1446,7 +1447,7 @@ public class PpalView extends javax.swing.JFrame {
 
         jLabel14.setText("Ganancia");
 
-        jTextField10.setText("0");
+        jTextField10.setText("1");
 
         jButton15.setText("Enviar");
         jButton15.addActionListener(new java.awt.event.ActionListener() {

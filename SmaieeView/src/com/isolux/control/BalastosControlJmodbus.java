@@ -66,6 +66,7 @@ public class BalastosControlJmodbus {
                 cleanBalastosView(ppalView);
             }
         }
+         refrescaVistaBalastos(ppalView);
     }
 
     /**
@@ -153,6 +154,7 @@ public class BalastosControlJmodbus {
                 }
             }
         }
+         refrescaVistaBalastos(ppalView);
     }
 
     /**
@@ -238,6 +240,16 @@ public class BalastosControlJmodbus {
 
 //        JOptionPane.showConfirmDialog(null, "1. Verifique el nombre. \nNo puede tener mas de 10 caracteres.\n2. Ingrese un numero de balasto.", "Alerta", -1, JOptionPane.ERROR_MESSAGE);
         return true;
+    }
+
+    /**
+     * Refresca la vista de balastos cuando se ejecuta una operacion de escritura y borrado
+     * @param ppalView 
+     */
+    private void refrescaVistaBalastos(PpalView ppalView) {
+          cleanBalastosView(ppalView);
+          readBalastos(ppalView);
+          filterAddedBalasts(ppalView);
     }
     
     

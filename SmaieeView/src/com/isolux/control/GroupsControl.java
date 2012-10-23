@@ -94,6 +94,7 @@ public class GroupsControl {
                 }
             }
         }
+        refrescarVistaGrupos(ppalView);
     }
 
     /**
@@ -113,6 +114,7 @@ public class GroupsControl {
                 new GroupsControl().cleanGroupView(ppalView);
             }
         }
+        refrescarVistaGrupos(ppalView);
     }
 
     /**
@@ -245,5 +247,18 @@ public class GroupsControl {
         }
 
         return selectedBalasts;
+    }
+
+    /**
+     * Método que refresca la vista de grupos cuando se ejecuta una operacion de 
+     * escritura o borrado.
+     * 
+     * @param ppalView 
+     */
+    private void refrescarVistaGrupos(PpalView ppalView) {
+        cleanGroupView(ppalView);
+        readGroups(ppalView);
+        filterAddedGroups(ppalView);
+        
     }
 }

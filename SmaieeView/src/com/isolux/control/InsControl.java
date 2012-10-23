@@ -184,6 +184,7 @@ public class InsControl {
 //                Validation.showAlertMessage("El nivel de iluminacion por voltio no puede ser cero.");
 //            }
         }
+        refrescarVistaEntradas(ppalView);
     }
 
     /**
@@ -206,6 +207,7 @@ public class InsControl {
                 Validation.showAlertMessage("Debe seleccionar una entrada primero!");
             }
         }
+        refrescarVistaEntradas(ppalView);
     }
 
     /**
@@ -528,5 +530,18 @@ public class InsControl {
             }
             available.setModel(modelo);
         }
+    }
+
+    /**
+     * Método que refresca la vista de las entradas en las operaciones de escritura
+     * y borrado.
+     * @param ppalView 
+     */
+     
+    private void refrescarVistaEntradas(PpalView ppalView) {
+        cleanInView(ppalView);
+        readIns(ppalView);
+        filterAddedIn(ppalView);
+        
     }
 }

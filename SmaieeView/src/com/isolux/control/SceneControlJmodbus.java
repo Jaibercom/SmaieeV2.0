@@ -96,6 +96,7 @@ public class SceneControlJmodbus {
                 }
             }
         }
+        refrescarVistaEscenas(ppalView);
     }
 
     /**
@@ -115,6 +116,7 @@ public class SceneControlJmodbus {
                 cleanSceneView(ppalView);
             }
         }
+        refrescarVistaEscenas(ppalView);
     }
 
     /**
@@ -290,5 +292,11 @@ public class SceneControlJmodbus {
             Validation.showAlertMessage("Seleccione un balasto");
         }
 
+    }
+
+    private void refrescarVistaEscenas(PpalView ppalView) {
+        cleanSceneView(ppalView);
+        readScenes(ppalView);
+        filterAddedScenes(ppalView);
     }
 }

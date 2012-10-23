@@ -218,6 +218,7 @@ public class EventControl {
                 }
             }
         }
+        refrescaEventos(ppalView);
     }
 
     /**
@@ -430,7 +431,8 @@ public class EventControl {
     }
 
     /**
-     * Filter the used groups (add existing groups to the menu).
+     * Filter the used Events (add existing events to the menu).
+     * @param ppalView Vista que se está controlando
      */
     public void filterAddedEvent(PpalView ppalView) {
         if (!ppalView.getEventStauts()) {
@@ -719,6 +721,10 @@ public class EventControl {
         }
     }
 
+    /**
+     * Metodo que actualiza el nivel del evento.
+     * @param ppalView 
+     */
     public void updateLevel(PpalView ppalView) {
         String level = ppalView.getjTextField25().getText();
         String[] selectedBalast = ppalView.getjList13().getSelectedValue().toString().split(": ");
@@ -808,5 +814,15 @@ public class EventControl {
                 ppalView.getViernes_jCheckBox().setSelected(true);
                 ppalView.getSabado_jCheckBox().setSelected(true);
         }
+    }
+
+    /**
+     * Método que refresca la vista de los eventos.
+     * @param ppalView 
+     */
+    private void refrescaEventos(PpalView ppalView) {
+        cleanEventView(ppalView);
+        readEvents(ppalView);
+        filterAddedEvent(ppalView);
     }
 }
