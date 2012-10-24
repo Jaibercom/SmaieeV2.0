@@ -182,7 +182,7 @@ public class EventControl {
                 //Update name in the tree.
                 String eventText = PropHandler.getProperty("events.menu.name");
 
-                TreePath path = ppalView.getjTree1().getNextMatch(eventText, 0, Position.Bias.Forward);
+                TreePath path = ppalView.getArbol_jTree().getNextMatch(eventText, 0, Position.Bias.Forward);
                 MutableTreeNode eventNode = (MutableTreeNode) path.getLastPathComponent();
                 Enumeration events = eventNode.children();
 
@@ -208,8 +208,8 @@ public class EventControl {
                     String eventText = PropHandler.getProperty("events.menu.name");
 
                     //Show balast in tree
-                    DefaultTreeModel model = (DefaultTreeModel) ppalView.getjTree1().getModel();
-                    TreePath path = ppalView.getjTree1().getNextMatch(eventText, 0, Position.Bias.Forward);
+                    DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
+                    TreePath path = ppalView.getArbol_jTree().getNextMatch(eventText, 0, Position.Bias.Forward);
                     MutableTreeNode eventNode = (MutableTreeNode) path.getLastPathComponent();
                     DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(String.valueOf(newEvent.getNumeroEvento()) + " - " + newEvent.getNombre());
                     model.insertNodeInto(newNode, eventNode, eventNode.getChildCount());
@@ -226,8 +226,8 @@ public class EventControl {
      */
     public void deleteEvent(PpalView ppalView) {
         if (ppalView.getSelectedEventNumber() != null && !ppalView.getSelectedEventNumber().equals("")) {
-            DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getjTree1().getLastSelectedPathComponent();
-            DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getjTree1().getModel();
+            DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
+            DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
             EventoDAOJmodbus dao = new EventoDAOJmodbus(ppalView.getDao());
             dao.deleteEvent(ppalView.getSelectedEventNumber());
             treeModel.removeNodeFromParent(nodeToDelete);
@@ -441,11 +441,11 @@ public class EventControl {
             readEvents(ppalView);
             int startRow = 0;
             String prefix = PropHandler.getProperty("events.menu.name");
-            TreePath path = ppalView.getjTree1().getNextMatch(prefix, startRow, Position.Bias.Forward);
+            TreePath path = ppalView.getArbol_jTree().getNextMatch(prefix, startRow, Position.Bias.Forward);
 
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) path.getLastPathComponent();
             ArrayList<String> addedEvents = PropHandler.getAddedEvents(ppalView.getDao());
-            DefaultTreeModel model = (DefaultTreeModel) ppalView.getjTree1().getModel();
+            DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
 
             //Remove the used balast numbers from the list and add them to the menu.
             for (String eventNumber : addedEvents) {

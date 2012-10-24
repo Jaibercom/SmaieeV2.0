@@ -11,9 +11,7 @@
 package com.isolux.view;
 
 import com.isolux.dao.modbus.DAOJamod;
-import com.isolux.dao.modbus.DAO4j;
 import com.isolux.dao.properties.PropHandler;
-import java.awt.HeadlessException;
 import java.net.ConnectException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +26,8 @@ import javax.swing.UIManager;
  * @author EAFIT
  */
 public class Inicio extends javax.swing.JFrame {
+
+    Conectar conn;
 
     /**
      * Creates new form Inicio
@@ -149,15 +149,20 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void conectar_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conectar_jButtonActionPerformed
- Conectar conn=new Conectar();
- conn.execute();
- 
+        try {
+            conn=new Conectar();
+            conn.execute();
+
+        } catch (Exception ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 
     }//GEN-LAST:event_conectar_jButtonActionPerformed
 
     private void ipTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipTextFieldActionPerformed
-      Conectar con=new Conectar();
-      con.execute();
+        Conectar con = new Conectar();
+        con.execute();
     }//GEN-LAST:event_ipTextFieldActionPerformed
 
     /**
@@ -244,7 +249,7 @@ public class Inicio extends javax.swing.JFrame {
             conectar_jButton.setEnabled(false);
             ipTextField.setEnabled(false);
             jLabel3.setText("Conectando...");
-           
+
             int port = 502;
             String ip = ipTextField.getText();
 
@@ -262,7 +267,9 @@ public class Inicio extends javax.swing.JFrame {
                     PpalView ppal = new PpalView();
                     ppal.setLocationRelativeTo(null);
                     ppal.setVisible(true);
-                    this.dispose(); //oculta la ventana actual (Inicio.java)
+                    conn.cancel(true);
+//                    this.dispose(); //oculta la ventana actual (Inicio.java)
+
                 } else {
 
 
@@ -284,24 +291,90 @@ public class Inicio extends javax.swing.JFrame {
 //            ce.printStackTrace();
         }
     }
-    
+
     /**
      * Clase interna que se encarga de la conexion en un hilo separado.
      */
-    private class Conectar extends SwingWorker<String, Boolean>{
+    private class Conectar extends SwingWorker<String, Boolean> {
 
         @Override
         protected String doInBackground() throws Exception {
-            conectar();
+//            conectar();
+
+            try {
+
+                conectar_jButton.setEnabled(false);
+                ipTextField.setEnabled(false);
+                jLabel3.setText("Conectando...");
+
+                int port = 502;
+                String ip = ipTextField.getText();
+
+                if (ipValidator(ip)) {
+                    //        System.out.println("Connection state: " + DAOJamod.testConnection(ip, port));
+
+                    PropHandler.setProperty("general.ip", ip);
+                    PropHandler.setProperty("general.port", String.valueOf(port));
+                    if (DAOJamod.testConnection(ip, port)) {
+                        //TODO: Get info and give it to the ppal
+                        //Getting info...
+//                DAO4j.readMemory();
+
+                        //Show the main view.
+                        PpalView ppal = new PpalView();
+                        ppal.setLocationRelativeTo(null);
+                        ppal.setVisible(true);
+                        ppal.setTitle(ppal.getTitle() + " - " + ip);
+
+                        dispose();
+
+                    } else {
+
+
+                        ConnectException ce = new ConnectException("La tarjeta no esta bien conectada");
+                        throw ce;
+                        
+                    }
+
+                }
+            } catch (ConnectException ce) {
+                try {
+                    conn.cancel(true);
+                    conn.finalize();
+                    conectar_jButton.setEnabled(true);
+                    ipTextField.setEnabled(true);
+                    jLabel3.setText("No se puede establecer una conexion!");
+                    JOptionPane.showMessageDialog(rootPane, "No se pudo conectar a la tarjeta. Revise su conexion " + ce.getLocalizedMessage(), "Error de conexión", JOptionPane.ERROR_MESSAGE);
+
+
+    //            ce.printStackTrace();
+                } catch (Throwable ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+
+
+//            this.cancel(true);
             return "Terminada";
         }
 
         @Override
         protected void done() {
-            super.done();
+//            super.done();
+            System.out.println("Terminado el hilo de conexion desde el done.");
+
+//            dispose();
+
+            try {
+                System.out.println("Terminando...");
+
+                System.out.println("CANCELADO? " + conn.isCancelled());
+                System.out.println("Esta terminada? " + conn.isDone());
+
+            } catch (Throwable ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        
     }
-            
-            
 }

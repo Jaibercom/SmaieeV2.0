@@ -60,7 +60,7 @@ public class GroupsControl {
                 }
 
                 //Update name in the tree.
-                TreePath path = ppalView.getjTree1().getNextMatch(PropHandler.getProperty("group.menu.name"), 0, Position.Bias.Forward);
+                TreePath path = ppalView.getArbol_jTree().getNextMatch(PropHandler.getProperty("group.menu.name"), 0, Position.Bias.Forward);
                 MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
                 Enumeration groups = balastNode.children();
                 while (groups.hasMoreElements()) {
@@ -82,8 +82,8 @@ public class GroupsControl {
                     }
 
                     //Show balast in tree
-                    DefaultTreeModel model = (DefaultTreeModel) ppalView.getjTree1().getModel();
-                    TreePath path = ppalView.getjTree1().getNextMatch(PropHandler.getProperty("group.menu.name"), 0, Position.Bias.Forward);
+                    DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
+                    TreePath path = ppalView.getArbol_jTree().getNextMatch(PropHandler.getProperty("group.menu.name"), 0, Position.Bias.Forward);
                     MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
                     DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(String.valueOf(newGroup.getGroupNumber()) + " - " + newGroup.getName());
                     model.insertNodeInto(newNode, balastNode, balastNode.getChildCount());
@@ -104,8 +104,8 @@ public class GroupsControl {
         new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
         if (connectionStatus) {
             if (ppalView.getSelectedGroupNumber() != null && !ppalView.getSelectedGroupNumber().equals("")) {
-                DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getjTree1().getLastSelectedPathComponent();
-                DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getjTree1().getModel();
+                DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
+                DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                 GrupoDAOJmodbus gDao = new GrupoDAOJmodbus(ppalView.getDao());
                 gDao.deleteGroup(ppalView.getSelectedGroupNumber());
                 treeModel.removeNodeFromParent(nodeToDelete);
@@ -192,11 +192,11 @@ public class GroupsControl {
             new GroupsControl().readGroups(ppalView);
             int startRow = 0;
             String prefix = PropHandler.getProperty("group.menu.name");
-            TreePath path = ppalView.getjTree1().getNextMatch(prefix, startRow, Position.Bias.Forward);
+            TreePath path = ppalView.getArbol_jTree().getNextMatch(prefix, startRow, Position.Bias.Forward);
 
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) path.getLastPathComponent();
             ArrayList<String> addedGroups = PropHandler.getAddedGroups(ppalView.getDao());
-            DefaultTreeModel model = (DefaultTreeModel) ppalView.getjTree1().getModel();
+            DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
 
             //Remove the used balast numbers from the list and add them to the menu.
             for (String string : addedGroups) {

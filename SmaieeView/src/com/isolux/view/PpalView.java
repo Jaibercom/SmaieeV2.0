@@ -18,6 +18,7 @@ import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.view.threads.ThreadManager;
 import com.toedter.calendar.JDateChooser;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.HashMap;
@@ -49,6 +50,8 @@ import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 /**
  *
@@ -109,6 +112,7 @@ public class PpalView extends javax.swing.JFrame {
     private DAOJmodbus dao;
     //Checking threads
     private ThreadManager threadManager;
+    CargaInicial cargaInicial;
 
     //Init Ctrls
     public void initControls() {
@@ -161,27 +165,27 @@ public class PpalView extends javax.swing.JFrame {
      * Creates new form ConfPpalView
      */
     public PpalView() {
-       
-            applicationTheme();
-            initControls();
-            initModbus();
-            initSelections();
-            initAddedElements();
-            new GeneralControl().menuParents(this);
-            getConnectionProperties();
-            initInOutTypes();
-            initThreads();
 
-            initComponents();
-    //        generalCtrl.loadConfigurationViewData(this);
-            showAreas = true;
-    //        new RealTimeControl().refreshBalastsLevels(this);
-            
-            CargaInicial c=new CargaInicial(this);
-            c.execute();
-            
-        
-        
+        applicationTheme();
+        initControls();
+        initModbus();
+        initSelections();
+        initAddedElements();
+        new GeneralControl().menuParents(this);
+        getConnectionProperties();
+        initInOutTypes();
+        initThreads();
+
+        initComponents();
+        //        generalCtrl.loadConfigurationViewData(this);
+        showAreas = true;
+        //        new RealTimeControl().refreshBalastsLevels(this);
+
+        CargaInicial c = new CargaInicial(this);
+        c.execute();
+
+
+
     }
 
     /**
@@ -208,7 +212,7 @@ public class PpalView extends javax.swing.JFrame {
         tabbedPane = new javax.swing.JTabbedPane();
         tabConfiguracion = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        arbol_jTree = new javax.swing.JTree();
         panelPpal = new javax.swing.JPanel();
         panelBienvenida = new javax.swing.JPanel();
         panelConfiguracion = new javax.swing.JPanel();
@@ -538,22 +542,22 @@ public class PpalView extends javax.swing.JFrame {
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Eventos");
         treeNode1.add(treeNode2);
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jTree1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTree1.addMouseListener(new java.awt.event.MouseAdapter() {
+        arbol_jTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        arbol_jTree.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        arbol_jTree.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTree1MouseClicked(evt);
+                arbol_jTreeMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jTree1MousePressed(evt);
+                arbol_jTreeMousePressed(evt);
             }
         });
-        jTree1.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+        arbol_jTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
             public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
-                jTree1ValueChanged(evt);
+                arbol_jTreeValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(jTree1);
+        jScrollPane1.setViewportView(arbol_jTree);
 
         panelPpal.setLayout(new java.awt.CardLayout());
 
@@ -2533,6 +2537,7 @@ public class PpalView extends javax.swing.JFrame {
 
         archivo_jMenu.setText("Archivo");
 
+        guardarEnFlash_jMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         guardarEnFlash_jMenuItem.setText("Guardar en flash");
         guardarEnFlash_jMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2541,6 +2546,7 @@ public class PpalView extends javax.swing.JFrame {
         });
         archivo_jMenu.add(guardarEnFlash_jMenuItem);
 
+        leerFlash_jMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         leerFlash_jMenuItem.setText("Leer flash");
         leerFlash_jMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2550,6 +2556,7 @@ public class PpalView extends javax.swing.JFrame {
         archivo_jMenu.add(leerFlash_jMenuItem);
         archivo_jMenu.add(jSeparator4);
 
+        formatear_jMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         formatear_jMenuItem.setText("Formatear memoria");
         formatear_jMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2607,9 +2614,9 @@ public class PpalView extends javax.swing.JFrame {
      *
      * @param evt
      */
-    protected void jTree1ValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTree1ValueChanged
+    protected void arbol_jTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_arbol_jTreeValueChanged
 //        this.generalCtrl.treeSelection(this, realCtrl);
-    }//GEN-LAST:event_jTree1ValueChanged
+    }//GEN-LAST:event_arbol_jTreeValueChanged
 
     /**
      * Load configuration view.
@@ -3108,7 +3115,6 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void porDias_jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_porDias_jCheckBoxActionPerformed
-        
     }//GEN-LAST:event_porDias_jCheckBoxActionPerformed
 
     /**
@@ -3191,6 +3197,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void guardarEnFlash(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarEnFlash
+        ConfiguracionDAOJmodbus g = new ConfiguracionDAOJmodbus(dao);
         ConfiguracionDAOJmodbus.saveToFlash();
     }//GEN-LAST:event_guardarEnFlash
 
@@ -3200,7 +3207,18 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void readFromFlash(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readFromFlash
-        ConfiguracionDAOJmodbus.readFromFlash();
+        limpiarArbol(arbol_jTree);
+
+        ConfiguracionDAOJmodbus conf = new ConfiguracionDAOJmodbus(dao);
+        conf.readFromFlash();
+        this.getGeneralCtrl().menuParents(this);
+
+
+        CargaInicial c = new CargaInicial(this);
+        c.execute();
+
+        //Despertamos el hilo de carga y volvemos a cargar todo el arbol de jerarfquia.
+
     }//GEN-LAST:event_readFromFlash
 
     /**
@@ -3247,7 +3265,19 @@ public class PpalView extends javax.swing.JFrame {
      * Erase the memory
      */
     private void formatearMemoria(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formatearMemoria
-        ConfiguracionDAOJmodbus.eraseMemory();
+        int confirm = JOptionPane.showConfirmDialog(null, "Está apunto de borrar la memoria flash. Desea continuar?");
+        if (confirm == JOptionPane.OK_OPTION) {
+            try {
+                ConfiguracionDAOJmodbus c = new ConfiguracionDAOJmodbus(dao);
+                c.eraseMemory();
+                limpiarArbol(getArbol_jTree());
+                establecerModeloArbolDefault(this.getArbol_jTree());
+                JOptionPane.showMessageDialog(null, "Memoria flash borrada exitósamente");
+            } catch (HeadlessException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error borrando la memoria flash: " + ex.getMessage());
+            }
+        }
     }//GEN-LAST:event_formatearMemoria
 
     /**
@@ -3271,12 +3301,12 @@ public class PpalView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox4ActionPerformed
 
-    private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
-    }//GEN-LAST:event_jTree1MouseClicked
+    private void arbol_jTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arbol_jTreeMouseClicked
+    }//GEN-LAST:event_arbol_jTreeMouseClicked
 
-    private void jTree1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MousePressed
+    private void arbol_jTreeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arbol_jTreeMousePressed
         this.generalCtrl.treeSelection(this, realCtrl);
-    }//GEN-LAST:event_jTree1MousePressed
+    }//GEN-LAST:event_arbol_jTreeMousePressed
 
     /**
      * Select scenes items ftcld.
@@ -3289,7 +3319,7 @@ public class PpalView extends javax.swing.JFrame {
     }//GEN-LAST:event_fotoceldas_entrada_escenas_jCheckBoxActionPerformed
 
     private void porDias_jCheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_porDias_jCheckBoxItemStateChanged
-       this.eventCtrl.selectByDays(this);
+        this.eventCtrl.selectByDays(this);
     }//GEN-LAST:event_porDias_jCheckBoxItemStateChanged
 
 //    private void startCheckingThread(java.awt.event.FocusEvent evt) {
@@ -3321,6 +3351,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton actualizarNivelEscena_jButton;
     private javax.swing.JButton agregarBalastoEscena_jButton;
     private javax.swing.JButton agregarTodosBalastosEscena_jButton;
+    private javax.swing.JTree arbol_jTree;
     private javax.swing.JMenu archivo_jMenu;
     private javax.swing.JList balastosAfectados_jList;
     private javax.swing.JList balastrosDisponibles_jList;
@@ -3518,7 +3549,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JTree jTree1;
     private javax.swing.JCheckBox jueves_jCheckBox;
     private javax.swing.JLabel labelDns;
     private javax.swing.JLabel labelGateway;
@@ -5595,12 +5625,12 @@ public class PpalView extends javax.swing.JFrame {
         this.jTextField9 = jTextField9;
     }
 
-    public JTree getjTree1() {
-        return jTree1;
+    public JTree getArbol_jTree() {
+        return arbol_jTree;
     }
 
     public void setjTree1(JTree jTree1) {
-        this.jTree1 = jTree1;
+        this.arbol_jTree = jTree1;
     }
 
     public JLabel getLabelDns() {
@@ -5882,37 +5912,115 @@ public class PpalView extends javax.swing.JFrame {
     public void setThreadManager(ThreadManager threadManager) {
         this.threadManager = threadManager;
     }
+
+    /**
+     * Método que expande o contrae el arbol de jerarquía
+     *
+     * @param tree Arbol a expandir o contraer
+     * @param path
+     * @param expanded
+     */
+    public void expandirArbol(JTree tree, TreePath path, boolean expanded) {
+        Object lastNode = path.getLastPathComponent();
+        for (int i = 0; i < tree.getModel().getChildCount(lastNode); i++) {
+            Object child = tree.getModel().getChild(lastNode, i);
+            TreePath pathToChild = path.pathByAddingChild(child);
+            expandirArbol(tree, pathToChild, expanded);
+        }
+        if (expanded) {
+            tree.expandPath(path);
+        } else {
+            tree.collapsePath(path);
+        }
+
+
+    }
+
+    /**
+     * Limpia el arbol de jerarquia.
+     *
+     * @param arbol
+     */
+    public void limpiarArbol(JTree arbol) {
+        TreePath[] selectionPaths = arbol.getSelectionPaths();
+        arbol.removeSelectionPaths(selectionPaths);
+        establecerModeloArbolDefault(arbol);
+    }
+
+    /**
+     * Método que establece un nuevo modelo vacio pero con la estructura al
+     * arbol que se le pase por parámetros.
+     *
+     * @param arbol
+     */
+    public void establecerModeloArbolDefault(JTree arbol) {
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("SMAIEE");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Balastos");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Grupos");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Escenas");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Entradas");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Botoneras");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Fotoceldas");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Sensores");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Eventos");
+        treeNode1.add(treeNode2);
+        arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        arbol.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        arbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arbol_jTreeMouseClicked(evt);
+            }
+
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                arbol_jTreeMousePressed(evt);
+            }
+        });
+        arbol.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            @Override
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                arbol_jTreeValueChanged(evt);
+            }
+        });
+    }
+
     // End of variables declaration                   
     //</editor-fold>
-    
-   
-     private class CargaInicial extends SwingWorker<Boolean, Boolean>{
+    private class CargaInicial extends SwingWorker<Boolean, Boolean> {
 
         PpalView ppalView;
 
         public CargaInicial(PpalView ppalView) {
             this.ppalView = ppalView;
         }
-        
-        
-        
+
         @Override
         protected Boolean doInBackground() throws Exception {
-            
-            return getGeneralCtrl().cargaInicial(ppalView, balastosCtrl, groupsCtrl, sceneCtrl, eventCtrl, insCtrl); 
-             
+
+            GeneralControl generalCtrl = new GeneralControl();
+
+            Boolean c = generalCtrl.cargaInicial(ppalView, balastosCtrl, groupsCtrl, sceneCtrl, eventCtrl, insCtrl);
+
+            return c;
+
         }
 
         @Override
         protected void done() {
+//            expandirArbol(getArbol_jTree());
+            Object nodo = arbol_jTree.getModel().getRoot();
+            expandirArbol(arbol_jTree, new TreePath(nodo), true);
             super.done();
-        }
 
-       
-        
-        
-        
+        }
     }
-           
-    
 }

@@ -60,7 +60,7 @@ public class DAOJamod {
 
             //2. Open the connection	
             con.setPort(port);
-            con.setTimeout(5000);
+            con.setTimeout(3000);
             con.connect();
 //            System.out.println("Connected... " + port + " " + ref);
 

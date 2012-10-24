@@ -57,8 +57,8 @@ public class BalastosControlJmodbus {
         BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
         if (true) {
             if (ppalView.getSelectedBalastNumber() != null && !ppalView.getSelectedBalastNumber().equals("")) {
-                DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getjTree1().getLastSelectedPathComponent();
-                DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getjTree1().getModel();
+                DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
+                DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                 dao.deleteBalast(ppalView.getSelectedBalastNumber());
                 treeModel.removeNodeFromParent(nodeToDelete);
                 ppalView.getBalasts().remove(ppalView.getSelectedBalastNumber());
@@ -120,7 +120,7 @@ public class BalastosControlJmodbus {
                 }
 
                 //Update name in the tree.
-                TreePath path = ppalView.getjTree1().getNextMatch(PropHandler.getProperty("balast.menu.name"), 0, Position.Bias.Forward);
+                TreePath path = ppalView.getArbol_jTree().getNextMatch(PropHandler.getProperty("balast.menu.name"), 0, Position.Bias.Forward);
                 MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
                 Enumeration balasts = balastNode.children();
                 while (balasts.hasMoreElements()) {
@@ -142,8 +142,8 @@ public class BalastosControlJmodbus {
                     }
 
                     //Show balast in tree
-                    DefaultTreeModel model = (DefaultTreeModel) ppalView.getjTree1().getModel();
-                    TreePath path = ppalView.getjTree1().getNextMatch(PropHandler.getProperty("balast.menu.name"), 0, Position.Bias.Forward);
+                    DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
+                    TreePath path = ppalView.getArbol_jTree().getNextMatch(PropHandler.getProperty("balast.menu.name"), 0, Position.Bias.Forward);
                     MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
                     DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(String.valueOf(balast.getBalastNumber()) + " - " + String.valueOf(balast.getName()));
                     model.insertNodeInto(newNode, balastNode, balastNode.getChildCount());
@@ -166,10 +166,10 @@ public class BalastosControlJmodbus {
             readBalastos(ppalView);
             int startRow = 0;
             String prefix = PropHandler.getProperty("balast.menu.name");
-            TreePath path = ppalView.getjTree1().getNextMatch(prefix, startRow, Position.Bias.Forward);
+            TreePath path = ppalView.getArbol_jTree().getNextMatch(prefix, startRow, Position.Bias.Forward);
 
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) path.getLastPathComponent(); //TODO: nodo de balasts.
-            DefaultTreeModel model = (DefaultTreeModel) ppalView.getjTree1().getModel();
+            DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
 
             //Remove the used balast numbers from the list and add them to the menu.
             HashMap<String, Balasto> balasts = ppalView.getBalasts();

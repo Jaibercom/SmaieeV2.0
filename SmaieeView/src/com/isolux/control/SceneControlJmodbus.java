@@ -62,7 +62,7 @@ public class SceneControlJmodbus {
                 }
 
                 //Update name in the tree.
-                TreePath path = ppalView.getjTree1().getNextMatch(PropHandler.getProperty("scenes.menu.name"), 0, Position.Bias.Forward);
+                TreePath path = ppalView.getArbol_jTree().getNextMatch(PropHandler.getProperty("scenes.menu.name"), 0, Position.Bias.Forward);
                 MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
                 Enumeration groups = balastNode.children();
                 while (groups.hasMoreElements()) {
@@ -84,8 +84,8 @@ public class SceneControlJmodbus {
                     }
 
                     //Show balast in tree
-                    DefaultTreeModel model = (DefaultTreeModel) ppalView.getjTree1().getModel();
-                    TreePath path = ppalView.getjTree1().getNextMatch(PropHandler.getProperty("scenes.menu.name"), 0, Position.Bias.Forward);
+                    DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
+                    TreePath path = ppalView.getArbol_jTree().getNextMatch(PropHandler.getProperty("scenes.menu.name"), 0, Position.Bias.Forward);
                     MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
                     DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(String.valueOf(newScene.getNumeroEscena()) + " - " + newScene.getNombre());
                     model.insertNodeInto(newNode, balastNode, balastNode.getChildCount());
@@ -107,8 +107,8 @@ public class SceneControlJmodbus {
         if (true) {
             EscenaDAOJmodbus dao = new EscenaDAOJmodbus(ppalView.getDao());
             if (ppalView.getSelectedSceneNumber() != null && !ppalView.getSelectedSceneNumber().equals("")) {
-                DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getjTree1().getLastSelectedPathComponent();
-                DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getjTree1().getModel();
+                DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
+                DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                 dao.deleteScene(ppalView.getSelectedSceneNumber());
                 treeModel.removeNodeFromParent(nodeToDelete);
                 ppalView.getScenes().remove(ppalView.getSelectedSceneNumber());
@@ -198,11 +198,11 @@ public class SceneControlJmodbus {
             readScenes(ppalView);
             int startRow = 0;
             String prefix = PropHandler.getProperty("scenes.menu.name");
-            TreePath path = ppalView.getjTree1().getNextMatch(prefix, startRow, Position.Bias.Forward);
+            TreePath path = ppalView.getArbol_jTree().getNextMatch(prefix, startRow, Position.Bias.Forward);
 
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) path.getLastPathComponent();
             ArrayList<String> addedScenes = PropHandler.getAddedScenes(ppalView.getDao());
-            DefaultTreeModel model = (DefaultTreeModel) ppalView.getjTree1().getModel();
+            DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
 
             //Remove the used balast numbers from the list and add them to the menu.
             for (String string : addedScenes) {

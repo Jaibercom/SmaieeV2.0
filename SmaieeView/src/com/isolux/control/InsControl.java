@@ -162,8 +162,8 @@ public class InsControl {
                             : ppalView.getInType() == ViewUtils.getIntProperty("in.type.sensor") ? sensorText : "";
 
                     //Show balast in tree
-                    DefaultTreeModel model = (DefaultTreeModel) ppalView.getjTree1().getModel();
-                    TreePath path = ppalView.getjTree1().getNextMatch(parentNodeText, 0, Position.Bias.Forward);
+                    DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
+                    TreePath path = ppalView.getArbol_jTree().getNextMatch(parentNodeText, 0, Position.Bias.Forward);
                     MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
                     DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(String.valueOf(newIn.getNumeroEntrada()));
                     model.insertNodeInto(newNode, balastNode, balastNode.getChildCount());
@@ -193,8 +193,8 @@ public class InsControl {
         new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
         if (connectionStatus) {
             if (ppalView.getSelectedInNumber() != null && !ppalView.getSelectedInNumber().equals("")) {
-                DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getjTree1().getLastSelectedPathComponent();
-                DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getjTree1().getModel();
+                DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
+                DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                 EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(ppalView.getDao());
                 jDao.deleteIn(ppalView.getSelectedInNumber());
                 treeModel.removeNodeFromParent(nodeToDelete);
@@ -331,16 +331,16 @@ public class InsControl {
             String prefixFtcld = PropHandler.getProperty("ftcl.menu.name");
             String prefixSensor = PropHandler.getProperty("sensors.menu.name");
 
-            TreePath pathBtns = ppalView.getjTree1().getNextMatch(prefixBtn, startRow, Position.Bias.Forward);
-            TreePath pathFtcld = ppalView.getjTree1().getNextMatch(prefixFtcld, startRow, Position.Bias.Forward);
-            TreePath pathSensor = ppalView.getjTree1().getNextMatch(prefixSensor, startRow, Position.Bias.Forward);
+            TreePath pathBtns = ppalView.getArbol_jTree().getNextMatch(prefixBtn, startRow, Position.Bias.Forward);
+            TreePath pathFtcld = ppalView.getArbol_jTree().getNextMatch(prefixFtcld, startRow, Position.Bias.Forward);
+            TreePath pathSensor = ppalView.getArbol_jTree().getNextMatch(prefixSensor, startRow, Position.Bias.Forward);
 
             DefaultMutableTreeNode btnsNode = (DefaultMutableTreeNode) pathBtns.getLastPathComponent();
             DefaultMutableTreeNode ftcldNode = (DefaultMutableTreeNode) pathFtcld.getLastPathComponent();
             DefaultMutableTreeNode sensorNode = (DefaultMutableTreeNode) pathSensor.getLastPathComponent();
 
             ArrayList<String> addedIns = PropHandler.getAddedIns(ppalView.getDao());
-            DefaultTreeModel model = (DefaultTreeModel) ppalView.getjTree1().getModel();
+            DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
 
             //Remove the used balast numbers from the list and add them to the menu.
             for (String string : addedIns) {

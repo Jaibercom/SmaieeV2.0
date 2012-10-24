@@ -26,8 +26,6 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 import javax.swing.tree.DefaultMutableTreeNode;
-import net.wimpi.modbus.net.TCPMasterConnection;
-import sun.misc.GC;
 
 /**
  *
@@ -107,10 +105,10 @@ public class GeneralControl {
      */
     public void treeSelection(PpalView ppalView, RealTimeControl realCtrl) {
         //Stops current threads.
-//        ppalView.getThreadManager().stopAllCurrentThreads();// aqui se puede estar presentando el problema de la grabada, porque se paran todos los hilos.
+        ppalView.getThreadManager().stopAllCurrentThreads();// aqui se puede estar presentando el problema de la grabada, porque se paran todos los hilos.
 
 
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode) ppalView.getjTree1().getLastSelectedPathComponent();
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
 
         if (node == null) {
             return;
@@ -124,7 +122,14 @@ public class GeneralControl {
             char opc = ' ';
 
             DefaultMutableTreeNode parentNodeText = (DefaultMutableTreeNode) node.getParent();
-            String parentText = (String) parentNodeText.getUserObject();
+            String parentText;
+            if (parentNodeText==null) {
+                parentText="SMAIEE";
+            } else {
+                parentText = (String) parentNodeText.getUserObject();
+            }
+            
+            
 
             //If it's a in
             if (parentText.equals(PropHandler.getProperty("in.menu.name"))) {
@@ -153,13 +158,23 @@ public class GeneralControl {
 
 
             if (parentText.equals("SMAIEE")) {
-                String sel = node.getUserObject().toString();
-                opc = ppalView.getMenuParents().get(node.getUserObject());
+                //                String op = node.getUserObject().toString();
+                Character cha = ppalView.getMenuParents().get(node.getUserObject());
+                if (cha != null){
+                    
+                    opc = ppalView.getMenuParents().get(node.getUserObject());
+                    
+                } else {
+                     opc='x';
+                }
+                
+//               
                 isNode = false;
             } else if (!parentText.equals(PropHandler.getProperty("in.menu.name"))) {
                 DefaultMutableTreeNode parentNode = (DefaultMutableTreeNode) node.getParent();
                 String sel = parentNode.getUserObject().toString();
                 opc = ppalView.getMenuParents().get(parentNode.getUserObject());
+//                opc='x';
                 isNode = true;
             }
 
@@ -283,6 +298,19 @@ public class GeneralControl {
                     }
                     cl.show(ppalView.getPanelPpal(), "card6");
                     clIns.show(ppalView.getPanelConfEntradas(), "card4"); //Sensores
+                    break;
+                    
+                case 'x':
+//                     System.out.println("Se selecciono el padre del arbol");
+//                    Object nodoPadre= ppalView.getArbol_jTree().getModel().getRoot();
+//                    TreePath path =new TreePath(nodoPadre);
+//                    boolean colapsado=ppalView.getArbol_jTree().isCollapsed(path); 
+//                    
+//                    ppalView.expandirArbol(ppalView.getArbol_jTree(), path, colapsado);
+                    break;
+                    
+                default:
+                   
                     break;
             }
         } catch (Exception e) {
@@ -636,6 +664,7 @@ public class GeneralControl {
             c.refrescarVistaEscenas(ppalView);
             d.refrescaEventos(ppalView);
             f.refrescarVistaEntradas(ppalView);
+            
             return true;
         } catch (Exception e) {
             e.printStackTrace();
