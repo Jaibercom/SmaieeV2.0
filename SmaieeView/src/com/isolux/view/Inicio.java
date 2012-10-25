@@ -369,8 +369,8 @@ public class Inicio extends javax.swing.JFrame {
             try {
                 System.out.println("Terminando...");
 
-                System.out.println("CANCELADO? " + conn.isCancelled());
-                System.out.println("Esta terminada? " + conn.isDone());
+//                System.out.println("CANCELADO? " + conn.isCancelled());
+//                System.out.println("Esta terminada? " + conn.isDone());
 
             } catch (Throwable ex) {
                 Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);

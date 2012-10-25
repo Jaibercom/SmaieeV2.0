@@ -81,7 +81,7 @@ public class Validation {
         if (!ppalView.getjTextField33().getText().isEmpty()) { //Pot
              
         }
-        if (ppalView.getjComboBox3().getSelectedIndex() == 0) { //No. balasto
+        if (ppalView.getBalastoNum_jComboBox().getSelectedIndex() == 0) { //No. balasto
             validationResult += "- Debe seleccionar un número de balasto\n";
             result = false;
         }

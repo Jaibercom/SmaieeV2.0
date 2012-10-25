@@ -13,6 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -324,8 +325,10 @@ public class ConfiguracionDAOJmodbus {
             setSingleReg(1, 10);// escribimos el valor 
             setSingleReg(0, 0);// volvemos a poner el modo run
             System.out.println("Guardado");
+            JOptionPane.showMessageDialog(null, "Guardada la información en la flash exitósamente");
         }catch(Exception ex){
             System.out.println("Excepcion al guardar en Flash");
+            JOptionPane.showMessageDialog(null, "Error guardando la informacion en flash. "+ex.getLocalizedMessage());
             Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.SEVERE, null,ex);
         }
         

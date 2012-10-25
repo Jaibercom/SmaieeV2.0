@@ -62,7 +62,7 @@ public class BalastosControlJmodbus {
                 dao.deleteBalast(ppalView.getSelectedBalastNumber());
                 treeModel.removeNodeFromParent(nodeToDelete);
                 ppalView.getBalasts().remove(ppalView.getSelectedBalastNumber());
-                ppalView.getjComboBox3().addItem(ppalView.getSelectedBalastNumber());
+                ppalView.getBalastoNum_jComboBox().addItem(ppalView.getSelectedBalastNumber());
                 cleanBalastosView(ppalView);
             }
         }
@@ -80,7 +80,7 @@ public class BalastosControlJmodbus {
         if (true) {
 
             boolean isUpdate = !ppalView.getjLabel41().getText().equals("#") || !ppalView.getSelectedBalastNumber().equals("");
-            int balastNumber = !ppalView.getjLabel41().getText().equals("#") ? Integer.parseInt(ppalView.getjLabel41().getText()) : Integer.parseInt((String) ppalView.getjComboBox3().getSelectedItem());
+            int balastNumber = !ppalView.getjLabel41().getText().equals("#") ? Integer.parseInt(ppalView.getjLabel41().getText()) : Integer.parseInt((String) ppalView.getBalastoNum_jComboBox().getSelectedItem());
             
             int level = Integer.parseInt(ppalView.getjTextField20().getText());
             int activation = 0; //Integer.parseInt(ppalView.getjTextField21().getText());
@@ -149,7 +149,7 @@ public class BalastosControlJmodbus {
                     model.insertNodeInto(newNode, balastNode, balastNode.getChildCount());
 
                     //Remove balast from the list of available ones (jComboBox)
-                    ppalView.getjComboBox3().removeItem(balastNumber);
+                    ppalView.getBalastoNum_jComboBox().removeItem(balastNumber);
                     ppalView.getjLabel41().setText(String.valueOf(balastNumber));
                 }
             }
@@ -175,7 +175,7 @@ public class BalastosControlJmodbus {
             HashMap<String, Balasto> balasts = ppalView.getBalasts();
             Set<String> balastsKeys = balasts.keySet();
             for (String string : balastsKeys) {
-                ppalView.getjComboBox3().removeItem(string);
+                ppalView.getBalastoNum_jComboBox().removeItem(string);
                 Balasto balasto = balasts.get(string);
                 DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(string + " - " + balasto.getName());
                 model.insertNodeInto(newNode, selectedNode, selectedNode.getChildCount());
@@ -202,7 +202,7 @@ public class BalastosControlJmodbus {
         ppalView.getjTextField32().setText(String.valueOf(selectedBalast.getLx()));
         ppalView.getjTextField33().setText(String.valueOf(selectedBalast.getPot()));
         ppalView.getjLabel41().setText(balastNumber);
-        ppalView.getjComboBox3().setSelectedIndex(0);
+        ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
     }
 
     /**
@@ -222,7 +222,7 @@ public class BalastosControlJmodbus {
         ppalView.getjLabel41().setText("#");
 
         ppalView.setSelectedBalastNumber("");
-        ppalView.getjComboBox3().setSelectedIndex(0);
+        ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
     }
 
     /**

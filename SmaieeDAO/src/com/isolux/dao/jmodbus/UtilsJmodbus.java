@@ -6,12 +6,16 @@ package com.isolux.dao.jmodbus;
 
 import com.isolux.dao.Utils;
 import com.isolux.dao.modbus.DAOJmodbus;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -842,4 +846,24 @@ public class UtilsJmodbus {
         int[] values = {mode};
         dao.setRegValue(pos, values);
     }
+    
+   /**
+    * Método que actualiza el combobox que se le pase por parámetros con la lista 
+    * de los elementos no se han grabado aun en la tarjeta, como por ejemplo los balastros 
+    * que todavia no se han grabado en la tarjeta.
+    * @param combo ComboBox para ser procesado
+    * @param elementosDisponibles Lista de elementos que aun no se han grabado enla tarjeta
+    * @return ComboBox procesado
+    */
+    public static JComboBox<String> actualizarCombo(JComboBox combo,String[] elementosDisponibles){
+        
+        DefaultComboBoxModel<String> model=new DefaultComboBoxModel<String>(elementosDisponibles);
+        combo.setModel(model);
+        
+        
+        return combo;
+                
+    }
+    
+    
 }

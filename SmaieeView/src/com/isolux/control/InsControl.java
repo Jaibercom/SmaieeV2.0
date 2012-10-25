@@ -62,7 +62,7 @@ public class InsControl {
             //in number
             boolean isUpdate = !ppalView.getjLabel63().getText().equals("#");
 
-            int inNumber = ppalView.getjLabel63().getText().equals("#") ? Integer.parseInt((String) ppalView.getjComboBox4().getSelectedItem()) : Integer.parseInt(ppalView.getjLabel63().getText());
+            int inNumber = ppalView.getjLabel63().getText().equals("#") ? Integer.parseInt((String) ppalView.getEntradaNumero_jComboBox().getSelectedItem()) : Integer.parseInt(ppalView.getjLabel63().getText());
 //        int balastNumber = !jLabel63.getText().equals("#") ? Integer.parseInt(jLabel63.getText()) : Integer.parseInt((String) jComboBox4.getSelectedItem());
 //        int balastNumber = !jLabel63.getText().equals("#") ? Integer.parseInt(jLabel63.getText()) : Integer.parseInt((String) jComboBox4.getSelectedItem());
 
@@ -275,7 +275,7 @@ public class InsControl {
         DefaultListModel model = new DefaultListModel();
         ppalView.getjLabel63().setText("#");
         ppalView.setSelectedInNumber("");
-        ppalView.getjComboBox4().setSelectedIndex(0);
+        ppalView.getEntradaNumero_jComboBox().setSelectedIndex(0);
 
         //Btnr
         ppalView.getjRadioButton1().setSelected(true);

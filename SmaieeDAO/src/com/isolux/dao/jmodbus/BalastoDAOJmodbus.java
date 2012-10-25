@@ -1,20 +1,19 @@
 package com.isolux.dao.jmodbus;
 
-import com.isolux.dao.Utils;
 import com.isolux.bo.Balasto;
+import com.isolux.dao.Utils;
 import com.isolux.dao.modbus.DAO4j;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 /**
  *
  * @author Juan Diego Toro Cano
  */
-public class BalastoDAOJmodbus {
+public class BalastoDAOJmodbus implements OperacionesElemento{
 
     private static DAOJmodbus dao;
 
@@ -614,4 +613,18 @@ public class BalastoDAOJmodbus {
 //            System.out.println("Balasto: " + object + ", nivel: " + balastos.get(object).getLevel());
 //        }
     }
+
+    @Override
+    public ArrayList<String> elementosSinGrabar() {
+        
+       
+        ArrayList<String> addedBalasts = BalastoDAOJmodbus.getAddedBalasts();
+        return addedBalasts;
+        
+        
+        
+        
+    }
+
+   
 }
