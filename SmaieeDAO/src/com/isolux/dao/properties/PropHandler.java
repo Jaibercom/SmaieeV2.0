@@ -253,7 +253,7 @@ public class PropHandler {
      */
     public static void addScene(int writtenBalastNumber, DAOJmodbus daoJ) {
         EscenaDAOJmodbus dao = new EscenaDAOJmodbus(daoJ);
-        dao.addScene(writtenBalastNumber);
+        dao.addElement(writtenBalastNumber);
     }
     
     
@@ -264,7 +264,7 @@ public class PropHandler {
      */
     public static void deleteScene(int writtenBalastNumber, DAOJmodbus daoJ) {
         EscenaDAOJmodbus dao = new EscenaDAOJmodbus(daoJ);
-        dao.deleteScene(writtenBalastNumber);
+        dao.deleteElement(writtenBalastNumber);
     }
     
     
@@ -275,7 +275,7 @@ public class PropHandler {
      */
     public static ArrayList<String> getAddedScenes(DAOJmodbus daoJ) {
         EscenaDAOJmodbus dao = new EscenaDAOJmodbus(daoJ);
-        return dao.getAddedScenes();
+        return dao.getAddedElements();
     }
     
     
@@ -343,7 +343,7 @@ public class PropHandler {
      */
     public static void addGroup(int writtenBalastNumber, DAOJmodbus dao) {
         GrupoDAOJmodbus gDao = new GrupoDAOJmodbus(dao);
-        gDao.addGroup(writtenBalastNumber);
+        gDao.addElement(writtenBalastNumber);
     }
     
     
@@ -355,7 +355,7 @@ public class PropHandler {
      */
     public static void deleteGroup(int writtenBalastNumber, DAOJmodbus dao) {
         GrupoDAOJmodbus gDao = new GrupoDAOJmodbus(dao);
-        gDao.deleteGroup(writtenBalastNumber);
+        gDao.deleteElement(writtenBalastNumber);
     }
     
     
@@ -366,7 +366,7 @@ public class PropHandler {
      */
     public static ArrayList<String> getAddedGroups(DAOJmodbus dao) {
         GrupoDAOJmodbus gDao = new GrupoDAOJmodbus(dao);
-        return gDao.getAddedGroups();
+        return gDao.getAddedElements();
     }
     
     

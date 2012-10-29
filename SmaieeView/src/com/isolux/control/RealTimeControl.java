@@ -146,7 +146,7 @@ public class RealTimeControl {
             
             //Balastos
             ArrayList<Integer> areaBalasts = PropHandler.getAreaBalasts(areaName);
-            BalastosControlJmodbus balastoCtrl = new BalastosControlJmodbus();
+            BalastosControl balastoCtrl = new BalastosControl();
             balastoCtrl.readBalastos(ppalView);
             showBalastos(areaBalasts, ppalView);
             ppalView.getThreadManager().getRealTime().setSelectedAreaBalasts(areaBalasts);

@@ -25,12 +25,12 @@ public interface OperacionesDaoJModbusInterface {
 
     public int[] getAddedCardArray();
 
-    public Elemento readObject(int num);
+    public Elemento readElement(int num);
 
     /**
      *
      * @param Elemento
      * @return
      */
-    public <Elemento>boolean saveElement(Elemento element);
+    public boolean saveElement(Elemento element);
 }

@@ -4,7 +4,7 @@
  */
 package com.isolux.view.test;
 
-import com.isolux.control.BalastosControlJmodbus;
+import com.isolux.control.BalastosControl;
 import com.isolux.dao.jmodbus.BalastoDAOJmodbus;
 
 /**

@@ -8,6 +8,7 @@ import com.isolux.bo.*;
 import com.isolux.dao.jmodbus.*;
 import com.isolux.dao.modbus.DAOJamod;
 import com.isolux.dao.properties.PropHandler;
+import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -25,7 +26,7 @@ import javax.swing.tree.TreePath;
  *
  * @author EAFIT
  */
-public class GroupsControl {
+public class GroupsControl implements ElementoControl_Interface{
 
     /**
      * Saves a group.
@@ -38,7 +39,7 @@ public class GroupsControl {
             ppalView.getStatusLabel().setText("Guardando grupo");
             boolean isUpdate = !ppalView.getjLabel58().getText().equals("#");
 //            int groupNumber = ppalView.getjLabel58().getText().equals("#") ? PropHandler.getGroupNumber() : Integer.parseInt(ppalView.getjLabel58().getText());
-            int groupNumber = !ppalView.getjLabel58().getText().equals("#") ? Integer.parseInt(ppalView.getjLabel58().getText()) : Integer.parseInt((String) ppalView.getjComboBox5().getSelectedItem());
+            int groupNumber = !ppalView.getjLabel58().getText().equals("#") ? Integer.parseInt(ppalView.getjLabel58().getText()) : Integer.parseInt((String) ppalView.getGruposNum_jComboBox().getSelectedItem());
 
 
             Grupo newGroup = new Grupo(groupNumber, 0, ppalView.getjTextField3().getText(), getSelectedBalasts(ppalView));
@@ -46,7 +47,7 @@ public class GroupsControl {
             //Saves the balast remotelly
 
             GrupoDAOJmodbus gDao = new GrupoDAOJmodbus(ppalView.getDao());
-            boolean resultado = gDao.saveGroup(newGroup);
+            boolean resultado = gDao.saveElement(newGroup);
 
             if (isUpdate) {
                 //Update balast locally.
@@ -72,7 +73,7 @@ public class GroupsControl {
                 }
 
             } else {
-                if (new BalastosControlJmodbus().validateBalastoForm()) {
+                if (new BalastosControl().validateBalastoForm()) {
                     ppalView.getGroups().put(String.valueOf(newGroup.getGroupNumber()), newGroup);
 
                     if (resultado) {
@@ -93,7 +94,7 @@ public class GroupsControl {
                 }
             }
         }
-        refrescarVistaGrupos(ppalView);
+        refrescarVista(ppalView);
     }
 
     /**
@@ -107,13 +108,13 @@ public class GroupsControl {
                 DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
                 DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                 GrupoDAOJmodbus gDao = new GrupoDAOJmodbus(ppalView.getDao());
-                gDao.deleteGroup(ppalView.getSelectedGroupNumber());
+                gDao.deleteElement(ppalView.getSelectedGroupNumber());
                 treeModel.removeNodeFromParent(nodeToDelete);
                 ppalView.getGroups().remove(ppalView.getSelectedGroupNumber());
                 new GroupsControl().cleanGroupView(ppalView);
             }
         }
-        refrescarVistaGrupos(ppalView);
+        refrescarVista(ppalView);
     }
 
     /**
@@ -164,7 +165,7 @@ public class GroupsControl {
 
             //Balasts.
             for (String groupNumber : addedGroups) {
-                ppalView.getGroups().put(groupNumber, gDao.readGroup(Integer.parseInt(groupNumber)));
+                ppalView.getGroups().put(groupNumber, gDao.readElement(Integer.parseInt(groupNumber)));
             }
         }
     }
@@ -173,7 +174,7 @@ public class GroupsControl {
      * Clean values fror group form.
      */
     public void cleanGroupView(PpalView ppalView) {
-        ppalView.getjComboBox5().setSelectedIndex(0);
+        ppalView.getGruposNum_jComboBox().setSelectedIndex(0);
         ppalView.getjLabel58().setText("#");
         ppalView.getjTextField3().setText("");
         ppalView.setSelectedGroupNumber("");
@@ -215,7 +216,7 @@ public class GroupsControl {
      * Show the available balasts.
      */
     public void showAvailableBalasts(PpalView ppalView) {
-        new BalastosControlJmodbus().readBalastos(ppalView);
+        new BalastosControl().readBalastos(ppalView);
         HashMap<String, Balasto> balasts = ppalView.getBalasts();
         ppalView.setGroupBalasts(balasts);
         DefaultListModel modelo = new DefaultListModel();
@@ -254,10 +255,23 @@ public class GroupsControl {
      *
      * @param ppalView
      */
-    public void refrescarVistaGrupos(PpalView ppalView) {
+    @Override
+    public void refrescarVista(PpalView ppalView) {
         cleanGroupView(ppalView);
         showAvailableBalasts(ppalView);
-        filterAddedGroups(ppalView);;
+        filterAddedGroups(ppalView);
+        String[] elementosDisponibles = elementosDisponibles(ppalView);
+        Validacion.actualizarCombo(ppalView.getGruposNum_jComboBox(), elementosDisponibles);
 
     }
+    
+    @Override
+    public String[] elementosDisponibles(PpalView ppalView) {
+        GrupoDAOJmodbus dao = new GrupoDAOJmodbus(ppalView.getDao());
+        String[] ses;
+        ses = dao.elementosSinGrabar();
+      
+        return ses;
+    }
+    
 }

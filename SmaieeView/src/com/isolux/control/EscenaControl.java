@@ -2,6 +2,7 @@ package com.isolux.control;
 
 import com.isolux.bo.*;
 import com.isolux.dao.jmodbus.EscenaDAOJmodbus;
+import com.isolux.dao.jmodbus.GrupoDAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
@@ -20,7 +21,7 @@ import javax.swing.tree.TreePath;
  *
  * @author Juan Diego Toro Cano
  */
-public class SceneControlJmodbus {
+public class EscenaControl implements ElementoControl_Interface{
 
     /**
      * Saves a scene.
@@ -31,7 +32,7 @@ public class SceneControlJmodbus {
 
             ppalView.getStatusLabel().setText("Guardando escena");
             boolean isUpdate = !ppalView.getjLabel61().getText().equals("#");
-            int sceneNumber = !ppalView.getjLabel61().getText().equals("#") ? Integer.parseInt(ppalView.getjLabel61().getText()) : Integer.parseInt((String) ppalView.getjComboBox6().getSelectedItem());
+            int sceneNumber = !ppalView.getjLabel61().getText().equals("#") ? Integer.parseInt(ppalView.getjLabel61().getText()) : Integer.parseInt((String) ppalView.getEscenaNumero_jComboBox().getSelectedItem());
 
             int balastsMaxNumber = Integer.parseInt(PropHandler.getProperty("balast.max.number"));
             int[] balastsLevels = new int[balastsMaxNumber];
@@ -48,7 +49,7 @@ public class SceneControlJmodbus {
 
             //Saves the balast remotelly
             EscenaDAOJmodbus dao = new EscenaDAOJmodbus(ppalView.getDao());
-            boolean resultado = dao.saveScene(newScene);
+            boolean resultado = dao.saveElement(newScene);
 
             if (isUpdate) {
                 //Update balast locally.
@@ -74,7 +75,7 @@ public class SceneControlJmodbus {
                 }
 
             } else {
-                if (new BalastosControlJmodbus().validateBalastoForm()) {
+                if (new BalastosControl().validateBalastoForm()) {
                     ppalView.getScenes().put(String.valueOf(newScene.getNumeroEscena()), newScene);
 
                     if (resultado) {
@@ -95,7 +96,7 @@ public class SceneControlJmodbus {
                 }
             }
         }
-        refrescarVistaEscenas(ppalView);
+        refrescarVista(ppalView);
     }
 
     /**
@@ -109,13 +110,13 @@ public class SceneControlJmodbus {
             if (ppalView.getSelectedSceneNumber() != null && !ppalView.getSelectedSceneNumber().equals("")) {
                 DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
                 DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
-                dao.deleteScene(ppalView.getSelectedSceneNumber());
+                dao.deleteElement(ppalView.getSelectedSceneNumber());
                 treeModel.removeNodeFromParent(nodeToDelete);
                 ppalView.getScenes().remove(ppalView.getSelectedSceneNumber());
                 cleanSceneView(ppalView);
             }
         }
-        refrescarVistaEscenas(ppalView);
+        refrescarVista(ppalView);
     }
 
     /**
@@ -168,7 +169,7 @@ public class SceneControlJmodbus {
 
             //Scene.
             for (String sceneNumber : addedScenes) {
-                ppalView.getScenes().put(sceneNumber, dao.readScene(Integer.parseInt(sceneNumber)));
+                ppalView.getScenes().put(sceneNumber, dao.readElement(Integer.parseInt(sceneNumber)));
             }
         }
     }
@@ -177,7 +178,7 @@ public class SceneControlJmodbus {
      * Clean values fror group form.
      */
     public void cleanSceneView(PpalView ppalView) {
-        ppalView.getjComboBox6().setSelectedIndex(0);
+        ppalView.getEscenaNumero_jComboBox().setSelectedIndex(0);
         ppalView.getjLabel61().setText("#");
         ppalView.getjLabel19().setText("#");
         ppalView.getNombreEscenaJTextField().setText("");
@@ -219,7 +220,7 @@ public class SceneControlJmodbus {
      * Show the available balasts.
      */
     public void showAvailableSceneBalasts(PpalView ppalView) {
-        new BalastosControlJmodbus().readBalastos(ppalView);
+        new BalastosControl().readBalastos(ppalView);
         ppalView.setSceneBalasts(ppalView.getBalasts());
         DefaultListModel modelo = new DefaultListModel();
 
@@ -293,9 +294,22 @@ public class SceneControlJmodbus {
 
     }
 
-    public void refrescarVistaEscenas(PpalView ppalView) {
+   
+    @Override
+    public void refrescarVista(PpalView ppalView) {
         cleanSceneView(ppalView);
         showAvailableSceneBalasts(ppalView);
         filterAddedScenes(ppalView);
+        String[] elementosDisponibles = elementosDisponibles(ppalView);
+        Validacion.actualizarCombo(ppalView.getEscenaNumero_jComboBox(), elementosDisponibles);
+    }
+
+    @Override
+    public String[] elementosDisponibles(PpalView ppalView) {
+       EscenaDAOJmodbus dao = new EscenaDAOJmodbus(ppalView.getDao());
+        String[] ses;
+        ses = dao.elementosSinGrabar();
+      
+        return ses;
     }
 }

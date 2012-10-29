@@ -6,13 +6,13 @@
 package com.isolux.view;
 
 import com.isolux.bo.*;
-import com.isolux.control.BalastosControlJmodbus;
+import com.isolux.control.BalastosControl;
 import com.isolux.control.EventControl;
 import com.isolux.control.GeneralControl;
 import com.isolux.control.GroupsControl;
 import com.isolux.control.InsControl;
 import com.isolux.control.RealTimeControl;
-import com.isolux.control.SceneControlJmodbus;
+import com.isolux.control.EscenaControl;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
@@ -102,13 +102,13 @@ public class PpalView extends javax.swing.JFrame {
     //Event variables
     private int eventOutType;
     //CONTROLLERS
-    private BalastosControlJmodbus balastosCtrl;
+    private BalastosControl balastosCtrl;
     private EventControl eventCtrl;
     private GeneralControl generalCtrl;
     private GroupsControl groupsCtrl;
     private InsControl insCtrl;
     private RealTimeControl realCtrl;
-    private SceneControlJmodbus sceneCtrl;
+    private EscenaControl sceneCtrl;
     //MODBUS DAO
     private DAOJmodbus dao;
     //Checking threads
@@ -117,13 +117,13 @@ public class PpalView extends javax.swing.JFrame {
 
     //Init Ctrls
     public void initControls() {
-        this.balastosCtrl = new BalastosControlJmodbus();
+        this.balastosCtrl = new BalastosControl();
         this.eventCtrl = new EventControl();
         this.generalCtrl = new GeneralControl();
         this.groupsCtrl = new GroupsControl();
         this.insCtrl = new InsControl();
         this.realCtrl = new RealTimeControl();
-        this.sceneCtrl = new SceneControlJmodbus();
+        this.sceneCtrl = new EscenaControl();
     }
 
     public void initAddedElements() {
@@ -5851,11 +5851,11 @@ public class PpalView extends javax.swing.JFrame {
         this.tabMonitoreo = tabMonitoreo;
     }
 
-    public JComboBox getjComboBox5() {
+    public JComboBox getGruposNum_jComboBox() {
         return gruposNum_jComboBox;
     }
 
-    public void setjComboBox5(JComboBox jComboBox5) {
+    public void setGruposNum_jComboBox(JComboBox jComboBox5) {
         this.gruposNum_jComboBox = jComboBox5;
     }
 
@@ -5867,11 +5867,11 @@ public class PpalView extends javax.swing.JFrame {
         this.tabbedPane = tabbedPane;
     }
 
-    public JComboBox getjComboBox6() {
+    public JComboBox getEscenaNumero_jComboBox() {
         return escenaNumero_jComboBox;
     }
 
-    public void setjComboBox6(JComboBox jComboBox6) {
+    public void setEscenaNumero_jComboBox(JComboBox jComboBox6) {
         this.escenaNumero_jComboBox = jComboBox6;
     }
 

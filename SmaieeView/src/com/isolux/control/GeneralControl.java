@@ -44,7 +44,7 @@ public class GeneralControl {
      * Show the available balasts.
      */
     public void showAvailableBalasts(JList show, JList remove, PpalView ppalView) {
-        new BalastosControlJmodbus().readBalastos(ppalView);
+        new BalastosControl().readBalastos(ppalView);
         DefaultListModel modelo = new DefaultListModel();
         DefaultListModel cleanModelo = new DefaultListModel();
         show.setModel(modelo);
@@ -84,7 +84,7 @@ public class GeneralControl {
      * Show the available balasts.
      */
     public void showAvailableScenes(JList show, JList remove, PpalView ppalView) {
-        new SceneControlJmodbus().readScenes(ppalView);
+        new EscenaControl().readScenes(ppalView);
         DefaultListModel modelo = new DefaultListModel();
         DefaultListModel cleanModelo = new DefaultListModel();
         show.setModel(modelo);
@@ -188,9 +188,9 @@ public class GeneralControl {
                     if (isNode) {
                         String balastNumber = (String) node.getUserObject();
                         ppalView.setSelectedBalastNumber(balastNumber.split(" - ")[0]);
-                        new BalastosControlJmodbus().showSelectedBalasto(ppalView.getSelectedBalastNumber(), ppalView);
+                        new BalastosControl().showSelectedBalasto(ppalView.getSelectedBalastNumber(), ppalView);
                     } else {
-                        BalastosControlJmodbus balastoCtrl = new BalastosControlJmodbus();
+                        BalastosControl balastoCtrl = new BalastosControl();
                         balastoCtrl.cleanBalastosView(ppalView);
                         balastoCtrl.filterAddedBalasts(ppalView);
                         //Verificamos que la conexion este activa
@@ -218,7 +218,7 @@ public class GeneralControl {
                     break;
 
                 case 's':
-                    SceneControlJmodbus sceneCtrl = new SceneControlJmodbus();
+                    EscenaControl sceneCtrl = new EscenaControl();
                     if (isNode) {
                         sceneCtrl.cleanSceneView(ppalView);
                         String sceneNumber = (String) node.getUserObject();
@@ -651,7 +651,7 @@ public class GeneralControl {
     * @param f
     * @return 
     */
-    public Boolean cargaInicial(PpalView ppalView,BalastosControlJmodbus a,GroupsControl b,SceneControlJmodbus c,EventControl d, InsControl f) {
+    public Boolean cargaInicial(PpalView ppalView,BalastosControl a,GroupsControl b,EscenaControl c,EventControl d, InsControl f) {
 //        BalastosControlJmodbus a = new BalastosControlJmodbus();
 //        GroupsControl b = new GroupsControl();
 //        SceneControlJmodbus c =new SceneControlJmodbus();
@@ -660,8 +660,8 @@ public class GeneralControl {
         
         try {
             a.refrescaVistaBalastos(ppalView);
-            b.refrescarVistaGrupos(ppalView);
-            c.refrescarVistaEscenas(ppalView);
+            b.refrescarVista(ppalView);
+            c.refrescarVista(ppalView);
             d.refrescaEventos(ppalView);
             f.refrescarVistaEntradas(ppalView);
             

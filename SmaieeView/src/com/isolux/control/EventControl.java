@@ -195,7 +195,7 @@ public class EventControl {
                 }
 
             } else {
-                if (new BalastosControlJmodbus().validateBalastoForm()) {
+                if (new BalastosControl().validateBalastoForm()) {
                     ppalView.getEvents().put(String.valueOf(newEvent.getNumeroEvento()), newEvent);
 
                     if (resultado) {
@@ -285,7 +285,7 @@ public class EventControl {
             ArrayList sel = new ArrayList();
             for (int i = 0; i < selectedBalasts.length; i++) {
                 if (selectedBalasts[i] == 1) {
-                    new BalastosControlJmodbus().readBalastos(ppalView);
+                    new BalastosControl().readBalastos(ppalView);
                     Balasto sce = balasts.get(String.valueOf(i));
                     sceneBalastsL.addElement(sce.getBalastNumber() + " - " + sce.getName() + ": " + selectedBalastsLevels[i]);
                     sel.add(String.valueOf(i));
@@ -345,7 +345,7 @@ public class EventControl {
             ArrayList selScenes = new ArrayList();
             for (int i = 0; i < selectedScenes.length; i++) {
                 if (selectedScenes[i] == 1) {
-                    new SceneControlJmodbus().readScenes(ppalView);
+                    new EscenaControl().readScenes(ppalView);
                     Escena sce = ppalView.getScenes().get(String.valueOf(i));
                     sceneScenesL.addElement(sce.getNumeroEscena() + " - " + sce.getNombre());
                     selScenes.add(String.valueOf(i));
@@ -544,7 +544,7 @@ public class EventControl {
 
         if (ppalView.getInOutType() == prefixBalast) {  //Balastos
             //Afected balasts
-            new BalastosControlJmodbus().readBalastos(ppalView);
+            new BalastosControl().readBalastos(ppalView);
             DefaultListModel inAffecBalasts = new DefaultListModel();
             int[] selectedBalasts = selectedIn.getBalastos();
             ArrayList sel = new ArrayList();
@@ -598,7 +598,7 @@ public class EventControl {
             available.setModel(modelo);
         } else if (ppalView.getInOutType() == prefixScene) {    //Escenas
             //Afected balasts
-            new SceneControlJmodbus().readScenes(ppalView);
+            new EscenaControl().readScenes(ppalView);
             DefaultListModel sceneBalastsL = new DefaultListModel();
             int[] selectedBalasts = selectedIn.getEscenas();
             ArrayList sel = new ArrayList();

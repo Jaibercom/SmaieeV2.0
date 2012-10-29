@@ -4,6 +4,7 @@
  */
 package com.isolux.dao.jmodbus;
 
+import com.isolux.bo.Elemento;
 import com.isolux.bo.Grupo;
 import com.isolux.dao.Utils;
 import com.isolux.dao.modbus.DAOJmodbus;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author Juan Diego Toro Cano
  */
-public class GrupoDAOJmodbus {
+public class GrupoDAOJmodbus extends OperacionesDaoJModbus {
 
     private static DAOJmodbus dao;
 
@@ -41,7 +42,10 @@ public class GrupoDAOJmodbus {
      *
      * @param group
      */
-    public static boolean saveGroup(Grupo group) {
+   
+    @Override
+    public boolean saveElement(Elemento group1) {
+        Grupo group = (Grupo) group1;
         boolean state = false;
         int groupNumber = group.getGroupNumber();
 
@@ -105,15 +109,15 @@ public class GrupoDAOJmodbus {
             }
 
             //Get BitIntegers every 16 bits and store them in the card.
-            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal,16);
+            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal, 16);
             int affectedBalasts = 7;
             for (int i = name.size() - 1; i >= 0; i--) {
                 groupsArray[affectedBalasts] = name.get(i).intValue();
-                affectedBalasts+=2;
+                affectedBalasts += 2;
             }
 
             dao.setRegValue(initOffset, groupsArray);
-            addGroup(groupNumber);
+            addElement(groupNumber);
 
             //MODO
             setSingleReg(0, 0);
@@ -135,7 +139,8 @@ public class GrupoDAOJmodbus {
      * @param groupNumbers
      * @return
      */
-    public static boolean deleteGroup(String groupNumbers) {
+    @Override
+    public boolean deleteElement(String groupNumbers) {
         boolean state = false;
         int groupNumber = Integer.parseInt(groupNumbers);
 
@@ -181,7 +186,7 @@ public class GrupoDAOJmodbus {
             }
 
             dao.setRegValue(initOffset, groupsArray);
-            deleteGroup(groupNumber);
+            deleteElement(groupNumber);
 
             //MODO
             setSingleReg(0, 0);
@@ -202,8 +207,9 @@ public class GrupoDAOJmodbus {
      *
      * @param groupNumber
      */
-    public static Grupo readGroup(int groupNumber) {
-       
+    @Override
+    public Grupo readElement(int groupNumber) {
+
         Grupo grupo = new Grupo();
 
         try {
@@ -302,7 +308,7 @@ public class GrupoDAOJmodbus {
 //            }
             //</editor-fold>
 
-            balastos = UtilsJmodbus.obtenerElementosAfectados(groupArray, balastOffset, 64, tamReg,8,8);
+            balastos = UtilsJmodbus.obtenerElementosAfectados(groupArray, balastOffset, 64, tamReg, 8, 8);
             grupo.setBalastosAfectados(balastos);
 
             //MODO
@@ -317,7 +323,8 @@ public class GrupoDAOJmodbus {
         return grupo;
     }
 
-    public static ArrayList<String> getAddedGroups() {
+    @Override
+    public ArrayList<String> getAddedElements() {
 
         //<editor-fold defaultstate="collapsed" desc="Código antiguo corregido">
 //        ArrayList<String> addedGroups = new ArrayList<String>();
@@ -407,7 +414,8 @@ public class GrupoDAOJmodbus {
      *
      * @return
      */
-    public static int[] getAddedGroupsCardArray() {
+    @Override
+    public int[] getAddedCardArray() {
 
         //       //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
 //        int numgrupos = Integer.parseInt(PropHandler.getProperty("group.max.number"));
@@ -467,11 +475,12 @@ public class GrupoDAOJmodbus {
      * @param key
      * @return
      */
-    public static void addGroup(int writtenGroupNumber) {
+    @Override
+    public void addElement(int writtenGroupNumber) {
         try {
             int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
 
-            int[] grupos = getAddedGroupsCardArray();// Corregida. Ya carga bien los grupos adheridos
+            int[] grupos = getAddedCardArray();// Corregida. Ya carga bien los grupos adheridos
 
             //Add the new Group.
             grupos[writtenGroupNumber] = 1;
@@ -507,11 +516,12 @@ public class GrupoDAOJmodbus {
      * @param key
      * @return
      */
-    public static void deleteGroup(int writtenBalastNumber) {
+    @Override
+    public void deleteElement(int writtenBalastNumber) {
         try {
             int initOffset = Integer.parseInt(PropHandler.getProperty("group.memory.added"));
 
-            int[] grupos = getAddedGroupsCardArray();
+            int[] grupos = getAddedCardArray();
 //            System.out.println("Offset: " + initOffset + ", group balasts: " + balastos);
 
             //Delete the specified grupo.
@@ -538,4 +548,8 @@ public class GrupoDAOJmodbus {
             e.printStackTrace();
         }
     }
+
+   
+
+  
 }

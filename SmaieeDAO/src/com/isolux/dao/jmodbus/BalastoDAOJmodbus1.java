@@ -616,14 +616,14 @@ public class BalastoDAOJmodbus1 extends OperacionesDaoJModbus implements Operaci
     }
 
     @Override
-    public Elemento readObject(int num) {
+    public Elemento readElement(int num) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     
     
     @Override
-    public <Elemento>boolean saveElement(Elemento el) {
+    public boolean saveElement(Elemento el) {
        boolean state = false;
        Balasto element=(Balasto) el;
         int balastNumber = element.getBalastNumber();
@@ -684,4 +684,6 @@ public class BalastoDAOJmodbus1 extends OperacionesDaoJModbus implements Operaci
 
         return state;
     }
+
+   
 }

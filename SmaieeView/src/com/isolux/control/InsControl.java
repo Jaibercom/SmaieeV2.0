@@ -143,7 +143,7 @@ public class InsControl {
 //            }
 
             } else {
-                if (new BalastosControlJmodbus().validateBalastoForm()) {
+                if (new BalastosControl().validateBalastoForm()) {
                     ppalView.getIns().put(String.valueOf(newIn.getNumeroEntrada()), newIn);
 
                     if (resultado) {
@@ -446,7 +446,7 @@ public class InsControl {
 
         if (ppalView.getInOutType() == prefixBalast) {  //Balastos
             //Afected balasts
-            new BalastosControlJmodbus().readBalastos(ppalView);
+            new BalastosControl().readBalastos(ppalView);
             DefaultListModel inAffecBalasts = new DefaultListModel();
             int[] selectedBalasts = selectedIn.getBalastos();
             ArrayList sel = new ArrayList();
@@ -503,7 +503,7 @@ public class InsControl {
             available.setModel(modelo);
         } else if (ppalView.getInOutType() == prefixScene) {    //Escenas
             //Afected balasts
-            new SceneControlJmodbus().readScenes(ppalView);
+            new EscenaControl().readScenes(ppalView);
             DefaultListModel sceneBalastsL = new DefaultListModel();
             int[] selectedBalasts = selectedIn.getEscenas();
             ArrayList sel = new ArrayList();

@@ -25,7 +25,7 @@ import javax.swing.tree.TreePath;
  *
  * @author Juan Diego Toro
  */
-public class BalastosControlJmodbus {
+public class BalastosControl {
 
     /**
      * Gets the inserted balasts.

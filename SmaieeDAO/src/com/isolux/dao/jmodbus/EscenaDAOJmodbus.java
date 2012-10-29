@@ -4,6 +4,7 @@
  */
 package com.isolux.dao.jmodbus;
 
+import com.isolux.bo.Elemento;
 import com.isolux.bo.Escena;
 import com.isolux.bo.Grupo;
 import com.isolux.dao.Utils;
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author Juan Diego Toro Cano
  */
-public class EscenaDAOJmodbus {
+public class EscenaDAOJmodbus extends OperacionesDaoJModbus{
 
     private static DAOJmodbus dao;
 
@@ -39,7 +40,8 @@ public class EscenaDAOJmodbus {
      *
      * @param escena
      */
-    public static boolean saveScene(Escena escena) {
+    @Override
+    public boolean saveElement(Elemento escena1) {
         //<editor-fold defaultstate="collapsed" desc="CODIGO ANTIGUO">
         //        boolean state = false;
         //        int escenaNumber = escena.getNumeroEscena();
@@ -125,6 +127,7 @@ public class EscenaDAOJmodbus {
         //        return state;
         //</editor-fold>
 
+        Escena escena=(Escena) escena1;
         boolean state = false;
         int escenaNumero = escena.getNumeroEscena();
 
@@ -196,7 +199,7 @@ public class EscenaDAOJmodbus {
             }
 
             dao.setRegValue(initOffset, escenasArray);
-            addScene(escenaNumero);
+            addElement(escenaNumero);
 
             //MODO
             setSingleReg(0, 0);
@@ -217,7 +220,8 @@ public class EscenaDAOJmodbus {
      * @param groupNumbers
      * @return
      */
-    public static boolean deleteScene(String sceneNumbers) {
+    @Override
+    public boolean deleteElement(String sceneNumbers) {
         //        //<editor-fold defaultstate="collapsed" desc="Codigo Antiguo">
         //        boolean state = false;
         //        int escenaNumber = Integer.parseInt(sceneNumbers);
@@ -338,7 +342,7 @@ public class EscenaDAOJmodbus {
             }
 
             dao.setRegValue(initOffset, sceneArray);
-            deleteScene(SceneNumber);
+            deleteElement(SceneNumber);
 
             //MODO
             setSingleReg(0, 0);
@@ -360,7 +364,8 @@ public class EscenaDAOJmodbus {
      *
      * @param sceneNumber
      */
-    public static Escena readScene(int sceneNumber) {
+    @Override
+    public Escena readElement(int sceneNumber) {
         //        //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
         //        Escena escene = new Escena();
         //
@@ -575,7 +580,8 @@ public class EscenaDAOJmodbus {
         return escena;
     }
 
-    public static ArrayList<String> getAddedScenes() {
+    @Override
+    public ArrayList<String> getAddedElements() {
         //       //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
         ArrayList<String> addedScenes = new ArrayList<String>();
         ////        DAO4j dao = new DAO4j();
@@ -658,7 +664,8 @@ public class EscenaDAOJmodbus {
      *
      * @return
      */
-    public static int[] getAddedScenesCardArray() {
+    @Override
+    public int[] getAddedCardArray() {
         //      //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
 //        int numBalastos = Integer.parseInt(PropHandler.getProperty("scene.max.number"));
         //        if (numBalastos < 16) {
@@ -719,7 +726,8 @@ public class EscenaDAOJmodbus {
      * @param key
      * @return
      */
-    public static void addScene(int writtenNumber) {
+    @Override
+    public void addElement(int writtenNumber) {
         //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
         //        try {
         //            int initOffset = Integer.parseInt(PropHandler.getProperty("scene.memory.added"));
@@ -754,7 +762,7 @@ public class EscenaDAOJmodbus {
           try {
             int initOffset = Integer.parseInt(PropHandler.getProperty("scene.memory.added"));
 
-            int[] scene = getAddedScenesCardArray();// Corregida. Ya carga bien los grupos adheridos
+            int[] scene = getAddedCardArray();// Corregida. Ya carga bien los grupos adheridos
 
             //Add the new Group.
             scene[writtenNumber] = 1;
@@ -790,7 +798,8 @@ public class EscenaDAOJmodbus {
      * @param key
      * @return
      */
-    public static void deleteScene(int writtenNumber) {
+    @Override
+    public void deleteElement(int writtenNumber) {
         ////<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
         //        try {
         //            int initOffset = Integer.parseInt(PropHandler.getProperty("scene.memory.added"));
@@ -824,7 +833,7 @@ public class EscenaDAOJmodbus {
          try {
             int initOffset = Integer.parseInt(PropHandler.getProperty("scene.memory.added"));
 
-            int[] scenes = getAddedScenesCardArray();
+            int[] scenes = getAddedCardArray();
 //            System.out.println("Offset: " + initOffset + ", group balasts: " + balastos);
 
             //Delete the specified grupo.

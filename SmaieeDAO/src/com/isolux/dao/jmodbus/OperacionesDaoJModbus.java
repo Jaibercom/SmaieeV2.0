@@ -8,9 +8,21 @@ package com.isolux.dao.jmodbus;
  *Clase padre de las clases DAOJModbus
  * @author Juan Camilo Canias Gómez
  */
-public class OperacionesDaoJModbus {
+public abstract class OperacionesDaoJModbus implements OperacionesElemento_Interface, OperacionesDaoJModbusInterface{
 
     public OperacionesDaoJModbus() {
+    }
+
+    @Override
+    public String[] elementosSinGrabar() {
+         int[] elementsCardArray = getAddedCardArray();
+        String[] ele=new String[elementsCardArray.length];
+        
+        for (int i = 0; i < elementsCardArray.length; i++) {
+            ele[i]=Integer.toString(elementsCardArray[i]);
+        }
+        
+        return ele;
     }
 
    

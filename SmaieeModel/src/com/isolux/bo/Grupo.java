@@ -10,7 +10,7 @@ import com.isolux.properties.PropHandler;
  *
  * @author Juan Diego Toro Cano
  */
-public class Grupo {
+public class Grupo extends Elemento {
     
     int groupNumber;
     long activation;
