@@ -10,7 +10,7 @@ import com.isolux.properties.PropHandler;
  *
  * @author Juan Diego Toro Cano
  */
-public class Entrada {
+public class Entrada extends Elemento {
     
     int numeroEntrada;
     int activacion;

@@ -13,7 +13,7 @@ import java.util.HashMap;
  *
  * @author Juan Diego Toro Cano
  */
-public class BalastoDAOJmodbus implements OperacionesElemento{
+public class BalastoDAOJmodbus implements OperacionesElemento_Interface{
 
     private static DAOJmodbus dao;
 
@@ -614,14 +614,17 @@ public class BalastoDAOJmodbus implements OperacionesElemento{
 //        }
     }
 
+    
     @Override
-    public ArrayList<String> elementosSinGrabar() {
+    public String[] elementosSinGrabar() {
+        int[] addedBalastsCardArray = BalastoDAOJmodbus.getAddedBalastsCardArray();
+        String[] ele=new String[addedBalastsCardArray.length];
         
-       
-        ArrayList<String> addedBalasts = BalastoDAOJmodbus.getAddedBalasts();
-        return addedBalasts;
+        for (int i = 0; i < addedBalastsCardArray.length; i++) {
+            ele[i]=Integer.toString(addedBalastsCardArray[i]);
+        }
         
-        
+        return ele;
         
         
     }

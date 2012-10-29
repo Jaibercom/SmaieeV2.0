@@ -5,13 +5,17 @@
 package com.isolux.utils;
 
 import com.isolux.view.PpalView;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author EAFIT
  */
-public class Validation {
+public class Validacion {
     
     //Confirmation dialog title
     private static final String VALIDATION = "Verificar";
@@ -158,5 +162,30 @@ public class Validation {
     public static boolean validateEventsView(PpalView ppalView){
         
         return true;
+    }
+    
+     /**
+    * Método que actualiza el combobox que se le pase por parámetros con la lista 
+    * de los elementos no se han grabado aun en la tarjeta, como por ejemplo los balastros 
+    * que todavia no se han grabado en la tarjeta.
+    * @param combo ComboBox para ser procesado
+    * @param elementosDisponibles Lista de elementos que aun no se han grabado enla tarjeta
+    * @return ComboBox procesado
+    */
+    public static JComboBox<String> actualizarCombo(JComboBox combo,String[] elementosDisponibles){
+        
+        Vector<String> valores = new Vector<String>();
+        for (int i = 0; i < elementosDisponibles.length; i++) {
+            if (elementosDisponibles[i].equals("0")) {
+                valores.add(Integer.toString(i));
+            }
+        }
+        
+        DefaultComboBoxModel model=new DefaultComboBoxModel(valores);
+        combo.setModel(model);
+        
+        
+        return combo;
+                
     }
 }

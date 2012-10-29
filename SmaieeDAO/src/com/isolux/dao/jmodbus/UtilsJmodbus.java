@@ -847,23 +847,7 @@ public class UtilsJmodbus {
         dao.setRegValue(pos, values);
     }
     
-   /**
-    * Método que actualiza el combobox que se le pase por parámetros con la lista 
-    * de los elementos no se han grabado aun en la tarjeta, como por ejemplo los balastros 
-    * que todavia no se han grabado en la tarjeta.
-    * @param combo ComboBox para ser procesado
-    * @param elementosDisponibles Lista de elementos que aun no se han grabado enla tarjeta
-    * @return ComboBox procesado
-    */
-    public static JComboBox<String> actualizarCombo(JComboBox combo,String[] elementosDisponibles){
-        
-        DefaultComboBoxModel<String> model=new DefaultComboBoxModel<String>(elementosDisponibles);
-        combo.setModel(model);
-        
-        
-        return combo;
-                
-    }
+  
     
     
 }

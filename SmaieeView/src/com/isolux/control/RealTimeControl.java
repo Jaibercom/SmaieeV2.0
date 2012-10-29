@@ -12,7 +12,7 @@ import com.isolux.dao.properties.Constants;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.dao.properties.facadeBack.TiempoRealDAO;
 import com.isolux.view.threads.CheckBalastsLevels;
-import com.isolux.utils.Validation;
+import com.isolux.utils.Validacion;
 import com.isolux.view.AreaBalasts;
 import com.isolux.view.PpalView;
 import com.isolux.view.threads.ThreadManager;
@@ -168,7 +168,7 @@ public class RealTimeControl {
         if (ppalView.getjComboBox2().getSelectedIndex() != 0) {
             RealTimeControl.selectBalasts(ppalView, ppalView.getBalasts(), PropHandler.getAreaBalasts((String)ppalView.getjComboBox2().getSelectedItem()), (String)ppalView.getjComboBox2().getSelectedItem());
         } else {
-            Validation.showAlertMessage("Seleccione un area primero");
+            Validacion.showAlertMessage("Seleccione un area primero");
         }
     }
     
@@ -241,7 +241,7 @@ public class RealTimeControl {
 
                 showBalastos(ppalView);
             } else {
-                Validation.showAlertMessage("Seleccione un balasto");
+                Validacion.showAlertMessage("Seleccione un balasto");
             }
         }
     }

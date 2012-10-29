@@ -8,7 +8,7 @@ package com.isolux.bo;
  *
  * @author Juan Diego Toro Cano
  */
-public class Fecha {
+public class Fecha extends Elemento{
     private int dia;
     private int diaSemana;
     private int mes; 

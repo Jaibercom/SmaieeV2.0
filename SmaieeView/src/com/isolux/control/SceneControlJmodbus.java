@@ -3,7 +3,7 @@ package com.isolux.control;
 import com.isolux.bo.*;
 import com.isolux.dao.jmodbus.EscenaDAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
-import com.isolux.utils.Validation;
+import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -288,7 +288,7 @@ public class SceneControlJmodbus {
             }
             ppalView.getBalastosAfectados_jList().setModel(model);
         } else {
-            Validation.showAlertMessage("Seleccione un balasto");
+            Validacion.showAlertMessage("Seleccione un balasto");
         }
 
     }

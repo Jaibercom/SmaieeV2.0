@@ -6,7 +6,7 @@ import com.isolux.properties.PropHandler;
  *Clase que crea el modelo del objeto escena y guarda toda la información respecto a este.
  * @author Juan Diego Toro Cano
  */
-public class Escena {
+public class Escena extends Elemento {
     
     int numeroEscena;
     int activacion;

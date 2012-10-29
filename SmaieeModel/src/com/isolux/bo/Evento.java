@@ -6,7 +6,7 @@ import com.isolux.properties.PropHandler;
  *
  * @author Juan Diego Toro Cano.
  */
-public class Evento {
+public class Evento extends Elemento{
     int numeroEvento;
     String nombre;
     int porFechaODias;

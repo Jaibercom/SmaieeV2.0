@@ -5,7 +5,6 @@
 package com.isolux.dao;
 
 import com.isolux.dao.modbus.ConectionManager;
-import com.isolux.dao.modbus.DAOJamod;
 import javax.swing.SwingWorker;
 
 /**
@@ -30,19 +29,6 @@ public class ConexionWorker extends SwingWorker<Boolean, String> {
         
         return false;
 
-//        System.out.println("doInBackground() esta en el hilo "
-//                + Thread.currentThread().getName());
-//
-//        // Un simbre bucle hasta 10, con esperas de un segundo entre medias.
-//        for (int i = 0; i < 10; i++) {
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                System.out.println("interrumpido");
-//            }
-//        }
-//        return true;
-  
     }
 
     @Override

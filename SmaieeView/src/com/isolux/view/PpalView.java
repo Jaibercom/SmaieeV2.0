@@ -16,6 +16,7 @@ import com.isolux.control.SceneControlJmodbus;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
+import com.isolux.utils.Validacion;
 import com.isolux.view.threads.ThreadManager;
 import com.toedter.calendar.JDateChooser;
 import java.awt.HeadlessException;
@@ -2647,6 +2648,8 @@ public class PpalView extends javax.swing.JFrame {
      */
     protected void enviar_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviar_jButtonActionPerformed
         this.balastosCtrl.saveBalast(this);
+        String[] elementosDisponibles = balastosCtrl.elementosDisponibles(this);
+        Validacion.actualizarCombo(balastoNum_jComboBox, elementosDisponibles);
     }//GEN-LAST:event_enviar_jButtonActionPerformed
 
     /**

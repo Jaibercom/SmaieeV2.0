@@ -8,7 +8,7 @@ package com.isolux.bo;
  *
  * @author EAFIT
  */
-public class Balasto {
+public class Balasto extends Elemento{
     
     int balastNumber;
     int level;

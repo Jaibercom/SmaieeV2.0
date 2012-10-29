@@ -10,7 +10,7 @@ import com.isolux.dao.jmodbus.EventoDAOJmodbus;
 import com.isolux.dao.jmodbus.UtilsJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.utils.Conversion;
-import com.isolux.utils.Validation;
+import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 import com.isolux.view.ViewUtils;
 import java.math.BigInteger;
@@ -234,7 +234,7 @@ public class EventControl {
             ppalView.getEvents().remove(ppalView.getSelectedEventNumber());
             cleanEventView(ppalView);
         } else {
-            Validation.showAlertMessage("Debe seleccionar un evento primero!");
+            Validacion.showAlertMessage("Debe seleccionar un evento primero!");
         }
     }
 
@@ -650,7 +650,7 @@ public class EventControl {
             }
             ppalView.getBalastosAfectados_jList().setModel(model);
         } else {
-            Validation.showAlertMessage("Seleccione un balasto");
+            Validacion.showAlertMessage("Seleccione un balasto");
         }
 
     }
@@ -748,7 +748,7 @@ public class EventControl {
             }
             ppalView.getjList13().setModel(model);
         } else {
-            Validation.showAlertMessage("Seleccione un balasto");
+            Validacion.showAlertMessage("Seleccione un balasto");
         }
     }
 

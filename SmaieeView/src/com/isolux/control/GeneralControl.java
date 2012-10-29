@@ -10,7 +10,7 @@ import javax.swing.JList;
 import com.isolux.bo.*;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
-import com.isolux.utils.Validation;
+import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 import com.isolux.view.threads.RefreshRTC;
 import com.isolux.view.threads.ThreadManager;
@@ -523,7 +523,7 @@ public class GeneralControl {
                     diaSemana = calendar.get(Calendar.DAY_OF_WEEK);
 
                     if (!hourValidator(hora)) {
-                        Validation.showAlertMessage("Hora invalida.\nIntente de nuevo.");
+                        Validacion.showAlertMessage("Hora invalida.\nIntente de nuevo.");
                         return;
                     }
 
@@ -533,7 +533,7 @@ public class GeneralControl {
                     s = new Integer(hourArray[2]).shortValue();
 
                 } else {
-                    Validation.showAlertMessage("Fecha invalida.\nIntente de nuevo.");
+                    Validacion.showAlertMessage("Fecha invalida.\nIntente de nuevo.");
                     return;
                 }
 
@@ -549,25 +549,25 @@ public class GeneralControl {
                 if (ppalView.getCbIsStaticConfiguration().isSelected()) {
                     ip = ppalView.getFieldIp().getText();
                     if (!ipValidator(ip)) {
-                        Validation.showAlertMessage("Ip invalida.\nIntente de nuevo.");
+                        Validacion.showAlertMessage("Ip invalida.\nIntente de nuevo.");
                         return;
                     }
 
                     port = ppalView.getFieldPuerto().getText();
                     if (!portValidator(port)) {
-                        Validation.showAlertMessage("Puerto invalido.\nIntente de nuevo.");
+                        Validacion.showAlertMessage("Puerto invalido.\nIntente de nuevo.");
                         return;
                     }
 
                     mask = ppalView.getFieldMask().getText();
                     if (!ipValidator(mask)) {
-                        Validation.showAlertMessage("Mascara invalida.\nIntente de nuevo.");
+                        Validacion.showAlertMessage("Mascara invalida.\nIntente de nuevo.");
                         return;
                     }
 
                     gateway = ppalView.getFieldGateway().getText();
                     if (!ipValidator(gateway)) {
-                        Validation.showAlertMessage("Gateway invalido.\nIntente de nuevo.");
+                        Validacion.showAlertMessage("Gateway invalido.\nIntente de nuevo.");
                         return;
                     }
                 }

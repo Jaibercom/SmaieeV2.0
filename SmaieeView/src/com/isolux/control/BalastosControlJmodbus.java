@@ -6,7 +6,9 @@ package com.isolux.control;
 
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.bo.*;
+import com.isolux.dao.Utils;
 import com.isolux.dao.jmodbus.BalastoDAOJmodbus;
+import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -24,15 +26,14 @@ import javax.swing.tree.TreePath;
  * @author Juan Diego Toro
  */
 public class BalastosControlJmodbus {
-    
-    
+
     /**
      * Gets the inserted balasts.
      */
     public void readBalastos(PpalView ppalView) {
         BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
         HashMap<String, Balasto> balasts = ppalView.getBalasts();
-        
+
         if (balasts == null || balasts.size() == 0) {
             ppalView.setBalasts(new HashMap<String, Balasto>());
 
@@ -44,7 +45,7 @@ public class BalastosControlJmodbus {
                 balasts.put(balastNumber, dao.readBalast(Integer.parseInt(balastNumber)));
             }
             ppalView.setBalasts(balasts);
-            
+
         }
     }
 
@@ -66,7 +67,8 @@ public class BalastosControlJmodbus {
                 cleanBalastosView(ppalView);
             }
         }
-         refrescaVistaBalastos(ppalView);
+        refrescaVistaBalastos(ppalView);
+        
     }
 
     /**
@@ -76,12 +78,12 @@ public class BalastosControlJmodbus {
 //        boolean connectionStatus = DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
         new GeneralControl().updateConnectionStatus(true, ppalView);
         BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
-        
+
         if (true) {
 
             boolean isUpdate = !ppalView.getjLabel41().getText().equals("#") || !ppalView.getSelectedBalastNumber().equals("");
             int balastNumber = !ppalView.getjLabel41().getText().equals("#") ? Integer.parseInt(ppalView.getjLabel41().getText()) : Integer.parseInt((String) ppalView.getBalastoNum_jComboBox().getSelectedItem());
-            
+
             int level = Integer.parseInt(ppalView.getjTextField20().getText());
             int activation = 0; //Integer.parseInt(ppalView.getjTextField21().getText());
             String name = ppalView.getjTextField1().getText();
@@ -154,7 +156,7 @@ public class BalastosControlJmodbus {
                 }
             }
         }
-         refrescaVistaBalastos(ppalView);
+        refrescaVistaBalastos(ppalView);
     }
 
     /**
@@ -223,11 +225,13 @@ public class BalastosControlJmodbus {
 
         ppalView.setSelectedBalastNumber("");
         ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
+        elementosDisponibles(ppalView);
     }
 
     /**
      * Validates the information inside the balasts form.
-     * @return 
+     *
+     * @return
      */
     public boolean validateBalastoForm() {
         /*
@@ -243,15 +247,29 @@ public class BalastosControlJmodbus {
     }
 
     /**
-     * Refresca la vista de balastos cuando se ejecuta una operacion de escritura y borrado
-     * @param ppalView 
+     * Refresca la vista de balastos cuando se ejecuta una operacion de
+     * escritura y borrado
+     *
+     * @param ppalView
      */
     public void refrescaVistaBalastos(PpalView ppalView) {
-          cleanBalastosView(ppalView);
-          filterAddedBalasts(ppalView);
-          
+        cleanBalastosView(ppalView);
+        filterAddedBalasts(ppalView);
+        String[] elementosDisponibles = elementosDisponibles(ppalView);
+        Validacion.actualizarCombo(ppalView.getBalastoNum_jComboBox(), elementosDisponibles);
+
     }
-    
-    
-    
+
+   /**
+    * 
+    * @param ppalView
+    * @return 
+    */
+    public String[] elementosDisponibles(PpalView ppalView) {
+        BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
+        String[] ses;
+        ses = dao.elementosSinGrabar();
+      
+        return ses;
+    }
 }

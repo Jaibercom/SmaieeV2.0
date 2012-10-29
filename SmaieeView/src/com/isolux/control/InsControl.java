@@ -8,7 +8,7 @@ import com.isolux.bo.*;
 import com.isolux.dao.jmodbus.EntradaDAOJmodbus;
 import com.isolux.dao.modbus.DAOJamod;
 import com.isolux.dao.properties.PropHandler;
-import com.isolux.utils.Validation;
+import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 import com.isolux.view.ViewUtils;
 import java.util.ArrayList;
@@ -202,7 +202,7 @@ public class InsControl {
                 ppalView.getIns().remove(ppalView.getSelectedInNumber());
                 cleanInView(ppalView);
             } else {
-                Validation.showAlertMessage("Debe seleccionar una entrada primero!");
+                Validacion.showAlertMessage("Debe seleccionar una entrada primero!");
             }
         }
         refrescarVistaEntradas(ppalView);
