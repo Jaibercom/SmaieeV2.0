@@ -207,7 +207,7 @@ public class PropHandler {
      */
     public static void addIn(int writtenBalastNumber, DAOJmodbus dao) {
         EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(dao);
-        jDao.addIn(writtenBalastNumber);
+        jDao.addElement(writtenBalastNumber);
     }
     
     
@@ -219,7 +219,7 @@ public class PropHandler {
      */
     public static void deleteIn(int writtenBalastNumber, DAOJmodbus dao) {
         EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(dao);
-        jDao.deleteIn(writtenBalastNumber);
+        jDao.deleteElement(writtenBalastNumber);
     }
     
     
@@ -230,7 +230,7 @@ public class PropHandler {
      */
     public static ArrayList<String> getAddedIns(DAOJmodbus dao) {
         EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(dao);
-        return jDao.getAddedIns();
+        return jDao.getAddedElements();
     }
     
     
@@ -298,7 +298,7 @@ public class PropHandler {
      */
     public static void addEvent(int writtenBalastNumber, DAOJmodbus dao) {
         EventoDAOJmodbus eDao = new EventoDAOJmodbus(dao);
-        eDao.addEvent(writtenBalastNumber);
+        eDao.addElement(writtenBalastNumber);
     }
     
     
@@ -310,7 +310,7 @@ public class PropHandler {
      */
     public static void deleteEvent(int writtenBalastNumber, DAOJmodbus dao) {
         EventoDAOJmodbus eDao = new EventoDAOJmodbus(dao);
-        eDao.deleteAddedEvent(writtenBalastNumber);
+        eDao.deleteElement(writtenBalastNumber);
     }
     
     
@@ -321,7 +321,7 @@ public class PropHandler {
      */
     public static ArrayList<String> getAddedEvents(DAOJmodbus dao) {
         EventoDAOJmodbus eDao = new EventoDAOJmodbus(dao);
-        return eDao.getAddedEvents();
+        return eDao.getAddedElements();
     }
     
     

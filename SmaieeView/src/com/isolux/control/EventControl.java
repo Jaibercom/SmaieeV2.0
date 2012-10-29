@@ -7,7 +7,6 @@ package com.isolux.control;
 import com.isolux.bo.*;
 import com.isolux.dao.Utils;
 import com.isolux.dao.jmodbus.EventoDAOJmodbus;
-import com.isolux.dao.jmodbus.UtilsJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.utils.Conversion;
 import com.isolux.utils.Validacion;
@@ -30,13 +29,12 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
-import java.lang.Integer;
 
 /**
  *
  * @author Juan Diego Toro
  */
-public class EventControl {
+public class EventControl implements ElementoControl_Interface {
 
     /**
      * Saves an event.
@@ -49,7 +47,7 @@ public class EventControl {
             //event number
             boolean isUpdate = !ppalView.getjLabel64().getText().equals("#");
 
-            int eventNumber = ppalView.getjLabel64().getText().equals("#") ? Integer.parseInt(ppalView.getjTextField13().getText()) : Integer.parseInt(ppalView.getjLabel64().getText());
+            int eventNumber = ppalView.getjLabel64().getText().equals("#") ? Integer.parseInt(ppalView.getEventoNum_jComboBox().getSelectedItem().toString()) : Integer.parseInt(ppalView.getjLabel64().getText());
 //            int eventNumber = ppalView.getjLabel64().getText().equals("#") ? PropHandler.getEventNumber() : Integer.parseInt(ppalView.getjLabel64().getText());
 
             String name = ppalView.getNombreevento_jTextField().getText();
@@ -166,7 +164,7 @@ public class EventControl {
 
             //Saves the balast remotelly
             EventoDAOJmodbus dao = new EventoDAOJmodbus(ppalView.getDao());
-            boolean resultado = dao.saveEvent(newEvent);
+            boolean resultado = dao.saveElement(newEvent);
 
             if (isUpdate) {
                 //Update event locally.
@@ -218,7 +216,7 @@ public class EventControl {
                 }
             }
         }
-        refrescaEventos(ppalView);
+        refrescarVista(ppalView);
     }
 
     /**
@@ -229,7 +227,7 @@ public class EventControl {
             DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
             DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
             EventoDAOJmodbus dao = new EventoDAOJmodbus(ppalView.getDao());
-            dao.deleteEvent(ppalView.getSelectedEventNumber());
+            dao.deleteElement(ppalView.getSelectedEventNumber());
             treeModel.removeNodeFromParent(nodeToDelete);
             ppalView.getEvents().remove(ppalView.getSelectedEventNumber());
             cleanEventView(ppalView);
@@ -401,7 +399,7 @@ public class EventControl {
 
             //In.
             for (String eventNumber : addedEvents) {
-                ppalView.getEvents().put(eventNumber, dao.readEvent(Integer.parseInt(eventNumber)));
+                ppalView.getEvents().put(eventNumber, dao.readElement(Integer.parseInt(eventNumber)));
             }
         }
     }
@@ -818,14 +816,33 @@ public class EventControl {
         }
     }
 
-    /**
-     * Método que refresca la vista de los eventos.
-     *
-     * @param ppalView
-     */
-    public void refrescaEventos(PpalView ppalView) {
+//    /**
+//     * Método que refresca la vista de los eventos.
+//     *
+//     * @param ppalView
+//     */
+//    public void refrescarVista(PpalView ppalView) {
+//        cleanEventView(ppalView);
+////        showAvailableEvents(ppalView);
+//        filterAddedEvent(ppalView);
+//    }
+
+    @Override
+    public void refrescarVista(PpalView ppalView) {
         cleanEventView(ppalView);
-//        showAvailableEvents(ppalView);
+        showAvailableEvents(ppalView);
         filterAddedEvent(ppalView);
+
+        String[] elementosDisponibles = elementosDisponibles(ppalView);
+        Validacion.actualizarCombo(ppalView.getEventoNum_jComboBox(), elementosDisponibles);
+    }
+
+    @Override
+    public String[] elementosDisponibles(PpalView ppalView) {
+        EventoDAOJmodbus dao = new EventoDAOJmodbus(ppalView.getDao());
+        String[] ses;
+        ses = dao.elementosSinGrabar();
+
+        return ses;
     }
 }

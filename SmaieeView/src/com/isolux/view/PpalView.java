@@ -10,7 +10,7 @@ import com.isolux.control.BalastosControl;
 import com.isolux.control.EventControl;
 import com.isolux.control.GeneralControl;
 import com.isolux.control.GroupsControl;
-import com.isolux.control.InsControl;
+import com.isolux.control.EntradaControl;
 import com.isolux.control.RealTimeControl;
 import com.isolux.control.EscenaControl;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
@@ -106,7 +106,7 @@ public class PpalView extends javax.swing.JFrame {
     private EventControl eventCtrl;
     private GeneralControl generalCtrl;
     private GroupsControl groupsCtrl;
-    private InsControl insCtrl;
+    private EntradaControl insCtrl;
     private RealTimeControl realCtrl;
     private EscenaControl sceneCtrl;
     //MODBUS DAO
@@ -121,7 +121,7 @@ public class PpalView extends javax.swing.JFrame {
         this.eventCtrl = new EventControl();
         this.generalCtrl = new GeneralControl();
         this.groupsCtrl = new GroupsControl();
-        this.insCtrl = new InsControl();
+        this.insCtrl = new EntradaControl();
         this.realCtrl = new RealTimeControl();
         this.sceneCtrl = new EscenaControl();
     }
@@ -364,7 +364,6 @@ public class PpalView extends javax.swing.JFrame {
         jLabel64 = new javax.swing.JLabel();
         porDias_jCheckBox = new javax.swing.JCheckBox();
         jLabel36 = new javax.swing.JLabel();
-        numEvento_jTextField = new javax.swing.JTextField();
         porFechaYHora_jPanel = new javax.swing.JPanel();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel15 = new javax.swing.JLabel();
@@ -400,6 +399,7 @@ public class PpalView extends javax.swing.JFrame {
         jButton48 = new javax.swing.JButton();
         enviarEventos_jButton = new javax.swing.JButton();
         eliminarEvento_jButton = new javax.swing.JButton();
+        eventoNum_jComboBox = new javax.swing.JComboBox();
         panelConfiguracion = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
@@ -1778,14 +1778,6 @@ public class PpalView extends javax.swing.JFrame {
 
         jLabel36.setText("Número:");
 
-        numEvento_jTextField.setText("1");
-        numEvento_jTextField.setToolTipText("De 0 a 1023");
-        numEvento_jTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                numEvento_jTextFieldActionPerformed(evt);
-            }
-        });
-
         porFechaYHora_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha y hora"));
 
         jLabel15.setText("Fecha");
@@ -2066,6 +2058,8 @@ public class PpalView extends javax.swing.JFrame {
             }
         });
 
+        eventoNum_jComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+
         javax.swing.GroupLayout panelEventosLayout = new javax.swing.GroupLayout(panelEventos);
         panelEventos.setLayout(panelEventosLayout);
         panelEventosLayout.setHorizontalGroup(
@@ -2082,10 +2076,10 @@ public class PpalView extends javax.swing.JFrame {
                         .addComponent(jLabel64)
                         .addGap(18, 18, 18)
                         .addComponent(porDias_jCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                         .addComponent(jLabel36)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(numEvento_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(eventoNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelEventosLayout.createSequentialGroup()
                         .addComponent(porFechaYHora_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2105,8 +2099,8 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(nombreEvento_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel64)
                     .addComponent(porDias_jCheckBox)
-                    .addComponent(numEvento_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel36))
+                    .addComponent(jLabel36)
+                    .addComponent(eventoNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(porFechaYHora_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2587,7 +2581,7 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabbedPane)
+                    .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(statusBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -3259,10 +3253,6 @@ public class PpalView extends javax.swing.JFrame {
         this.realCtrl.areaBalasts(this);
     }//GEN-LAST:event_jButton44ActionPerformed
 
-    private void numEvento_jTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numEvento_jTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_numEvento_jTextFieldActionPerformed
-
     /**
      * Erase the memory
      */
@@ -3376,6 +3366,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton enviar_jButton;
     private javax.swing.JComboBox escenaNumero_jComboBox;
     private javax.swing.JPanel escenasBalastos_jPanel;
+    private javax.swing.JComboBox eventoNum_jComboBox;
     private javax.swing.JFormattedTextField fieldGateway;
     protected javax.swing.JFormattedTextField fieldIp;
     private javax.swing.JFormattedTextField fieldMask;
@@ -3568,7 +3559,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JLabel nombreEscena_jLabel;
     private javax.swing.JTextField nombreEscena_jTextField;
     private javax.swing.JTextField nombreEvento_jTextField;
-    private javax.swing.JTextField numEvento_jTextField;
     private javax.swing.JPanel panelBalastos;
     private javax.swing.JPanel panelBienvenida;
     private javax.swing.JPanel panelBotonera;
@@ -4497,6 +4487,14 @@ public class PpalView extends javax.swing.JFrame {
 
     public void setViernes_jCheckBox(JCheckBox jCheckBox7) {
         this.viernes_jCheckBox = jCheckBox7;
+    }
+
+    public JComboBox getEventoNum_jComboBox() {
+        return eventoNum_jComboBox;
+    }
+
+    public void setEventoNum_jComboBox(JComboBox eventoNum_jComboBox) {
+        this.eventoNum_jComboBox = eventoNum_jComboBox;
     }
 
     public JCheckBox getSabado_jCheckBox() {
@@ -5875,13 +5873,13 @@ public class PpalView extends javax.swing.JFrame {
         this.escenaNumero_jComboBox = jComboBox6;
     }
 
-    public JTextField getjTextField13() {
-        return numEvento_jTextField;
-    }
-
-    public void setjTextField13(JTextField jTextField13) {
-        this.numEvento_jTextField = jTextField13;
-    }
+//    public JTextField getjTextField13() {
+//        return numEvento_jTextField;
+//    }
+//
+//    public void setjTextField13(JTextField jTextField13) {
+//        this.numEvento_jTextField = jTextField13;
+//    }
 
     public DAOJmodbus getDao() {
         return dao;

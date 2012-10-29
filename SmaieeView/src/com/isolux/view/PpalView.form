@@ -108,7 +108,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="tabbedPane" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tabbedPane" alignment="0" pref="0" max="32767" attributes="0"/>
                   <Component id="statusBar" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -2436,10 +2436,10 @@
                                       <Component id="jLabel64" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="porDias_jCheckBox" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="92" max="32767" attributes="0"/>
+                                      <EmptySpace pref="105" max="32767" attributes="0"/>
                                       <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="numEvento_jTextField" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="eventoNum_jComboBox" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="porFechaYHora_jPanel" max="32767" attributes="0"/>
@@ -2465,8 +2465,8 @@
                                   <Component id="nombreEvento_jTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel64" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="porDias_jCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="numEvento_jTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel36" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="eventoNum_jComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -2514,15 +2514,6 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="N&#xfa;mero:"/>
                       </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="numEvento_jTextField">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="1"/>
-                        <Property name="toolTipText" type="java.lang.String" value="De 0 a 1023"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numEvento_jTextFieldActionPerformed"/>
-                      </Events>
                     </Component>
                     <Container class="javax.swing.JPanel" name="porFechaYHora_jPanel">
                       <Properties>
@@ -2963,6 +2954,25 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarEvento_jButtonActionPerformed"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="eventoNum_jComboBox">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="11">
+                            <StringItem index="0" value="0"/>
+                            <StringItem index="1" value="1"/>
+                            <StringItem index="2" value="2"/>
+                            <StringItem index="3" value="3"/>
+                            <StringItem index="4" value="4"/>
+                            <StringItem index="5" value="5"/>
+                            <StringItem index="6" value="6"/>
+                            <StringItem index="7" value="7"/>
+                            <StringItem index="8" value="8"/>
+                            <StringItem index="9" value="9"/>
+                            <StringItem index="10" value="10"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>

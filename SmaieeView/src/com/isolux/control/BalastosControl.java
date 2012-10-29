@@ -67,7 +67,7 @@ public class BalastosControl {
                 cleanBalastosView(ppalView);
             }
         }
-        refrescaVistaBalastos(ppalView);
+        refrescaVista(ppalView);
         
     }
 
@@ -156,7 +156,7 @@ public class BalastosControl {
                 }
             }
         }
-        refrescaVistaBalastos(ppalView);
+        refrescaVista(ppalView);
     }
 
     /**
@@ -252,7 +252,7 @@ public class BalastosControl {
      *
      * @param ppalView
      */
-    public void refrescaVistaBalastos(PpalView ppalView) {
+    public void refrescaVista(PpalView ppalView) {
         cleanBalastosView(ppalView);
         filterAddedBalasts(ppalView);
         String[] elementosDisponibles = elementosDisponibles(ppalView);

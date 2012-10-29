@@ -4,6 +4,7 @@
  */
 package com.isolux.dao.jmodbus;
 
+import com.isolux.bo.Elemento;
 import com.isolux.dao.Utils;
 import com.isolux.bo.Entrada;
 import com.isolux.dao.modbus.DAOJmodbus;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author Juan Diego Toro Cano.
  */
-public class EntradaDAOJmodbus {
+public class EntradaDAOJmodbus extends OperacionesDaoJModbus{
 
     private static DAOJmodbus dao;
 
@@ -37,7 +38,9 @@ public class EntradaDAOJmodbus {
      *
      * @param in
      */
-    public static boolean saveIn(Entrada in) {
+    @Override
+    public boolean saveElement(Elemento element) {
+        Entrada in=(Entrada)element;
         boolean state = false;
         int inNumber = in.getNumeroEntrada();
 
@@ -131,7 +134,7 @@ public class EntradaDAOJmodbus {
             
 
 //            Agregamos el numero entrada a los elementos activos
-            addIn(inNumber);
+            addElement(inNumber);
 
             System.out.println("In number " + inNumber + " saved.");
 
@@ -153,7 +156,8 @@ public class EntradaDAOJmodbus {
      * @param balastNumber
      * @return
      */
-    public static boolean deleteIn(String balastNumber) {
+    @Override
+    public boolean deleteElement(String balastNumber) {
         boolean state = false;
         int inNumber = Integer.parseInt(balastNumber);
         Entrada entrada = new Entrada();
@@ -242,7 +246,7 @@ public class EntradaDAOJmodbus {
             inArray[18] = 0; //in.getValorADC();
 
             dao.setRegValue(initOffset, inArray);
-            deleteIn(inNumber);
+            deleteElement(inNumber);
 
             System.out.println("In number " + inNumber + " deleted.");
 
@@ -264,7 +268,8 @@ public class EntradaDAOJmodbus {
      *
      * @param inNumber Numero de la entrada
      */
-    public static Entrada readIn(int inNumber) {
+    @Override
+    public Entrada readElement(int inNumber) {
         Entrada in = new Entrada();
         boolean state = false;
 
@@ -454,7 +459,8 @@ public class EntradaDAOJmodbus {
         return in;
     }
 
-    public static ArrayList<String> getAddedIns() {
+    @Override
+    public ArrayList<String> getAddedElements() {
         //       //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
 //        ArrayList<String> addedBalasts = new ArrayList<String>();
         ////        DAO4j dao = new DAO4j();
@@ -534,7 +540,8 @@ public class EntradaDAOJmodbus {
      *
      * @return
      */
-    public static int[] getAddedInsCardArray() {
+    @Override
+    public int[] getAddedCardArray() {
         //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
         //        int numBalastos = Integer.parseInt(PropHandler.getProperty("in.max.number"));
         //        if (numBalastos < 16) {
@@ -596,12 +603,13 @@ public class EntradaDAOJmodbus {
      * array de entradas activas
      *
      */
-    public static void addIn(int writtenBalastNumber) {
+    @Override
+    public void addElement(int writtenBalastNumber) {
 
         try {
             int initOffset = Integer.parseInt(PropHandler.getProperty("in.memory.added"));
 
-            int[] balastos = getAddedInsCardArray();
+            int[] balastos = getAddedCardArray();
 
             //Add the new balast.
             balastos[writtenBalastNumber] = 1;
@@ -634,11 +642,12 @@ public class EntradaDAOJmodbus {
      * @param key
      * @return
      */
-    public static void deleteIn(int writtenBalastNumber) {
+    @Override
+    public void deleteElement(int writtenBalastNumber) {
         try {
             int initOffset = Integer.parseInt(PropHandler.getProperty("in.memory.added"));
 
-            int[] balastos = getAddedInsCardArray();
+            int[] balastos = getAddedCardArray();
 //            System.out.println("Offset: " + initOffset + ", group balasts: " + balastos);
 
             //Delete the specified balast.

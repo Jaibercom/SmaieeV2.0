@@ -6,6 +6,7 @@ package com.isolux.control;
 
 import com.isolux.bo.*;
 import com.isolux.dao.jmodbus.EntradaDAOJmodbus;
+import com.isolux.dao.jmodbus.EventoDAOJmodbus;
 import com.isolux.dao.modbus.DAOJamod;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.utils.Validacion;
@@ -26,7 +27,7 @@ import javax.swing.tree.TreePath;
  *
  * @author EAFIT
  */
-public class InsControl {
+public class EntradaControl implements ElementoControl_Interface{
 
     /**
      * Select the in views.
@@ -109,7 +110,7 @@ public class InsControl {
             boolean resultado = false;
 
             EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(ppalView.getDao());
-            resultado = jDao.saveIn(newIn);
+            resultado = jDao.saveElement(newIn);
             if (isUpdate) {
                 //Update balast locally.
                 ppalView.getIns().remove(String.valueOf(newIn.getNumeroEntrada()));
@@ -182,7 +183,7 @@ public class InsControl {
 //                Validation.showAlertMessage("El nivel de iluminacion por voltio no puede ser cero.");
 //            }
         }
-        refrescarVistaEntradas(ppalView);
+        refrescarVista(ppalView);
     }
 
     /**
@@ -196,7 +197,7 @@ public class InsControl {
                 DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
                 DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                 EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(ppalView.getDao());
-                jDao.deleteIn(ppalView.getSelectedInNumber());
+                jDao.deleteElement(ppalView.getSelectedInNumber());
                 treeModel.removeNodeFromParent(nodeToDelete);
 //                ppalView.getjComboBox4().addItem(ppalView.getSelectedInNumber());
                 ppalView.getIns().remove(ppalView.getSelectedInNumber());
@@ -205,7 +206,7 @@ public class InsControl {
                 Validacion.showAlertMessage("Debe seleccionar una entrada primero!");
             }
         }
-        refrescarVistaEntradas(ppalView);
+        refrescarVista(ppalView);
     }
 
     /**
@@ -264,7 +265,7 @@ public class InsControl {
 
         //In.
         for (String inNumber : addedIns) {
-            ppalView.getIns().put(inNumber, jDao.readIn(Integer.parseInt(inNumber)));
+            ppalView.getIns().put(inNumber, jDao.readElement(Integer.parseInt(inNumber)));
         }
     }
 
@@ -531,17 +532,36 @@ public class InsControl {
         }
     }
 
-    /**
-     * Método que refresca la vista de las entradas en las operaciones de
-     * escritura y borrado.
-     *
-     * @param ppalView
-     */
-    public void refrescarVistaEntradas(PpalView ppalView) {
+//    /**
+//     * Método que refresca la vista de las entradas en las operaciones de
+//     * escritura y borrado.
+//     *
+//     * @param ppalView
+//     */
+//    public void refrescarVistaEntradas(PpalView ppalView) {
+//        cleanInView(ppalView);
+//        
+////        filterAddedIn(ppalView);
+//        
+//    }
+
+    @Override
+    public void refrescarVista(PpalView ppalView) {
         cleanInView(ppalView);
-        
-//        filterAddedIn(ppalView);
-        
+//        show
+        filterAddedIn(ppalView);
+
+        String[] elementosDisponibles = elementosDisponibles(ppalView);
+        Validacion.actualizarCombo(ppalView.getEntradaNumero_jComboBox(), elementosDisponibles);
+    }
+
+    @Override
+    public String[] elementosDisponibles(PpalView ppalView) {
+         EntradaDAOJmodbus dao = new EntradaDAOJmodbus(ppalView.getDao());
+        String[] ses;
+        ses = dao.elementosSinGrabar();
+
+        return ses;
     }
     
     

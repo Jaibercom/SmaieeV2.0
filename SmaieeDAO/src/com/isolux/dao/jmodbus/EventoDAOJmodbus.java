@@ -4,20 +4,20 @@
  */
 package com.isolux.dao.jmodbus;
 
-import com.isolux.dao.Utils;
+import com.isolux.bo.Elemento;
 import com.isolux.bo.Evento;
+import com.isolux.dao.Utils;
 import com.isolux.dao.modbus.DAO4j;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Juan Diego Toro Cano
  */
-public class EventoDAOJmodbus {
+public class EventoDAOJmodbus extends OperacionesDaoJModbus{
 
     private static int initOffset = 0;
     private static DAOJmodbus dao;
@@ -40,8 +40,11 @@ public class EventoDAOJmodbus {
      *
      * @param evento
      */
-    public static boolean saveEvent(Evento evento) {
+    @Override
+    public boolean saveElement(Elemento evento1) {
 //        DAO4j dao = new DAO4j();
+        
+        Evento evento=(Evento)evento1;
         boolean state = false;
         int eventNumber = evento.getNumeroEvento();
 
@@ -216,7 +219,7 @@ public class EventoDAOJmodbus {
 
 //          Guardamos la info con el dao
             dao.setRegValue(eventoInitOffset, eventArray);
-            addEvent(eventNumber);
+            addElement(eventNumber);
 
             //MODO
             setSingleReg(0, 0);
@@ -239,7 +242,8 @@ public class EventoDAOJmodbus {
      * @param eventNumbers Numero del evento que se pretende borrar.
      * 
      */
-    public static boolean deleteEvent(String eventNumbers) {
+    @Override
+    public  boolean deleteElement(String eventNumbers) {
 
         boolean state = false;
         int eventNumber = Integer.parseInt(eventNumbers);
@@ -344,7 +348,7 @@ public class EventoDAOJmodbus {
             eventArray[99] = 0;
 
             //SAVE EVENT
-            deleteAddedEvent(eventNumber);
+            deleteElement(eventNumber);
             dao.setRegValue(initOffset, eventArray);
 
             //MODO
@@ -366,7 +370,8 @@ public class EventoDAOJmodbus {
      *
      * @param balasto
      */
-    public static Evento readEvent(int eventNumber) {
+    @Override
+    public  Evento readElement(int eventNumber) {
         Evento evento = new Evento();
 
         try {
@@ -572,7 +577,8 @@ public class EventoDAOJmodbus {
      *
      * @return
      */
-    public static ArrayList<String> getAddedEvents() {
+    @Override
+    public  ArrayList<String> getAddedElements() {
         //<editor-fold defaultstate="collapsed" desc="Codigo viejo">
         //        ArrayList<String> addedBalasts = new ArrayList<String>();
         //         int eventNum = Integer.parseInt(PropHandler.getProperty("event.max.number"));
@@ -656,7 +662,8 @@ public class EventoDAOJmodbus {
      *
      * @return
      */
-    public static int[] getAddedEventsCardArray() {
+    @Override
+    public int[] getAddedCardArray() {
         //        //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
         //        int numBalastos = Integer.parseInt(PropHandler.getProperty("event.max.number"));
         //        if (numBalastos < 16) {
@@ -716,7 +723,8 @@ public class EventoDAOJmodbus {
      * @param key
      * @return
      */
-    public static void addEvent(int writtenEnevtNumber) {
+    @Override
+    public  void addElement(int writtenEnevtNumber) {
         //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
         //        try {
         //            int initOffset = Integer.parseInt(PropHandler.getProperty("event.memory.added"));
@@ -752,7 +760,7 @@ public class EventoDAOJmodbus {
         try {
             int offsetInicial = Integer.parseInt(PropHandler.getProperty("event.memory.added"));
 
-            int[] events = getAddedEventsCardArray();
+            int[] events = getAddedCardArray();
 
             //Add the new balast.
             events[writtenEnevtNumber] = 1;
@@ -789,7 +797,8 @@ public class EventoDAOJmodbus {
      * @param writtenEventNumber
      * 
      */
-    public static void deleteAddedEvent(int writtenEventNumber) {
+    @Override
+    public void deleteElement(int writtenEventNumber) {
 
         //       //<editor-fold defaultstate="collapsed" desc="CodigoViejo">
 //        try {
@@ -824,7 +833,7 @@ public class EventoDAOJmodbus {
         try {
             int offsetInicialEntrada = Integer.parseInt(PropHandler.getProperty("event.memory.added"));
 
-            int[] eventos = getAddedEventsCardArray();
+            int[] eventos = getAddedCardArray();
 //            System.out.println("Offset: " + initOffset + ", group balasts: " + balastos);
 
             //Delete the specified balast.
@@ -938,4 +947,6 @@ public class EventoDAOJmodbus {
     //
     //    }
     //</editor-fold>
+
+  
 }

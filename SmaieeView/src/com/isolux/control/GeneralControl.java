@@ -133,25 +133,25 @@ public class GeneralControl {
 
             //If it's a in
             if (parentText.equals(PropHandler.getProperty("in.menu.name"))) {
-                new InsControl().inSetType(node.getUserObject().toString(), ppalView);
+                new EntradaControl().inSetType(node.getUserObject().toString(), ppalView);
                 opc = ppalView.getMenuParents().get(node.getUserObject());
                 isNode = false;
             } else if (parentText.equals(PropHandler.getProperty("btns.menu.name"))) {
                 DefaultMutableTreeNode parentNode = (DefaultMutableTreeNode) node.getParent();
                 String sel = parentNode.getUserObject().toString();
-                new InsControl().inSetType(sel, ppalView);
+                new EntradaControl().inSetType(sel, ppalView);
                 opc = ppalView.getMenuParents().get(parentNode.getUserObject());
                 isNode = true;
             } else if (parentText.equals(PropHandler.getProperty("ftcl.menu.name"))) {
                 DefaultMutableTreeNode parentNode = (DefaultMutableTreeNode) node.getParent();
                 String sel = parentNode.getUserObject().toString();
-                new InsControl().inSetType(sel, ppalView);
+                new EntradaControl().inSetType(sel, ppalView);
                 opc = ppalView.getMenuParents().get(parentNode.getUserObject());
                 isNode = true;
             } else if (parentText.equals(PropHandler.getProperty("sensors.menu.name"))) {
                 DefaultMutableTreeNode parentNode = (DefaultMutableTreeNode) node.getParent();
                 String sel = parentNode.getUserObject().toString();
-                new InsControl().inSetType(sel, ppalView);
+                new EntradaControl().inSetType(sel, ppalView);
                 opc = ppalView.getMenuParents().get(parentNode.getUserObject());
                 isNode = true;
             }
@@ -261,7 +261,7 @@ public class GeneralControl {
 
                 //ins
                 case 'a':
-                    InsControl inCtrl = new InsControl();
+                    EntradaControl inCtrl = new EntradaControl();
                     if (isNode) {
                         inCtrl.cleanInView(ppalView);
                         ppalView.setSelectedInNumber((String) node.getUserObject());
@@ -274,7 +274,7 @@ public class GeneralControl {
                     clIns.show(ppalView.getPanelConfEntradas(), "card2"); //Botoneras
                     break;
                 case 'f':
-                    InsControl inCtrlF = new InsControl();
+                    EntradaControl inCtrlF = new EntradaControl();
                     if (isNode) {
                         inCtrlF.cleanInView(ppalView);
                         ppalView.setSelectedInNumber((String) node.getUserObject());
@@ -287,7 +287,7 @@ public class GeneralControl {
                     clIns.show(ppalView.getPanelConfEntradas(), "card3"); //Fotoceldas
                     break;
                 case 'h':
-                    InsControl inCtrlS = new InsControl();
+                    EntradaControl inCtrlS = new EntradaControl();
                     if (isNode) {
                         inCtrlS.cleanInView(ppalView);
                         ppalView.setSelectedInNumber((String) node.getUserObject());
@@ -651,7 +651,7 @@ public class GeneralControl {
     * @param f
     * @return 
     */
-    public Boolean cargaInicial(PpalView ppalView,BalastosControl a,GroupsControl b,EscenaControl c,EventControl d, InsControl f) {
+    public Boolean cargaInicial(PpalView ppalView,BalastosControl a,GroupsControl b,EscenaControl c,EventControl d, EntradaControl f) {
 //        BalastosControlJmodbus a = new BalastosControlJmodbus();
 //        GroupsControl b = new GroupsControl();
 //        SceneControlJmodbus c =new SceneControlJmodbus();
@@ -659,11 +659,11 @@ public class GeneralControl {
 //        InsControl f = new InsControl();
         
         try {
-            a.refrescaVistaBalastos(ppalView);
+            a.refrescaVista(ppalView);
             b.refrescarVista(ppalView);
             c.refrescarVista(ppalView);
-            d.refrescaEventos(ppalView);
-            f.refrescarVistaEntradas(ppalView);
+            d.refrescarVista(ppalView);
+            f.refrescarVista(ppalView);
             
             return true;
         } catch (Exception e) {
