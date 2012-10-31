@@ -195,6 +195,7 @@ public class PpalView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jTextField2 = new javax.swing.JTextField();
         botoneraComportamiento = new javax.swing.ButtonGroup();
@@ -203,23 +204,27 @@ public class PpalView extends javax.swing.JFrame {
         repetirCiclo_jCheckBox = new javax.swing.JCheckBox();
         dias_buttonGroup = new javax.swing.ButtonGroup();
         leerFlash_jMenuItem = new javax.swing.JMenuItem();
+        principal_jScrollPane = new javax.swing.JScrollPane();
+        panelPrincipal_jPanel = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
         headerImage = new javax.swing.JLabel();
-        statusBar = new javax.swing.JPanel();
-        jLabel34 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        statusLabel = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
         tabbedPane = new javax.swing.JTabbedPane();
         tabConfiguracion = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        arbolJerarquia_jScrollPane = new javax.swing.JScrollPane();
         arbol_jTree = new javax.swing.JTree();
         panelPpal = new javax.swing.JPanel();
         panelBienvenida = new javax.swing.JPanel();
         panelBalastos = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel26 = new javax.swing.JLabel();
+        infoBalasto_jPanel = new javax.swing.JPanel();
+        jLabel40 = new javax.swing.JLabel();
+        balastoNum_jComboBox = new javax.swing.JComboBox();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField20 = new javax.swing.JTextField();
+        balastoDali_jPanel = new javax.swing.JPanel();
+        jLabel35 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
@@ -227,23 +232,66 @@ public class PpalView extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
-        jTextField26 = new javax.swing.JTextField();
-        jTextField27 = new javax.swing.JTextField();
-        jTextField28 = new javax.swing.JTextField();
-        jTextField29 = new javax.swing.JTextField();
-        jTextField30 = new javax.swing.JTextField();
-        jTextField31 = new javax.swing.JTextField();
-        jTextField32 = new javax.swing.JTextField();
-        jTextField33 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        enviar_jButton = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
-        jLabel40 = new javax.swing.JLabel();
-        balastoNum_jComboBox = new javax.swing.JComboBox();
-        jLabel41 = new javax.swing.JLabel();
+        balastoDir_jTextField = new javax.swing.JTextField();
+        balastoMin_jTextField = new javax.swing.JTextField();
+        balastoMax_jTextField = new javax.swing.JTextField();
+        balastoFT_jTextField = new javax.swing.JTextField();
+        balastoFR_jTextField = new javax.swing.JTextField();
+        balastoLF_jTextField = new javax.swing.JTextField();
+        balastoLX_jTextField = new javax.swing.JTextField();
+        balastoPot_jTextField = new javax.swing.JTextField();
+        gruposDeBalasto_jPanel = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        jCheckBox5 = new javax.swing.JCheckBox();
+        jCheckBox6 = new javax.swing.JCheckBox();
+        jCheckBox7 = new javax.swing.JCheckBox();
+        jCheckBox8 = new javax.swing.JCheckBox();
+        jCheckBox9 = new javax.swing.JCheckBox();
+        jCheckBox12 = new javax.swing.JCheckBox();
+        jCheckBox13 = new javax.swing.JCheckBox();
+        jCheckBox14 = new javax.swing.JCheckBox();
+        jCheckBox15 = new javax.swing.JCheckBox();
+        jCheckBox16 = new javax.swing.JCheckBox();
+        jCheckBox17 = new javax.swing.JCheckBox();
+        jCheckBox21 = new javax.swing.JCheckBox();
+        escenasDeBalasto_jPanel = new javax.swing.JPanel();
+        grupo1_jCheckBox = new javax.swing.JCheckBox();
+        grupo2_jCheckBox1 = new javax.swing.JCheckBox();
+        grupo3_jCheckBox2 = new javax.swing.JCheckBox();
+        grupo4_jCheckBox3 = new javax.swing.JCheckBox();
+        grupo5_jCheckBox4 = new javax.swing.JCheckBox();
+        grupo6_jCheckBox5 = new javax.swing.JCheckBox();
+        grupo7_jCheckBox6 = new javax.swing.JCheckBox();
+        grupo8_jCheckBox7 = new javax.swing.JCheckBox();
+        grupo9_jCheckBox8 = new javax.swing.JCheckBox();
+        grupo10_jCheckBox9 = new javax.swing.JCheckBox();
+        grupo11_jCheckBox10 = new javax.swing.JCheckBox();
+        grupo12_jCheckBox11 = new javax.swing.JCheckBox();
+        grupo13_jCheckBox12 = new javax.swing.JCheckBox();
+        grupo14_jCheckBox13 = new javax.swing.JCheckBox();
+        grupo15_jCheckBox14 = new javax.swing.JCheckBox();
+        grupo16_jCheckBox15 = new javax.swing.JCheckBox();
+        jSlider2 = new javax.swing.JSlider();
+        jSlider4 = new javax.swing.JSlider();
+        jSlider5 = new javax.swing.JSlider();
+        jSlider6 = new javax.swing.JSlider();
+        jSlider7 = new javax.swing.JSlider();
+        jSlider8 = new javax.swing.JSlider();
+        jSlider9 = new javax.swing.JSlider();
+        jSlider10 = new javax.swing.JSlider();
+        jSlider11 = new javax.swing.JSlider();
+        jSlider12 = new javax.swing.JSlider();
+        jSlider13 = new javax.swing.JSlider();
+        jSlider14 = new javax.swing.JSlider();
+        jSlider15 = new javax.swing.JSlider();
+        jSlider16 = new javax.swing.JSlider();
+        jSlider17 = new javax.swing.JSlider();
+        jSlider18 = new javax.swing.JSlider();
+        balastoEnviar_jButton = new javax.swing.JButton();
+        balastoEliminar_jButton = new javax.swing.JButton();
         panelGrupos = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
@@ -423,7 +471,6 @@ public class PpalView extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         rbIsMaster = new javax.swing.JRadioButton();
         rbIsSlave = new javax.swing.JRadioButton();
-        panelConfDali = new javax.swing.JPanel();
         tabMonitoreo = new javax.swing.JPanel();
         panelTiempoReal = new javax.swing.JPanel();
         jComboBox2 = new javax.swing.JComboBox();
@@ -441,6 +488,12 @@ public class PpalView extends javax.swing.JFrame {
         jLabel65 = new javax.swing.JLabel();
         jButton46 = new javax.swing.JButton();
         jButton47 = new javax.swing.JButton();
+        statusBar = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        statusLabel = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
         mainMenuBar = new javax.swing.JMenuBar();
         archivo_jMenu = new javax.swing.JMenu();
         guardarEnFlash_jMenuItem = new javax.swing.JMenuItem();
@@ -464,6 +517,9 @@ public class PpalView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SMAIEE - Configuración DALI");
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
+
+        panelPrincipal_jPanel.setLayout(new java.awt.GridBagLayout());
 
         header.setBackground(new java.awt.Color(0, 101, 137));
 
@@ -473,60 +529,18 @@ public class PpalView extends javax.swing.JFrame {
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(headerImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(headerImage, javax.swing.GroupLayout.DEFAULT_SIZE, 2369, Short.MAX_VALUE)
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(headerLayout.createSequentialGroup()
                 .addComponent(headerImage)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
-        statusBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel34.setText("Conexion");
-
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        statusLabel.setText("#");
-
-        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/connection.jpg"))); // NOI18N
-        jLabel45.setText("jLabel45");
-        jLabel45.setMaximumSize(new java.awt.Dimension(33, 9));
-        jLabel45.setMinimumSize(new java.awt.Dimension(33, 9));
-
-        javax.swing.GroupLayout statusBarLayout = new javax.swing.GroupLayout(statusBar);
-        statusBar.setLayout(statusBarLayout);
-        statusBarLayout.setHorizontalGroup(
-            statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(statusBarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel34)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(124, 124, 124)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(306, 306, 306)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statusLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        statusBarLayout.setVerticalGroup(
-            statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(statusBarLayout.createSequentialGroup()
-                .addGroup(statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator2)
-                        .addGroup(statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(statusLabel))
-                .addContainerGap())
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        panelPrincipal_jPanel.add(header, gridBagConstraints);
 
         tabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -566,7 +580,7 @@ public class PpalView extends javax.swing.JFrame {
                 arbol_jTreeValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(arbol_jTree);
+        arbolJerarquia_jScrollPane.setViewportView(arbol_jTree);
 
         panelPpal.setLayout(new java.awt.CardLayout());
 
@@ -574,20 +588,84 @@ public class PpalView extends javax.swing.JFrame {
         panelBienvenida.setLayout(panelBienvenidaLayout);
         panelBienvenidaLayout.setHorizontalGroup(
             panelBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 558, Short.MAX_VALUE)
+            .addGap(0, 2197, Short.MAX_VALUE)
         );
         panelBienvenidaLayout.setVerticalGroup(
             panelBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 551, Short.MAX_VALUE)
+            .addGap(0, 552, Short.MAX_VALUE)
         );
 
         panelPpal.add(panelBienvenida, "card8");
 
         panelBalastos.setBorder(javax.swing.BorderFactory.createTitledBorder("Balastos"));
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("DALI"));
+        infoBalasto_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Info Balasto"));
 
-        jLabel26.setText("Dir");
+        jLabel40.setText("Dirección Dali");
+
+        balastoNum_jComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione un número", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63" }));
+        balastoNum_jComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                balastoNum_jComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel41.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel41.setText("#");
+
+        jLabel1.setText("Nombre");
+
+        jLabel9.setText("Nivel");
+
+        jTextField20.setText("0");
+
+        javax.swing.GroupLayout infoBalasto_jPanelLayout = new javax.swing.GroupLayout(infoBalasto_jPanel);
+        infoBalasto_jPanel.setLayout(infoBalasto_jPanelLayout);
+        infoBalasto_jPanelLayout.setHorizontalGroup(
+            infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoBalasto_jPanelLayout.createSequentialGroup()
+                .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(infoBalasto_jPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel40)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(balastoNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel41)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1))
+                    .addComponent(jLabel9))
+                .addGap(18, 18, 18)
+                .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField20)
+                    .addComponent(jTextField1))
+                .addContainerGap())
+        );
+        infoBalasto_jPanelLayout.setVerticalGroup(
+            infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoBalasto_jPanelLayout.createSequentialGroup()
+                .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(infoBalasto_jPanelLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)))
+                    .addGroup(infoBalasto_jPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel41)
+                            .addComponent(jLabel40)
+                            .addComponent(balastoNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+
+        balastoDali_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("DALI"));
+        balastoDali_jPanel.setToolTipText("Configuración del balasto");
+
+        jLabel35.setText("Dir");
 
         jLabel27.setText("Min");
 
@@ -603,118 +681,530 @@ public class PpalView extends javax.swing.JFrame {
 
         jLabel33.setText("Pot");
 
-        jTextField26.setText("0");
+        balastoDir_jTextField.setText("0");
+        balastoDir_jTextField.setToolTipText("Dirección del balasto actual.");
 
-        jTextField27.setText("0");
+        balastoMin_jTextField.setText("0");
+        balastoMin_jTextField.setToolTipText("Minimo. Valor mínimo del balasto actual");
 
-        jTextField28.setText("0");
+        balastoMax_jTextField.setText("0");
+        balastoMax_jTextField.setToolTipText("Máximo. Valor máximo del balasto");
 
-        jTextField29.setText("0");
+        balastoFT_jTextField.setText("0");
+        balastoFT_jTextField.setToolTipText("Fade Time. Tiempo entre cambios para cambiar la luminosidad del balasto actual");
 
-        jTextField30.setText("0");
+        balastoFR_jTextField.setText("0");
+        balastoFR_jTextField.setToolTipText("Fade Rate: Numero de pasos por segundo para cambiar la luminosidad del balasto actual");
 
-        jTextField31.setText("0");
+        balastoLF_jTextField.setText("0");
+        balastoLF_jTextField.setToolTipText("Level Fail");
 
-        jTextField32.setText("0");
+        balastoLX_jTextField.setText("0");
+        balastoLX_jTextField.setToolTipText("");
 
-        jTextField33.setText("0");
+        balastoPot_jTextField.setText("0");
+        balastoPot_jTextField.setToolTipText("Potencia");
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout balastoDali_jPanelLayout = new javax.swing.GroupLayout(balastoDali_jPanel);
+        balastoDali_jPanel.setLayout(balastoDali_jPanelLayout);
+        balastoDali_jPanelLayout.setHorizontalGroup(
+            balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(balastoDali_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel26)
-                    .addComponent(jLabel27)
-                    .addComponent(jLabel28)
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel29)
                     .addComponent(jLabel30)
                     .addComponent(jLabel31)
                     .addComponent(jLabel32)
-                    .addComponent(jLabel33))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField33, 0, 1, Short.MAX_VALUE)
-                    .addComponent(jTextField32, 0, 1, Short.MAX_VALUE)
-                    .addComponent(jTextField31, 0, 1, Short.MAX_VALUE)
-                    .addComponent(jTextField30, 0, 1, Short.MAX_VALUE)
-                    .addComponent(jTextField29, 0, 1, Short.MAX_VALUE)
-                    .addComponent(jTextField28, 0, 1, Short.MAX_VALUE)
-                    .addComponent(jTextField27, 0, 1, Short.MAX_VALUE)
-                    .addComponent(jTextField26, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28)
-                    .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29)
-                    .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30)
-                    .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32)
-                    .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
-                    .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(281, Short.MAX_VALUE))
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel35)
+                    .addComponent(jLabel27))
+                .addGap(18, 18, 18)
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(balastoPot_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(balastoLX_jTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(balastoLF_jTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(balastoFT_jTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(balastoMax_jTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(balastoMin_jTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(balastoDir_jTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(balastoFR_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        balastoDali_jPanelLayout.setVerticalGroup(
+            balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(balastoDali_jPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel35)
+                    .addComponent(balastoDir_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(balastoMin_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(balastoMax_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(balastoFT_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30)
+                    .addComponent(balastoFR_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(balastoLF_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(balastoLX_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(balastoPot_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
-        jLabel1.setText("Nombre");
+        gruposDeBalasto_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Grupos a los que pertenece"));
+        gruposDeBalasto_jPanel.setLayout(new java.awt.GridBagLayout());
 
-        enviar_jButton.setText("Enviar");
-        enviar_jButton.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBox1.setText("1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox1, gridBagConstraints);
+
+        jCheckBox2.setText("2");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox2, gridBagConstraints);
+
+        jCheckBox3.setText("3");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox3, gridBagConstraints);
+
+        jCheckBox4.setText("4");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox4, gridBagConstraints);
+
+        jCheckBox5.setText("5");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox5, gridBagConstraints);
+
+        jCheckBox6.setText("6");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox6, gridBagConstraints);
+
+        jCheckBox7.setText("7");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox7, gridBagConstraints);
+
+        jCheckBox8.setText("8");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox8, gridBagConstraints);
+
+        jCheckBox9.setText("9");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox9, gridBagConstraints);
+
+        jCheckBox12.setText("10");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox12, gridBagConstraints);
+
+        jCheckBox13.setText("11");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox13, gridBagConstraints);
+
+        jCheckBox14.setText("12");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox14, gridBagConstraints);
+
+        jCheckBox15.setText("13");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox15, gridBagConstraints);
+
+        jCheckBox16.setText("14");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox16, gridBagConstraints);
+
+        jCheckBox17.setText("15");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox17, gridBagConstraints);
+
+        jCheckBox21.setText("16");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(jCheckBox21, gridBagConstraints);
+
+        escenasDeBalasto_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Escenas a las que pertenece"));
+        escenasDeBalasto_jPanel.setLayout(new java.awt.GridBagLayout());
+
+        grupo1_jCheckBox.setText("1");
+        grupo1_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo1_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo1_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo1_jCheckBox, gridBagConstraints);
+
+        grupo2_jCheckBox1.setText("2");
+        grupo2_jCheckBox1.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo2_jCheckBox1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo2_jCheckBox1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo2_jCheckBox1, gridBagConstraints);
+
+        grupo3_jCheckBox2.setText("3");
+        grupo3_jCheckBox2.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo3_jCheckBox2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo3_jCheckBox2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo3_jCheckBox2, gridBagConstraints);
+
+        grupo4_jCheckBox3.setText("4");
+        grupo4_jCheckBox3.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo4_jCheckBox3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo4_jCheckBox3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo4_jCheckBox3, gridBagConstraints);
+
+        grupo5_jCheckBox4.setText("5");
+        grupo5_jCheckBox4.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo5_jCheckBox4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo5_jCheckBox4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo5_jCheckBox4, gridBagConstraints);
+
+        grupo6_jCheckBox5.setText("6");
+        grupo6_jCheckBox5.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo6_jCheckBox5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo6_jCheckBox5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo6_jCheckBox5, gridBagConstraints);
+
+        grupo7_jCheckBox6.setText("7");
+        grupo7_jCheckBox6.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo7_jCheckBox6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo7_jCheckBox6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo7_jCheckBox6, gridBagConstraints);
+
+        grupo8_jCheckBox7.setText("8");
+        grupo8_jCheckBox7.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo8_jCheckBox7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo8_jCheckBox7.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo8_jCheckBox7, gridBagConstraints);
+
+        grupo9_jCheckBox8.setText("9");
+        grupo9_jCheckBox8.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo9_jCheckBox8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo9_jCheckBox8.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo9_jCheckBox8, gridBagConstraints);
+
+        grupo10_jCheckBox9.setText("10");
+        grupo10_jCheckBox9.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo10_jCheckBox9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo10_jCheckBox9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo10_jCheckBox9, gridBagConstraints);
+
+        grupo11_jCheckBox10.setText("11");
+        grupo11_jCheckBox10.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo11_jCheckBox10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo11_jCheckBox10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo11_jCheckBox10, gridBagConstraints);
+
+        grupo12_jCheckBox11.setText("12");
+        grupo12_jCheckBox11.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo12_jCheckBox11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo12_jCheckBox11.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo12_jCheckBox11, gridBagConstraints);
+
+        grupo13_jCheckBox12.setText("13");
+        grupo13_jCheckBox12.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo13_jCheckBox12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo13_jCheckBox12.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo13_jCheckBox12, gridBagConstraints);
+
+        grupo14_jCheckBox13.setText("14");
+        grupo14_jCheckBox13.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo14_jCheckBox13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo14_jCheckBox13.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo14_jCheckBox13, gridBagConstraints);
+
+        grupo15_jCheckBox14.setText("15");
+        grupo15_jCheckBox14.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo15_jCheckBox14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo15_jCheckBox14.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo15_jCheckBox14, gridBagConstraints);
+
+        grupo16_jCheckBox15.setText("16");
+        grupo16_jCheckBox15.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        grupo16_jCheckBox15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        grupo16_jCheckBox15.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(grupo16_jCheckBox15, gridBagConstraints);
+
+        jSlider2.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider2.setPaintTicks(true);
+        jSlider2.setSnapToTicks(true);
+        jSlider2.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider2, gridBagConstraints);
+
+        jSlider4.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider4.setPaintTicks(true);
+        jSlider4.setSnapToTicks(true);
+        jSlider4.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider4, gridBagConstraints);
+
+        jSlider5.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider5.setPaintTicks(true);
+        jSlider5.setSnapToTicks(true);
+        jSlider5.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider5, gridBagConstraints);
+
+        jSlider6.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider6.setPaintTicks(true);
+        jSlider6.setSnapToTicks(true);
+        jSlider6.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider6, gridBagConstraints);
+
+        jSlider7.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider7.setPaintTicks(true);
+        jSlider7.setSnapToTicks(true);
+        jSlider7.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider7, gridBagConstraints);
+
+        jSlider8.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider8.setPaintTicks(true);
+        jSlider8.setSnapToTicks(true);
+        jSlider8.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider8, gridBagConstraints);
+
+        jSlider9.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider9.setPaintTicks(true);
+        jSlider9.setSnapToTicks(true);
+        jSlider9.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider9, gridBagConstraints);
+
+        jSlider10.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider10.setPaintTicks(true);
+        jSlider10.setSnapToTicks(true);
+        jSlider10.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider10, gridBagConstraints);
+
+        jSlider11.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider11.setPaintTicks(true);
+        jSlider11.setSnapToTicks(true);
+        jSlider11.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider11, gridBagConstraints);
+
+        jSlider12.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider12.setPaintTicks(true);
+        jSlider12.setSnapToTicks(true);
+        jSlider12.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider12, gridBagConstraints);
+
+        jSlider13.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider13.setPaintTicks(true);
+        jSlider13.setSnapToTicks(true);
+        jSlider13.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider13, gridBagConstraints);
+
+        jSlider14.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider14.setPaintTicks(true);
+        jSlider14.setSnapToTicks(true);
+        jSlider14.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider14, gridBagConstraints);
+
+        jSlider15.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider15.setPaintTicks(true);
+        jSlider15.setSnapToTicks(true);
+        jSlider15.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider15, gridBagConstraints);
+
+        jSlider16.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider16.setPaintTicks(true);
+        jSlider16.setSnapToTicks(true);
+        jSlider16.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 15;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider16, gridBagConstraints);
+
+        jSlider17.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider17.setPaintTicks(true);
+        jSlider17.setSnapToTicks(true);
+        jSlider17.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider17, gridBagConstraints);
+
+        jSlider18.setOrientation(javax.swing.JSlider.VERTICAL);
+        jSlider18.setPaintTicks(true);
+        jSlider18.setSnapToTicks(true);
+        jSlider18.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        escenasDeBalasto_jPanel.add(jSlider18, gridBagConstraints);
+
+        balastoEnviar_jButton.setText("Enviar");
+        balastoEnviar_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enviar_jButtonActionPerformed(evt);
+                balastoEnviar_jButtonActionPerformed(evt);
             }
         });
 
-        jButton23.setText("Eliminar");
-        jButton23.addActionListener(new java.awt.event.ActionListener() {
+        balastoEliminar_jButton.setText("Eliminar");
+        balastoEliminar_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton23ActionPerformed(evt);
+                balastoEliminar_jButtonActionPerformed(evt);
             }
         });
-
-        jLabel9.setText("Nivel");
-
-        jTextField20.setText("0");
-
-        jLabel40.setText("Dirección Dali");
-
-        balastoNum_jComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione un número", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63" }));
-        balastoNum_jComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                balastoNum_jComboBoxActionPerformed(evt);
-            }
-        });
-
-        jLabel41.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel41.setText("#");
 
         javax.swing.GroupLayout panelBalastosLayout = new javax.swing.GroupLayout(panelBalastos);
         panelBalastos.setLayout(panelBalastosLayout);
@@ -723,61 +1213,45 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(panelBalastosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBalastosLayout.createSequentialGroup()
+                    .addComponent(infoBalasto_jPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBalastosLayout.createSequentialGroup()
+                        .addComponent(balastoDali_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel9))
-                        .addGap(32, 32, 32)
-                        .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelBalastosLayout.createSequentialGroup()
-                        .addComponent(jLabel40)
+                            .addComponent(escenasDeBalasto_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gruposDeBalasto_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBalastosLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(balastoEnviar_jButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(balastoNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel41)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(balastoEliminar_jButton)))
                 .addContainerGap())
-            .addGroup(panelBalastosLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(enviar_jButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton23)
-                .addGap(398, 398, 398))
         );
         panelBalastosLayout.setVerticalGroup(
             panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBalastosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoBalasto_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBalastosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelBalastosLayout.createSequentialGroup()
+                        .addComponent(gruposDeBalasto_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9)
-                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42)
-                        .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel40)
-                            .addComponent(balastoNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel41))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
-                        .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(enviar_jButton)
-                            .addComponent(jButton23)))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(escenasDeBalasto_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(balastoDali_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(balastoEnviar_jButton)
+                    .addComponent(balastoEliminar_jButton)))
         );
 
         panelPpal.add(panelBalastos, "card2");
 
         panelGrupos.setBorder(javax.swing.BorderFactory.createTitledBorder("Grupos"));
+        panelGrupos.setPreferredSize(new java.awt.Dimension(800, 552));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Balastos"));
+        jPanel3.setPreferredSize(new java.awt.Dimension(800, 442));
 
         jButton3.setText("<");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -823,7 +1297,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1031, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -836,7 +1310,7 @@ public class PpalView extends javax.swing.JFrame {
                         .addGap(225, 225, 225)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel57, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1041, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -849,15 +1323,15 @@ public class PpalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
+                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -886,25 +1360,25 @@ public class PpalView extends javax.swing.JFrame {
         panelGrupos.setLayout(panelGruposLayout);
         panelGruposLayout.setHorizontalGroup(
             panelGruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGruposLayout.createSequentialGroup()
-                .addGroup(panelGruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelGruposLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelGruposLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addGap(30, 30, 30)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel58)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                        .addComponent(gruposNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelGruposLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+            .addGroup(panelGruposLayout.createSequentialGroup()
+                .addGroup(panelGruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGruposLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(enviarGrupo_jButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(eliminarGrupo_jButton)))
+                        .addComponent(eliminarGrupo_jButton))
+                    .addGroup(panelGruposLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panelGruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 2165, Short.MAX_VALUE)
+                            .addGroup(panelGruposLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(30, 30, 30)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel58)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(gruposNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         panelGruposLayout.setVerticalGroup(
@@ -918,16 +1392,17 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(gruposNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelGruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eliminarGrupo_jButton)
                     .addComponent(enviarGrupo_jButton))
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         panelPpal.add(panelGrupos, "card4");
 
         panelEscenas.setBorder(javax.swing.BorderFactory.createTitledBorder("Escenas"));
+        panelEscenas.setPreferredSize(new java.awt.Dimension(800, 552));
 
         nombreEscena_jLabel.setText("Escena");
 
@@ -957,6 +1432,7 @@ public class PpalView extends javax.swing.JFrame {
         });
 
         escenasBalastos_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Balastos"));
+        escenasBalastos_jPanel.setPreferredSize(new java.awt.Dimension(800, 413));
 
         agregarBalastoEscena_jButton.setText(">");
         agregarBalastoEscena_jButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1001,7 +1477,7 @@ public class PpalView extends javax.swing.JFrame {
             escenasBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escenasBalastos_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(escenasBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER, false)
                     .addComponent(agregarBalastoEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1009,7 +1485,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(agregarTodosBalastosEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(removerTodosBalastosEscenas_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
                 .addContainerGap())
         );
         escenasBalastos_jPanelLayout.setVerticalGroup(
@@ -1017,19 +1493,19 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escenasBalastos_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(escenasBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(escenasBalastos_jPanelLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(agregarBalastoEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                .addComponent(agregarBalastoEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(removerBalastoEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                .addComponent(removerBalastoEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(agregarTodosBalastosEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                .addComponent(agregarTodosBalastosEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(removerTodosBalastosEscenas_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(removerTodosBalastosEscenas_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jLabel18.setText("Balasto:");
@@ -1046,7 +1522,6 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(panelEscenasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(escenasBalastos_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelEscenasLayout.createSequentialGroup()
                         .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombreEscena_jLabel)
@@ -1060,18 +1535,23 @@ public class PpalView extends javax.swing.JFrame {
                             .addGroup(panelEscenasLayout.createSequentialGroup()
                                 .addComponent(jLabel18)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel19))
-                            .addComponent(jLabel61))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelEscenasLayout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(18, 18, 18)
                                 .addComponent(actualizarNivelEscena_jButton)
-                                .addGap(153, 153, 153))
-                            .addComponent(escenaNumero_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelEscenasLayout.createSequentialGroup()
+                                .addComponent(jLabel61)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(escenaNumero_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))
                     .addGroup(panelEscenasLayout.createSequentialGroup()
-                        .addComponent(enviarEscena_jButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(eliminarEscena_jButton)))
+                        .addComponent(escenasBalastos_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 2165, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEscenasLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(enviarEscena_jButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(eliminarEscena_jButton)
                 .addContainerGap())
         );
         panelEscenasLayout.setVerticalGroup(
@@ -1092,16 +1572,17 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(actualizarNivelEscena_jButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(escenasBalastos_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enviarEscena_jButton)
                     .addComponent(eliminarEscena_jButton))
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         panelPpal.add(panelEscenas, "card5");
 
         panelEntradas.setBorder(javax.swing.BorderFactory.createTitledBorder("Entradas"));
+        panelEntradas.setPreferredSize(new java.awt.Dimension(800, 552));
 
         jLabel62.setText("Entrada número:");
 
@@ -1115,17 +1596,18 @@ public class PpalView extends javax.swing.JFrame {
             }
         });
 
+        panelConfEntradas.setPreferredSize(new java.awt.Dimension(800, 487));
         panelConfEntradas.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout panelEntradaInitLayout = new javax.swing.GroupLayout(panelEntradaInit);
         panelEntradaInit.setLayout(panelEntradaInitLayout);
         panelEntradaInitLayout.setHorizontalGroup(
             panelEntradaInitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGap(0, 2185, Short.MAX_VALUE)
         );
         panelEntradaInitLayout.setVerticalGroup(
             panelEntradaInitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 486, Short.MAX_VALUE)
+            .addGap(0, 487, Short.MAX_VALUE)
         );
 
         panelConfEntradas.add(panelEntradaInit, "card5");
@@ -1218,7 +1700,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                        .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton32, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
@@ -1226,7 +1708,7 @@ public class PpalView extends javax.swing.JFrame {
                             .addComponent(jButton30, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                             .addComponent(jButton33, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+                        .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(balastros_jCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1244,16 +1726,16 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jCheckBox18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                    .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addComponent(jButton31, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                        .addComponent(jButton31, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton30, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                        .addComponent(jButton30, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton32, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                        .addComponent(jButton32, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton33, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
-                    .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
+                    .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1303,17 +1785,16 @@ public class PpalView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelBotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jRadioButton4)
-                                    .addComponent(jRadioButton2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE))
+                                    .addComponent(jRadioButton2)))
                             .addGroup(panelBotoneraLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel8)
                                 .addGap(23, 23, 23)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                .addComponent(jTextField5)
                                 .addGap(77, 77, 77)
                                 .addComponent(jLabel10)))
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
+                        .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
                     .addGroup(panelBotoneraLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panelBotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1430,7 +1911,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
@@ -1438,7 +1919,7 @@ public class PpalView extends javax.swing.JFrame {
                             .addComponent(jButton18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                             .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jCheckBox10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1454,7 +1935,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jCheckBox11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                     .addComponent(jScrollPane10, 0, 0, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
@@ -1463,7 +1944,7 @@ public class PpalView extends javax.swing.JFrame {
                         .addGap(7, 7, 7)
                         .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)))
+                        .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -1616,7 +2097,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                        .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton36, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
@@ -1624,7 +2105,7 @@ public class PpalView extends javax.swing.JFrame {
                             .addComponent(jButton34, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                             .addComponent(jButton37, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+                        .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jCheckBox19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1643,7 +2124,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(fotoceldas_entrada_escenas_jCheckBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+                    .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                         .addComponent(jButton35, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1651,8 +2132,8 @@ public class PpalView extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jButton36, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton37, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
-                    .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE))
+                        .addComponent(jButton37, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
+                    .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1733,7 +2214,7 @@ public class PpalView extends javax.swing.JFrame {
         panelEntradas.setLayout(panelEntradasLayout);
         panelEntradasLayout.setHorizontalGroup(
             panelEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelConfEntradas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelConfEntradas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 2185, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEntradasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel62)
@@ -1758,6 +2239,7 @@ public class PpalView extends javax.swing.JFrame {
         panelPpal.add(panelEntradas, "card6");
 
         panelEventos.setBorder(javax.swing.BorderFactory.createTitledBorder("Eventos"));
+        panelEventos.setPreferredSize(new java.awt.Dimension(800, 552));
 
         jLabel20.setText("Nombre");
 
@@ -1799,7 +2281,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addGroup(porFechaYHora_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jFormattedTextField2)
                     .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         porFechaYHora_jPanelLayout.setVerticalGroup(
             porFechaYHora_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1874,7 +2356,7 @@ public class PpalView extends javax.swing.JFrame {
                         .addComponent(sabado_jCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(domingo_jCheckBox)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         porDiasEvento_jPanelLayout.setVerticalGroup(
             porDiasEvento_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1897,6 +2379,7 @@ public class PpalView extends javax.swing.JFrame {
         );
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Configuración"));
+        jPanel9.setPreferredSize(new java.awt.Dimension(550, 338));
 
         jButton26.setText("<");
         jButton26.addActionListener(new java.awt.event.ActionListener() {
@@ -1991,7 +2474,7 @@ public class PpalView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(selEscenaEntrada_jCheckBox))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 1034, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -2001,7 +2484,7 @@ public class PpalView extends javax.swing.JFrame {
                                 .addComponent(jButton27, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                                 .addComponent(jButton26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 1034, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2032,15 +2515,15 @@ public class PpalView extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jButton27, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                        .addComponent(jButton27, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton26, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton28, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                        .addComponent(jButton28, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton29, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
-                    .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                    .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                        .addComponent(jButton29, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -2067,7 +2550,7 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(panelEventosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 2165, Short.MAX_VALUE)
                     .addGroup(panelEventosLayout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2076,7 +2559,7 @@ public class PpalView extends javax.swing.JFrame {
                         .addComponent(jLabel64)
                         .addGap(18, 18, 18)
                         .addComponent(porDias_jCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel36)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(eventoNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2084,7 +2567,8 @@ public class PpalView extends javax.swing.JFrame {
                         .addComponent(porFechaYHora_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(porDiasEvento_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelEventosLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEventosLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(enviarEventos_jButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(eliminarEvento_jButton)))
@@ -2117,8 +2601,10 @@ public class PpalView extends javax.swing.JFrame {
         panelPpal.add(panelEventos, "card7");
 
         panelConfiguracion.setBorder(javax.swing.BorderFactory.createTitledBorder("Configuración"));
+        panelConfiguracion.setPreferredSize(new java.awt.Dimension(800, 551));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Hora del sistema"));
+        jPanel2.setPreferredSize(new java.awt.Dimension(470, 68));
 
         jDateChooser1.setEnabled(false);
 
@@ -2151,7 +2637,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton24)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2175,6 +2661,7 @@ public class PpalView extends javax.swing.JFrame {
         });
 
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder("Configuración de red"));
+        jPanel12.setPreferredSize(new java.awt.Dimension(560, 147));
 
         cbIsStaticConfiguration.setText("Configuración estática");
         cbIsStaticConfiguration.addActionListener(new java.awt.event.ActionListener() {
@@ -2221,22 +2708,22 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(labelPuerto))
                 .addGap(13, 13, 13)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fieldPuerto, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(fieldMask, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(fieldIp, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                    .addComponent(fieldPuerto, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
+                    .addComponent(fieldMask, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
+                    .addComponent(fieldIp, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelDns)
                     .addComponent(labelGateway))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fieldPort, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                    .addComponent(fieldGateway, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                    .addComponent(fieldPort, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE)
+                    .addComponent(fieldGateway, javax.swing.GroupLayout.DEFAULT_SIZE, 932, Short.MAX_VALUE))
                 .addGap(171, 171, 171))
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(cbIsStaticConfiguration)
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addContainerGap(2020, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2263,6 +2750,7 @@ public class PpalView extends javax.swing.JFrame {
         );
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder("Rol"));
+        jPanel13.setPreferredSize(new java.awt.Dimension(560, 60));
 
         confRol.add(rbIsMaster);
         rbIsMaster.setText("Maestro");
@@ -2280,7 +2768,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addComponent(rbIsMaster)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbIsSlave)
-                .addContainerGap(392, Short.MAX_VALUE))
+                .addContainerGap(2031, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2299,10 +2787,10 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(panelConfiguracionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 2175, Short.MAX_VALUE)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 2175, Short.MAX_VALUE)
                     .addComponent(jButton22)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 2175, Short.MAX_VALUE)))
         );
         panelConfiguracionLayout.setVerticalGroup(
             panelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2320,29 +2808,14 @@ public class PpalView extends javax.swing.JFrame {
 
         panelPpal.add(panelConfiguracion, "card3");
 
-        panelConfDali.setBorder(javax.swing.BorderFactory.createTitledBorder("Configuración Dali"));
-
-        javax.swing.GroupLayout panelConfDaliLayout = new javax.swing.GroupLayout(panelConfDali);
-        panelConfDali.setLayout(panelConfDaliLayout);
-        panelConfDaliLayout.setHorizontalGroup(
-            panelConfDaliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
-        );
-        panelConfDaliLayout.setVerticalGroup(
-            panelConfDaliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 528, Short.MAX_VALUE)
-        );
-
-        panelPpal.add(panelConfDali, "card10");
-
         javax.swing.GroupLayout tabConfiguracionLayout = new javax.swing.GroupLayout(tabConfiguracion);
         tabConfiguracion.setLayout(tabConfiguracionLayout);
         tabConfiguracionLayout.setHorizontalGroup(
             tabConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabConfiguracionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(577, Short.MAX_VALUE))
+                .addComponent(arbolJerarquia_jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(2216, Short.MAX_VALUE))
             .addGroup(tabConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabConfiguracionLayout.createSequentialGroup()
                     .addGap(157, 157, 157)
@@ -2353,7 +2826,7 @@ public class PpalView extends javax.swing.JFrame {
             tabConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabConfiguracionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+                .addComponent(arbolJerarquia_jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(tabConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(tabConfiguracionLayout.createSequentialGroup()
@@ -2362,7 +2835,9 @@ public class PpalView extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
-        tabbedPane.addTab("Configuración", tabConfiguracion);
+        tabbedPane.addTab("Configuración Smaiee", tabConfiguracion);
+
+        tabMonitoreo.setPreferredSize(new java.awt.Dimension(800, 574));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione el área" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -2483,16 +2958,16 @@ public class PpalView extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton44, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel56, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelTiempoRealLayout.setVerticalGroup(
             panelTiempoRealLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTiempoRealLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelTiempoRealLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel56, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                    .addComponent(jLabel56, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelTiempoRealLayout.createSequentialGroup()
                         .addGroup(panelTiempoRealLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2508,7 +2983,7 @@ public class PpalView extends javax.swing.JFrame {
                             .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelTiempoRealLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel44)
                             .addComponent(jButton44))
@@ -2525,18 +3000,83 @@ public class PpalView extends javax.swing.JFrame {
         tabMonitoreo.setLayout(tabMonitoreoLayout);
         tabMonitoreoLayout.setHorizontalGroup(
             tabMonitoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 725, Short.MAX_VALUE)
+            .addGap(0, 2364, Short.MAX_VALUE)
             .addGroup(tabMonitoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panelTiempoReal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(tabMonitoreoLayout.createSequentialGroup()
+                    .addComponent(panelTiempoReal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 1768, Short.MAX_VALUE)))
         );
         tabMonitoreoLayout.setVerticalGroup(
             tabMonitoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
+            .addGap(0, 574, Short.MAX_VALUE)
             .addGroup(tabMonitoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(panelTiempoReal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabbedPane.addTab("Monitoreo y control en tiempo real", tabMonitoreo);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        panelPrincipal_jPanel.add(tabbedPane, gridBagConstraints);
+
+        statusBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        statusBar.setPreferredSize(new java.awt.Dimension(800, 29));
+
+        jLabel34.setText("Conexion");
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        statusLabel.setText("#");
+
+        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/connection.jpg"))); // NOI18N
+        jLabel45.setText("jLabel45");
+        jLabel45.setMaximumSize(new java.awt.Dimension(33, 9));
+        jLabel45.setMinimumSize(new java.awt.Dimension(33, 9));
+
+        javax.swing.GroupLayout statusBarLayout = new javax.swing.GroupLayout(statusBar);
+        statusBar.setLayout(statusBarLayout);
+        statusBarLayout.setHorizontalGroup(
+            statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(statusBarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(124, 124, 124)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(306, 306, 306)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(statusLabel)
+                .addContainerGap(1827, Short.MAX_VALUE))
+        );
+        statusBarLayout.setVerticalGroup(
+            statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(statusBarLayout.createSequentialGroup()
+                .addGroup(statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jSeparator2)
+                        .addGroup(statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(statusLabel))
+                .addContainerGap())
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        panelPrincipal_jPanel.add(statusBar, gridBagConstraints);
+
+        principal_jScrollPane.setViewportView(panelPrincipal_jPanel);
+
+        getContentPane().add(principal_jScrollPane);
 
         archivo_jMenu.setText("Archivo");
 
@@ -2572,29 +3112,6 @@ public class PpalView extends javax.swing.JFrame {
         mainMenuBar.add(archivo_jMenu);
 
         setJMenuBar(mainMenuBar);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(statusBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(statusBar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -2640,11 +3157,11 @@ public class PpalView extends javax.swing.JFrame {
      *
      * @param evt
      */
-    protected void enviar_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviar_jButtonActionPerformed
+    protected void balastoEnviar_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoEnviar_jButtonActionPerformed
         this.balastosCtrl.saveBalast(this);
         String[] elementosDisponibles = balastosCtrl.elementosDisponibles(this);
         Validacion.actualizarCombo(balastoNum_jComboBox, elementosDisponibles);
-    }//GEN-LAST:event_enviar_jButtonActionPerformed
+    }//GEN-LAST:event_balastoEnviar_jButtonActionPerformed
 
     /**
      * Show the selection file window. (Real time control).
@@ -2679,9 +3196,9 @@ public class PpalView extends javax.swing.JFrame {
      *
      * @param evt
      */
-    protected void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+    protected void balastoEliminar_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoEliminar_jButtonActionPerformed
         this.balastosCtrl.deleteBalast(this);
-    }//GEN-LAST:event_jButton23ActionPerformed
+    }//GEN-LAST:event_balastoEliminar_jButtonActionPerformed
 
     /**
      * Add balasts to the group.
@@ -3130,10 +3647,6 @@ public class PpalView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_enviarEventos_jButtonActionPerformed
 
-    private void balastoNum_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoNum_jComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_balastoNum_jComboBoxActionPerformed
-
     /**
      * Charge the available balasts.
      *
@@ -3314,6 +3827,10 @@ public class PpalView extends javax.swing.JFrame {
         this.eventCtrl.selectByDays(this);
     }//GEN-LAST:event_porDias_jCheckBoxItemStateChanged
 
+    private void balastoNum_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoNum_jComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_balastoNum_jComboBoxActionPerformed
+
 //    private void startCheckingThread(java.awt.event.FocusEvent evt) {
 //        this.realCtrl.checkBalasts(this);
 //    }
@@ -3343,9 +3860,21 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton actualizarNivelEscena_jButton;
     private javax.swing.JButton agregarBalastoEscena_jButton;
     private javax.swing.JButton agregarTodosBalastosEscena_jButton;
+    private javax.swing.JScrollPane arbolJerarquia_jScrollPane;
     private javax.swing.JTree arbol_jTree;
     private javax.swing.JMenu archivo_jMenu;
+    private javax.swing.JPanel balastoDali_jPanel;
+    protected javax.swing.JTextField balastoDir_jTextField;
+    private javax.swing.JButton balastoEliminar_jButton;
+    private javax.swing.JButton balastoEnviar_jButton;
+    protected javax.swing.JTextField balastoFR_jTextField;
+    protected javax.swing.JTextField balastoFT_jTextField;
+    protected javax.swing.JTextField balastoLF_jTextField;
+    protected javax.swing.JTextField balastoLX_jTextField;
+    protected javax.swing.JTextField balastoMax_jTextField;
+    protected javax.swing.JTextField balastoMin_jTextField;
     protected javax.swing.JComboBox balastoNum_jComboBox;
+    protected javax.swing.JTextField balastoPot_jTextField;
     private javax.swing.JList balastosAfectados_jList;
     private javax.swing.JList balastrosDisponibles_jList;
     private javax.swing.JCheckBox balastros_jCheckBox;
@@ -3363,9 +3892,9 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton enviarEscena_jButton;
     private javax.swing.JButton enviarEventos_jButton;
     private javax.swing.JButton enviarGrupo_jButton;
-    private javax.swing.JButton enviar_jButton;
     private javax.swing.JComboBox escenaNumero_jComboBox;
     private javax.swing.JPanel escenasBalastos_jPanel;
+    private javax.swing.JPanel escenasDeBalasto_jPanel;
     private javax.swing.JComboBox eventoNum_jComboBox;
     private javax.swing.JFormattedTextField fieldGateway;
     protected javax.swing.JFormattedTextField fieldIp;
@@ -3374,12 +3903,30 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JTextField fieldPuerto;
     private javax.swing.JMenuItem formatear_jMenuItem;
     private javax.swing.JCheckBox fotoceldas_entrada_escenas_jCheckBox;
+    private javax.swing.JCheckBox grupo10_jCheckBox9;
+    private javax.swing.JCheckBox grupo11_jCheckBox10;
+    private javax.swing.JCheckBox grupo12_jCheckBox11;
+    private javax.swing.JCheckBox grupo13_jCheckBox12;
+    private javax.swing.JCheckBox grupo14_jCheckBox13;
+    private javax.swing.JCheckBox grupo15_jCheckBox14;
+    private javax.swing.JCheckBox grupo16_jCheckBox15;
+    private javax.swing.JCheckBox grupo1_jCheckBox;
+    private javax.swing.JCheckBox grupo2_jCheckBox1;
+    private javax.swing.JCheckBox grupo3_jCheckBox2;
+    private javax.swing.JCheckBox grupo4_jCheckBox3;
+    private javax.swing.JCheckBox grupo5_jCheckBox4;
+    private javax.swing.JCheckBox grupo6_jCheckBox5;
+    private javax.swing.JCheckBox grupo7_jCheckBox6;
+    private javax.swing.JCheckBox grupo8_jCheckBox7;
+    private javax.swing.JCheckBox grupo9_jCheckBox8;
+    private javax.swing.JPanel gruposDeBalasto_jPanel;
     private javax.swing.JComboBox gruposNum_jComboBox;
     private javax.swing.JCheckBox grupos_jCheckBox;
     private javax.swing.JMenuItem guardarEnFlash_jMenuItem;
     private javax.swing.JPanel header;
     private javax.swing.JLabel headerImage;
     private javax.swing.JFormattedTextField horaDiasEvento_jFormattedTextField;
+    private javax.swing.JPanel infoBalasto_jPanel;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
@@ -3389,7 +3936,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
@@ -3414,11 +3960,27 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton jButton47;
     private javax.swing.JButton jButton48;
     private javax.swing.JButton jButton5;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
+    private javax.swing.JCheckBox jCheckBox12;
+    private javax.swing.JCheckBox jCheckBox13;
+    private javax.swing.JCheckBox jCheckBox14;
+    private javax.swing.JCheckBox jCheckBox15;
+    private javax.swing.JCheckBox jCheckBox16;
+    private javax.swing.JCheckBox jCheckBox17;
     private javax.swing.JCheckBox jCheckBox18;
     private javax.swing.JCheckBox jCheckBox19;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox20;
+    private javax.swing.JCheckBox jCheckBox21;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox jCheckBox5;
+    private javax.swing.JCheckBox jCheckBox6;
+    private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JCheckBox jCheckBox8;
+    private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JComboBox jComboBox2;
     protected com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
@@ -3442,7 +4004,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -3452,6 +4013,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel39;
@@ -3493,14 +4055,12 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
@@ -3519,6 +4079,22 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JSlider jSlider1;
+    private javax.swing.JSlider jSlider10;
+    private javax.swing.JSlider jSlider11;
+    private javax.swing.JSlider jSlider12;
+    private javax.swing.JSlider jSlider13;
+    private javax.swing.JSlider jSlider14;
+    private javax.swing.JSlider jSlider15;
+    private javax.swing.JSlider jSlider16;
+    private javax.swing.JSlider jSlider17;
+    private javax.swing.JSlider jSlider18;
+    private javax.swing.JSlider jSlider2;
+    private javax.swing.JSlider jSlider4;
+    private javax.swing.JSlider jSlider5;
+    private javax.swing.JSlider jSlider6;
+    private javax.swing.JSlider jSlider7;
+    private javax.swing.JSlider jSlider8;
+    private javax.swing.JSlider jSlider9;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTable jTable1;
     protected javax.swing.JTextField jTextField1;
@@ -3526,15 +4102,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     protected javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField25;
-    protected javax.swing.JTextField jTextField26;
-    protected javax.swing.JTextField jTextField27;
-    protected javax.swing.JTextField jTextField28;
-    protected javax.swing.JTextField jTextField29;
     private javax.swing.JTextField jTextField3;
-    protected javax.swing.JTextField jTextField30;
-    protected javax.swing.JTextField jTextField31;
-    protected javax.swing.JTextField jTextField32;
-    protected javax.swing.JTextField jTextField33;
     private javax.swing.JTextField jTextField34;
     private javax.swing.JTextField jTextField35;
     private javax.swing.JTextField jTextField36;
@@ -3562,7 +4130,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel panelBalastos;
     private javax.swing.JPanel panelBienvenida;
     private javax.swing.JPanel panelBotonera;
-    private javax.swing.JPanel panelConfDali;
     private javax.swing.JPanel panelConfEntradas;
     private javax.swing.JPanel panelConfiguracion;
     private javax.swing.JPanel panelEntradaInit;
@@ -3572,11 +4139,13 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel panelFotocelda;
     private javax.swing.JPanel panelGrupos;
     private javax.swing.JPanel panelPpal;
+    private javax.swing.JPanel panelPrincipal_jPanel;
     private javax.swing.JPanel panelSensor;
     private javax.swing.JPanel panelTiempoReal;
     private javax.swing.JPanel porDiasEvento_jPanel;
     private javax.swing.JCheckBox porDias_jCheckBox;
     private javax.swing.JPanel porFechaYHora_jPanel;
+    private javax.swing.JScrollPane principal_jScrollPane;
     private javax.swing.JRadioButton rbIsMaster;
     private javax.swing.JRadioButton rbIsSlave;
     private javax.swing.JButton removerBalastoEscena_jButton;
@@ -3986,11 +4555,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JButton getjButton1() {
-        return enviar_jButton;
+        return balastoEnviar_jButton;
     }
 
     public void setjButton1(JButton jButton1) {
-        this.enviar_jButton = jButton1;
+        this.balastoEnviar_jButton = jButton1;
     }
 
     public JButton getjButton10() {
@@ -4106,11 +4675,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JButton getjButton23() {
-        return jButton23;
+        return balastoEliminar_jButton;
     }
 
     public void setjButton23(JButton jButton23) {
-        this.jButton23 = jButton23;
+        this.balastoEliminar_jButton = jButton23;
     }
 
     public JButton getjButton26() {
@@ -4721,14 +5290,7 @@ public class PpalView extends javax.swing.JFrame {
         this.jLabel25 = jLabel25;
     }
 
-    public JLabel getjLabel26() {
-        return jLabel26;
-    }
-
-    public void setjLabel26(JLabel jLabel26) {
-        this.jLabel26 = jLabel26;
-    }
-
+   
     public JLabel getjLabel27() {
         return jLabel27;
     }
@@ -5202,11 +5764,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JPanel getjPanel6() {
-        return jPanel6;
+        return balastoDali_jPanel;
     }
 
     public void setjPanel6(JPanel jPanel6) {
-        this.jPanel6 = jPanel6;
+        this.balastoDali_jPanel = jPanel6;
     }
 
     public JPanel getjPanel7() {
@@ -5266,11 +5828,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JScrollPane getjScrollPane1() {
-        return jScrollPane1;
+        return arbolJerarquia_jScrollPane;
     }
 
     public void setjScrollPane1(JScrollPane jScrollPane1) {
-        this.jScrollPane1 = jScrollPane1;
+        this.arbolJerarquia_jScrollPane = jScrollPane1;
     }
 
     public JScrollPane getjScrollPane10() {
@@ -5429,6 +5991,26 @@ public class PpalView extends javax.swing.JFrame {
         return jTextField1;
     }
 
+    public JTextField getBalastoMax_jTextField() {
+        return balastoMax_jTextField;
+    }
+    
+    
+
+    public void setBalastoMax_jTextField(JTextField balastoMax_jTextField) {
+        this.balastoMax_jTextField = balastoMax_jTextField;
+    }
+
+    public JTextField getBalastoMin_jTextField() {
+        return balastoMin_jTextField;
+    }
+
+    public void setBalastoMin_jTextField(JTextField balastoMin_jTextField) {
+        this.balastoMin_jTextField = balastoMin_jTextField;
+    }
+
+    
+    
     public void setjTextField1(JTextField jTextField1) {
         this.jTextField1 = jTextField1;
     }
@@ -5481,36 +6063,29 @@ public class PpalView extends javax.swing.JFrame {
         this.jTextField25 = jTextField25;
     }
 
-    public JTextField getjTextField26() {
-        return jTextField26;
-    }
-
-    public void setjTextField26(JTextField jTextField26) {
-        this.jTextField26 = jTextField26;
-    }
-
+   
     public JTextField getjTextField27() {
-        return jTextField27;
+        return balastoMin_jTextField;
     }
 
     public void setjTextField27(JTextField jTextField27) {
-        this.jTextField27 = jTextField27;
+        this.balastoMin_jTextField = jTextField27;
     }
 
     public JTextField getjTextField28() {
-        return jTextField28;
+        return balastoMax_jTextField;
     }
 
     public void setjTextField28(JTextField jTextField28) {
-        this.jTextField28 = jTextField28;
+        this.balastoMax_jTextField = jTextField28;
     }
 
     public JTextField getjTextField29() {
-        return jTextField29;
+        return balastoFT_jTextField;
     }
 
     public void setjTextField29(JTextField jTextField29) {
-        this.jTextField29 = jTextField29;
+        this.balastoFT_jTextField = jTextField29;
     }
 
     public JTextField getjTextField3() {
@@ -5522,35 +6097,35 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JTextField getjTextField30() {
-        return jTextField30;
+        return balastoFR_jTextField;
     }
 
     public void setjTextField30(JTextField jTextField30) {
-        this.jTextField30 = jTextField30;
+        this.balastoFR_jTextField = jTextField30;
     }
 
     public JTextField getjTextField31() {
-        return jTextField31;
+        return balastoLF_jTextField;
     }
 
     public void setjTextField31(JTextField jTextField31) {
-        this.jTextField31 = jTextField31;
+        this.balastoLF_jTextField = jTextField31;
     }
 
     public JTextField getjTextField32() {
-        return jTextField32;
+        return balastoLX_jTextField;
     }
 
     public void setjTextField32(JTextField jTextField32) {
-        this.jTextField32 = jTextField32;
+        this.balastoLX_jTextField = jTextField32;
     }
 
     public JTextField getjTextField33() {
-        return jTextField33;
+        return balastoPot_jTextField;
     }
 
     public void setjTextField33(JTextField jTextField33) {
-        this.jTextField33 = jTextField33;
+        this.balastoPot_jTextField = jTextField33;
     }
 
     public JTextField getjTextField34() {
@@ -5705,14 +6280,7 @@ public class PpalView extends javax.swing.JFrame {
         this.panelBotonera = panelBotonera;
     }
 
-    public JPanel getPanelConfDali() {
-        return panelConfDali;
-    }
-
-    public void setPanelConfDali(JPanel panelConfDali) {
-        this.panelConfDali = panelConfDali;
-    }
-
+   
     public JPanel getPanelConfEntradas() {
         return panelConfEntradas;
     }
@@ -5991,6 +6559,54 @@ public class PpalView extends javax.swing.JFrame {
                 arbol_jTreeValueChanged(evt);
             }
         });
+    }
+
+    public javax.swing.JTextField getBalastoDir_jTextField() {
+        return balastoDir_jTextField;
+    }
+
+    public void setBalastoDir_jTextField(javax.swing.JTextField balastoDir_jTextField) {
+        this.balastoDir_jTextField = balastoDir_jTextField;
+    }
+
+    public javax.swing.JTextField getBalastoFR_jTextField() {
+        return balastoFR_jTextField;
+    }
+
+    public void setBalastoFR_jTextField(javax.swing.JTextField balastoFR_jTextField) {
+        this.balastoFR_jTextField = balastoFR_jTextField;
+    }
+
+    public javax.swing.JTextField getBalastoFT_jTextField() {
+        return balastoFT_jTextField;
+    }
+
+    public void setBalastoFT_jTextField(javax.swing.JTextField balastoFT_jTextField) {
+        this.balastoFT_jTextField = balastoFT_jTextField;
+    }
+
+    public javax.swing.JTextField getBalastoLF_jTextField() {
+        return balastoLF_jTextField;
+    }
+
+    public void setBalastoLF_jTextField(javax.swing.JTextField balastoLF_jTextField) {
+        this.balastoLF_jTextField = balastoLF_jTextField;
+    }
+
+    public javax.swing.JTextField getBalastoLX_jTextField() {
+        return balastoLX_jTextField;
+    }
+
+    public void setBalastoLX_jTextField(javax.swing.JTextField balastoLX_jTextField) {
+        this.balastoLX_jTextField = balastoLX_jTextField;
+    }
+
+    public javax.swing.JTextField getBalastoPot_jTextField() {
+        return balastoPot_jTextField;
+    }
+
+    public void setBalastoPot_jTextField(javax.swing.JTextField balastoPot_jTextField) {
+        this.balastoPot_jTextField = balastoPot_jTextField;
     }
 
     // End of variables declaration                   

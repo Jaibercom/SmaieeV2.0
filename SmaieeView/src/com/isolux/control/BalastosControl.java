@@ -92,14 +92,14 @@ public class BalastosControl {
                 return;
             }
 
-            int dir = Integer.parseInt(ppalView.getjTextField26().getText());
-            int min = Integer.parseInt(ppalView.getjTextField27().getText());
-            int max = Integer.parseInt(ppalView.getjTextField28().getText());
-            int ft = Integer.parseInt(ppalView.getjTextField29().getText());
-            int fr = Integer.parseInt(ppalView.getjTextField30().getText());
-            int lf = Integer.parseInt(ppalView.getjTextField31().getText());
-            int lx = Integer.parseInt(ppalView.getjTextField32().getText());
-            int pot = Integer.parseInt(ppalView.getjTextField33().getText());
+            int dir = Integer.parseInt(ppalView.getBalastoDir_jTextField().getText());
+            int min = Integer.parseInt(ppalView.getBalastoMin_jTextField().getText());
+            int max = Integer.parseInt(ppalView.getBalastoMax_jTextField().getText());
+            int ft = Integer.parseInt(ppalView.getBalastoFT_jTextField().getText());
+            int fr = Integer.parseInt(ppalView.getBalastoFR_jTextField().getText());
+            int lf = Integer.parseInt(ppalView.getBalastoLF_jTextField().getText());
+            int lx = Integer.parseInt(ppalView.getBalastoLX_jTextField().getText());
+            int pot = Integer.parseInt(ppalView.getBalastoPot_jTextField().getText());
 
 
             ppalView.getStatusLabel().setText("Guardando balasto");
@@ -195,14 +195,14 @@ public class BalastosControl {
 
         ppalView.getjTextField1().setText(selectedBalast.getName());
         ppalView.getjTextField20().setText(String.valueOf(selectedBalast.getLevel()));
-        ppalView.getjTextField26().setText(String.valueOf(selectedBalast.getDir()));
-        ppalView.getjTextField27().setText(String.valueOf(selectedBalast.getMin()));
-        ppalView.getjTextField28().setText(String.valueOf(selectedBalast.getMax()));
-        ppalView.getjTextField29().setText(String.valueOf(selectedBalast.getFt()));
-        ppalView.getjTextField30().setText(String.valueOf(selectedBalast.getFr()));
-        ppalView.getjTextField31().setText(String.valueOf(selectedBalast.getLf()));
-        ppalView.getjTextField32().setText(String.valueOf(selectedBalast.getLx()));
-        ppalView.getjTextField33().setText(String.valueOf(selectedBalast.getPot()));
+        ppalView.getBalastoDir_jTextField().setText(String.valueOf(selectedBalast.getDir()));
+        ppalView.getBalastoMin_jTextField().setText(String.valueOf(selectedBalast.getMin()));
+        ppalView.getBalastoMax_jTextField().setText(String.valueOf(selectedBalast.getMax()));
+        ppalView.getBalastoFT_jTextField().setText(String.valueOf(selectedBalast.getFt()));
+        ppalView.getBalastoFR_jTextField().setText(String.valueOf(selectedBalast.getFr()));
+        ppalView.getBalastoLF_jTextField().setText(String.valueOf(selectedBalast.getLf()));
+        ppalView.getBalastoLX_jTextField().setText(String.valueOf(selectedBalast.getLx()));
+        ppalView.getBalastoPot_jTextField().setText(String.valueOf(selectedBalast.getPot()));
         ppalView.getjLabel41().setText(balastNumber);
         ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
     }
@@ -213,14 +213,14 @@ public class BalastosControl {
     public void cleanBalastosView(PpalView ppalView) {
         ppalView.getjTextField1().setText("");
         ppalView.getjTextField20().setText("0");
-        ppalView.getjTextField26().setText("0");
-        ppalView.getjTextField27().setText("0");
-        ppalView.getjTextField28().setText("0");
-        ppalView.getjTextField29().setText("0");
-        ppalView.getjTextField30().setText("0");
-        ppalView.getjTextField31().setText("0");
-        ppalView.getjTextField32().setText("0");
-        ppalView.getjTextField33().setText("0");
+        ppalView.getBalastoDir_jTextField().setText("0");
+        ppalView.getBalastoMin_jTextField().setText("0");
+        ppalView.getBalastoMax_jTextField().setText("0");
+        ppalView.getBalastoFT_jTextField().setText("0");
+        ppalView.getBalastoFR_jTextField().setText("0");
+        ppalView.getBalastoLF_jTextField().setText("0");
+        ppalView.getBalastoLX_jTextField().setText("0");
+        ppalView.getBalastoPot_jTextField().setText("0");
         ppalView.getjLabel41().setText("#");
 
         ppalView.setSelectedBalastNumber("");

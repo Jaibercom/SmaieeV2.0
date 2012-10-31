@@ -5,7 +5,6 @@
 package com.isolux.utils;
 
 import com.isolux.view.PpalView;
-import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -60,7 +59,7 @@ public class Validacion {
         if (!ppalView.getjTextField20().getText().isEmpty()) { //nivel
             
         }
-        if (!ppalView.getjTextField26().getText().isEmpty() || !ppalView.getjTextField26().getText().equals("0")) { //Dir
+        if (!ppalView.getBalastoDir_jTextField().getText().isEmpty() || !ppalView.getBalastoDir_jTextField().getText().equals("0")) { //Dir
             validationResult += "- Dir: Debe especificar la dirección\n";
             result = false;
         }
