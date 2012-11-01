@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 import javax.swing.JList;
+import javax.swing.JSlider;
 import javax.swing.ListModel;
 
 /**
@@ -388,4 +389,6 @@ public class ViewUtils {
       
         
     }
+    
+    
 }

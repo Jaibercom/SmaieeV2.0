@@ -209,89 +209,23 @@ public class PpalView extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         headerImage = new javax.swing.JLabel();
         tabbedPane = new javax.swing.JTabbedPane();
-        tabConfiguracion = new javax.swing.JPanel();
+        configuracionSmaiee_jPanel = new javax.swing.JPanel();
         arbolJerarquia_jScrollPane = new javax.swing.JScrollPane();
         arbol_jTree = new javax.swing.JTree();
         panelPpal = new javax.swing.JPanel();
         panelBienvenida = new javax.swing.JPanel();
         panelBalastos = new javax.swing.JPanel();
         infoBalasto_jPanel = new javax.swing.JPanel();
-        jLabel40 = new javax.swing.JLabel();
-        balastoNum_jComboBox = new javax.swing.JComboBox();
         jLabel41 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextField20 = new javax.swing.JTextField();
-        balastoDali_jPanel = new javax.swing.JPanel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        balastoDir_jTextField = new javax.swing.JTextField();
-        balastoMin_jTextField = new javax.swing.JTextField();
-        balastoMax_jTextField = new javax.swing.JTextField();
-        balastoFT_jTextField = new javax.swing.JTextField();
-        balastoFR_jTextField = new javax.swing.JTextField();
-        balastoLF_jTextField = new javax.swing.JTextField();
-        balastoLX_jTextField = new javax.swing.JTextField();
-        balastoPot_jTextField = new javax.swing.JTextField();
-        gruposDeBalasto_jPanel = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
-        jCheckBox13 = new javax.swing.JCheckBox();
-        jCheckBox14 = new javax.swing.JCheckBox();
-        jCheckBox15 = new javax.swing.JCheckBox();
-        jCheckBox16 = new javax.swing.JCheckBox();
-        jCheckBox17 = new javax.swing.JCheckBox();
-        jCheckBox21 = new javax.swing.JCheckBox();
-        escenasDeBalasto_jPanel = new javax.swing.JPanel();
-        grupo1_jCheckBox = new javax.swing.JCheckBox();
-        grupo2_jCheckBox1 = new javax.swing.JCheckBox();
-        grupo3_jCheckBox2 = new javax.swing.JCheckBox();
-        grupo4_jCheckBox3 = new javax.swing.JCheckBox();
-        grupo5_jCheckBox4 = new javax.swing.JCheckBox();
-        grupo6_jCheckBox5 = new javax.swing.JCheckBox();
-        grupo7_jCheckBox6 = new javax.swing.JCheckBox();
-        grupo8_jCheckBox7 = new javax.swing.JCheckBox();
-        grupo9_jCheckBox8 = new javax.swing.JCheckBox();
-        grupo10_jCheckBox9 = new javax.swing.JCheckBox();
-        grupo11_jCheckBox10 = new javax.swing.JCheckBox();
-        grupo12_jCheckBox11 = new javax.swing.JCheckBox();
-        grupo13_jCheckBox12 = new javax.swing.JCheckBox();
-        grupo14_jCheckBox13 = new javax.swing.JCheckBox();
-        grupo15_jCheckBox14 = new javax.swing.JCheckBox();
-        grupo16_jCheckBox15 = new javax.swing.JCheckBox();
-        jSlider2 = new javax.swing.JSlider();
-        jSlider4 = new javax.swing.JSlider();
-        jSlider5 = new javax.swing.JSlider();
-        jSlider6 = new javax.swing.JSlider();
-        jSlider7 = new javax.swing.JSlider();
-        jSlider8 = new javax.swing.JSlider();
-        jSlider9 = new javax.swing.JSlider();
-        jSlider10 = new javax.swing.JSlider();
-        jSlider11 = new javax.swing.JSlider();
-        jSlider12 = new javax.swing.JSlider();
-        jSlider13 = new javax.swing.JSlider();
-        jSlider14 = new javax.swing.JSlider();
-        jSlider15 = new javax.swing.JSlider();
-        jSlider16 = new javax.swing.JSlider();
-        jSlider17 = new javax.swing.JSlider();
-        jSlider18 = new javax.swing.JSlider();
         balastoEnviar_jButton = new javax.swing.JButton();
         balastoEliminar_jButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        balastoNum_jComboBox = new javax.swing.JComboBox();
+        jLabel40 = new javax.swing.JLabel();
         panelGrupos = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
@@ -471,7 +405,7 @@ public class PpalView extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         rbIsMaster = new javax.swing.JRadioButton();
         rbIsSlave = new javax.swing.JRadioButton();
-        tabMonitoreo = new javax.swing.JPanel();
+        monitoreoTiempoReal_jPanel = new javax.swing.JPanel();
         panelTiempoReal = new javax.swing.JPanel();
         jComboBox2 = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -488,6 +422,78 @@ public class PpalView extends javax.swing.JFrame {
         jLabel65 = new javax.swing.JLabel();
         jButton46 = new javax.swing.JButton();
         jButton47 = new javax.swing.JButton();
+        configuracionBalastos_jPanel = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        balastoDali_jPanel = new javax.swing.JPanel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        balastoDir_jTextField = new javax.swing.JTextField();
+        balastoMin_jTextField = new javax.swing.JTextField();
+        balastoMax_jTextField = new javax.swing.JTextField();
+        balastoFT_jTextField = new javax.swing.JTextField();
+        balastoFR_jTextField = new javax.swing.JTextField();
+        balastoLF_jTextField = new javax.swing.JTextField();
+        balastoLX_jTextField = new javax.swing.JTextField();
+        balastoPot_jTextField = new javax.swing.JTextField();
+        gruposDeBalasto_jPanel = new javax.swing.JPanel();
+        grupo_jCheckBox1 = new javax.swing.JCheckBox();
+        grupo_jCheckBox2 = new javax.swing.JCheckBox();
+        grupo_jCheckBox3 = new javax.swing.JCheckBox();
+        grupo_jCheckBox4 = new javax.swing.JCheckBox();
+        grupo_jCheckBox5 = new javax.swing.JCheckBox();
+        grupo_jCheckBox6 = new javax.swing.JCheckBox();
+        grupo_jCheckBox7 = new javax.swing.JCheckBox();
+        grupo_jCheckBox8 = new javax.swing.JCheckBox();
+        grupo_jCheckBox9 = new javax.swing.JCheckBox();
+        grupo_jCheckBox10 = new javax.swing.JCheckBox();
+        grupo_jCheckBox11 = new javax.swing.JCheckBox();
+        grupo_jCheckBox12 = new javax.swing.JCheckBox();
+        grupo_jCheckBox13 = new javax.swing.JCheckBox();
+        grupo_jCheckBox14 = new javax.swing.JCheckBox();
+        grupo_jCheckBox15 = new javax.swing.JCheckBox();
+        grupo_jCheckBox16 = new javax.swing.JCheckBox();
+        escenasDeBalasto_jPanel = new javax.swing.JPanel();
+        balastoEscena1_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena1_jSlider = new javax.swing.JSlider();
+        balastoEscena2_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena2_jSlider = new javax.swing.JSlider();
+        balastoEscena3_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena3_jSlider = new javax.swing.JSlider();
+        balastoEscena4_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena4_jSlider = new javax.swing.JSlider();
+        balastoEscena5_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena5_jSlider = new javax.swing.JSlider();
+        balastoEscena6_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena6_jSlider = new javax.swing.JSlider();
+        balastoEscena7_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena7_jSlider = new javax.swing.JSlider();
+        balastoEscena8_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena8_jSlider = new javax.swing.JSlider();
+        balastoEscena9_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena9_jSlider = new javax.swing.JSlider();
+        balastoEscena10_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena10_jSlider = new javax.swing.JSlider();
+        balastoEscena11_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena11_jSlider = new javax.swing.JSlider();
+        balastoEscena12_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena12_jSlider = new javax.swing.JSlider();
+        balastoEscena13_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena13_jSlider = new javax.swing.JSlider();
+        balastoEscena14_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena14_jSlider = new javax.swing.JSlider();
+        balastoEscena15_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena15_jSlider = new javax.swing.JSlider();
+        balastoEscena16_jCheckBox = new javax.swing.JCheckBox();
+        balastoEscena16_jSlider = new javax.swing.JSlider();
+        balastoLeerConfig_jButton = new javax.swing.JButton();
+        balastoEscribirConfig_jButton = new javax.swing.JButton();
         statusBar = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -520,7 +526,6 @@ public class PpalView extends javax.swing.JFrame {
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
 
         principal_jScrollPane.setPreferredSize(new java.awt.Dimension(1067, 703));
-        principal_jScrollPane.setViewport(null);
 
         panelPrincipal_jPanel.setPreferredSize(new java.awt.Dimension(800, 701));
         panelPrincipal_jPanel.setLayout(new java.awt.BorderLayout());
@@ -533,7 +538,7 @@ public class PpalView extends javax.swing.JFrame {
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(headerImage, javax.swing.GroupLayout.DEFAULT_SIZE, 1067, Short.MAX_VALUE)
+            .addComponent(headerImage, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -550,7 +555,7 @@ public class PpalView extends javax.swing.JFrame {
             }
         });
 
-        tabConfiguracion.setPreferredSize(new java.awt.Dimension(800, 574));
+        configuracionSmaiee_jPanel.setPreferredSize(new java.awt.Dimension(800, 574));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("SMAIEE");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Balastos");
@@ -594,11 +599,11 @@ public class PpalView extends javax.swing.JFrame {
         panelBienvenida.setLayout(panelBienvenidaLayout);
         panelBienvenidaLayout.setHorizontalGroup(
             panelBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 895, Short.MAX_VALUE)
+            .addGap(0, 628, Short.MAX_VALUE)
         );
         panelBienvenidaLayout.setVerticalGroup(
             panelBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 553, Short.MAX_VALUE)
+            .addGap(0, 555, Short.MAX_VALUE)
         );
 
         panelPpal.add(panelBienvenida, "card8");
@@ -607,15 +612,6 @@ public class PpalView extends javax.swing.JFrame {
 
         infoBalasto_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Info Balasto"));
         infoBalasto_jPanel.setPreferredSize(new java.awt.Dimension(500, 149));
-
-        jLabel40.setText("Dirección Dali");
-
-        balastoNum_jComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione un número", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63" }));
-        balastoNum_jComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                balastoNum_jComboBoxActionPerformed(evt);
-            }
-        });
 
         jLabel41.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel41.setText("#");
@@ -631,573 +627,32 @@ public class PpalView extends javax.swing.JFrame {
         infoBalasto_jPanelLayout.setHorizontalGroup(
             infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoBalasto_jPanelLayout.createSequentialGroup()
-                .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(infoBalasto_jPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel40)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(balastoNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel41)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1))
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField20)
-                    .addComponent(jTextField1))
-                .addContainerGap())
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel41)
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         infoBalasto_jPanelLayout.setVerticalGroup(
             infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(infoBalasto_jPanelLayout.createSequentialGroup()
-                .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(infoBalasto_jPanelLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)))
-                    .addGroup(infoBalasto_jPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel41)
-                            .addComponent(jLabel40)
-                            .addComponent(balastoNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(64, Short.MAX_VALUE))
-        );
-
-        balastoDali_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("DALI"));
-        balastoDali_jPanel.setToolTipText("Configuración del balasto");
-
-        jLabel35.setText("Dir");
-
-        jLabel27.setText("Min");
-
-        jLabel28.setText("Max");
-
-        jLabel29.setText("FT");
-
-        jLabel30.setText("FR");
-
-        jLabel31.setText("LF");
-
-        jLabel32.setText("LX");
-
-        jLabel33.setText("Pot");
-
-        balastoDir_jTextField.setText("0");
-        balastoDir_jTextField.setToolTipText("Dirección del balasto actual.");
-
-        balastoMin_jTextField.setText("0");
-        balastoMin_jTextField.setToolTipText("Minimo. Valor mínimo del balasto actual");
-
-        balastoMax_jTextField.setText("0");
-        balastoMax_jTextField.setToolTipText("Máximo. Valor máximo del balasto");
-
-        balastoFT_jTextField.setText("0");
-        balastoFT_jTextField.setToolTipText("Fade Time. Tiempo entre cambios para cambiar la luminosidad del balasto actual");
-
-        balastoFR_jTextField.setText("0");
-        balastoFR_jTextField.setToolTipText("Fade Rate: Numero de pasos por segundo para cambiar la luminosidad del balasto actual");
-
-        balastoLF_jTextField.setText("0");
-        balastoLF_jTextField.setToolTipText("Level Fail");
-
-        balastoLX_jTextField.setText("0");
-        balastoLX_jTextField.setToolTipText("");
-
-        balastoPot_jTextField.setText("0");
-        balastoPot_jTextField.setToolTipText("Potencia");
-
-        javax.swing.GroupLayout balastoDali_jPanelLayout = new javax.swing.GroupLayout(balastoDali_jPanel);
-        balastoDali_jPanel.setLayout(balastoDali_jPanelLayout);
-        balastoDali_jPanelLayout.setHorizontalGroup(
-            balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(balastoDali_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel29)
-                    .addComponent(jLabel30)
-                    .addComponent(jLabel31)
-                    .addComponent(jLabel32)
-                    .addComponent(jLabel33)
-                    .addComponent(jLabel28)
-                    .addComponent(jLabel35)
-                    .addComponent(jLabel27))
+                .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel41))
                 .addGap(18, 18, 18)
-                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(balastoPot_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(balastoLX_jTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(balastoLF_jTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(balastoFT_jTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(balastoMax_jTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(balastoMin_jTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(balastoDir_jTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(balastoFR_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(infoBalasto_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
-        balastoDali_jPanelLayout.setVerticalGroup(
-            balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(balastoDali_jPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel35)
-                    .addComponent(balastoDir_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(balastoMin_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28)
-                    .addComponent(balastoMax_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29)
-                    .addComponent(balastoFT_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30)
-                    .addComponent(balastoFR_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(balastoLF_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32)
-                    .addComponent(balastoLX_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel33)
-                    .addComponent(balastoPot_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(61, Short.MAX_VALUE))
-        );
-
-        gruposDeBalasto_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Grupos a los que pertenece"));
-        gruposDeBalasto_jPanel.setLayout(new java.awt.GridBagLayout());
-
-        jCheckBox1.setText("1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox1, gridBagConstraints);
-
-        jCheckBox2.setText("2");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox2, gridBagConstraints);
-
-        jCheckBox3.setText("3");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox3, gridBagConstraints);
-
-        jCheckBox4.setText("4");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox4, gridBagConstraints);
-
-        jCheckBox5.setText("5");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox5, gridBagConstraints);
-
-        jCheckBox6.setText("6");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox6, gridBagConstraints);
-
-        jCheckBox7.setText("7");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox7, gridBagConstraints);
-
-        jCheckBox8.setText("8");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox8, gridBagConstraints);
-
-        jCheckBox9.setText("9");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox9, gridBagConstraints);
-
-        jCheckBox12.setText("10");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox12, gridBagConstraints);
-
-        jCheckBox13.setText("11");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox13, gridBagConstraints);
-
-        jCheckBox14.setText("12");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox14, gridBagConstraints);
-
-        jCheckBox15.setText("13");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox15, gridBagConstraints);
-
-        jCheckBox16.setText("14");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox16, gridBagConstraints);
-
-        jCheckBox17.setText("15");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox17, gridBagConstraints);
-
-        jCheckBox21.setText("16");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        gruposDeBalasto_jPanel.add(jCheckBox21, gridBagConstraints);
-
-        escenasDeBalasto_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Escenas a las que pertenece"));
-        escenasDeBalasto_jPanel.setLayout(new java.awt.GridBagLayout());
-
-        grupo1_jCheckBox.setText("1");
-        grupo1_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo1_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo1_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo1_jCheckBox, gridBagConstraints);
-
-        grupo2_jCheckBox1.setText("2");
-        grupo2_jCheckBox1.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo2_jCheckBox1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo2_jCheckBox1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo2_jCheckBox1, gridBagConstraints);
-
-        grupo3_jCheckBox2.setText("3");
-        grupo3_jCheckBox2.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo3_jCheckBox2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo3_jCheckBox2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo3_jCheckBox2, gridBagConstraints);
-
-        grupo4_jCheckBox3.setText("4");
-        grupo4_jCheckBox3.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo4_jCheckBox3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo4_jCheckBox3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo4_jCheckBox3, gridBagConstraints);
-
-        grupo5_jCheckBox4.setText("5");
-        grupo5_jCheckBox4.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo5_jCheckBox4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo5_jCheckBox4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo5_jCheckBox4, gridBagConstraints);
-
-        grupo6_jCheckBox5.setText("6");
-        grupo6_jCheckBox5.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo6_jCheckBox5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo6_jCheckBox5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo6_jCheckBox5, gridBagConstraints);
-
-        grupo7_jCheckBox6.setText("7");
-        grupo7_jCheckBox6.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo7_jCheckBox6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo7_jCheckBox6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo7_jCheckBox6, gridBagConstraints);
-
-        grupo8_jCheckBox7.setText("8");
-        grupo8_jCheckBox7.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo8_jCheckBox7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo8_jCheckBox7.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo8_jCheckBox7, gridBagConstraints);
-
-        grupo9_jCheckBox8.setText("9");
-        grupo9_jCheckBox8.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo9_jCheckBox8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo9_jCheckBox8.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo9_jCheckBox8, gridBagConstraints);
-
-        grupo10_jCheckBox9.setText("10");
-        grupo10_jCheckBox9.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo10_jCheckBox9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo10_jCheckBox9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo10_jCheckBox9, gridBagConstraints);
-
-        grupo11_jCheckBox10.setText("11");
-        grupo11_jCheckBox10.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo11_jCheckBox10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo11_jCheckBox10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo11_jCheckBox10, gridBagConstraints);
-
-        grupo12_jCheckBox11.setText("12");
-        grupo12_jCheckBox11.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo12_jCheckBox11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo12_jCheckBox11.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo12_jCheckBox11, gridBagConstraints);
-
-        grupo13_jCheckBox12.setText("13");
-        grupo13_jCheckBox12.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo13_jCheckBox12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo13_jCheckBox12.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo13_jCheckBox12, gridBagConstraints);
-
-        grupo14_jCheckBox13.setText("14");
-        grupo14_jCheckBox13.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo14_jCheckBox13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo14_jCheckBox13.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo14_jCheckBox13, gridBagConstraints);
-
-        grupo15_jCheckBox14.setText("15");
-        grupo15_jCheckBox14.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo15_jCheckBox14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo15_jCheckBox14.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo15_jCheckBox14, gridBagConstraints);
-
-        grupo16_jCheckBox15.setText("16");
-        grupo16_jCheckBox15.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
-        grupo16_jCheckBox15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        grupo16_jCheckBox15.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(grupo16_jCheckBox15, gridBagConstraints);
-
-        jSlider2.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider2.setPaintTicks(true);
-        jSlider2.setSnapToTicks(true);
-        jSlider2.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider2, gridBagConstraints);
-
-        jSlider4.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider4.setPaintTicks(true);
-        jSlider4.setSnapToTicks(true);
-        jSlider4.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider4, gridBagConstraints);
-
-        jSlider5.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider5.setPaintTicks(true);
-        jSlider5.setSnapToTicks(true);
-        jSlider5.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider5, gridBagConstraints);
-
-        jSlider6.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider6.setPaintTicks(true);
-        jSlider6.setSnapToTicks(true);
-        jSlider6.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider6, gridBagConstraints);
-
-        jSlider7.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider7.setPaintTicks(true);
-        jSlider7.setSnapToTicks(true);
-        jSlider7.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider7, gridBagConstraints);
-
-        jSlider8.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider8.setPaintTicks(true);
-        jSlider8.setSnapToTicks(true);
-        jSlider8.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider8, gridBagConstraints);
-
-        jSlider9.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider9.setPaintTicks(true);
-        jSlider9.setSnapToTicks(true);
-        jSlider9.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider9, gridBagConstraints);
-
-        jSlider10.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider10.setPaintTicks(true);
-        jSlider10.setSnapToTicks(true);
-        jSlider10.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider10, gridBagConstraints);
-
-        jSlider11.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider11.setPaintTicks(true);
-        jSlider11.setSnapToTicks(true);
-        jSlider11.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 10;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider11, gridBagConstraints);
-
-        jSlider12.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider12.setPaintTicks(true);
-        jSlider12.setSnapToTicks(true);
-        jSlider12.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider12, gridBagConstraints);
-
-        jSlider13.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider13.setPaintTicks(true);
-        jSlider13.setSnapToTicks(true);
-        jSlider13.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider13, gridBagConstraints);
-
-        jSlider14.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider14.setPaintTicks(true);
-        jSlider14.setSnapToTicks(true);
-        jSlider14.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider14, gridBagConstraints);
-
-        jSlider15.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider15.setPaintTicks(true);
-        jSlider15.setSnapToTicks(true);
-        jSlider15.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 14;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider15, gridBagConstraints);
-
-        jSlider16.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider16.setPaintTicks(true);
-        jSlider16.setSnapToTicks(true);
-        jSlider16.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 15;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider16, gridBagConstraints);
-
-        jSlider17.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider17.setPaintTicks(true);
-        jSlider17.setSnapToTicks(true);
-        jSlider17.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider17, gridBagConstraints);
-
-        jSlider18.setOrientation(javax.swing.JSlider.VERTICAL);
-        jSlider18.setPaintTicks(true);
-        jSlider18.setSnapToTicks(true);
-        jSlider18.setPreferredSize(new java.awt.Dimension(10, 100));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        escenasDeBalasto_jPanel.add(jSlider18, gridBagConstraints);
 
         balastoEnviar_jButton.setText("Enviar");
         balastoEnviar_jButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1213,6 +668,38 @@ public class PpalView extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Creación de balastos"));
+
+        balastoNum_jComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione un número", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63" }));
+        balastoNum_jComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                balastoNum_jComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel40.setText("Dirección Dali");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(balastoNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel40)
+                    .addComponent(balastoNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout panelBalastosLayout = new javax.swing.GroupLayout(panelBalastos);
         panelBalastos.setLayout(panelBalastosLayout);
         panelBalastosLayout.setHorizontalGroup(
@@ -1220,36 +707,30 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(panelBalastosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(infoBalasto_jPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBalastosLayout.createSequentialGroup()
-                        .addComponent(balastoDali_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(escenasDeBalasto_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gruposDeBalasto_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBalastosLayout.createSequentialGroup()
+                    .addGroup(panelBalastosLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(balastoEnviar_jButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(balastoEliminar_jButton)))
+                        .addComponent(balastoEliminar_jButton))
+                    .addGroup(panelBalastosLayout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(infoBalasto_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 18, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelBalastosLayout.setVerticalGroup(
             panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBalastosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(infoBalasto_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBalastosLayout.createSequentialGroup()
-                        .addComponent(gruposDeBalasto_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(escenasDeBalasto_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(balastoDali_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(38, 38, 38)
+                .addGap(14, 14, 14)
+                .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(infoBalasto_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                .addGap(273, 273, 273)
                 .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(balastoEnviar_jButton)
-                    .addComponent(balastoEliminar_jButton)))
+                    .addComponent(balastoEliminar_jButton))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         panelPpal.add(panelBalastos, "card2");
@@ -1304,7 +785,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1317,7 +798,7 @@ public class PpalView extends javax.swing.JFrame {
                         .addGap(225, 225, 225)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel57, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -1337,7 +818,7 @@ public class PpalView extends javax.swing.JFrame {
                         .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1377,7 +858,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addGroup(panelGruposLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panelGruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
                             .addGroup(panelGruposLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(30, 30, 30)
@@ -1398,7 +879,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jLabel58)
                     .addComponent(gruposNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelGruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eliminarGrupo_jButton)
@@ -1484,7 +965,7 @@ public class PpalView extends javax.swing.JFrame {
             escenasBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escenasBalastos_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(escenasBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER, false)
                     .addComponent(agregarBalastoEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1492,7 +973,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(agregarTodosBalastosEscena_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(removerTodosBalastosEscenas_jButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                 .addContainerGap())
         );
         escenasBalastos_jPanelLayout.setVerticalGroup(
@@ -1500,7 +981,7 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escenasBalastos_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(escenasBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(escenasBalastos_jPanelLayout.createSequentialGroup()
@@ -1552,7 +1033,7 @@ public class PpalView extends javax.swing.JFrame {
                                 .addComponent(escenaNumero_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
                     .addGroup(panelEscenasLayout.createSequentialGroup()
-                        .addComponent(escenasBalastos_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
+                        .addComponent(escenasBalastos_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEscenasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1578,7 +1059,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(nivelEscena_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(actualizarNivelEscena_jButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(escenasBalastos_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                .addComponent(escenasBalastos_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enviarEscena_jButton)
@@ -1610,11 +1091,11 @@ public class PpalView extends javax.swing.JFrame {
         panelEntradaInit.setLayout(panelEntradaInitLayout);
         panelEntradaInitLayout.setHorizontalGroup(
             panelEntradaInitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 883, Short.MAX_VALUE)
+            .addGap(0, 616, Short.MAX_VALUE)
         );
         panelEntradaInitLayout.setVerticalGroup(
             panelEntradaInitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 488, Short.MAX_VALUE)
+            .addGap(0, 490, Short.MAX_VALUE)
         );
 
         panelConfEntradas.add(panelEntradaInit, "card5");
@@ -1707,7 +1188,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                        .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton32, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
@@ -1715,7 +1196,7 @@ public class PpalView extends javax.swing.JFrame {
                             .addComponent(jButton30, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                             .addComponent(jButton33, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
+                        .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(balastros_jCheckBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1733,7 +1214,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jCheckBox18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                    .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                         .addComponent(jButton31, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1801,16 +1282,16 @@ public class PpalView extends javax.swing.JFrame {
                                 .addGap(77, 77, 77)
                                 .addComponent(jLabel10)))
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE))
+                        .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
                     .addGroup(panelBotoneraLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(panelBotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelBotoneraLayout.createSequentialGroup()
-                                .addComponent(jButton14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton40))
-                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotoneraLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton40))
         );
         panelBotoneraLayout.setVerticalGroup(
             panelBotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1833,10 +1314,11 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton14)
-                    .addComponent(jButton40)))
+                    .addComponent(jButton40))
+                .addGap(5, 5, 5))
         );
 
         panelConfEntradas.add(panelBotonera, "card2");
@@ -1918,7 +1400,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                        .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
@@ -1926,7 +1408,7 @@ public class PpalView extends javax.swing.JFrame {
                             .addComponent(jButton18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                             .addComponent(jButton21, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jCheckBox10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1942,7 +1424,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jCheckBox11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                     .addComponent(jScrollPane10, 0, 0, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
@@ -1984,10 +1466,6 @@ public class PpalView extends javax.swing.JFrame {
                 .addGroup(panelFotoceldaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelFotoceldaLayout.createSequentialGroup()
-                        .addComponent(jButton15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton41))
-                    .addGroup(panelFotoceldaLayout.createSequentialGroup()
                         .addGroup(panelFotoceldaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addComponent(jLabel12))
@@ -2004,7 +1482,12 @@ public class PpalView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelFotoceldaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField9)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))))
+                            .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFotoceldaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton41)))
                 .addContainerGap())
         );
         panelFotoceldaLayout.setVerticalGroup(
@@ -2025,10 +1508,11 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelFotoceldaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton15)
-                    .addComponent(jButton41)))
+                    .addComponent(jButton41))
+                .addGap(5, 5, 5))
         );
 
         panelConfEntradas.add(panelFotocelda, "card3");
@@ -2104,7 +1588,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                        .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton36, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
@@ -2112,7 +1596,7 @@ public class PpalView extends javax.swing.JFrame {
                             .addComponent(jButton34, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                             .addComponent(jButton37, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
+                        .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jCheckBox19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2131,7 +1615,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(fotoceldas_entrada_escenas_jCheckBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                    .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                         .addComponent(jButton35, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2179,10 +1663,6 @@ public class PpalView extends javax.swing.JFrame {
                 .addGroup(panelSensorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelSensorLayout.createSequentialGroup()
-                        .addComponent(jButton16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton42))
-                    .addGroup(panelSensorLayout.createSequentialGroup()
                         .addComponent(jLabel66)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField34, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2193,7 +1673,12 @@ public class PpalView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel68)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField36, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField36, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSensorLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton42)))
                 .addContainerGap())
         );
         panelSensorLayout.setVerticalGroup(
@@ -2209,10 +1694,11 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jTextField36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelSensorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton16)
-                    .addComponent(jButton42)))
+                    .addComponent(jButton42))
+                .addGap(5, 5, 5))
         );
 
         panelConfEntradas.add(panelSensor, "card4");
@@ -2221,7 +1707,7 @@ public class PpalView extends javax.swing.JFrame {
         panelEntradas.setLayout(panelEntradasLayout);
         panelEntradasLayout.setHorizontalGroup(
             panelEntradasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelConfEntradas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 883, Short.MAX_VALUE)
+            .addComponent(panelConfEntradas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEntradasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel62)
@@ -2240,7 +1726,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jLabel62)
                     .addComponent(jLabel63))
                 .addGap(11, 11, 11)
-                .addComponent(panelConfEntradas, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
+                .addComponent(panelConfEntradas, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE))
         );
 
         panelPpal.add(panelEntradas, "card6");
@@ -2481,7 +1967,7 @@ public class PpalView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(selEscenaEntrada_jCheckBox))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -2491,7 +1977,7 @@ public class PpalView extends javax.swing.JFrame {
                                 .addComponent(jButton27, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                                 .addComponent(jButton26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE))
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2529,8 +2015,8 @@ public class PpalView extends javax.swing.JFrame {
                         .addComponent(jButton28, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton29, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
-                    .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                    .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -2557,7 +2043,7 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(panelEventosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
                     .addGroup(panelEventosLayout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2597,7 +2083,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(porFechaYHora_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(porDiasEvento_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enviarEventos_jButton)
@@ -2715,22 +2201,22 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(labelPuerto))
                 .addGap(13, 13, 13)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fieldPuerto, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                    .addComponent(fieldMask, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                    .addComponent(fieldIp, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))
+                    .addComponent(fieldPuerto, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                    .addComponent(fieldMask, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                    .addComponent(fieldIp, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelDns)
                     .addComponent(labelGateway))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fieldPort, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-                    .addComponent(fieldGateway, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))
+                    .addComponent(fieldPort, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(fieldGateway, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
                 .addGap(171, 171, 171))
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(cbIsStaticConfiguration)
-                .addContainerGap(718, Short.MAX_VALUE))
+                .addContainerGap(451, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2775,7 +2261,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addComponent(rbIsMaster)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbIsSlave)
-                .addContainerGap(729, Short.MAX_VALUE))
+                .addContainerGap(462, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2794,10 +2280,10 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(panelConfiguracionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addComponent(jButton22)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 873, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)))
         );
         panelConfiguracionLayout.setVerticalGroup(
             panelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2815,36 +2301,36 @@ public class PpalView extends javax.swing.JFrame {
 
         panelPpal.add(panelConfiguracion, "card3");
 
-        javax.swing.GroupLayout tabConfiguracionLayout = new javax.swing.GroupLayout(tabConfiguracion);
-        tabConfiguracion.setLayout(tabConfiguracionLayout);
-        tabConfiguracionLayout.setHorizontalGroup(
-            tabConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabConfiguracionLayout.createSequentialGroup()
+        javax.swing.GroupLayout configuracionSmaiee_jPanelLayout = new javax.swing.GroupLayout(configuracionSmaiee_jPanel);
+        configuracionSmaiee_jPanel.setLayout(configuracionSmaiee_jPanelLayout);
+        configuracionSmaiee_jPanelLayout.setHorizontalGroup(
+            configuracionSmaiee_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(configuracionSmaiee_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(arbolJerarquia_jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(914, Short.MAX_VALUE))
-            .addGroup(tabConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabConfiguracionLayout.createSequentialGroup()
+                .addContainerGap(647, Short.MAX_VALUE))
+            .addGroup(configuracionSmaiee_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, configuracionSmaiee_jPanelLayout.createSequentialGroup()
                     .addGap(157, 157, 157)
-                    .addComponent(panelPpal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelPpal, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
                     .addContainerGap()))
         );
-        tabConfiguracionLayout.setVerticalGroup(
-            tabConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabConfiguracionLayout.createSequentialGroup()
+        configuracionSmaiee_jPanelLayout.setVerticalGroup(
+            configuracionSmaiee_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(configuracionSmaiee_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(arbolJerarquia_jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                .addComponent(arbolJerarquia_jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(tabConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(tabConfiguracionLayout.createSequentialGroup()
+            .addGroup(configuracionSmaiee_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(configuracionSmaiee_jPanelLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(panelPpal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
-        tabbedPane.addTab("Configuración Smaiee", null, tabConfiguracion, "Configuracion del Smaiee");
+        tabbedPane.addTab("Configuración Smaiee", null, configuracionSmaiee_jPanel, "Configuracion del Smaiee");
 
-        tabMonitoreo.setPreferredSize(new java.awt.Dimension(800, 574));
+        monitoreoTiempoReal_jPanel.setPreferredSize(new java.awt.Dimension(800, 574));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione el área" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -2990,7 +2476,7 @@ public class PpalView extends javax.swing.JFrame {
                             .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
                         .addGroup(panelTiempoRealLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel44)
                             .addComponent(jButton44))
@@ -3003,24 +2489,819 @@ public class PpalView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout tabMonitoreoLayout = new javax.swing.GroupLayout(tabMonitoreo);
-        tabMonitoreo.setLayout(tabMonitoreoLayout);
-        tabMonitoreoLayout.setHorizontalGroup(
-            tabMonitoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1062, Short.MAX_VALUE)
-            .addGroup(tabMonitoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(tabMonitoreoLayout.createSequentialGroup()
+        javax.swing.GroupLayout monitoreoTiempoReal_jPanelLayout = new javax.swing.GroupLayout(monitoreoTiempoReal_jPanel);
+        monitoreoTiempoReal_jPanel.setLayout(monitoreoTiempoReal_jPanelLayout);
+        monitoreoTiempoReal_jPanelLayout.setHorizontalGroup(
+            monitoreoTiempoReal_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+            .addGroup(monitoreoTiempoReal_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(monitoreoTiempoReal_jPanelLayout.createSequentialGroup()
                     .addComponent(panelTiempoReal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 466, Short.MAX_VALUE)))
+                    .addGap(0, 199, Short.MAX_VALUE)))
         );
-        tabMonitoreoLayout.setVerticalGroup(
-            tabMonitoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
-            .addGroup(tabMonitoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        monitoreoTiempoReal_jPanelLayout.setVerticalGroup(
+            monitoreoTiempoReal_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 577, Short.MAX_VALUE)
+            .addGroup(monitoreoTiempoReal_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(panelTiempoReal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tabbedPane.addTab("Monitoreo y control en tiempo real", tabMonitoreo);
+        tabbedPane.addTab("Monitoreo y control en tiempo real", monitoreoTiempoReal_jPanel);
+
+        jLabel5.setText("Balasto");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        balastoDali_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("DALI"));
+        balastoDali_jPanel.setToolTipText("Configuración del balasto");
+
+        jLabel35.setText("Dir");
+
+        jLabel27.setText("Min");
+
+        jLabel28.setText("Max");
+
+        jLabel29.setText("FT");
+
+        jLabel30.setText("FR");
+
+        jLabel31.setText("LF");
+
+        jLabel32.setText("LX");
+
+        jLabel33.setText("Pot");
+
+        balastoDir_jTextField.setText("0");
+        balastoDir_jTextField.setToolTipText("Dirección del balasto actual.");
+
+        balastoMin_jTextField.setText("0");
+        balastoMin_jTextField.setToolTipText("Minimo. Valor mínimo del balasto actual");
+
+        balastoMax_jTextField.setText("0");
+        balastoMax_jTextField.setToolTipText("Máximo. Valor máximo del balasto");
+
+        balastoFT_jTextField.setText("0");
+        balastoFT_jTextField.setToolTipText("Fade Time. Tiempo entre cambios para cambiar la luminosidad del balasto actual");
+
+        balastoFR_jTextField.setText("0");
+        balastoFR_jTextField.setToolTipText("Fade Rate: Numero de pasos por segundo para cambiar la luminosidad del balasto actual");
+
+        balastoLF_jTextField.setText("0");
+        balastoLF_jTextField.setToolTipText("Level Fail");
+
+        balastoLX_jTextField.setText("0");
+        balastoLX_jTextField.setToolTipText("");
+
+        balastoPot_jTextField.setText("0");
+        balastoPot_jTextField.setToolTipText("Potencia");
+
+        javax.swing.GroupLayout balastoDali_jPanelLayout = new javax.swing.GroupLayout(balastoDali_jPanel);
+        balastoDali_jPanel.setLayout(balastoDali_jPanelLayout);
+        balastoDali_jPanelLayout.setHorizontalGroup(
+            balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(balastoDali_jPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel29)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel35)
+                    .addComponent(jLabel27))
+                .addGap(18, 18, 18)
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(balastoFT_jTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(balastoMax_jTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(balastoMin_jTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(balastoDir_jTextField, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(18, 18, 18)
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel30)
+                    .addComponent(jLabel31)
+                    .addComponent(jLabel32)
+                    .addComponent(jLabel33))
+                .addGap(18, 18, 18)
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(balastoPot_jTextField)
+                    .addComponent(balastoLX_jTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(balastoLF_jTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(balastoFR_jTextField))
+                .addContainerGap())
+        );
+        balastoDali_jPanelLayout.setVerticalGroup(
+            balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(balastoDali_jPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(balastoDali_jPanelLayout.createSequentialGroup()
+                        .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel30)
+                            .addComponent(balastoFR_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel31)
+                            .addComponent(balastoLF_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel32)
+                            .addComponent(balastoLX_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33)
+                            .addComponent(balastoPot_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(balastoDali_jPanelLayout.createSequentialGroup()
+                        .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel35)
+                            .addComponent(balastoDir_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel27)
+                            .addComponent(balastoMin_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel28)
+                            .addComponent(balastoMax_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(balastoDali_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel29)
+                            .addComponent(balastoFT_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        gruposDeBalasto_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Grupos a los que pertenece"));
+        gruposDeBalasto_jPanel.setToolTipText("Seleccione los grupos a los que pertenece el balasto actual");
+        gruposDeBalasto_jPanel.setLayout(new java.awt.GridBagLayout());
+
+        grupo_jCheckBox1.setText("1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox1, gridBagConstraints);
+
+        grupo_jCheckBox2.setText("2");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox2, gridBagConstraints);
+
+        grupo_jCheckBox3.setText("3");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox3, gridBagConstraints);
+
+        grupo_jCheckBox4.setText("4");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox4, gridBagConstraints);
+
+        grupo_jCheckBox5.setText("5");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox5, gridBagConstraints);
+
+        grupo_jCheckBox6.setText("6");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox6, gridBagConstraints);
+
+        grupo_jCheckBox7.setText("7");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox7, gridBagConstraints);
+
+        grupo_jCheckBox8.setText("8");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox8, gridBagConstraints);
+
+        grupo_jCheckBox9.setText("9");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox9, gridBagConstraints);
+
+        grupo_jCheckBox10.setText("10");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox10, gridBagConstraints);
+
+        grupo_jCheckBox11.setText("11");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox11, gridBagConstraints);
+
+        grupo_jCheckBox12.setText("12");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox12, gridBagConstraints);
+
+        grupo_jCheckBox13.setText("13");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox13, gridBagConstraints);
+
+        grupo_jCheckBox14.setText("14");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox14, gridBagConstraints);
+
+        grupo_jCheckBox15.setText("15");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox15, gridBagConstraints);
+
+        grupo_jCheckBox16.setText("16");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gruposDeBalasto_jPanel.add(grupo_jCheckBox16, gridBagConstraints);
+
+        escenasDeBalasto_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Escenas a las que pertenece"));
+        escenasDeBalasto_jPanel.setToolTipText("Seleccione las escenas a las que pertenece el balasto actual");
+        escenasDeBalasto_jPanel.setLayout(new java.awt.GridBagLayout());
+
+        balastoEscena1_jCheckBox.setText("1");
+        balastoEscena1_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena1_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena1_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena1_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena1_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena1_jCheckBox, gridBagConstraints);
+
+        balastoEscena1_jSlider.setMajorTickSpacing(50);
+        balastoEscena1_jSlider.setMinorTickSpacing(10);
+        balastoEscena1_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena1_jSlider.setPaintLabels(true);
+        balastoEscena1_jSlider.setPaintTicks(true);
+        balastoEscena1_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena1_jSlider.setValue(0);
+        balastoEscena1_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena1_jSlider, gridBagConstraints);
+
+        balastoEscena2_jCheckBox.setText("2");
+        balastoEscena2_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena2_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena2_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena2_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena2_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena2_jCheckBox, gridBagConstraints);
+
+        balastoEscena2_jSlider.setMajorTickSpacing(50);
+        balastoEscena2_jSlider.setMinorTickSpacing(10);
+        balastoEscena2_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena2_jSlider.setPaintLabels(true);
+        balastoEscena2_jSlider.setPaintTicks(true);
+        balastoEscena2_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena2_jSlider.setValue(0);
+        balastoEscena2_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena2_jSlider, gridBagConstraints);
+
+        balastoEscena3_jCheckBox.setText("3");
+        balastoEscena3_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena3_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena3_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena3_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena3_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena3_jCheckBox, gridBagConstraints);
+
+        balastoEscena3_jSlider.setMajorTickSpacing(50);
+        balastoEscena3_jSlider.setMinorTickSpacing(10);
+        balastoEscena3_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena3_jSlider.setPaintLabels(true);
+        balastoEscena3_jSlider.setPaintTicks(true);
+        balastoEscena3_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena3_jSlider.setValue(0);
+        balastoEscena3_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena3_jSlider, gridBagConstraints);
+
+        balastoEscena4_jCheckBox.setText("4");
+        balastoEscena4_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena4_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena4_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena4_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena4_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena4_jCheckBox, gridBagConstraints);
+
+        balastoEscena4_jSlider.setMajorTickSpacing(50);
+        balastoEscena4_jSlider.setMinorTickSpacing(10);
+        balastoEscena4_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena4_jSlider.setPaintLabels(true);
+        balastoEscena4_jSlider.setPaintTicks(true);
+        balastoEscena4_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena4_jSlider.setValue(0);
+        balastoEscena4_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena4_jSlider, gridBagConstraints);
+
+        balastoEscena5_jCheckBox.setText("5");
+        balastoEscena5_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena5_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena5_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena5_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena5_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena5_jCheckBox, gridBagConstraints);
+
+        balastoEscena5_jSlider.setMajorTickSpacing(50);
+        balastoEscena5_jSlider.setMinorTickSpacing(10);
+        balastoEscena5_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena5_jSlider.setPaintLabels(true);
+        balastoEscena5_jSlider.setPaintTicks(true);
+        balastoEscena5_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena5_jSlider.setValue(0);
+        balastoEscena5_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena5_jSlider, gridBagConstraints);
+
+        balastoEscena6_jCheckBox.setText("6");
+        balastoEscena6_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena6_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena6_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena6_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena6_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena6_jCheckBox, gridBagConstraints);
+
+        balastoEscena6_jSlider.setMajorTickSpacing(50);
+        balastoEscena6_jSlider.setMinorTickSpacing(10);
+        balastoEscena6_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena6_jSlider.setPaintLabels(true);
+        balastoEscena6_jSlider.setPaintTicks(true);
+        balastoEscena6_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena6_jSlider.setValue(0);
+        balastoEscena6_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena6_jSlider, gridBagConstraints);
+
+        balastoEscena7_jCheckBox.setText("7");
+        balastoEscena7_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena7_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena7_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena7_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena7_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena7_jCheckBox, gridBagConstraints);
+
+        balastoEscena7_jSlider.setMajorTickSpacing(50);
+        balastoEscena7_jSlider.setMinorTickSpacing(10);
+        balastoEscena7_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena7_jSlider.setPaintLabels(true);
+        balastoEscena7_jSlider.setPaintTicks(true);
+        balastoEscena7_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena7_jSlider.setValue(0);
+        balastoEscena7_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena7_jSlider, gridBagConstraints);
+
+        balastoEscena8_jCheckBox.setText("8");
+        balastoEscena8_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena8_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena8_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena8_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena8_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena8_jCheckBox, gridBagConstraints);
+
+        balastoEscena8_jSlider.setMajorTickSpacing(50);
+        balastoEscena8_jSlider.setMinorTickSpacing(10);
+        balastoEscena8_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena8_jSlider.setPaintLabels(true);
+        balastoEscena8_jSlider.setPaintTicks(true);
+        balastoEscena8_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena8_jSlider.setValue(0);
+        balastoEscena8_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena8_jSlider, gridBagConstraints);
+
+        balastoEscena9_jCheckBox.setText("9");
+        balastoEscena9_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena9_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena9_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena9_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena9_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena9_jCheckBox, gridBagConstraints);
+
+        balastoEscena9_jSlider.setMajorTickSpacing(50);
+        balastoEscena9_jSlider.setMinorTickSpacing(10);
+        balastoEscena9_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena9_jSlider.setPaintLabels(true);
+        balastoEscena9_jSlider.setPaintTicks(true);
+        balastoEscena9_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena9_jSlider.setValue(0);
+        balastoEscena9_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena9_jSlider, gridBagConstraints);
+
+        balastoEscena10_jCheckBox.setText("10");
+        balastoEscena10_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena10_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena10_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena10_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena10_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena10_jCheckBox, gridBagConstraints);
+
+        balastoEscena10_jSlider.setMajorTickSpacing(50);
+        balastoEscena10_jSlider.setMinorTickSpacing(10);
+        balastoEscena10_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena10_jSlider.setPaintLabels(true);
+        balastoEscena10_jSlider.setPaintTicks(true);
+        balastoEscena10_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena10_jSlider.setValue(0);
+        balastoEscena10_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena10_jSlider, gridBagConstraints);
+
+        balastoEscena11_jCheckBox.setText("11");
+        balastoEscena11_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena11_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena11_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena11_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena11_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena11_jCheckBox, gridBagConstraints);
+
+        balastoEscena11_jSlider.setMajorTickSpacing(50);
+        balastoEscena11_jSlider.setMinorTickSpacing(10);
+        balastoEscena11_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena11_jSlider.setPaintLabels(true);
+        balastoEscena11_jSlider.setPaintTicks(true);
+        balastoEscena11_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena11_jSlider.setValue(0);
+        balastoEscena11_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena11_jSlider, gridBagConstraints);
+
+        balastoEscena12_jCheckBox.setText("12");
+        balastoEscena12_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena12_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena12_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena12_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena12_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena12_jCheckBox, gridBagConstraints);
+
+        balastoEscena12_jSlider.setMajorTickSpacing(50);
+        balastoEscena12_jSlider.setMinorTickSpacing(10);
+        balastoEscena12_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena12_jSlider.setPaintLabels(true);
+        balastoEscena12_jSlider.setPaintTicks(true);
+        balastoEscena12_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena12_jSlider.setValue(0);
+        balastoEscena12_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena12_jSlider, gridBagConstraints);
+
+        balastoEscena13_jCheckBox.setText("13");
+        balastoEscena13_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena13_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena13_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena13_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena13_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena13_jCheckBox, gridBagConstraints);
+
+        balastoEscena13_jSlider.setMajorTickSpacing(50);
+        balastoEscena13_jSlider.setMinorTickSpacing(10);
+        balastoEscena13_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena13_jSlider.setPaintLabels(true);
+        balastoEscena13_jSlider.setPaintTicks(true);
+        balastoEscena13_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena13_jSlider.setValue(0);
+        balastoEscena13_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena13_jSlider, gridBagConstraints);
+
+        balastoEscena14_jCheckBox.setText("14");
+        balastoEscena14_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena14_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena14_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena14_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena14_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena14_jCheckBox, gridBagConstraints);
+
+        balastoEscena14_jSlider.setMajorTickSpacing(50);
+        balastoEscena14_jSlider.setMinorTickSpacing(10);
+        balastoEscena14_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena14_jSlider.setPaintLabels(true);
+        balastoEscena14_jSlider.setPaintTicks(true);
+        balastoEscena14_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena14_jSlider.setValue(0);
+        balastoEscena14_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena14_jSlider, gridBagConstraints);
+
+        balastoEscena15_jCheckBox.setText("15");
+        balastoEscena15_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena15_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena15_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena15_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena15_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena15_jCheckBox, gridBagConstraints);
+
+        balastoEscena15_jSlider.setMajorTickSpacing(50);
+        balastoEscena15_jSlider.setMinorTickSpacing(10);
+        balastoEscena15_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena15_jSlider.setPaintLabels(true);
+        balastoEscena15_jSlider.setPaintTicks(true);
+        balastoEscena15_jSlider.setValue(0);
+        balastoEscena15_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena15_jSlider, gridBagConstraints);
+
+        balastoEscena16_jCheckBox.setText("16");
+        balastoEscena16_jCheckBox.setToolTipText("Seleccione si el balasto actual pertenece a este grupo");
+        balastoEscena16_jCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        balastoEscena16_jCheckBox.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        balastoEscena16_jCheckBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoEscena16_jCheckBoxPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena16_jCheckBox, gridBagConstraints);
+
+        balastoEscena16_jSlider.setMajorTickSpacing(50);
+        balastoEscena16_jSlider.setMinorTickSpacing(20);
+        balastoEscena16_jSlider.setOrientation(javax.swing.JSlider.VERTICAL);
+        balastoEscena16_jSlider.setPaintLabels(true);
+        balastoEscena16_jSlider.setPaintTicks(true);
+        balastoEscena16_jSlider.setToolTipText("Nivel del balasto en la escena seleccionada");
+        balastoEscena16_jSlider.setValue(0);
+        balastoEscena16_jSlider.setPreferredSize(new java.awt.Dimension(10, 100));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        escenasDeBalasto_jPanel.add(balastoEscena16_jSlider, gridBagConstraints);
+
+        balastoLeerConfig_jButton.setText("Leer");
+
+        balastoEscribirConfig_jButton.setText("Escribir");
+
+        javax.swing.GroupLayout configuracionBalastos_jPanelLayout = new javax.swing.GroupLayout(configuracionBalastos_jPanel);
+        configuracionBalastos_jPanel.setLayout(configuracionBalastos_jPanelLayout);
+        configuracionBalastos_jPanelLayout.setHorizontalGroup(
+            configuracionBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(configuracionBalastos_jPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(configuracionBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(configuracionBalastos_jPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(balastoDali_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(gruposDeBalasto_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(escenasDeBalasto_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, configuracionBalastos_jPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(balastoLeerConfig_jButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(balastoEscribirConfig_jButton)))
+                .addContainerGap())
+        );
+        configuracionBalastos_jPanelLayout.setVerticalGroup(
+            configuracionBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(configuracionBalastos_jPanelLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(configuracionBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(balastoDali_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(configuracionBalastos_jPanelLayout.createSequentialGroup()
+                        .addGroup(configuracionBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(gruposDeBalasto_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(escenasDeBalasto_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(configuracionBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(balastoEscribirConfig_jButton)
+                    .addComponent(balastoLeerConfig_jButton))
+                .addContainerGap())
+        );
+
+        tabbedPane.addTab("Configuració de balastos", configuracionBalastos_jPanel);
 
         panelPrincipal_jPanel.add(tabbedPane, java.awt.BorderLayout.CENTER);
 
@@ -3055,7 +3336,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusLabel)
-                .addContainerGap(525, Short.MAX_VALUE))
+                .addContainerGap(258, Short.MAX_VALUE))
         );
         statusBarLayout.setVerticalGroup(
             statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3830,13 +4111,72 @@ public class PpalView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_balastoNum_jComboBoxActionPerformed
 
-//    private void startCheckingThread(java.awt.event.FocusEvent evt) {
-//        this.realCtrl.checkBalasts(this);
-//    }
-//
-//    private void stoptCheckingThread(java.awt.event.FocusEvent evt) {
-//        this.realCtrl.stopCheckingBalasts(this);
-//    }
+    private void balastoEscena1_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena1_jCheckBoxPropertyChange
+        balastoEscena1_jSlider.setEnabled(balastoEscena1_jCheckBox.isSelected());
+    }//GEN-LAST:event_balastoEscena1_jCheckBoxPropertyChange
+
+    private void balastoEscena2_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena2_jCheckBoxPropertyChange
+        balastoEscena2_jSlider.setEnabled(balastoEscena2_jCheckBox.isSelected());
+    }//GEN-LAST:event_balastoEscena2_jCheckBoxPropertyChange
+
+    private void balastoEscena3_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena3_jCheckBoxPropertyChange
+        balastoEscena3_jSlider.setEnabled(balastoEscena3_jCheckBox.isSelected());        // TODO add your handling code here:
+    }//GEN-LAST:event_balastoEscena3_jCheckBoxPropertyChange
+
+    private void balastoEscena4_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena4_jCheckBoxPropertyChange
+ balastoEscena5_jSlider.setEnabled(balastoEscena5_jCheckBox.isSelected());        // TODO add your handling code here:
+    }//GEN-LAST:event_balastoEscena4_jCheckBoxPropertyChange
+
+    private void balastoEscena5_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena5_jCheckBoxPropertyChange
+ balastoEscena5_jSlider.setEnabled(balastoEscena5_jCheckBox.isSelected());        // TODO add your handling code here:
+    }//GEN-LAST:event_balastoEscena5_jCheckBoxPropertyChange
+
+    private void balastoEscena6_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena6_jCheckBoxPropertyChange
+ balastoEscena6_jSlider.setEnabled(balastoEscena6_jCheckBox.isSelected());        // TODO add your handling code here:
+    }//GEN-LAST:event_balastoEscena6_jCheckBoxPropertyChange
+
+    private void balastoEscena7_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena7_jCheckBoxPropertyChange
+         balastoEscena7_jSlider.setEnabled(balastoEscena7_jCheckBox.isSelected());
+    }//GEN-LAST:event_balastoEscena7_jCheckBoxPropertyChange
+
+    private void balastoEscena8_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena8_jCheckBoxPropertyChange
+ balastoEscena8_jSlider.setEnabled(balastoEscena8_jCheckBox.isSelected());        // TODO add your handling code here:
+    }//GEN-LAST:event_balastoEscena8_jCheckBoxPropertyChange
+
+    private void balastoEscena9_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena9_jCheckBoxPropertyChange
+         balastoEscena9_jSlider.setEnabled(balastoEscena9_jCheckBox.isSelected());
+    }//GEN-LAST:event_balastoEscena9_jCheckBoxPropertyChange
+
+    private void balastoEscena10_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena10_jCheckBoxPropertyChange
+         balastoEscena10_jSlider.setEnabled(balastoEscena10_jCheckBox.isSelected());
+    }//GEN-LAST:event_balastoEscena10_jCheckBoxPropertyChange
+
+    private void balastoEscena11_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena11_jCheckBoxPropertyChange
+        balastoEscena11_jSlider.setEnabled(balastoEscena11_jCheckBox.isSelected());
+    }//GEN-LAST:event_balastoEscena11_jCheckBoxPropertyChange
+
+    private void balastoEscena12_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena12_jCheckBoxPropertyChange
+       balastoEscena12_jSlider.setEnabled(balastoEscena12_jCheckBox.isSelected());
+    }//GEN-LAST:event_balastoEscena12_jCheckBoxPropertyChange
+
+    private void balastoEscena13_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena13_jCheckBoxPropertyChange
+ balastoEscena13_jSlider.setEnabled(balastoEscena13_jCheckBox.isSelected());        // TODO add your handling code here:
+    }//GEN-LAST:event_balastoEscena13_jCheckBoxPropertyChange
+
+    private void balastoEscena14_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena14_jCheckBoxPropertyChange
+ balastoEscena14_jSlider.setEnabled(balastoEscena14_jCheckBox.isSelected());        // TODO add your handling code here:
+    }//GEN-LAST:event_balastoEscena14_jCheckBoxPropertyChange
+
+    private void balastoEscena15_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena15_jCheckBoxPropertyChange
+ balastoEscena15_jSlider.setEnabled(balastoEscena15_jCheckBox.isSelected());        // TODO add your handling code here:
+    }//GEN-LAST:event_balastoEscena15_jCheckBoxPropertyChange
+
+    private void balastoEscena16_jCheckBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoEscena16_jCheckBoxPropertyChange
+ balastoEscena16_jSlider.setEnabled(balastoEscena16_jCheckBox.isSelected());        // TODO add your handling code here:
+    }//GEN-LAST:event_balastoEscena16_jCheckBoxPropertyChange
+
+    
+
     //</editor-fold>
     /**
      * @param args the command line arguments
@@ -3866,10 +4206,44 @@ public class PpalView extends javax.swing.JFrame {
     protected javax.swing.JTextField balastoDir_jTextField;
     private javax.swing.JButton balastoEliminar_jButton;
     private javax.swing.JButton balastoEnviar_jButton;
+    private javax.swing.JCheckBox balastoEscena10_jCheckBox;
+    private javax.swing.JSlider balastoEscena10_jSlider;
+    private javax.swing.JCheckBox balastoEscena11_jCheckBox;
+    private javax.swing.JSlider balastoEscena11_jSlider;
+    private javax.swing.JCheckBox balastoEscena12_jCheckBox;
+    private javax.swing.JSlider balastoEscena12_jSlider;
+    private javax.swing.JCheckBox balastoEscena13_jCheckBox;
+    private javax.swing.JSlider balastoEscena13_jSlider;
+    private javax.swing.JCheckBox balastoEscena14_jCheckBox;
+    private javax.swing.JSlider balastoEscena14_jSlider;
+    private javax.swing.JCheckBox balastoEscena15_jCheckBox;
+    private javax.swing.JSlider balastoEscena15_jSlider;
+    private javax.swing.JCheckBox balastoEscena16_jCheckBox;
+    private javax.swing.JSlider balastoEscena16_jSlider;
+    private javax.swing.JCheckBox balastoEscena1_jCheckBox;
+    private javax.swing.JSlider balastoEscena1_jSlider;
+    private javax.swing.JCheckBox balastoEscena2_jCheckBox;
+    private javax.swing.JSlider balastoEscena2_jSlider;
+    private javax.swing.JCheckBox balastoEscena3_jCheckBox;
+    private javax.swing.JSlider balastoEscena3_jSlider;
+    private javax.swing.JCheckBox balastoEscena4_jCheckBox;
+    private javax.swing.JSlider balastoEscena4_jSlider;
+    private javax.swing.JCheckBox balastoEscena5_jCheckBox;
+    private javax.swing.JSlider balastoEscena5_jSlider;
+    private javax.swing.JCheckBox balastoEscena6_jCheckBox;
+    private javax.swing.JSlider balastoEscena6_jSlider;
+    private javax.swing.JCheckBox balastoEscena7_jCheckBox;
+    private javax.swing.JSlider balastoEscena7_jSlider;
+    private javax.swing.JCheckBox balastoEscena8_jCheckBox;
+    private javax.swing.JSlider balastoEscena8_jSlider;
+    private javax.swing.JCheckBox balastoEscena9_jCheckBox;
+    private javax.swing.JSlider balastoEscena9_jSlider;
+    private javax.swing.JButton balastoEscribirConfig_jButton;
     protected javax.swing.JTextField balastoFR_jTextField;
     protected javax.swing.JTextField balastoFT_jTextField;
     protected javax.swing.JTextField balastoLF_jTextField;
     protected javax.swing.JTextField balastoLX_jTextField;
+    private javax.swing.JButton balastoLeerConfig_jButton;
     protected javax.swing.JTextField balastoMax_jTextField;
     protected javax.swing.JTextField balastoMin_jTextField;
     protected javax.swing.JComboBox balastoNum_jComboBox;
@@ -3882,6 +4256,8 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbIsStaticConfiguration;
     private javax.swing.ButtonGroup confRol;
     private javax.swing.JMenuItem config_jMenuItem;
+    private javax.swing.JPanel configuracionBalastos_jPanel;
+    private javax.swing.JPanel configuracionSmaiee_jPanel;
     private javax.swing.ButtonGroup dias_buttonGroup;
     private javax.swing.JCheckBox domingo_jCheckBox;
     private javax.swing.JButton eliminarEscena_jButton;
@@ -3902,22 +4278,22 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JTextField fieldPuerto;
     private javax.swing.JMenuItem formatear_jMenuItem;
     private javax.swing.JCheckBox fotoceldas_entrada_escenas_jCheckBox;
-    private javax.swing.JCheckBox grupo10_jCheckBox9;
-    private javax.swing.JCheckBox grupo11_jCheckBox10;
-    private javax.swing.JCheckBox grupo12_jCheckBox11;
-    private javax.swing.JCheckBox grupo13_jCheckBox12;
-    private javax.swing.JCheckBox grupo14_jCheckBox13;
-    private javax.swing.JCheckBox grupo15_jCheckBox14;
-    private javax.swing.JCheckBox grupo16_jCheckBox15;
-    private javax.swing.JCheckBox grupo1_jCheckBox;
-    private javax.swing.JCheckBox grupo2_jCheckBox1;
-    private javax.swing.JCheckBox grupo3_jCheckBox2;
-    private javax.swing.JCheckBox grupo4_jCheckBox3;
-    private javax.swing.JCheckBox grupo5_jCheckBox4;
-    private javax.swing.JCheckBox grupo6_jCheckBox5;
-    private javax.swing.JCheckBox grupo7_jCheckBox6;
-    private javax.swing.JCheckBox grupo8_jCheckBox7;
-    private javax.swing.JCheckBox grupo9_jCheckBox8;
+    private javax.swing.JCheckBox grupo_jCheckBox1;
+    private javax.swing.JCheckBox grupo_jCheckBox10;
+    private javax.swing.JCheckBox grupo_jCheckBox11;
+    private javax.swing.JCheckBox grupo_jCheckBox12;
+    private javax.swing.JCheckBox grupo_jCheckBox13;
+    private javax.swing.JCheckBox grupo_jCheckBox14;
+    private javax.swing.JCheckBox grupo_jCheckBox15;
+    private javax.swing.JCheckBox grupo_jCheckBox16;
+    private javax.swing.JCheckBox grupo_jCheckBox2;
+    private javax.swing.JCheckBox grupo_jCheckBox3;
+    private javax.swing.JCheckBox grupo_jCheckBox4;
+    private javax.swing.JCheckBox grupo_jCheckBox5;
+    private javax.swing.JCheckBox grupo_jCheckBox6;
+    private javax.swing.JCheckBox grupo_jCheckBox7;
+    private javax.swing.JCheckBox grupo_jCheckBox8;
+    private javax.swing.JCheckBox grupo_jCheckBox9;
     private javax.swing.JPanel gruposDeBalasto_jPanel;
     private javax.swing.JComboBox gruposNum_jComboBox;
     private javax.swing.JCheckBox grupos_jCheckBox;
@@ -3959,27 +4335,12 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton jButton47;
     private javax.swing.JButton jButton48;
     private javax.swing.JButton jButton5;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
-    private javax.swing.JCheckBox jCheckBox14;
-    private javax.swing.JCheckBox jCheckBox15;
-    private javax.swing.JCheckBox jCheckBox16;
-    private javax.swing.JCheckBox jCheckBox17;
     private javax.swing.JCheckBox jCheckBox18;
     private javax.swing.JCheckBox jCheckBox19;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox20;
-    private javax.swing.JCheckBox jCheckBox21;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     protected com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
@@ -4021,6 +4382,7 @@ public class PpalView extends javax.swing.JFrame {
     protected javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
@@ -4048,6 +4410,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JList jList3;
     private javax.swing.JList jList8;
     private javax.swing.JList jList9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
@@ -4078,22 +4441,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider10;
-    private javax.swing.JSlider jSlider11;
-    private javax.swing.JSlider jSlider12;
-    private javax.swing.JSlider jSlider13;
-    private javax.swing.JSlider jSlider14;
-    private javax.swing.JSlider jSlider15;
-    private javax.swing.JSlider jSlider16;
-    private javax.swing.JSlider jSlider17;
-    private javax.swing.JSlider jSlider18;
-    private javax.swing.JSlider jSlider2;
-    private javax.swing.JSlider jSlider4;
-    private javax.swing.JSlider jSlider5;
-    private javax.swing.JSlider jSlider6;
-    private javax.swing.JSlider jSlider7;
-    private javax.swing.JSlider jSlider8;
-    private javax.swing.JSlider jSlider9;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTable jTable1;
     protected javax.swing.JTextField jTextField1;
@@ -4121,6 +4468,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JCheckBox martes_jCheckBox;
     private javax.swing.JCheckBox miercoles_jCheckBox;
+    private javax.swing.JPanel monitoreoTiempoReal_jPanel;
     private javax.swing.JLabel nivelEscena_jLabel;
     private javax.swing.JTextField nivelEscena_jTextField;
     private javax.swing.JLabel nombreEscena_jLabel;
@@ -4156,8 +4504,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JCheckBox selGruposEntradas_jCheckBox;
     private javax.swing.JPanel statusBar;
     private javax.swing.JLabel statusLabel;
-    private javax.swing.JPanel tabConfiguracion;
-    private javax.swing.JPanel tabMonitoreo;
     private javax.swing.JTabbedPane tabbedPane;
     private javax.swing.JCheckBox viernes_jCheckBox;
     // End of variables declaration//GEN-END:variables
@@ -5289,7 +5635,6 @@ public class PpalView extends javax.swing.JFrame {
         this.jLabel25 = jLabel25;
     }
 
-   
     public JLabel getjLabel27() {
         return jLabel27;
     }
@@ -5993,8 +6338,6 @@ public class PpalView extends javax.swing.JFrame {
     public JTextField getBalastoMax_jTextField() {
         return balastoMax_jTextField;
     }
-    
-    
 
     public void setBalastoMax_jTextField(JTextField balastoMax_jTextField) {
         this.balastoMax_jTextField = balastoMax_jTextField;
@@ -6008,8 +6351,6 @@ public class PpalView extends javax.swing.JFrame {
         this.balastoMin_jTextField = balastoMin_jTextField;
     }
 
-    
-    
     public void setjTextField1(JTextField jTextField1) {
         this.jTextField1 = jTextField1;
     }
@@ -6062,7 +6403,6 @@ public class PpalView extends javax.swing.JFrame {
         this.jTextField25 = jTextField25;
     }
 
-   
     public JTextField getjTextField27() {
         return balastoMin_jTextField;
     }
@@ -6279,7 +6619,6 @@ public class PpalView extends javax.swing.JFrame {
         this.panelBotonera = panelBotonera;
     }
 
-   
     public JPanel getPanelConfEntradas() {
         return panelConfEntradas;
     }
@@ -6401,19 +6740,19 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JPanel getTabConfiguracion() {
-        return tabConfiguracion;
+        return configuracionSmaiee_jPanel;
     }
 
     public void setTabConfiguracion(JPanel tabConfiguracion) {
-        this.tabConfiguracion = tabConfiguracion;
+        this.configuracionSmaiee_jPanel = tabConfiguracion;
     }
 
     public JPanel getTabMonitoreo() {
-        return tabMonitoreo;
+        return monitoreoTiempoReal_jPanel;
     }
 
     public void setTabMonitoreo(JPanel tabMonitoreo) {
-        this.tabMonitoreo = tabMonitoreo;
+        this.monitoreoTiempoReal_jPanel = tabMonitoreo;
     }
 
     public JComboBox getGruposNum_jComboBox() {
@@ -6447,7 +6786,6 @@ public class PpalView extends javax.swing.JFrame {
 //    public void setjTextField13(JTextField jTextField13) {
 //        this.numEvento_jTextField = jTextField13;
 //    }
-
     public DAOJmodbus getDao() {
         return dao;
     }
