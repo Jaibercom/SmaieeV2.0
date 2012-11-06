@@ -9,18 +9,28 @@ import com.isolux.bo.Elemento;
 import com.isolux.dao.jmodbus.BalastoDAOJmodbus;
 import com.isolux.dao.jmodbus.OperacionesElemento_Interface;
 import com.isolux.dao.modbus.DAOJmodbus;
+import com.isolux.utils.Validacion;
+import com.isolux.view.PpalView;
 
 /**
  *
- * @author Sebastian Rodriguez
+ * @author Juan Camilo Canias Gómez
  */
-public class BalastosConfiguracionControl implements OperacionesElemento_Interface{
+public class BalastosConfiguracionControl implements OperacionesElemento_Interface {
 
-  
+    PpalView ppalView;
+
+    public PpalView getPpalView() {
+        return ppalView;
+    }
+
+    public void setPpalView(PpalView ppalView) {
+        this.ppalView = ppalView;
+    }
 
     public BalastosConfiguracionControl() {
-        
-        initcomponets();
+
+       
 
     }
 
@@ -32,25 +42,31 @@ public class BalastosConfiguracionControl implements OperacionesElemento_Interfa
 
     }
 
-    private void initcomponets() {
+    private void cargarComboBox() {
         String[] elementosDisponibles = elementosSinGrabar();
         // configuramos el combobox
-//        Validacion.actualizarCombo(ppalView.getBalastoConfiguracion_jComboBox(), elementosDisponibles, Validacion.BALASTOS_TODOS);
+        Validacion.actualizarCombo(ppalView.getBalastoConfiguracion_jComboBox(), elementosDisponibles, Validacion.BALASTOS_TODOS);
+
+    }
+
+    public void refrescaVista(PpalView ppalView) {
+//        String[] elementosSinGrabar = elementosSinGrabar();
+//        Validacion.actualizarCombo(ppalView.getBalastoNum_jComboBox(), elementosSinGrabar, Validacion.BALASTOS_DISPONIBLES);
 
     }
 
     @Override
     public String[] elementosSinGrabar() {
-         
-        BalastoDAOJmodbus dao=new BalastoDAOJmodbus(new DAOJmodbus());
-        int[] addedBalastsCardArray = dao.getAddedBalastsCardArray();
-        String[] ele=new String[addedBalastsCardArray.length];
-        
+
+        BalastoDAOJmodbus dao1 = new BalastoDAOJmodbus(new DAOJmodbus());
+        int[] addedBalastsCardArray = dao1.getAddedBalastsCardArray();
+        String[] ele = new String[addedBalastsCardArray.length];
+
         for (int i = 0; i < addedBalastsCardArray.length; i++) {
-            ele[i]=Integer.toString(addedBalastsCardArray[i]);
+            ele[i] = Integer.toString(addedBalastsCardArray[i]);
         }
-        
+
         return ele;
-        
+
     }
 }

@@ -339,6 +339,8 @@ public class Inicio extends javax.swing.JFrame {
                 }
             } catch (ConnectException ce) {
                 try {
+                   
+                    ce.printStackTrace();
                     conn.cancel(true);
                     conn.finalize();
                     conectar_jButton.setEnabled(true);
@@ -350,6 +352,7 @@ public class Inicio extends javax.swing.JFrame {
     //            ce.printStackTrace();
                 } catch (Throwable ex) {
                     Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                    ex.printStackTrace();
                 }
             }
 
@@ -361,7 +364,7 @@ public class Inicio extends javax.swing.JFrame {
 
         @Override
         protected void done() {
-//            super.done();
+
             System.out.println("Terminado el hilo de conexion desde el done.");
 
 //            dispose();

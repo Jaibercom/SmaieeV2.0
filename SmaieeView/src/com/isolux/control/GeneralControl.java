@@ -665,7 +665,7 @@ public class GeneralControl {
             c.refrescarVista(ppalView);
             d.refrescarVista(ppalView);
             f.refrescarVista(ppalView);
-//            g.refrescaVista(ppalView);
+            g.refrescaVista(ppalView);
             
             return true;
         } catch (Exception e) {
