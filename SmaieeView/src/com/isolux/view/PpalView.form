@@ -32,6 +32,19 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="readFromFlash"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JLabel" name="nivel_jLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nivel"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nivel_jTextField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+      </AuxValues>
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="mainMenuBar">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="archivo_jMenu">
@@ -349,18 +362,12 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="2" attributes="0">
-                                              <Component id="jTextField1" alignment="2" min="-2" pref="161" max="-2" attributes="1"/>
-                                              <Component id="jTextField20" alignment="2" min="-2" pref="165" max="-2" attributes="1"/>
-                                          </Group>
+                                          <Component id="jTextField1" min="-2" pref="161" max="-2" attributes="1"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="71" max="32767" attributes="0"/>
+                                          <EmptySpace pref="75" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -373,12 +380,7 @@
                                               <Component id="jTextField1" alignment="2" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel41" alignment="2" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField20" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace pref="51" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -401,19 +403,6 @@
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="jTextField1">
-                                  <AuxValues>
-                                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-                                  </AuxValues>
-                                </Component>
-                                <Component class="javax.swing.JLabel" name="jLabel9">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="Nivel"/>
-                                  </Properties>
-                                </Component>
-                                <Component class="javax.swing.JTextField" name="jTextField20">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="0"/>
-                                  </Properties>
                                   <AuxValues>
                                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                                   </AuxValues>
@@ -465,7 +454,7 @@
                                               <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="balastoNum_jComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace pref="87" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -692,7 +681,7 @@
                                                   <Component id="jButton5" max="32767" attributes="0"/>
                                               </Group>
                                               <Component id="jScrollPane3" alignment="0" pref="380" max="32767" attributes="1"/>
-                                              <Component id="jScrollPane4" alignment="0" pref="378" max="32767" attributes="1"/>
+                                              <Component id="jScrollPane4" alignment="0" pref="443" max="32767" attributes="1"/>
                                           </Group>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -1034,20 +1023,20 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jScrollPane5" alignment="0" pref="371" max="32767" attributes="1"/>
-                                              <Component id="jScrollPane6" alignment="0" pref="369" max="32767" attributes="1"/>
+                                              <Component id="jScrollPane6" alignment="0" pref="434" max="32767" attributes="1"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="11" pref="11" max="11" attributes="0"/>
-                                          <Component id="agregarBalastoEscena_jButton" pref="82" max="32767" attributes="0"/>
+                                          <Component id="agregarBalastoEscena_jButton" pref="95" max="32767" attributes="0"/>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                                          <Component id="removerBalastoEscena_jButton" pref="82" max="32767" attributes="0"/>
+                                          <Component id="removerBalastoEscena_jButton" pref="95" max="32767" attributes="0"/>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                                          <Component id="agregarTodosBalastosEscena_jButton" pref="81" max="32767" attributes="0"/>
+                                          <Component id="agregarTodosBalastosEscena_jButton" pref="94" max="32767" attributes="0"/>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                                          <Component id="removerTodosBalastosEscenas_jButton" pref="80" max="32767" attributes="0"/>
-                                          <EmptySpace pref="37" max="32767" attributes="0"/>
+                                          <Component id="removerTodosBalastosEscenas_jButton" pref="93" max="32767" attributes="0"/>
+                                          <EmptySpace pref="50" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -1453,15 +1442,15 @@
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="jScrollPane16" alignment="0" pref="281" max="32767" attributes="1"/>
                                                       <Group type="102" alignment="1" attributes="1">
-                                                          <Component id="jButton31" pref="66" max="32767" attributes="0"/>
+                                                          <Component id="jButton31" pref="82" max="32767" attributes="0"/>
                                                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jButton30" pref="65" max="32767" attributes="0"/>
+                                                          <Component id="jButton30" pref="81" max="32767" attributes="0"/>
                                                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jButton32" pref="65" max="32767" attributes="0"/>
+                                                          <Component id="jButton32" pref="81" max="32767" attributes="0"/>
                                                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jButton33" pref="65" max="32767" attributes="0"/>
+                                                          <Component id="jButton33" pref="82" max="32767" attributes="0"/>
                                                       </Group>
-                                                      <Component id="jScrollPane15" alignment="0" pref="279" max="32767" attributes="1"/>
+                                                      <Component id="jScrollPane15" alignment="0" pref="344" max="32767" attributes="1"/>
                                                   </Group>
                                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                               </Group>
@@ -1788,13 +1777,13 @@
                                                       <Component id="jScrollPane9" pref="306" max="32767" attributes="1"/>
                                                       <Component id="jScrollPane10" alignment="1" min="0" pref="0" max="32767" attributes="1"/>
                                                       <Group type="102" alignment="1" attributes="1">
-                                                          <Component id="jButton19" pref="72" max="32767" attributes="0"/>
+                                                          <Component id="jButton19" pref="88" max="32767" attributes="0"/>
                                                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jButton18" pref="71" max="32767" attributes="0"/>
+                                                          <Component id="jButton18" pref="87" max="32767" attributes="0"/>
                                                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                                          <Component id="jButton20" pref="71" max="32767" attributes="0"/>
+                                                          <Component id="jButton20" pref="87" max="32767" attributes="0"/>
                                                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jButton21" pref="71" max="32767" attributes="0"/>
+                                                          <Component id="jButton21" pref="88" max="32767" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -2058,15 +2047,15 @@
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="jScrollPane18" alignment="0" pref="337" max="32767" attributes="1"/>
                                                       <Group type="102" alignment="1" attributes="1">
-                                                          <Component id="jButton35" pref="80" max="32767" attributes="0"/>
+                                                          <Component id="jButton35" pref="96" max="32767" attributes="0"/>
                                                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jButton34" pref="79" max="32767" attributes="0"/>
+                                                          <Component id="jButton34" pref="95" max="32767" attributes="0"/>
                                                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                                          <Component id="jButton36" pref="79" max="32767" attributes="0"/>
+                                                          <Component id="jButton36" pref="95" max="32767" attributes="0"/>
                                                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jButton37" pref="79" max="32767" attributes="0"/>
+                                                          <Component id="jButton37" pref="96" max="32767" attributes="0"/>
                                                       </Group>
-                                                      <Component id="jScrollPane17" alignment="0" pref="335" max="32767" attributes="1"/>
+                                                      <Component id="jScrollPane17" alignment="0" pref="400" max="32767" attributes="1"/>
                                                   </Group>
                                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                               </Group>
@@ -2617,16 +2606,16 @@
                                           <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" attributes="0">
                                               <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="jButton27" pref="55" max="32767" attributes="0"/>
+                                                  <Component id="jButton27" pref="71" max="32767" attributes="0"/>
                                                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jButton26" pref="54" max="32767" attributes="0"/>
+                                                  <Component id="jButton26" pref="70" max="32767" attributes="0"/>
                                                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jButton28" pref="54" max="32767" attributes="0"/>
+                                                  <Component id="jButton28" pref="71" max="32767" attributes="0"/>
                                                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jButton29" pref="55" max="32767" attributes="0"/>
+                                                  <Component id="jButton29" pref="71" max="32767" attributes="0"/>
                                               </Group>
                                               <Component id="jScrollPane13" alignment="1" pref="238" max="32767" attributes="1"/>
-                                              <Component id="jScrollPane14" alignment="1" pref="238" max="32767" attributes="1"/>
+                                              <Component id="jScrollPane14" alignment="1" pref="301" max="32767" attributes="1"/>
                                           </Group>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -3158,276 +3147,11 @@
                     </Container>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="monitoreoTiempoReal_jPanel">
-                  <Properties>
-                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[800, 574]"/>
-                    </Property>
-                  </Properties>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="Monitoreo y control en tiempo real">
-                        <Property name="tabTitle" type="java.lang.String" value="Monitoreo y control en tiempo real"/>
-                      </JTabbedPaneConstraints>
-                    </Constraint>
-                  </Constraints>
-
-                  <Layout>
-                    <DimensionLayout dim="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="795" max="32767" attributes="0"/>
-                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="panelTiempoReal" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="199" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                    </DimensionLayout>
-                    <DimensionLayout dim="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="577" max="32767" attributes="0"/>
-                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                              <Component id="panelTiempoReal" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                    </DimensionLayout>
-                  </Layout>
-                  <SubComponents>
-                    <Container class="javax.swing.JPanel" name="panelTiempoReal">
-
-                      <Layout>
-                        <DimensionLayout dim="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jButton47" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jButton46" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jButton38" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jLabel53" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jLabel54" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jLabel65" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jLabel55" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jSpinner3" min="-2" pref="63" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="jSlider1" alignment="0" min="-2" pref="189" max="-2" attributes="0"/>
-                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="1">
-                                                      <Component id="jLabel44" min="-2" max="-2" attributes="1"/>
-                                                      <EmptySpace max="32767" attributes="0"/>
-                                                      <Component id="jButton44" min="-2" pref="84" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="jScrollPane2" alignment="0" min="-2" pref="209" max="-2" attributes="1"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                          <Component id="jLabel56" min="-2" pref="362" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                        </DimensionLayout>
-                        <DimensionLayout dim="1">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jLabel56" alignment="0" min="-2" pref="511" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jButton38" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel53" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel54" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel65" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel55" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jSpinner3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jSlider1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="219" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel44" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jButton44" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                          <Component id="jScrollPane2" min="-2" pref="131" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jButton46" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jButton47" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                        </DimensionLayout>
-                      </Layout>
-                      <SubComponents>
-                        <Component class="javax.swing.JComboBox" name="jComboBox2">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="1">
-                                <StringItem index="0" value="Seleccione el &#xe1;rea"/>
-                              </StringArray>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox2ActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-                          <AuxValues>
-                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                          </AuxValues>
-
-                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                          <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTable1">
-                              <Properties>
-                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="3" rowCount="0">
-                                    <Column editable="true" title="No" type="java.lang.Object"/>
-                                    <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                                    <Column editable="true" title="Nivel" type="java.lang.Object"/>
-                                  </Table>
-                                </Property>
-                              </Properties>
-                              <Events>
-                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="selectBalasto"/>
-                              </Events>
-                            </Component>
-                          </SubComponents>
-                        </Container>
-                        <Component class="javax.swing.JLabel" name="jLabel44">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Balastos por &#xe1;rea"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JButton" name="jButton38">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Imagen &#xe1;rea"/>
-                            <Property name="enabled" type="boolean" value="false"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton38ActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel53">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="14" style="1"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Balasto:"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel54">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="14" style="1"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="#"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel55">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Nivel"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JSlider" name="jSlider1">
-                          <Properties>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="snapToTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione el nivel del balasto"/>
-                            <Property name="value" type="int" value="0"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="saveBalastState"/>
-                            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="selectSliderValue"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JSpinner" name="jSpinner3">
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel56">
-                          <Properties>
-                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="99" green="99" red="99" type="rgb"/>
-                            </Property>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/images/photo_not_available.jpg"/>
-                            </Property>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JButton" name="jButton44">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Editar"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton44ActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel65">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="14" style="1"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="#"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JButton" name="jButton46">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Eliminar &#xe1;rea"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton46ActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JButton" name="jButton47">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Nueva &#xe1;rea"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton47ActionPerformed"/>
-                          </Events>
-                        </Component>
-                      </SubComponents>
-                    </Container>
-                  </SubComponents>
-                </Container>
                 <Container class="javax.swing.JPanel" name="configuracionBalastos_jPanel">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="Configuraci&#xf3; de balastos">
-                        <Property name="tabTitle" type="java.lang.String" value="Configuraci&#xf3; de balastos"/>
+                      <JTabbedPaneConstraints tabName="Configuraci&#xf3;n de balastos">
+                        <Property name="tabTitle" type="java.lang.String" value="Configuraci&#xf3;n de balastos"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -3439,20 +3163,23 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboBox1" min="-2" pref="170" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                              <Component id="balastoConfiguracion_jComboBox" min="-2" pref="170" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="balastoLeerConfig_jButton" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="balastoEscribirConfig_jButton" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="balastoDali_jPanel" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="gruposDeBalasto_jPanel" max="32767" attributes="0"/>
+                                  <Component id="gruposDeBalasto_jPanel" pref="775" max="32767" attributes="0"/>
                                   <Component id="escenasDeBalasto_jPanel" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Component id="balastoLeerConfig_jButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="balastoEscribirConfig_jButton" min="-2" max="-2" attributes="0"/>
-                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -3467,20 +3194,19 @@
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="balastoConfiguracion_jComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="balastoEscribirConfig_jButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="balastoLeerConfig_jButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                               <Component id="gruposDeBalasto_jPanel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                               <Component id="escenasDeBalasto_jPanel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="balastoEscribirConfig_jButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="balastoLeerConfig_jButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -3492,7 +3218,7 @@
                         <Property name="text" type="java.lang.String" value="Balasto"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="jComboBox1">
+                    <Component class="javax.swing.JComboBox" name="balastoConfiguracion_jComboBox">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="4">
@@ -3537,7 +3263,7 @@
                                       <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel32" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
+                                      <Component id="pot_jLabel" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -3572,7 +3298,7 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="pot_jLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="balastoPot_jTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -3598,7 +3324,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3639,7 +3365,7 @@
                             <Property name="text" type="java.lang.String" value="LX"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel33">
+                        <Component class="javax.swing.JLabel" name="pot_jLabel">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Pot"/>
                           </Properties>
@@ -3904,563 +3630,163 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena1_jCheckBox">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor1">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="1"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
+                            <Property name="label" type="java.lang.String" value="1"/>
                           </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena1_jCheckBoxPropertyChange"/>
-                          </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena1_jSlider">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor2">
                           <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
+                            <Property name="label" type="java.lang.String" value="2"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena2_jCheckBox">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor3">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="2"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
+                            <Property name="label" type="java.lang.String" value="3"/>
                           </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena2_jCheckBoxPropertyChange"/>
-                          </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="1" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena2_jSlider">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor4">
                           <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
+                            <Property name="label" type="java.lang.String" value="4"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="1" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena3_jCheckBox">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor5">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="3"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
+                            <Property name="label" type="java.lang.String" value="5"/>
                           </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena3_jCheckBoxPropertyChange"/>
-                          </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="2" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena3_jSlider">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor6">
                           <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
+                            <Property name="label" type="java.lang.String" value="6"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="2" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena4_jCheckBox">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor7">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="4"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
+                            <Property name="label" type="java.lang.String" value="7"/>
                           </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena4_jCheckBoxPropertyChange"/>
-                          </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="3" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena4_jSlider">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor8">
                           <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
+                            <Property name="label" type="java.lang.String" value="8"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="3" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena5_jCheckBox">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor9">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="5"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
+                            <Property name="label" type="java.lang.String" value="9"/>
                           </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena5_jCheckBoxPropertyChange"/>
-                          </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="-1" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena5_jSlider">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor10">
                           <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
+                            <Property name="label" type="java.lang.String" value="10"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="4" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena6_jCheckBox">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor11">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="6"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
+                            <Property name="label" type="java.lang.String" value="11"/>
                           </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena6_jCheckBoxPropertyChange"/>
-                          </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="-1" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena6_jSlider">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor12">
                           <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
+                            <Property name="label" type="java.lang.String" value="12"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="5" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena7_jCheckBox">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor13">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="7"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
+                            <Property name="label" type="java.lang.String" value="13"/>
                           </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena7_jCheckBoxPropertyChange"/>
-                          </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="-1" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena7_jSlider">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor14">
                           <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
+                            <Property name="label" type="java.lang.String" value="14"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="6" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena8_jCheckBox">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor15">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="8"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
+                            <Property name="label" type="java.lang.String" value="15"/>
                           </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena8_jCheckBoxPropertyChange"/>
-                          </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="-1" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena8_jSlider">
+                        <Component class="com.isolux.view.componentes.SliderConValor" name="sliderConValor16">
                           <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
+                            <Property name="label" type="java.lang.String" value="16"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="7" gridY="1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena9_jCheckBox">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="9"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena9_jCheckBoxPropertyChange"/>
-                          </Events>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="0" gridY="6" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="15" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena9_jSlider">
-                          <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
-                          </Properties>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="0" gridY="7" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena10_jCheckBox">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="10"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena10_jCheckBoxPropertyChange"/>
-                          </Events>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="1" gridY="6" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="15" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena10_jSlider">
-                          <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
-                          </Properties>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="1" gridY="7" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena11_jCheckBox">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="11"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena11_jCheckBoxPropertyChange"/>
-                          </Events>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="2" gridY="6" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="15" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena11_jSlider">
-                          <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
-                          </Properties>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="2" gridY="7" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena12_jCheckBox">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="12"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena12_jCheckBoxPropertyChange"/>
-                          </Events>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="3" gridY="6" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="15" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena12_jSlider">
-                          <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
-                          </Properties>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="3" gridY="7" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena13_jCheckBox">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="13"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena13_jCheckBoxPropertyChange"/>
-                          </Events>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="4" gridY="6" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="15" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena13_jSlider">
-                          <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
-                          </Properties>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="4" gridY="7" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena14_jCheckBox">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="14"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena14_jCheckBoxPropertyChange"/>
-                          </Events>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="5" gridY="6" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="15" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena14_jSlider">
-                          <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
-                          </Properties>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="5" gridY="7" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena15_jCheckBox">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="15"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena15_jCheckBoxPropertyChange"/>
-                          </Events>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="6" gridY="6" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="15" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena15_jSlider">
-                          <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="10"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
-                          </Properties>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="6" gridY="7" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="balastoEscena16_jCheckBox">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="16"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Seleccione si el balasto actual pertenece a este grupo"/>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="horizontalTextPosition" type="int" value="4"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoEscena16_jCheckBoxPropertyChange"/>
-                          </Events>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="7" gridY="6" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="15" weightX="1.0" weightY="0.0"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JSlider" name="balastoEscena16_jSlider">
-                          <Properties>
-                            <Property name="majorTickSpacing" type="int" value="50"/>
-                            <Property name="minorTickSpacing" type="int" value="20"/>
-                            <Property name="orientation" type="int" value="1"/>
-                            <Property name="paintLabels" type="boolean" value="true"/>
-                            <Property name="paintTicks" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Nivel del balasto en la escena seleccionada"/>
-                            <Property name="value" type="int" value="0"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[10, 100]"/>
-                            </Property>
-                          </Properties>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                              <GridBagConstraints gridX="7" gridY="7" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="10" insetsBottom="5" insetsRight="10" anchor="10" weightX="1.0" weightY="0.0"/>
+                              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -4476,6 +3802,271 @@
                         <Property name="text" type="java.lang.String" value="Escribir"/>
                       </Properties>
                     </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="monitoreoTiempoReal_jPanel">
+                  <Properties>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[800, 574]"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                      <JTabbedPaneConstraints tabName="Monitoreo y control en tiempo real">
+                        <Property name="tabTitle" type="java.lang.String" value="Monitoreo y control en tiempo real"/>
+                      </JTabbedPaneConstraints>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="795" max="32767" attributes="0"/>
+                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="panelTiempoReal" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="199" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="577" max="32767" attributes="0"/>
+                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                              <Component id="panelTiempoReal" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Container class="javax.swing.JPanel" name="panelTiempoReal">
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="jButton47" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jButton46" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jComboBox2" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="jButton38" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel53" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jLabel54" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="jLabel65" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jLabel55" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jSpinner3" min="-2" pref="63" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="jSlider1" alignment="0" min="-2" pref="189" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="1">
+                                                      <Component id="jLabel44" min="-2" max="-2" attributes="1"/>
+                                                      <EmptySpace max="32767" attributes="0"/>
+                                                      <Component id="jButton44" min="-2" pref="84" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="jScrollPane2" alignment="0" min="-2" pref="209" max="-2" attributes="1"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                          <Component id="jLabel56" min="-2" pref="362" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jLabel56" alignment="0" min="-2" pref="511" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jButton38" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel53" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel54" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel65" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel55" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jSpinner3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jSlider1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace pref="219" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="jLabel44" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jButton44" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane2" min="-2" pref="131" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jButton46" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jButton47" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JComboBox" name="jComboBox2">
+                          <Properties>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="1">
+                                <StringItem index="0" value="Seleccione el &#xe1;rea"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox2ActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTable" name="jTable1">
+                              <Properties>
+                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                  <Table columnCount="3" rowCount="0">
+                                    <Column editable="true" title="No" type="java.lang.Object"/>
+                                    <Column editable="true" title="Nombre" type="java.lang.Object"/>
+                                    <Column editable="true" title="Nivel" type="java.lang.Object"/>
+                                  </Table>
+                                </Property>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="selectBalasto"/>
+                              </Events>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                        <Component class="javax.swing.JLabel" name="jLabel44">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Balastos por &#xe1;rea"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton38">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Imagen &#xe1;rea"/>
+                            <Property name="enabled" type="boolean" value="false"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton38ActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel53">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="14" style="1"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Balasto:"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel54">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="14" style="1"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="#"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel55">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Nivel"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JSlider" name="jSlider1">
+                          <Properties>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="paintLabels" type="boolean" value="true"/>
+                            <Property name="paintTicks" type="boolean" value="true"/>
+                            <Property name="snapToTicks" type="boolean" value="true"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Seleccione el nivel del balasto"/>
+                            <Property name="value" type="int" value="0"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="saveBalastState"/>
+                            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="selectSliderValue"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JSpinner" name="jSpinner3">
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel56">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="99" green="99" red="99" type="rgb"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/images/photo_not_available.jpg"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton44">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Editar"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton44ActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel65">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Tahoma" size="14" style="1"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="#"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton46">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Eliminar &#xe1;rea"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton46ActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="jButton47">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Nueva &#xe1;rea"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton47ActionPerformed"/>
+                          </Events>
+                        </Component>
+                      </SubComponents>
+                    </Container>
                   </SubComponents>
                 </Container>
               </SubComponents>

@@ -261,7 +261,7 @@ public class GroupsControl implements ElementoControl_Interface{
         showAvailableBalasts(ppalView);
         filterAddedGroups(ppalView);
         String[] elementosDisponibles = elementosDisponibles(ppalView);
-        Validacion.actualizarCombo(ppalView.getGruposNum_jComboBox(), elementosDisponibles);
+        Validacion.actualizarCombo(ppalView.getGruposNum_jComboBox(), elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);
 
     }
     

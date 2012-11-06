@@ -6,8 +6,6 @@ package com.isolux.control;
 
 import com.isolux.bo.*;
 import com.isolux.dao.jmodbus.EntradaDAOJmodbus;
-import com.isolux.dao.jmodbus.EventoDAOJmodbus;
-import com.isolux.dao.modbus.DAOJamod;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
@@ -332,14 +330,24 @@ public class EntradaControl implements ElementoControl_Interface{
             String prefixFtcld = PropHandler.getProperty("ftcl.menu.name");
             String prefixSensor = PropHandler.getProperty("sensors.menu.name");
 
+            
             TreePath pathBtns = ppalView.getArbol_jTree().getNextMatch(prefixBtn, startRow, Position.Bias.Forward);
             TreePath pathFtcld = ppalView.getArbol_jTree().getNextMatch(prefixFtcld, startRow, Position.Bias.Forward);
             TreePath pathSensor = ppalView.getArbol_jTree().getNextMatch(prefixSensor, startRow, Position.Bias.Forward);
 
-            DefaultMutableTreeNode btnsNode = (DefaultMutableTreeNode) pathBtns.getLastPathComponent();
-            DefaultMutableTreeNode ftcldNode = (DefaultMutableTreeNode) pathFtcld.getLastPathComponent();
-            DefaultMutableTreeNode sensorNode = (DefaultMutableTreeNode) pathSensor.getLastPathComponent();
-
+            DefaultMutableTreeNode btnsNode = null;
+            if (pathBtns!=null) {
+                btnsNode = (DefaultMutableTreeNode) pathBtns.getLastPathComponent();
+            }
+            DefaultMutableTreeNode ftcldNode = null;
+            if (pathFtcld!=null) {
+                ftcldNode = (DefaultMutableTreeNode) pathFtcld.getLastPathComponent();
+            }
+            DefaultMutableTreeNode sensorNode = null;
+            if (pathSensor!=null) {
+                sensorNode = (DefaultMutableTreeNode) pathSensor.getLastPathComponent();
+            }
+            
             ArrayList<String> addedIns = PropHandler.getAddedIns(ppalView.getDao());
             DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
 
@@ -552,7 +560,7 @@ public class EntradaControl implements ElementoControl_Interface{
         filterAddedIn(ppalView);
 
         String[] elementosDisponibles = elementosDisponibles(ppalView);
-        Validacion.actualizarCombo(ppalView.getEntradaNumero_jComboBox(), elementosDisponibles);
+        Validacion.actualizarCombo(ppalView.getEntradaNumero_jComboBox(), elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);
     }
 
     @Override

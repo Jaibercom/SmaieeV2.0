@@ -649,9 +649,10 @@ public class GeneralControl {
     * @param c
     * @param d
     * @param f
+    * @param g
     * @return 
     */
-    public Boolean cargaInicial(PpalView ppalView,BalastosControl a,GroupsControl b,EscenaControl c,EventControl d, EntradaControl f) {
+    public Boolean cargaInicial(PpalView ppalView,BalastosControl a,GroupsControl b,EscenaControl c,EventControl d, EntradaControl f, BalastosConfiguracionControl g) {
 //        BalastosControlJmodbus a = new BalastosControlJmodbus();
 //        GroupsControl b = new GroupsControl();
 //        SceneControlJmodbus c =new SceneControlJmodbus();
@@ -664,6 +665,7 @@ public class GeneralControl {
             c.refrescarVista(ppalView);
             d.refrescarVista(ppalView);
             f.refrescarVista(ppalView);
+//            g.refrescaVista(ppalView);
             
             return true;
         } catch (Exception e) {

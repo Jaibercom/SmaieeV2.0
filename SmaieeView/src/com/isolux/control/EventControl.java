@@ -834,7 +834,7 @@ public class EventControl implements ElementoControl_Interface {
         filterAddedEvent(ppalView);
 
         String[] elementosDisponibles = elementosDisponibles(ppalView);
-        Validacion.actualizarCombo(ppalView.getEventoNum_jComboBox(), elementosDisponibles);
+        Validacion.actualizarCombo(ppalView.getEventoNum_jComboBox(), elementosDisponibles, Validacion.BALASTOS_DISPONIBLES);
     }
 
     @Override

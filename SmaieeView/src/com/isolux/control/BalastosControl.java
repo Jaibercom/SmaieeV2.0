@@ -4,10 +4,9 @@
  */
 package com.isolux.control;
 
-import com.isolux.dao.properties.PropHandler;
 import com.isolux.bo.*;
-import com.isolux.dao.Utils;
 import com.isolux.dao.jmodbus.BalastoDAOJmodbus;
+import com.isolux.dao.properties.PropHandler;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 import java.util.ArrayList;
@@ -256,7 +255,7 @@ public class BalastosControl {
         cleanBalastosView(ppalView);
         filterAddedBalasts(ppalView);
         String[] elementosDisponibles = elementosDisponibles(ppalView);
-        Validacion.actualizarCombo(ppalView.getBalastoNum_jComboBox(), elementosDisponibles);
+        Validacion.actualizarCombo(ppalView.getBalastoNum_jComboBox(), elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);
 
     }
 

@@ -301,7 +301,7 @@ public class EscenaControl implements ElementoControl_Interface{
         showAvailableSceneBalasts(ppalView);
         filterAddedScenes(ppalView);
         String[] elementosDisponibles = elementosDisponibles(ppalView);
-        Validacion.actualizarCombo(ppalView.getEscenaNumero_jComboBox(), elementosDisponibles);
+        Validacion.actualizarCombo(ppalView.getEscenaNumero_jComboBox(), elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);
     }
 
     @Override
