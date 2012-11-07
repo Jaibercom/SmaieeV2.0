@@ -6,6 +6,7 @@ package com.isolux.control;
 
 import com.isolux.bo.*;
 import com.isolux.dao.jmodbus.BalastoDAOJmodbus;
+import com.isolux.dao.jmodbus.OperacionesElemento_Interface;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
@@ -24,12 +25,13 @@ import javax.swing.tree.TreePath;
  *
  * @author Juan Diego Toro
  */
-public class BalastosControl {
+public class BalastosControl implements OperacionesElemento_Interface, ElementoControl_Interface{
 
     /**
      * Gets the inserted balasts.
      */
-    public void readBalastos(PpalView ppalView) {
+    @Override
+    public void readElements(PpalView ppalView) {
         BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
         HashMap<String, Balasto> balasts = ppalView.getBalasts();
 
@@ -51,7 +53,8 @@ public class BalastosControl {
     /**
      * Deletes a balast.
      */
-    public void deleteBalast(PpalView ppalView) {
+    @Override
+    public void deleteElement(PpalView ppalView) {
 //        boolean connectionStatus = DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
         new GeneralControl().updateConnectionStatus(true, ppalView);
         BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
@@ -63,17 +66,18 @@ public class BalastosControl {
                 treeModel.removeNodeFromParent(nodeToDelete);
                 ppalView.getBalasts().remove(ppalView.getSelectedBalastNumber());
                 ppalView.getBalastoNum_jComboBox().addItem(ppalView.getSelectedBalastNumber());
-                cleanBalastosView(ppalView);
+                cleanView(ppalView);
             }
         }
-        refrescaVista(ppalView);
+        refrescarVista(ppalView);
         
     }
 
     /**
      * Send the balast to be saved or updated.
      */
-    public void saveBalast(PpalView ppalView) {
+    @Override
+    public void saveElement(PpalView ppalView) {
 //        boolean connectionStatus = DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
         new GeneralControl().updateConnectionStatus(true, ppalView);
         BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
@@ -155,16 +159,15 @@ public class BalastosControl {
                 }
             }
         }
-        refrescaVista(ppalView);
+        refrescarVista(ppalView);
     }
 
-    /**
-     * Filter the used balasts.
-     */
-    public void filterAddedBalasts(PpalView ppalView) {
+    
+    @Override
+    public void filterAddedElements(PpalView ppalView) {
         if (!ppalView.getBalastsStauts()) {
             ppalView.getStatusLabel().setText("Leyendo balastos de la tarjeta...");
-            readBalastos(ppalView);
+            readElements(ppalView);
             int startRow = 0;
             String prefix = PropHandler.getProperty("balast.menu.name");
             TreePath path = ppalView.getArbol_jTree().getNextMatch(prefix, startRow, Position.Bias.Forward);
@@ -189,7 +192,8 @@ public class BalastosControl {
     /**
      * Shows the selected balast.
      */
-    public void showSelectedBalasto(String balastNumber, PpalView ppalView) {
+    @Override
+    public void showSelectedElement(String balastNumber, PpalView ppalView) {
         Balasto selectedBalast = ppalView.getBalasts().get(balastNumber);
 
         ppalView.getjTextField1().setText(selectedBalast.getName());
@@ -209,7 +213,8 @@ public class BalastosControl {
     /**
      * Clean values fror balasts form.
      */
-    public void cleanBalastosView(PpalView ppalView) {
+    @Override
+    public void cleanView(PpalView ppalView) {
         ppalView.getjTextField1().setText("");
         ppalView.getjTextField20().setText("0");
         ppalView.getBalastoDir_jTextField().setText("0");
@@ -251,19 +256,17 @@ public class BalastosControl {
      *
      * @param ppalView
      */
-    public void refrescaVista(PpalView ppalView) {
-        cleanBalastosView(ppalView);
-        filterAddedBalasts(ppalView);
+    @Override
+    public void refrescarVista(PpalView ppalView) {
+        cleanView(ppalView);
+        filterAddedElements(ppalView);
         String[] elementosDisponibles = elementosDisponibles(ppalView);
         Validacion.actualizarCombo(ppalView.getBalastoNum_jComboBox(), elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);
 
     }
 
-   /**
-    * 
-    * @param ppalView
-    * @return 
-    */
+   
+    @Override
     public String[] elementosDisponibles(PpalView ppalView) {
         BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
         String[] ses;
@@ -271,4 +274,11 @@ public class BalastosControl {
       
         return ses;
     }
+
+    @Override
+    public String[] elementosSinGrabar() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+   
 }

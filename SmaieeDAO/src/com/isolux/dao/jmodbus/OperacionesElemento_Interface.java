@@ -14,7 +14,7 @@ public interface OperacionesElemento_Interface {
     
     /**
      * Método que selecciona los elementos disponibles en la tarjeta para ser grabados.
-     * @return Integer[] de elementos que representan los elementos que no se han grabado aún
+     * @return String[] de elementos que representan los elementos que no se han grabado aún
      * en la tarjeta.
      */
     public String[] elementosSinGrabar();

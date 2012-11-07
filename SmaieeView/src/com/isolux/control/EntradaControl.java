@@ -25,7 +25,7 @@ import javax.swing.tree.TreePath;
  *
  * @author EAFIT
  */
-public class EntradaControl implements ElementoControl_Interface{
+public class EntradaControl implements ElementoControl_Interface {
 
     /**
      * Select the in views.
@@ -209,7 +209,6 @@ public class EntradaControl implements ElementoControl_Interface{
         refrescarVista(ppalView);
     }
 
-    
     @Override
     public void showSelectedElement(String inNumber, PpalView ppalView) {
         Entrada selectedIn = ppalView.getIns().get(inNumber);
@@ -321,57 +320,59 @@ public class EntradaControl implements ElementoControl_Interface{
         ppalView.getjCheckBox20().setEnabled(true);
     }
 
-    /**
-     * Filter the used groups (add existing groups to the menu).
-     */
     @Override
     public void filterAddedElements(PpalView ppalView) {
-        if (!ppalView.getInStauts()) {
-            ppalView.getStatusLabel().setText("Leyendo entradas de la tarjeta...");
-            readElements(ppalView);
-            int startRow = 0;
-            String prefixBtn = PropHandler.getProperty("btns.menu.name");
-            String prefixFtcld = PropHandler.getProperty("ftcl.menu.name");
-            String prefixSensor = PropHandler.getProperty("sensors.menu.name");
+        try {
+            if (!ppalView.getInStauts()) {
+                ppalView.getStatusLabel().setText("Leyendo entradas de la tarjeta...");
+                readElements(ppalView);
+                int startRow = 0;
+                String prefixBtn = PropHandler.getProperty("btns.menu.name");
+                String prefixFtcld = PropHandler.getProperty("ftcl.menu.name");
+                String prefixSensor = PropHandler.getProperty("sensors.menu.name");
 
-            
-            TreePath pathBtns = ppalView.getArbol_jTree().getNextMatch(prefixBtn, startRow, Position.Bias.Forward);
-            TreePath pathFtcld = ppalView.getArbol_jTree().getNextMatch(prefixFtcld, startRow, Position.Bias.Forward);
-            TreePath pathSensor = ppalView.getArbol_jTree().getNextMatch(prefixSensor, startRow, Position.Bias.Forward);
 
-            DefaultMutableTreeNode btnsNode = null;
-            if (pathBtns!=null) {
-                btnsNode = (DefaultMutableTreeNode) pathBtns.getLastPathComponent();
-            }
-            DefaultMutableTreeNode ftcldNode = null;
-            if (pathFtcld!=null) {
-                ftcldNode = (DefaultMutableTreeNode) pathFtcld.getLastPathComponent();
-            }
-            DefaultMutableTreeNode sensorNode = null;
-            if (pathSensor!=null) {
-                sensorNode = (DefaultMutableTreeNode) pathSensor.getLastPathComponent();
-            }
-            
-            ArrayList<String> addedIns = PropHandler.getAddedIns(ppalView.getDao());
-            DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
+                TreePath pathBtns = ppalView.getArbol_jTree().getNextMatch(prefixBtn, startRow, Position.Bias.Forward);
+                TreePath pathFtcld = ppalView.getArbol_jTree().getNextMatch(prefixFtcld, startRow, Position.Bias.Forward);
+                TreePath pathSensor = ppalView.getArbol_jTree().getNextMatch(prefixSensor, startRow, Position.Bias.Forward);
 
-            //Remove the used balast numbers from the list and add them to the menu.
-            for (String string : addedIns) {
-                Entrada in = ppalView.getIns().get(string);
-                DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(string);
+                DefaultMutableTreeNode btnsNode = null;
+                if (pathBtns != null) {
+                    btnsNode = (DefaultMutableTreeNode) pathBtns.getLastPathComponent();
+                }
+                DefaultMutableTreeNode ftcldNode = null;
+                if (pathFtcld != null) {
+                    ftcldNode = (DefaultMutableTreeNode) pathFtcld.getLastPathComponent();
+                }
+                DefaultMutableTreeNode sensorNode = null;
+                if (pathSensor != null) {
+                    sensorNode = (DefaultMutableTreeNode) pathSensor.getLastPathComponent();
+                }
+
+                ArrayList<String> addedIns = PropHandler.getAddedIns(ppalView.getDao());
+                DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
+
+                //Remove the used balast numbers from the list and add them to the menu.
+                for (String string : addedIns) {
+                    Entrada in = ppalView.getIns().get(string);
+                    DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(string);
 //                ppalView.getjComboBox4().removeItem(string);
-                if (in.getTipo() == ViewUtils.getIntProperty("in.type.btns")) { //Botonera
-                    model.insertNodeInto(newNode, btnsNode, btnsNode.getChildCount());
+                    if (in.getTipo() == ViewUtils.getIntProperty("in.type.btns")) { //Botonera
+                        model.insertNodeInto(newNode, btnsNode, btnsNode.getChildCount());
+                    }
+                    if (in.getTipo() == ViewUtils.getIntProperty("in.type.ftcld")) { //Fotocelda
+                        model.insertNodeInto(newNode, ftcldNode, ftcldNode.getChildCount());
+                    }
+                    if (in.getTipo() == ViewUtils.getIntProperty("in.type.sensor")) { //Sensor
+                        model.insertNodeInto(newNode, sensorNode, sensorNode.getChildCount());
+                    }
                 }
-                if (in.getTipo() == ViewUtils.getIntProperty("in.type.ftcld")) { //Fotocelda
-                    model.insertNodeInto(newNode, ftcldNode, ftcldNode.getChildCount());
-                }
-                if (in.getTipo() == ViewUtils.getIntProperty("in.type.sensor")) { //Sensor
-                    model.insertNodeInto(newNode, sensorNode, sensorNode.getChildCount());
-                }
+                ppalView.setInStauts(true);
+                ppalView.getStatusLabel().setText("Entradas leidas.");
             }
-            ppalView.setInStauts(true);
-            ppalView.getStatusLabel().setText("Entradas leidas.");
+        } catch (Exception e) {
+            ppalView.setInStauts(false);
+            ppalView.getStatusLabel().setText("Entradas no leidas.");
         }
     }
 
@@ -459,7 +460,7 @@ public class EntradaControl implements ElementoControl_Interface{
 
         if (ppalView.getInOutType() == prefixBalast) {  //Balastos
             //Afected balasts
-            new BalastosControl().readBalastos(ppalView);
+            new BalastosControl().readElements(ppalView);
             DefaultListModel inAffecBalasts = new DefaultListModel();
             int[] selectedBalasts = selectedIn.getBalastos();
             ArrayList sel = new ArrayList();
@@ -556,7 +557,6 @@ public class EntradaControl implements ElementoControl_Interface{
 ////        filterAddedIn(ppalView);
 //        
 //    }
-
     @Override
     public void refrescarVista(PpalView ppalView) {
         cleanView(ppalView);
@@ -564,17 +564,15 @@ public class EntradaControl implements ElementoControl_Interface{
         filterAddedElements(ppalView);
 
         String[] elementosDisponibles = elementosDisponibles(ppalView);
-        Validacion.actualizarCombo(ppalView.getEntradaNumero_jComboBox(), elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);
+        Validacion.actualizarCombo(ppalView.getEntradaNumero_jComboBox(), elementosDisponibles, Validacion.BALASTOS_DISPONIBLES);
     }
 
     @Override
     public String[] elementosDisponibles(PpalView ppalView) {
-         EntradaDAOJmodbus dao = new EntradaDAOJmodbus(ppalView.getDao());
+        EntradaDAOJmodbus dao = new EntradaDAOJmodbus(ppalView.getDao());
         String[] ses;
         ses = dao.elementosSinGrabar();
 
         return ses;
     }
-    
-    
 }

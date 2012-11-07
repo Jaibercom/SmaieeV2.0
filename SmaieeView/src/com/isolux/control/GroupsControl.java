@@ -216,7 +216,7 @@ public class GroupsControl implements ElementoControl_Interface{
      * Show the available balasts.
      */
     public void showAvailableBalasts(PpalView ppalView) {
-        new BalastosControl().readBalastos(ppalView);
+        new BalastosControl().readElements(ppalView);
         HashMap<String, Balasto> balasts = ppalView.getBalasts();
         ppalView.setGroupBalasts(balasts);
         DefaultListModel modelo = new DefaultListModel();

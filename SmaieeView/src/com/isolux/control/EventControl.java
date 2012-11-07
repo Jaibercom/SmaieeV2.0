@@ -280,7 +280,7 @@ public class EventControl implements ElementoControl_Interface {
             ArrayList sel = new ArrayList();
             for (int i = 0; i < selectedBalasts.length; i++) {
                 if (selectedBalasts[i] == 1) {
-                    new BalastosControl().readBalastos(ppalView);
+                    new BalastosControl().readElements(ppalView);
                     Balasto sce = balasts.get(String.valueOf(i));
                     sceneBalastsL.addElement(sce.getBalastNumber() + " - " + sce.getName() + ": " + selectedBalastsLevels[i]);
                     sel.add(String.valueOf(i));
@@ -538,7 +538,7 @@ public class EventControl implements ElementoControl_Interface {
 
         if (ppalView.getInOutType() == prefixBalast) {  //Balastos
             //Afected balasts
-            new BalastosControl().readBalastos(ppalView);
+            new BalastosControl().readElements(ppalView);
             DefaultListModel inAffecBalasts = new DefaultListModel();
             int[] selectedBalasts = selectedIn.getBalastos();
             ArrayList sel = new ArrayList();

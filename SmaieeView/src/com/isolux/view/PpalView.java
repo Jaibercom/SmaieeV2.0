@@ -101,7 +101,7 @@ public class PpalView extends javax.swing.JFrame {
     //Event variables
     private int eventOutType;
     //CONTROLLERS
-    private BalastosControl balastosCtrl;
+    private BalastosControl balastoCtrl;
     private EventControl eventCtrl;
     private GeneralControl generalCtrl;
     private GroupsControl groupsCtrl;
@@ -113,19 +113,19 @@ public class PpalView extends javax.swing.JFrame {
     //Checking threads
     private ThreadManager threadManager;
     CargaInicial cargaInicial;
-    private BalastosConfiguracionControl balastoConfiguracionCtrl;
+    private BalastosConfiguracionControl balastoConfigCtrl;
 
     //Init Ctrls
     public void initControls() {
-        this.balastosCtrl = new BalastosControl();
-        this.balastoConfiguracionCtrl=new BalastosConfiguracionControl();
+        this.balastoCtrl = new BalastosControl();
+        this.balastoConfigCtrl = new BalastosConfiguracionControl();
         this.eventCtrl = new EventControl();
         this.generalCtrl = new GeneralControl();
         this.groupsCtrl = new GroupsControl();
         this.insCtrl = new EntradaControl();
         this.realCtrl = new RealTimeControl();
         this.sceneCtrl = new EscenaControl();
-        
+
     }
 
     public void initAddedElements() {
@@ -164,8 +164,6 @@ public class PpalView extends javax.swing.JFrame {
         this.threadManager = new ThreadManager(this);
     }
 
-    
-    
     /**
      * Creates new form ConfPpalView
      */
@@ -541,12 +539,14 @@ public class PpalView extends javax.swing.JFrame {
 
         panelPrincipal_jPanel.add(header, java.awt.BorderLayout.NORTH);
 
+        tabbedPane.setName("tabbedPane"); // NOI18N
         tabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 selectTab(evt);
             }
         });
 
+        configuracionSmaiee_jPanel.setName("configuracionSmaie"); // NOI18N
         configuracionSmaiee_jPanel.setPreferredSize(new java.awt.Dimension(800, 574));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("SMAIEE");
@@ -2310,6 +2310,13 @@ public class PpalView extends javax.swing.JFrame {
 
         tabbedPane.addTab("Configuración Smaiee", null, configuracionSmaiee_jPanel, "Configuracion del Smaiee");
 
+        configuracionBalastos_jPanel.setName("configuracionDeBalastos"); // NOI18N
+        configuracionBalastos_jPanel.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                configuracionBalastos_jPanelFocusGained(evt);
+            }
+        });
+
         jLabel5.setText("Balasto");
 
         balastoConfiguracion_jComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -2581,6 +2588,11 @@ public class PpalView extends javax.swing.JFrame {
         escenasDeBalasto_jPanel.add(sliderConValor16, new java.awt.GridBagConstraints());
 
         balastoLeerConfig_jButton.setText("Leer");
+        balastoLeerConfig_jButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                balastoLeerConfig_jButtonActionPerformed(evt);
+            }
+        });
 
         balastoEscribirConfig_jButton.setText("Escribir");
 
@@ -2630,6 +2642,7 @@ public class PpalView extends javax.swing.JFrame {
 
         tabbedPane.addTab("Configuración de balastos", configuracionBalastos_jPanel);
 
+        monitoreoTiempoReal_jPanel.setName("MonitoreoTiempoReal"); // NOI18N
         monitoreoTiempoReal_jPanel.setPreferredSize(new java.awt.Dimension(800, 574));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione el área" }));
@@ -2943,9 +2956,9 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     protected void balastoEnviar_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoEnviar_jButtonActionPerformed
-        this.balastosCtrl.saveBalast(this);
-        String[] elementosDisponibles = balastosCtrl.elementosDisponibles(this);
-        Validacion.actualizarCombo(balastoNum_jComboBox, elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);
+        this.balastoCtrl.saveElement(this);
+        String[] elementosDisponibles = balastoCtrl.elementosDisponibles(this);
+        Validacion.actualizarCombo(balastoNum_jComboBox, elementosDisponibles, Validacion.BALASTOS_DISPONIBLES);
     }//GEN-LAST:event_balastoEnviar_jButtonActionPerformed
 
     /**
@@ -2982,7 +2995,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     protected void balastoEliminar_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoEliminar_jButtonActionPerformed
-        this.balastosCtrl.deleteBalast(this);
+        this.balastoCtrl.deleteElement(this);
     }//GEN-LAST:event_balastoEliminar_jButtonActionPerformed
 
     /**
@@ -3440,6 +3453,27 @@ public class PpalView extends javax.swing.JFrame {
     private void selectTab(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_selectTab
 //        generalCtrl.continueConfigurationViewData(this);
         this.realCtrl.showAreas(this);
+        String panel = getTabbedPane().getSelectedComponent().getName();
+        int numeroPanel = getTabbedPane().getSelectedIndex();
+        System.out.println("Se cambio a el panel " + panel + " num " + numeroPanel);
+
+
+        switch (numeroPanel) {
+            case 0:
+                balastoCtrl.refrescarVista(this);
+                break;
+            case 1:
+                balastoConfigCtrl.refrescarVista(this);
+                break;
+            case 2:
+                
+                break;
+
+        }
+
+
+
+
     }//GEN-LAST:event_selectTab
 
     /**
@@ -3616,7 +3650,13 @@ public class PpalView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_balastoNum_jComboBoxActionPerformed
 
-    
+    private void configuracionBalastos_jPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_configuracionBalastos_jPanelFocusGained
+        System.out.println("Se gano el foco");
+    }//GEN-LAST:event_configuracionBalastos_jPanelFocusGained
+
+    private void balastoLeerConfig_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoLeerConfig_jButtonActionPerformed
+      //continuar aqui maniana
+    }//GEN-LAST:event_balastoLeerConfig_jButtonActionPerformed
 
     //</editor-fold>
     /**
@@ -6394,7 +6434,7 @@ public class PpalView extends javax.swing.JFrame {
 
             GeneralControl generalCtrl = new GeneralControl();
 
-            Boolean c = generalCtrl.cargaInicial(ppalView, balastosCtrl, groupsCtrl, sceneCtrl, eventCtrl, insCtrl,balastoConfiguracionCtrl);
+            Boolean c = generalCtrl.cargaInicial(ppalView, balastoCtrl, groupsCtrl, sceneCtrl, eventCtrl, insCtrl, balastoConfigCtrl);
 
             return c;
 

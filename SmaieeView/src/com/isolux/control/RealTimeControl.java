@@ -147,7 +147,7 @@ public class RealTimeControl {
             //Balastos
             ArrayList<Integer> areaBalasts = PropHandler.getAreaBalasts(areaName);
             BalastosControl balastoCtrl = new BalastosControl();
-            balastoCtrl.readBalastos(ppalView);
+            balastoCtrl.readElements(ppalView);
             showBalastos(areaBalasts, ppalView);
             ppalView.getThreadManager().getRealTime().setSelectedAreaBalasts(areaBalasts);
             ppalView.getThreadManager().startThread(ThreadManager.REAL_TIME);

@@ -223,7 +223,7 @@ public class EscenaControl implements ElementoControl_Interface{
      * Show the available balasts.
      */
     public void showAvailableSceneBalasts(PpalView ppalView) {
-        new BalastosControl().readBalastos(ppalView);
+        new BalastosControl().readElements(ppalView);
         ppalView.setSceneBalasts(ppalView.getBalasts());
         DefaultListModel modelo = new DefaultListModel();
 

@@ -56,8 +56,8 @@ public interface ElementoControl_Interface {
     public void readElements(PpalView ppalView);
 
     /**
-     * Filter the used groups (add existing groups to the menu).
-     * Filtra los grupo usados (agrega los grupos existentes al menú)
+     * Filter the used elements (add existing elements to the menu).
+     * Filtra los elementos usados (agrega los elementos existentes al menú)
      * @param ppalView
      */
     public void filterAddedElements(PpalView ppalView);

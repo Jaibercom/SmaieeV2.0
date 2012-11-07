@@ -4,9 +4,6 @@
  */
 package com.isolux.control;
 
-import java.util.ArrayList;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import com.isolux.bo.*;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
@@ -17,12 +14,15 @@ import com.isolux.view.threads.ThreadManager;
 import com.toedter.calendar.IDateEditor;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -44,7 +44,7 @@ public class GeneralControl {
      * Show the available balasts.
      */
     public void showAvailableBalasts(JList show, JList remove, PpalView ppalView) {
-        new BalastosControl().readBalastos(ppalView);
+        new BalastosControl().readElements(ppalView);
         DefaultListModel modelo = new DefaultListModel();
         DefaultListModel cleanModelo = new DefaultListModel();
         show.setModel(modelo);
@@ -188,11 +188,11 @@ public class GeneralControl {
                     if (isNode) {
                         String balastNumber = (String) node.getUserObject();
                         ppalView.setSelectedBalastNumber(balastNumber.split(" - ")[0]);
-                        new BalastosControl().showSelectedBalasto(ppalView.getSelectedBalastNumber(), ppalView);
+                        new BalastosControl().showSelectedElement(ppalView.getSelectedBalastNumber(), ppalView);
                     } else {
                         BalastosControl balastoCtrl = new BalastosControl();
-                        balastoCtrl.cleanBalastosView(ppalView);
-                        balastoCtrl.filterAddedBalasts(ppalView);
+                        balastoCtrl.cleanView(ppalView);
+                        balastoCtrl.filterAddedElements(ppalView);
                         //Verificamos que la conexion este activa
 //                        TCPMasterConnection con = null;
 ////                        con.isConnected();
@@ -660,12 +660,13 @@ public class GeneralControl {
 //        InsControl f = new InsControl();
         
         try {
-            a.refrescaVista(ppalView);
+            a.refrescarVista(ppalView);
             b.refrescarVista(ppalView);
             c.refrescarVista(ppalView);
             d.refrescarVista(ppalView);
+            g.refrescarVista(ppalView);
             f.refrescarVista(ppalView);
-            g.refrescaVista(ppalView);
+            
             
             return true;
         } catch (Exception e) {

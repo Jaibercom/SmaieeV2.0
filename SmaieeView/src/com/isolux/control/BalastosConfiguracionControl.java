@@ -18,43 +18,6 @@ import com.isolux.view.PpalView;
  */
 public class BalastosConfiguracionControl implements OperacionesElemento_Interface, ElementoControl_Interface {
 
-    PpalView ppalView;
-
-    public PpalView getPpalView() {
-        return ppalView;
-    }
-
-    public void setPpalView(PpalView ppalView) {
-        this.ppalView = ppalView;
-    }
-
-    public BalastosConfiguracionControl() {
-
-       
-
-    }
-
-    public void leerBalasto() {
-    }
-
-    public void mostrarInformacion(Elemento elemento) {
-        Balasto balasto = (Balasto) elemento;
-
-    }
-
-    private void cargarComboBox() {
-        String[] elementosDisponibles = elementosSinGrabar();
-        // configuramos el combobox
-        Validacion.actualizarCombo(ppalView.getBalastoConfiguracion_jComboBox(), elementosDisponibles, Validacion.BALASTOS_TODOS);
-
-    }
-
-    public void refrescaVista(PpalView ppalView) {
-//        String[] elementosSinGrabar = elementosSinGrabar();
-//        Validacion.actualizarCombo(ppalView.getBalastoNum_jComboBox(), elementosSinGrabar, Validacion.BALASTOS_DISPONIBLES);
-
-    }
-
     @Override
     public String[] elementosSinGrabar() {
 
@@ -72,17 +35,24 @@ public class BalastosConfiguracionControl implements OperacionesElemento_Interfa
 
     @Override
     public void refrescarVista(PpalView ppalView) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        cleanView(ppalView);
+        filterAddedElements(ppalView);
+        String[] elementosDisponibles = elementosDisponibles(ppalView);
+        Validacion.actualizarCombo(ppalView.getBalastoConfiguracion_jComboBox(), elementosDisponibles, Validacion.BALASTOS_NO_DISPONIBLES);
     }
 
     @Override
     public String[] elementosDisponibles(PpalView ppalView) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
+        String[] ses;
+        ses = dao.elementosSinGrabar();
+
+        return ses;
     }
 
     @Override
     public void cleanView(PpalView ppalView) {
-        throw new UnsupportedOperationException("Not supported yet.");
+//        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -102,13 +72,11 @@ public class BalastosConfiguracionControl implements OperacionesElemento_Interfa
 
     @Override
     public void filterAddedElements(PpalView ppalView) {
-        throw new UnsupportedOperationException("Not supported yet.");
+//        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void showSelectedElement(String num, PpalView ppalView) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-    
 }
