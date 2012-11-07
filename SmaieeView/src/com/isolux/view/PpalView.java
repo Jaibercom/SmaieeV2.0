@@ -3027,7 +3027,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void enviarGrupo_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarGrupo_jButtonActionPerformed
-        this.groupsCtrl.saveGroup(this);
+        this.groupsCtrl.saveElement(this);
     }//GEN-LAST:event_enviarGrupo_jButtonActionPerformed
 
     /**
@@ -3036,7 +3036,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void eliminarGrupo_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarGrupo_jButtonActionPerformed
-        this.groupsCtrl.deleteGroup(this);
+        this.groupsCtrl.deleteElement(this);
     }//GEN-LAST:event_eliminarGrupo_jButtonActionPerformed
 
     /**
@@ -3081,7 +3081,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void enviarEscena_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarEscena_jButtonActionPerformed
-        this.sceneCtrl.saveScene(this);
+        this.sceneCtrl.saveElement(this);
     }//GEN-LAST:event_enviarEscena_jButtonActionPerformed
 
     /**
@@ -3090,7 +3090,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void eliminarEscena_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEscena_jButtonActionPerformed
-        this.sceneCtrl.deleteScene(this);
+        this.sceneCtrl.deleteElement(this);
     }//GEN-LAST:event_eliminarEscena_jButtonActionPerformed
 
     /**
@@ -3153,7 +3153,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        this.insCtrl.saveIn(this);
+        this.insCtrl.saveElement(this);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
@@ -3302,7 +3302,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        this.insCtrl.saveIn(this);
+        this.insCtrl.saveElement(this);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     /**
@@ -3311,7 +3311,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        this.insCtrl.saveIn(this);
+        this.insCtrl.saveElement(this);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     /**
@@ -3320,7 +3320,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
-        this.insCtrl.deleteIn(this);
+        this.insCtrl.deleteElement(this);
     }//GEN-LAST:event_jButton40ActionPerformed
 
     /**
@@ -3329,7 +3329,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
-        this.insCtrl.deleteIn(this);
+        this.insCtrl.deleteElement(this);
     }//GEN-LAST:event_jButton41ActionPerformed
 
     /**
@@ -3338,7 +3338,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void jButton42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton42ActionPerformed
-        this.insCtrl.deleteIn(this);
+        this.insCtrl.deleteElement(this);
     }//GEN-LAST:event_jButton42ActionPerformed
 
     /**
@@ -3422,7 +3422,7 @@ public class PpalView extends javax.swing.JFrame {
      */
     private void enviarEventos_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarEventos_jButtonActionPerformed
         try {
-            this.eventCtrl.saveEvent(this);
+            this.eventCtrl.saveElement(this);
         } catch (Exception ex) {
             System.out.println("Problema guardando el evento");
             Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
@@ -3521,7 +3521,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void eliminarEvento_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarEvento_jButtonActionPerformed
-        this.eventCtrl.deleteEvent(this);
+        this.eventCtrl.deleteElement(this);
     }//GEN-LAST:event_eliminarEvento_jButtonActionPerformed
 
     /**

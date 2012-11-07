@@ -65,7 +65,7 @@ public class GeneralControl {
      * Show the available balasts.
      */
     public void showAvailableGroups(JList show, JList remove, PpalView ppalView) {
-        new GroupsControl().readGroups(ppalView);
+        new GroupsControl().readElements(ppalView);
         DefaultListModel modelo = new DefaultListModel();
         DefaultListModel cleanModelo = new DefaultListModel();
         show.setModel(modelo);
@@ -84,7 +84,7 @@ public class GeneralControl {
      * Show the available balasts.
      */
     public void showAvailableScenes(JList show, JList remove, PpalView ppalView) {
-        new EscenaControl().readScenes(ppalView);
+        new EscenaControl().readElements(ppalView);
         DefaultListModel modelo = new DefaultListModel();
         DefaultListModel cleanModelo = new DefaultListModel();
         show.setModel(modelo);
@@ -205,14 +205,14 @@ public class GeneralControl {
                 case 'g':
                     GroupsControl groupCtrl = new GroupsControl();
                     if (isNode) {
-                        groupCtrl.cleanGroupView(ppalView);
+                        groupCtrl.cleanView(ppalView);
                         String groupNumber = (String) node.getUserObject();
                         ppalView.setSelectedGroupNumber(groupNumber.split(" - ")[0]);
-                        groupCtrl.showSelectedGroup(ppalView.getSelectedGroupNumber(), ppalView);
+                        groupCtrl.showSelectedElement(ppalView.getSelectedGroupNumber(), ppalView);
                     } else {
-                        groupCtrl.cleanGroupView(ppalView);
+                        groupCtrl.cleanView(ppalView);
                         groupCtrl.showAvailableBalasts(ppalView);
-                        groupCtrl.filterAddedGroups(ppalView);
+                        groupCtrl.filterAddedElements(ppalView);
                     }
                     cl.show(ppalView.getPanelPpal(), "card4"); //Grupos
                     break;
@@ -220,14 +220,14 @@ public class GeneralControl {
                 case 's':
                     EscenaControl sceneCtrl = new EscenaControl();
                     if (isNode) {
-                        sceneCtrl.cleanSceneView(ppalView);
+                        sceneCtrl.cleanView(ppalView);
                         String sceneNumber = (String) node.getUserObject();
                         ppalView.setSelectedSceneNumber(sceneNumber.split(" - ")[0]);
-                        sceneCtrl.showSelectedScene(ppalView.getSelectedSceneNumber(), ppalView);
+                        sceneCtrl.showSelectedElement(ppalView.getSelectedSceneNumber(), ppalView);
                     } else {
-                        sceneCtrl.cleanSceneView(ppalView);
+                        sceneCtrl.cleanView(ppalView);
                         sceneCtrl.showAvailableSceneBalasts(ppalView);
-                        sceneCtrl.filterAddedScenes(ppalView);
+                        sceneCtrl.filterAddedElements(ppalView);
                     }
                     cl.show(ppalView.getPanelPpal(), "card5"); //Escenas
                     break;
@@ -239,14 +239,14 @@ public class GeneralControl {
                 case 'e':
                     EventControl eventCtrl = new EventControl();
                     if (isNode) {
-                        eventCtrl.cleanEventView(ppalView);
+                        eventCtrl.cleanView(ppalView);
                         String eventNumber = (String) node.getUserObject();
                         ppalView.setSelectedEventNumber(eventNumber.split(" - ")[0]);
-                        eventCtrl.showSelectedEvent(ppalView.getSelectedEventNumber(), ppalView);
+                        eventCtrl.showSelectedElement(ppalView.getSelectedEventNumber(), ppalView);
                     } else {
-                        eventCtrl.cleanEventView(ppalView);
+                        eventCtrl.cleanView(ppalView);
                         eventCtrl.showAvailableEvents(ppalView);
-                        eventCtrl.filterAddedEvent(ppalView);
+                        eventCtrl.filterAddedElements(ppalView);
                     }
                     cl.show(ppalView.getPanelPpal(), "card7"); //Eventos
                     break;
@@ -263,12 +263,12 @@ public class GeneralControl {
                 case 'a':
                     EntradaControl inCtrl = new EntradaControl();
                     if (isNode) {
-                        inCtrl.cleanInView(ppalView);
+                        inCtrl.cleanView(ppalView);
                         ppalView.setSelectedInNumber((String) node.getUserObject());
-                        inCtrl.showSelectedIn(ppalView.getSelectedInNumber(), ppalView);
+                        inCtrl.showSelectedElement(ppalView.getSelectedInNumber(), ppalView);
                     } else {
-                        inCtrl.cleanInView(ppalView);
-                        inCtrl.filterAddedIn(ppalView);
+                        inCtrl.cleanView(ppalView);
+                        inCtrl.filterAddedElements(ppalView);
                     }
                     cl.show(ppalView.getPanelPpal(), "card6");
                     clIns.show(ppalView.getPanelConfEntradas(), "card2"); //Botoneras
@@ -276,12 +276,12 @@ public class GeneralControl {
                 case 'f':
                     EntradaControl inCtrlF = new EntradaControl();
                     if (isNode) {
-                        inCtrlF.cleanInView(ppalView);
+                        inCtrlF.cleanView(ppalView);
                         ppalView.setSelectedInNumber((String) node.getUserObject());
-                        inCtrlF.showSelectedIn(ppalView.getSelectedInNumber(), ppalView);
+                        inCtrlF.showSelectedElement(ppalView.getSelectedInNumber(), ppalView);
                     } else {
-                        inCtrlF.cleanInView(ppalView);
-                        inCtrlF.filterAddedIn(ppalView);
+                        inCtrlF.cleanView(ppalView);
+                        inCtrlF.filterAddedElements(ppalView);
                     }
                     cl.show(ppalView.getPanelPpal(), "card6");
                     clIns.show(ppalView.getPanelConfEntradas(), "card3"); //Fotoceldas
@@ -289,12 +289,12 @@ public class GeneralControl {
                 case 'h':
                     EntradaControl inCtrlS = new EntradaControl();
                     if (isNode) {
-                        inCtrlS.cleanInView(ppalView);
+                        inCtrlS.cleanView(ppalView);
                         ppalView.setSelectedInNumber((String) node.getUserObject());
-                        inCtrlS.showSelectedIn(ppalView.getSelectedInNumber(), ppalView);
+                        inCtrlS.showSelectedElement(ppalView.getSelectedInNumber(), ppalView);
                     } else {
-                        inCtrlS.cleanInView(ppalView);
-                        inCtrlS.filterAddedIn(ppalView);
+                        inCtrlS.cleanView(ppalView);
+                        inCtrlS.filterAddedElements(ppalView);
                     }
                     cl.show(ppalView.getPanelPpal(), "card6");
                     clIns.show(ppalView.getPanelConfEntradas(), "card4"); //Sensores

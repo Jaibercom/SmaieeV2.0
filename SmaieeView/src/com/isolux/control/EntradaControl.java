@@ -52,7 +52,8 @@ public class EntradaControl implements ElementoControl_Interface{
     /**
      * Saves an in.
      */
-    public void saveIn(PpalView ppalView) {
+    @Override
+    public void saveElement(PpalView ppalView) {
         boolean connectionStatus = true; //DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
         new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
         if (connectionStatus) {
@@ -187,7 +188,8 @@ public class EntradaControl implements ElementoControl_Interface{
     /**
      * Deletes a scene.
      */
-    public void deleteIn(PpalView ppalView) {
+    @Override
+    public void deleteElement(PpalView ppalView) {
         boolean connectionStatus = true; //DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
         new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
         if (connectionStatus) {
@@ -199,7 +201,7 @@ public class EntradaControl implements ElementoControl_Interface{
                 treeModel.removeNodeFromParent(nodeToDelete);
 //                ppalView.getjComboBox4().addItem(ppalView.getSelectedInNumber());
                 ppalView.getIns().remove(ppalView.getSelectedInNumber());
-                cleanInView(ppalView);
+                cleanView(ppalView);
             } else {
                 Validacion.showAlertMessage("Debe seleccionar una entrada primero!");
             }
@@ -207,10 +209,9 @@ public class EntradaControl implements ElementoControl_Interface{
         refrescarVista(ppalView);
     }
 
-    /**
-     * Shows the selected group.
-     */
-    public void showSelectedIn(String inNumber, PpalView ppalView) {
+    
+    @Override
+    public void showSelectedElement(String inNumber, PpalView ppalView) {
         Entrada selectedIn = ppalView.getIns().get(inNumber);
         ppalView.setInOutType(selectedIn.getTipoSalida());
         ppalView.setInType(selectedIn.getTipo());
@@ -254,7 +255,8 @@ public class EntradaControl implements ElementoControl_Interface{
     /**
      * Gets the inserted scenes.
      */
-    public void readIns(PpalView ppalView) {
+    @Override
+    public void readElements(PpalView ppalView) {
         EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(ppalView.getDao());
         ppalView.setIns(new HashMap<String, Entrada>());
 
@@ -270,7 +272,8 @@ public class EntradaControl implements ElementoControl_Interface{
     /**
      * Clean values fror group form.
      */
-    public void cleanInView(PpalView ppalView) {
+    @Override
+    public void cleanView(PpalView ppalView) {
         DefaultListModel model = new DefaultListModel();
         ppalView.getjLabel63().setText("#");
         ppalView.setSelectedInNumber("");
@@ -321,10 +324,11 @@ public class EntradaControl implements ElementoControl_Interface{
     /**
      * Filter the used groups (add existing groups to the menu).
      */
-    public void filterAddedIn(PpalView ppalView) {
+    @Override
+    public void filterAddedElements(PpalView ppalView) {
         if (!ppalView.getInStauts()) {
             ppalView.getStatusLabel().setText("Leyendo entradas de la tarjeta...");
-            readIns(ppalView);
+            readElements(ppalView);
             int startRow = 0;
             String prefixBtn = PropHandler.getProperty("btns.menu.name");
             String prefixFtcld = PropHandler.getProperty("ftcl.menu.name");
@@ -485,7 +489,7 @@ public class EntradaControl implements ElementoControl_Interface{
             available.setModel(modelo);
         } else if (ppalView.getInOutType() == prefixGroup) { //Grupos
             //Afected balasts
-            new GroupsControl().readGroups(ppalView);
+            new GroupsControl().readElements(ppalView);
             DefaultListModel groupBalasts = new DefaultListModel();
             int[] selectedGroups = selectedIn.getGrupos();
             ArrayList sel = new ArrayList();
@@ -512,7 +516,7 @@ public class EntradaControl implements ElementoControl_Interface{
             available.setModel(modelo);
         } else if (ppalView.getInOutType() == prefixScene) {    //Escenas
             //Afected balasts
-            new EscenaControl().readScenes(ppalView);
+            new EscenaControl().readElements(ppalView);
             DefaultListModel sceneBalastsL = new DefaultListModel();
             int[] selectedBalasts = selectedIn.getEscenas();
             ArrayList sel = new ArrayList();
@@ -555,9 +559,9 @@ public class EntradaControl implements ElementoControl_Interface{
 
     @Override
     public void refrescarVista(PpalView ppalView) {
-        cleanInView(ppalView);
+        cleanView(ppalView);
 //        show
-        filterAddedIn(ppalView);
+        filterAddedElements(ppalView);
 
         String[] elementosDisponibles = elementosDisponibles(ppalView);
         Validacion.actualizarCombo(ppalView.getEntradaNumero_jComboBox(), elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);

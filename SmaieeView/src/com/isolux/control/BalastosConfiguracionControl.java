@@ -16,7 +16,7 @@ import com.isolux.view.PpalView;
  *
  * @author Juan Camilo Canias Gómez
  */
-public class BalastosConfiguracionControl implements OperacionesElemento_Interface {
+public class BalastosConfiguracionControl implements OperacionesElemento_Interface, ElementoControl_Interface {
 
     PpalView ppalView;
 
@@ -69,4 +69,46 @@ public class BalastosConfiguracionControl implements OperacionesElemento_Interfa
         return ele;
 
     }
+
+    @Override
+    public void refrescarVista(PpalView ppalView) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String[] elementosDisponibles(PpalView ppalView) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void cleanView(PpalView ppalView) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void saveElement(PpalView ppalView) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void deleteElement(PpalView ppalView) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void readElements(PpalView ppalView) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void filterAddedElements(PpalView ppalView) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void showSelectedElement(String num, PpalView ppalView) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    
 }

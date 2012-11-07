@@ -36,10 +36,9 @@ import javax.swing.tree.TreePath;
  */
 public class EventControl implements ElementoControl_Interface {
 
-    /**
-     * Saves an event.
-     */
-    public void saveEvent(PpalView ppalView) throws Exception {
+   
+    @Override
+    public void saveElement(PpalView ppalView) {
         boolean connectionStatus = true; //DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
         new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
         if (connectionStatus) {
@@ -219,10 +218,9 @@ public class EventControl implements ElementoControl_Interface {
         refrescarVista(ppalView);
     }
 
-    /**
-     * Deletes a scene.
-     */
-    public void deleteEvent(PpalView ppalView) {
+   
+    @Override
+    public void deleteElement(PpalView ppalView) {
         if (ppalView.getSelectedEventNumber() != null && !ppalView.getSelectedEventNumber().equals("")) {
             DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
             DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
@@ -230,16 +228,15 @@ public class EventControl implements ElementoControl_Interface {
             dao.deleteElement(ppalView.getSelectedEventNumber());
             treeModel.removeNodeFromParent(nodeToDelete);
             ppalView.getEvents().remove(ppalView.getSelectedEventNumber());
-            cleanEventView(ppalView);
+            cleanView(ppalView);
         } else {
             Validacion.showAlertMessage("Debe seleccionar un evento primero!");
         }
     }
 
-    /**
-     * Shows the selected group.
-     */
-    public void showSelectedEvent(String eventNumber, PpalView ppalView) {
+   
+    @Override
+    public void showSelectedElement(String eventNumber, PpalView ppalView) {
         Evento selectedEvent = ppalView.getEvents().get(eventNumber);
         HashMap<String, Balasto> balasts = ppalView.getBalasts();
 
@@ -313,7 +310,7 @@ public class EventControl implements ElementoControl_Interface {
             ArrayList selGroups = new ArrayList();
             for (int i = 0; i < selectedGroups.length; i++) {
                 if (selectedGroups[i] == 1) {
-                    new GroupsControl().readGroups(ppalView);
+                    new GroupsControl().readElements(ppalView);
                     Grupo group = ppalView.getGroups().get(String.valueOf(i));
                     sceneGroupsL.addElement(group.getGroupNumber() + " - " + group.getName() + ": " + selectedGroupLevels[i]);
                     selGroups.add(String.valueOf(i));
@@ -343,7 +340,7 @@ public class EventControl implements ElementoControl_Interface {
             ArrayList selScenes = new ArrayList();
             for (int i = 0; i < selectedScenes.length; i++) {
                 if (selectedScenes[i] == 1) {
-                    new EscenaControl().readScenes(ppalView);
+                    new EscenaControl().readElements(ppalView);
                     Escena sce = ppalView.getScenes().get(String.valueOf(i));
                     sceneScenesL.addElement(sce.getNumeroEscena() + " - " + sce.getNombre());
                     selScenes.add(String.valueOf(i));
@@ -374,7 +371,7 @@ public class EventControl implements ElementoControl_Interface {
      * @param ppalView
      */
     public void showAvailableEvents(PpalView ppalView) {
-        readEvents(ppalView);
+        readElements(ppalView);
         DefaultListModel modelo = new DefaultListModel();
 
         ArrayList<String> addedEvents = PropHandler.getAddedEvents(ppalView.getDao());
@@ -386,10 +383,9 @@ public class EventControl implements ElementoControl_Interface {
         ppalView.getjList2().setLayoutOrientation(JList.VERTICAL_WRAP);
     }
 
-    /**
-     * Gets the inserted evetns.
-     */
-    public void readEvents(PpalView ppalView) {
+   
+    @Override
+    public void readElements(PpalView ppalView) {
         if (ppalView.getEvents() == null || ppalView.getEvents().size() == 0) {
             EventoDAOJmodbus dao = new EventoDAOJmodbus(ppalView.getDao());
             ppalView.setEvents(new HashMap<String, Evento>());
@@ -404,10 +400,9 @@ public class EventControl implements ElementoControl_Interface {
         }
     }
 
-    /**
-     * Clean values fror group form.
-     */
-    public void cleanEventView(PpalView ppalView) {
+    
+    @Override
+    public void cleanView(PpalView ppalView) {
         ppalView.getNombreevento_jTextField().setText("event");
         ppalView.getjLabel64().setText("#");
         ppalView.getPorDiasEvento_jCheckBox().setSelected(false);
@@ -433,10 +428,11 @@ public class EventControl implements ElementoControl_Interface {
      *
      * @param ppalView Vista que se está controlando
      */
-    public void filterAddedEvent(PpalView ppalView) {
+    @Override
+    public void filterAddedElements(PpalView ppalView) {
         if (!ppalView.getEventStauts()) {
             ppalView.getStatusLabel().setText("Leyendo eventos de la tarjeta...");
-            readEvents(ppalView);
+            readElements(ppalView);
             int startRow = 0;
             String prefix = PropHandler.getProperty("events.menu.name");
             TreePath path = ppalView.getArbol_jTree().getNextMatch(prefix, startRow, Position.Bias.Forward);
@@ -569,7 +565,7 @@ public class EventControl implements ElementoControl_Interface {
             available.setModel(modelo);
         } else if (ppalView.getInOutType() == prefixGroup) { //Grupos
             //Afected balasts
-            new GroupsControl().readGroups(ppalView);
+            new GroupsControl().readElements(ppalView);
             DefaultListModel groupBalasts = new DefaultListModel();
             int[] selectedGroups = selectedIn.getGrupos();
             ArrayList sel = new ArrayList();
@@ -596,7 +592,7 @@ public class EventControl implements ElementoControl_Interface {
             available.setModel(modelo);
         } else if (ppalView.getInOutType() == prefixScene) {    //Escenas
             //Afected balasts
-            new EscenaControl().readScenes(ppalView);
+            new EscenaControl().readElements(ppalView);
             DefaultListModel sceneBalastsL = new DefaultListModel();
             int[] selectedBalasts = selectedIn.getEscenas();
             ArrayList sel = new ArrayList();
@@ -829,9 +825,9 @@ public class EventControl implements ElementoControl_Interface {
 
     @Override
     public void refrescarVista(PpalView ppalView) {
-        cleanEventView(ppalView);
+        cleanView(ppalView);
         showAvailableEvents(ppalView);
-        filterAddedEvent(ppalView);
+        filterAddedElements(ppalView);
 
         String[] elementosDisponibles = elementosDisponibles(ppalView);
         Validacion.actualizarCombo(ppalView.getEventoNum_jComboBox(), elementosDisponibles, Validacion.BALASTOS_DISPONIBLES);

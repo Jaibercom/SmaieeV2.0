@@ -23,10 +23,9 @@ import javax.swing.tree.TreePath;
  */
 public class EscenaControl implements ElementoControl_Interface{
 
-    /**
-     * Saves a scene.
-     */
-    public void saveScene(PpalView ppalView) {
+   
+    @Override
+    public void saveElement(PpalView ppalView) {
         new GeneralControl().updateConnectionStatus(true, ppalView);
         if (true) {
 
@@ -102,7 +101,8 @@ public class EscenaControl implements ElementoControl_Interface{
     /**
      * Deletes a scene.
      */
-    public void deleteScene(PpalView ppalView) {
+    @Override
+    public void deleteElement(PpalView ppalView) {
 //        boolean connectionStatus = DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
         new GeneralControl().updateConnectionStatus(true, ppalView);
         if (true) {
@@ -113,7 +113,7 @@ public class EscenaControl implements ElementoControl_Interface{
                 dao.deleteElement(ppalView.getSelectedSceneNumber());
                 treeModel.removeNodeFromParent(nodeToDelete);
                 ppalView.getScenes().remove(ppalView.getSelectedSceneNumber());
-                cleanSceneView(ppalView);
+                cleanView(ppalView);
             }
         }
         refrescarVista(ppalView);
@@ -122,7 +122,8 @@ public class EscenaControl implements ElementoControl_Interface{
     /**
      * Shows the selected group.
      */
-    public void showSelectedScene(String sceneNumber, PpalView ppalView) {
+    @Override
+    public void showSelectedElement(String sceneNumber, PpalView ppalView) {
         Escena selectedScene = ppalView.getScenes().get(sceneNumber);
         HashMap<String, Balasto> balasts = ppalView.getBalasts();
 
@@ -159,7 +160,8 @@ public class EscenaControl implements ElementoControl_Interface{
     /**
      * Gets the inserted scenes.
      */
-    public void readScenes(PpalView ppalView) {
+    @Override
+    public void readElements(PpalView ppalView) {
         if (ppalView.getScenes() == null || ppalView.getScenes().size() == 0) {
             EscenaDAOJmodbus dao = new EscenaDAOJmodbus(ppalView.getDao());
             ppalView.setScenes(new HashMap<String, Escena>());
@@ -177,7 +179,7 @@ public class EscenaControl implements ElementoControl_Interface{
     /**
      * Clean values fror group form.
      */
-    public void cleanSceneView(PpalView ppalView) {
+    public void cleanView(PpalView ppalView) {
         ppalView.getEscenaNumero_jComboBox().setSelectedIndex(0);
         ppalView.getjLabel61().setText("#");
         ppalView.getjLabel19().setText("#");
@@ -193,10 +195,11 @@ public class EscenaControl implements ElementoControl_Interface{
     /**
      * Filter the used groups (add existing groups to the menu).
      */
-    public void filterAddedScenes(PpalView ppalView) {
+    @Override
+    public void filterAddedElements(PpalView ppalView) {
         if (!ppalView.getSceneStauts()) {
             ppalView.getStatusLabel().setText("Leyendo escenas de la tarjeta...");
-            readScenes(ppalView);
+            readElements(ppalView);
             int startRow = 0;
             String prefix = PropHandler.getProperty("scenes.menu.name");
             TreePath path = ppalView.getArbol_jTree().getNextMatch(prefix, startRow, Position.Bias.Forward);
@@ -297,9 +300,9 @@ public class EscenaControl implements ElementoControl_Interface{
    
     @Override
     public void refrescarVista(PpalView ppalView) {
-        cleanSceneView(ppalView);
+        cleanView(ppalView);
         showAvailableSceneBalasts(ppalView);
-        filterAddedScenes(ppalView);
+        filterAddedElements(ppalView);
         String[] elementosDisponibles = elementosDisponibles(ppalView);
         Validacion.actualizarCombo(ppalView.getEscenaNumero_jComboBox(), elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);
     }

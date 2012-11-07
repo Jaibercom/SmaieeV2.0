@@ -31,7 +31,8 @@ public class GroupsControl implements ElementoControl_Interface{
     /**
      * Saves a group.
      */
-    public void saveGroup(PpalView ppalView) {
+    @Override
+    public void saveElement(PpalView ppalView) {
         boolean connectionStatus = true; //DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
         new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
         if (connectionStatus) {
@@ -97,10 +98,9 @@ public class GroupsControl implements ElementoControl_Interface{
         refrescarVista(ppalView);
     }
 
-    /**
-     * Deletes a group.
-     */
-    public void deleteGroup(PpalView ppalView) {
+   
+    @Override
+    public void deleteElement(PpalView ppalView) {
         boolean connectionStatus = true; //DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
         new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
         if (connectionStatus) {
@@ -111,7 +111,7 @@ public class GroupsControl implements ElementoControl_Interface{
                 gDao.deleteElement(ppalView.getSelectedGroupNumber());
                 treeModel.removeNodeFromParent(nodeToDelete);
                 ppalView.getGroups().remove(ppalView.getSelectedGroupNumber());
-                new GroupsControl().cleanGroupView(ppalView);
+                new GroupsControl().cleanView(ppalView);
             }
         }
         refrescarVista(ppalView);
@@ -120,7 +120,8 @@ public class GroupsControl implements ElementoControl_Interface{
     /**
      * Shows the selected group.
      */
-    public void showSelectedGroup(String groupNumber, PpalView ppalView) {
+    @Override
+    public void showSelectedElement(String groupNumber, PpalView ppalView) {
         Grupo selectedGroup = ppalView.getGroups().get(groupNumber);
         HashMap<String, Balasto> balasts = ppalView.getBalasts();
 
@@ -152,15 +153,14 @@ public class GroupsControl implements ElementoControl_Interface{
         ppalView.getjList2().setModel(modelo);
     }
 
-    /**
-     * Gets the inserted balasts.
-     */
-    public void readGroups(PpalView ppalView) {
+   
+    @Override
+    public void readElements(PpalView ppalView) {
         if (ppalView.getGroups() == null || ppalView.getGroups().size() == 0) {
             GrupoDAOJmodbus gDao = new GrupoDAOJmodbus(ppalView.getDao());
             ppalView.setGroups(new HashMap<String, Grupo>());
 
-            //Added balasts numbers.
+            
             ArrayList<String> addedGroups = PropHandler.getAddedGroups(ppalView.getDao());
 
             //Balasts.
@@ -170,10 +170,9 @@ public class GroupsControl implements ElementoControl_Interface{
         }
     }
 
-    /**
-     * Clean values fror group form.
-     */
-    public void cleanGroupView(PpalView ppalView) {
+    
+    @Override
+    public void cleanView(PpalView ppalView) {
         ppalView.getGruposNum_jComboBox().setSelectedIndex(0);
         ppalView.getjLabel58().setText("#");
         ppalView.getjTextField3().setText("");
@@ -187,10 +186,11 @@ public class GroupsControl implements ElementoControl_Interface{
     /**
      * Filter the used groups (add existing groups to the menu).
      */
-    public void filterAddedGroups(PpalView ppalView) {
+    @Override
+    public void filterAddedElements(PpalView ppalView) {
         if (!ppalView.getGroupsStauts()) {
             ppalView.getStatusLabel().setText("Leyendo grupos de la tarjeta...");
-            new GroupsControl().readGroups(ppalView);
+            new GroupsControl().readElements(ppalView);
             int startRow = 0;
             String prefix = PropHandler.getProperty("group.menu.name");
             TreePath path = ppalView.getArbol_jTree().getNextMatch(prefix, startRow, Position.Bias.Forward);
@@ -249,17 +249,12 @@ public class GroupsControl implements ElementoControl_Interface{
         return selectedBalasts;
     }
 
-    /**
-     * Método que refresca la vista de grupos cuando se ejecuta una operacion de
-     * escritura o borrado.
-     *
-     * @param ppalView
-     */
+    
     @Override
     public void refrescarVista(PpalView ppalView) {
-        cleanGroupView(ppalView);
+        cleanView(ppalView);
         showAvailableBalasts(ppalView);
-        filterAddedGroups(ppalView);
+        filterAddedElements(ppalView);
         String[] elementosDisponibles = elementosDisponibles(ppalView);
         Validacion.actualizarCombo(ppalView.getGruposNum_jComboBox(), elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);
 
@@ -273,5 +268,6 @@ public class GroupsControl implements ElementoControl_Interface{
       
         return ses;
     }
-    
+
+      
 }
