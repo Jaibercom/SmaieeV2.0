@@ -17,6 +17,7 @@ import com.isolux.control.RealTimeControl;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
+import com.isolux.utils.LimitadorDeCaracteresNum_InputVerifier;
 import com.isolux.utils.Validacion;
 import com.isolux.view.threads.ThreadManager;
 import com.toedter.calendar.JDateChooser;
@@ -2342,27 +2343,35 @@ public class PpalView extends javax.swing.JFrame {
 
         balastoDir_jTextField.setText("0");
         balastoDir_jTextField.setToolTipText("Dirección del balasto actual.");
+        balastoDir_jTextField.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(100));
 
         balastoMin_jTextField.setText("0");
         balastoMin_jTextField.setToolTipText("Minimo. Valor mínimo del balasto actual");
+        balastoMin_jTextField.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(100));
 
         balastoMax_jTextField.setText("0");
         balastoMax_jTextField.setToolTipText("Máximo. Valor máximo del balasto");
+        balastoMax_jTextField.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(100));
 
         balastoFT_jTextField.setText("0");
         balastoFT_jTextField.setToolTipText("Fade Time. Tiempo entre cambios para cambiar la luminosidad del balasto actual");
+        balastoFT_jTextField.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(15));
 
         balastoFR_jTextField.setText("0");
         balastoFR_jTextField.setToolTipText("Fade Rate: Numero de pasos por segundo para cambiar la luminosidad del balasto actual");
+        balastoFR_jTextField.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(15));
 
         balastoLF_jTextField.setText("0");
         balastoLF_jTextField.setToolTipText("Level Fail");
+        balastoLF_jTextField.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(100));
 
         balastoLX_jTextField.setText("0");
         balastoLX_jTextField.setToolTipText("");
+        balastoLX_jTextField.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(100));
 
         balastoPot_jTextField.setText("0");
         balastoPot_jTextField.setToolTipText("Potencia");
+        balastoPot_jTextField.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(100));
 
         javax.swing.GroupLayout balastoDali_jPanelLayout = new javax.swing.GroupLayout(balastoDali_jPanel);
         balastoDali_jPanel.setLayout(balastoDali_jPanelLayout);
@@ -6550,6 +6559,136 @@ public class PpalView extends javax.swing.JFrame {
     public void setGrupo_jCheckBox9(javax.swing.JCheckBox grupo_jCheckBox9) {
         this.grupo_jCheckBox9 = grupo_jCheckBox9;
     }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor1() {
+        return sliderConValor1;
+    }
+
+    public void setSliderConValor1(com.isolux.view.componentes.SliderConValor sliderConValor1) {
+        this.sliderConValor1 = sliderConValor1;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor10() {
+        return sliderConValor10;
+    }
+
+    public void setSliderConValor10(com.isolux.view.componentes.SliderConValor sliderConValor10) {
+        this.sliderConValor10 = sliderConValor10;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor11() {
+        return sliderConValor11;
+    }
+
+    public void setSliderConValor11(com.isolux.view.componentes.SliderConValor sliderConValor11) {
+        this.sliderConValor11 = sliderConValor11;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor12() {
+        return sliderConValor12;
+    }
+
+    public void setSliderConValor12(com.isolux.view.componentes.SliderConValor sliderConValor12) {
+        this.sliderConValor12 = sliderConValor12;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor13() {
+        return sliderConValor13;
+    }
+
+    public void setSliderConValor13(com.isolux.view.componentes.SliderConValor sliderConValor13) {
+        this.sliderConValor13 = sliderConValor13;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor14() {
+        return sliderConValor14;
+    }
+
+    public void setSliderConValor14(com.isolux.view.componentes.SliderConValor sliderConValor14) {
+        this.sliderConValor14 = sliderConValor14;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor15() {
+        return sliderConValor15;
+    }
+
+    public void setSliderConValor15(com.isolux.view.componentes.SliderConValor sliderConValor15) {
+        this.sliderConValor15 = sliderConValor15;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor16() {
+        return sliderConValor16;
+    }
+
+    public void setSliderConValor16(com.isolux.view.componentes.SliderConValor sliderConValor16) {
+        this.sliderConValor16 = sliderConValor16;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor2() {
+        return sliderConValor2;
+    }
+
+    public void setSliderConValor2(com.isolux.view.componentes.SliderConValor sliderConValor2) {
+        this.sliderConValor2 = sliderConValor2;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor3() {
+        return sliderConValor3;
+    }
+
+    public void setSliderConValor3(com.isolux.view.componentes.SliderConValor sliderConValor3) {
+        this.sliderConValor3 = sliderConValor3;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor4() {
+        return sliderConValor4;
+    }
+
+    public void setSliderConValor4(com.isolux.view.componentes.SliderConValor sliderConValor4) {
+        this.sliderConValor4 = sliderConValor4;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor5() {
+        return sliderConValor5;
+    }
+
+    public void setSliderConValor5(com.isolux.view.componentes.SliderConValor sliderConValor5) {
+        this.sliderConValor5 = sliderConValor5;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor6() {
+        return sliderConValor6;
+    }
+
+    public void setSliderConValor6(com.isolux.view.componentes.SliderConValor sliderConValor6) {
+        this.sliderConValor6 = sliderConValor6;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor7() {
+        return sliderConValor7;
+    }
+
+    public void setSliderConValor7(com.isolux.view.componentes.SliderConValor sliderConValor7) {
+        this.sliderConValor7 = sliderConValor7;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor8() {
+        return sliderConValor8;
+    }
+
+    public void setSliderConValor8(com.isolux.view.componentes.SliderConValor sliderConValor8) {
+        this.sliderConValor8 = sliderConValor8;
+    }
+
+    public com.isolux.view.componentes.SliderConValor getSliderConValor9() {
+        return sliderConValor9;
+    }
+
+    public void setSliderConValor9(com.isolux.view.componentes.SliderConValor sliderConValor9) {
+        this.sliderConValor9 = sliderConValor9;
+    }
+    
+    
 
     // End of variables declaration                   
     //</editor-fold>

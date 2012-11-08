@@ -151,7 +151,12 @@ public class SliderConValor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void checkBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_checkBoxPropertyChange
+        
         jSlider.setEnabled(checkBox.isSelected());
+        if (checkBox.isSelected()==false) {
+            valor_TextField.setText("0");
+            
+        }
         valor_TextField.setEnabled(checkBox.isSelected());
         
     }//GEN-LAST:event_checkBoxPropertyChange

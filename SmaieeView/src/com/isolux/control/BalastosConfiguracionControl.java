@@ -59,7 +59,9 @@ public class BalastosConfiguracionControl implements OperacionesElemento_Interfa
         ppalView.getBalastoLF_jTextField().setText("0");
         ppalView.getBalastoLX_jTextField().setText("0");
         ppalView.getBalastoMax_jTextField().setText("0");
-        seleccionGrupos(ppalView,false);
+        seleccionGrupos(ppalView, false);
+        seleccionEscenas(ppalView, false);
+
 
     }
 
@@ -90,10 +92,11 @@ public class BalastosConfiguracionControl implements OperacionesElemento_Interfa
 
     /**
      * Método que limpia los grupos
+     *
      * @param ppalView
      */
     private void seleccionGrupos(PpalView ppalView, boolean act) {
-        
+
         ppalView.getGrupo_jCheckBox1().setSelected(act);
         ppalView.getGrupo_jCheckBox2().setSelected(act);
         ppalView.getGrupo_jCheckBox3().setSelected(act);
@@ -110,8 +113,28 @@ public class BalastosConfiguracionControl implements OperacionesElemento_Interfa
         ppalView.getGrupo_jCheckBox14().setSelected(act);
         ppalView.getGrupo_jCheckBox15().setSelected(act);
         ppalView.getGrupo_jCheckBox16().setSelected(act);
-        
-        
+
+
+
+    }
+
+    private void seleccionEscenas(PpalView ppalView, boolean b) {
+        ppalView.getSliderConValor1().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor2().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor3().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor4().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor5().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor6().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor7().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor8().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor9().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor10().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor11().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor12().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor13().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor14().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor15().getCheckBox().setSelected(b);
+        ppalView.getSliderConValor16().getCheckBox().setSelected(b);
         
     }
 }
