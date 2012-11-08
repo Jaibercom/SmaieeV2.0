@@ -4006,6 +4006,8 @@ public class PpalView extends javax.swing.JFrame {
                 getImage(ClassLoader.getSystemResource("images/icono.png"));
         return retValue;
     }
+    
+    
 
     /**
      * GET SETS
@@ -6244,6 +6246,8 @@ public class PpalView extends javax.swing.JFrame {
         this.escenaNumero_jComboBox = jComboBox6;
     }
 
+    
+    
 //    public JTextField getjTextField13() {
 //        return numEvento_jTextField;
 //    }
@@ -6417,6 +6421,134 @@ public class PpalView extends javax.swing.JFrame {
 
     public void setBalastoConfiguracion_jComboBox(javax.swing.JComboBox balastoConfiguracion_jComboBox) {
         this.balastoConfiguracion_jComboBox = balastoConfiguracion_jComboBox;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox1() {
+        return grupo_jCheckBox1;
+    }
+
+    public void setGrupo_jCheckBox1(javax.swing.JCheckBox grupo_jCheckBox1) {
+        this.grupo_jCheckBox1 = grupo_jCheckBox1;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox10() {
+        return grupo_jCheckBox10;
+    }
+
+    public void setGrupo_jCheckBox10(javax.swing.JCheckBox grupo_jCheckBox10) {
+        this.grupo_jCheckBox10 = grupo_jCheckBox10;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox11() {
+        return grupo_jCheckBox11;
+    }
+
+    public void setGrupo_jCheckBox11(javax.swing.JCheckBox grupo_jCheckBox11) {
+        this.grupo_jCheckBox11 = grupo_jCheckBox11;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox12() {
+        return grupo_jCheckBox12;
+    }
+
+    public void setGrupo_jCheckBox12(javax.swing.JCheckBox grupo_jCheckBox12) {
+        this.grupo_jCheckBox12 = grupo_jCheckBox12;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox13() {
+        return grupo_jCheckBox13;
+    }
+
+    public void setGrupo_jCheckBox13(javax.swing.JCheckBox grupo_jCheckBox13) {
+        this.grupo_jCheckBox13 = grupo_jCheckBox13;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox14() {
+        return grupo_jCheckBox14;
+    }
+
+    public void setGrupo_jCheckBox14(javax.swing.JCheckBox grupo_jCheckBox14) {
+        this.grupo_jCheckBox14 = grupo_jCheckBox14;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox15() {
+        return grupo_jCheckBox15;
+    }
+
+    public void setGrupo_jCheckBox15(javax.swing.JCheckBox grupo_jCheckBox15) {
+        this.grupo_jCheckBox15 = grupo_jCheckBox15;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox16() {
+        return grupo_jCheckBox16;
+    }
+
+    public void setGrupo_jCheckBox16(javax.swing.JCheckBox grupo_jCheckBox16) {
+        this.grupo_jCheckBox16 = grupo_jCheckBox16;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox2() {
+        return grupo_jCheckBox2;
+    }
+
+    public void setGrupo_jCheckBox2(javax.swing.JCheckBox grupo_jCheckBox2) {
+        this.grupo_jCheckBox2 = grupo_jCheckBox2;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox3() {
+        return grupo_jCheckBox3;
+    }
+
+    public void setGrupo_jCheckBox3(javax.swing.JCheckBox grupo_jCheckBox3) {
+        this.grupo_jCheckBox3 = grupo_jCheckBox3;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox4() {
+        return grupo_jCheckBox4;
+    }
+
+    public void setGrupo_jCheckBox4(javax.swing.JCheckBox grupo_jCheckBox4) {
+        this.grupo_jCheckBox4 = grupo_jCheckBox4;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox5() {
+        return grupo_jCheckBox5;
+    }
+
+    public void setGrupo_jCheckBox5(javax.swing.JCheckBox grupo_jCheckBox5) {
+        this.grupo_jCheckBox5 = grupo_jCheckBox5;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox6() {
+        return grupo_jCheckBox6;
+    }
+
+    public void setGrupo_jCheckBox6(javax.swing.JCheckBox grupo_jCheckBox6) {
+        this.grupo_jCheckBox6 = grupo_jCheckBox6;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox7() {
+        return grupo_jCheckBox7;
+    }
+
+    public void setGrupo_jCheckBox7(javax.swing.JCheckBox grupo_jCheckBox7) {
+        this.grupo_jCheckBox7 = grupo_jCheckBox7;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox8() {
+        return grupo_jCheckBox8;
+    }
+
+    public void setGrupo_jCheckBox8(javax.swing.JCheckBox grupo_jCheckBox8) {
+        this.grupo_jCheckBox8 = grupo_jCheckBox8;
+    }
+
+    public javax.swing.JCheckBox getGrupo_jCheckBox9() {
+        return grupo_jCheckBox9;
+    }
+
+    public void setGrupo_jCheckBox9(javax.swing.JCheckBox grupo_jCheckBox9) {
+        this.grupo_jCheckBox9 = grupo_jCheckBox9;
     }
 
     // End of variables declaration                   

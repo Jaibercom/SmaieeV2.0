@@ -4,7 +4,8 @@
  */
 package com.isolux.view.componentes;
 
-import com.isolux.utils.LimitadorDeCaracteres;
+import com.isolux.utils.LimitadorDeCaracteresNum_InputVerifier;
+import com.isolux.utils.LimitadorDeCaracteres_Document;
 import javax.swing.JCheckBox;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
@@ -17,8 +18,13 @@ public class SliderConValor extends javax.swing.JPanel {
 
     private String label;
     private Integer numElemento;
-    private Integer valor;
+    private Integer valorMaximo;
+   LimitadorDeCaracteresNum_InputVerifier verifier=new LimitadorDeCaracteresNum_InputVerifier(100);
 
+   
+
+   
+   
     public String getLabel() {
         return label;
     }
@@ -36,7 +42,7 @@ public class SliderConValor extends javax.swing.JPanel {
     }
 
     public void setValor(Integer valor) {
-        this.valor = valor;
+        this.valorMaximo = valor;
         jSlider.setValue(valor);
         valor_TextField.setText(valor.toString());
     }
@@ -127,7 +133,9 @@ public class SliderConValor extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         add(jSlider, gridBagConstraints);
 
-        valor_TextField.setDocument(new LimitadorDeCaracteres(valor_TextField, 3));
+        valor_TextField.setToolTipText("Valor numérico");
+        valor_TextField.setInheritsPopupMenu(true);
+        valor_TextField.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(100));
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jSlider, org.jdesktop.beansbinding.ELProperty.create("${value}"), valor_TextField, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -145,6 +153,7 @@ public class SliderConValor extends javax.swing.JPanel {
     private void checkBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_checkBoxPropertyChange
         jSlider.setEnabled(checkBox.isSelected());
         valor_TextField.setEnabled(checkBox.isSelected());
+        
     }//GEN-LAST:event_checkBoxPropertyChange
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox checkBox;
@@ -152,4 +161,12 @@ public class SliderConValor extends javax.swing.JPanel {
     private javax.swing.JTextField valor_TextField;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
+
+    public Integer getValorMaximo() {
+        return valorMaximo;
+    }
+
+    public void setValorMaximo(Integer valorMaximo) {
+        this.valorMaximo = valorMaximo;
+    }
 }

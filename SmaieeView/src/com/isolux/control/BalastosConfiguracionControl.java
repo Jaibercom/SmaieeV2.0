@@ -4,8 +4,6 @@
  */
 package com.isolux.control;
 
-import com.isolux.bo.Balasto;
-import com.isolux.bo.Elemento;
 import com.isolux.dao.jmodbus.BalastoDAOJmodbus;
 import com.isolux.dao.jmodbus.OperacionesElemento_Interface;
 import com.isolux.dao.modbus.DAOJmodbus;
@@ -52,7 +50,17 @@ public class BalastosConfiguracionControl implements OperacionesElemento_Interfa
 
     @Override
     public void cleanView(PpalView ppalView) {
-//        throw new UnsupportedOperationException("Not supported yet.");
+
+        ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
+        ppalView.getBalastoDir_jTextField().setText("0");
+        ppalView.getBalastoMin_jTextField().setText("0");
+        ppalView.getBalastoFR_jTextField().setText("0");
+        ppalView.getBalastoFT_jTextField().setText("0");
+        ppalView.getBalastoLF_jTextField().setText("0");
+        ppalView.getBalastoLX_jTextField().setText("0");
+        ppalView.getBalastoMax_jTextField().setText("0");
+        seleccionGrupos(ppalView,false);
+
     }
 
     @Override
@@ -78,5 +86,32 @@ public class BalastosConfiguracionControl implements OperacionesElemento_Interfa
     @Override
     public void showSelectedElement(String num, PpalView ppalView) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
+     * Método que limpia los grupos
+     * @param ppalView
+     */
+    private void seleccionGrupos(PpalView ppalView, boolean act) {
+        
+        ppalView.getGrupo_jCheckBox1().setSelected(act);
+        ppalView.getGrupo_jCheckBox2().setSelected(act);
+        ppalView.getGrupo_jCheckBox3().setSelected(act);
+        ppalView.getGrupo_jCheckBox4().setSelected(act);
+        ppalView.getGrupo_jCheckBox5().setSelected(act);
+        ppalView.getGrupo_jCheckBox6().setSelected(act);
+        ppalView.getGrupo_jCheckBox7().setSelected(act);
+        ppalView.getGrupo_jCheckBox8().setSelected(act);
+        ppalView.getGrupo_jCheckBox9().setSelected(act);
+        ppalView.getGrupo_jCheckBox10().setSelected(act);
+        ppalView.getGrupo_jCheckBox11().setSelected(act);
+        ppalView.getGrupo_jCheckBox12().setSelected(act);
+        ppalView.getGrupo_jCheckBox13().setSelected(act);
+        ppalView.getGrupo_jCheckBox14().setSelected(act);
+        ppalView.getGrupo_jCheckBox15().setSelected(act);
+        ppalView.getGrupo_jCheckBox16().setSelected(act);
+        
+        
+        
     }
 }

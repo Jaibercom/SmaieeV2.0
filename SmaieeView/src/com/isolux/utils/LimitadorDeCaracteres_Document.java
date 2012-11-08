@@ -14,21 +14,27 @@ import javax.swing.text.PlainDocument;
  *
  * @author Juan Camilo Canias Gómez
  */
-public class LimitadorDeCaracteres extends PlainDocument {
+public class LimitadorDeCaracteres_Document extends PlainDocument {
 
     JTextField editor;
     private int numeroMaximoCaracteres;
+    private Integer valorMaximo;
     private Integer entero = null;
     private Integer valor = null;
 
+ 
+    
     public Integer getValor() {
         return valor;
     }
 
-    public LimitadorDeCaracteres(JTextField editor, int numeroMaximoCaracteres) {
+    public LimitadorDeCaracteres_Document(JTextField editor, int numeroMaximoCaracteres, Integer valorMaximo) {
         this.editor = editor;
         this.numeroMaximoCaracteres = numeroMaximoCaracteres;
+        this.valorMaximo = valorMaximo;
     }
+
+    
 
     @Override
     public void insertString(int arg0, String arg1, AttributeSet arg2) throws BadLocationException {
@@ -51,7 +57,7 @@ public class LimitadorDeCaracteres extends PlainDocument {
         }
 
 
-        if ((text.length() + arg1.length()) > this.numeroMaximoCaracteres || entero == null || valor > 100) {
+        if ((text.length() + arg1.length()) > this.numeroMaximoCaracteres || entero == null || valor > valorMaximo) {
             return;
         }
         super.insertString(arg0, arg1, arg2);
