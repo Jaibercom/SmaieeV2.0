@@ -50,7 +50,7 @@ public interface ElementoControl_Interface {
     public void deleteElement(PpalView ppalView);
     
     /**
-     * Lee la lista de elementos insertados.
+     * Lee la lista de elementos insertados y crea el árbol de jerarquía
      * @param ppalView
      */
     public void readElements(PpalView ppalView);

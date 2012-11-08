@@ -4,6 +4,7 @@
  */
 package com.isolux.control;
 
+import com.isolux.bo.Balasto;
 import com.isolux.dao.jmodbus.BalastoDAOJmodbus;
 import com.isolux.dao.jmodbus.OperacionesElemento_Interface;
 import com.isolux.dao.modbus.DAOJmodbus;
@@ -87,7 +88,26 @@ public class BalastosConfiguracionControl implements OperacionesElemento_Interfa
 
     @Override
     public void showSelectedElement(String num, PpalView ppalView) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
+//        BalastoDAOJmodbus dao=new BalastoDAOJmodbus(new DAOJmodbus());
+        
+        
+        Balasto selectedBalast = BalastoDAOJmodbus.readBalast(Integer.parseInt(num));
+        ppalView.getBalastoDir_jTextField().setText(String.valueOf(selectedBalast.getDir()));
+        ppalView.getBalastoMin_jTextField().setText(String.valueOf(selectedBalast.getMin()));
+        ppalView.getBalastoMax_jTextField().setText(String.valueOf(selectedBalast.getMax()));
+        ppalView.getBalastoFT_jTextField().setText(String.valueOf(selectedBalast.getFt()));
+        ppalView.getBalastoFR_jTextField().setText(String.valueOf(selectedBalast.getFr()));
+        ppalView.getBalastoLF_jTextField().setText(String.valueOf(selectedBalast.getLf()));
+        ppalView.getBalastoLX_jTextField().setText(String.valueOf(selectedBalast.getLx()));
+        ppalView.getBalastoPot_jTextField().setText(String.valueOf(selectedBalast.getPot()));
+        ppalView.getjLabel41().setText(num);
+//        ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
+        
+       gruposPert(num);
+       ecenasPert(num);
+       
+       
     }
 
     /**
@@ -135,6 +155,29 @@ public class BalastosConfiguracionControl implements OperacionesElemento_Interfa
         ppalView.getSliderConValor14().getCheckBox().setSelected(b);
         ppalView.getSliderConValor15().getCheckBox().setSelected(b);
         ppalView.getSliderConValor16().getCheckBox().setSelected(b);
+        
+    }
+    
+    /**
+     * Método que marca en la GUI los grupos a los que pertenece un balasto
+     *
+     * @param numBalasto balasto al cual se le van a buscar los grupos
+     */
+    public void gruposPert(String numBalasto){
+//        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    /**
+     * Método que marca en la GUI las escenas a las que pertenece un balasto estableciendo
+     * los valores del nivel
+     * @param numBalasto 
+     */
+    private void ecenasPert(String numBalasto) {
+//        throw new UnsupportedOperationException("Not yet implemented");
+    }
+    
+    
+    private void buscarElementos(String numBalasto){
         
     }
 }

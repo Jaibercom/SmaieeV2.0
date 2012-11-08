@@ -2321,6 +2321,16 @@ public class PpalView extends javax.swing.JFrame {
         jLabel5.setText("Balasto");
 
         balastoConfiguracion_jComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        balastoConfiguracion_jComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                balastoConfiguracion_jComboBoxActionPerformed(evt);
+            }
+        });
+        balastoConfiguracion_jComboBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                balastoConfiguracion_jComboBoxPropertyChange(evt);
+            }
+        });
 
         balastoDali_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("DALI"));
         balastoDali_jPanel.setToolTipText("Configuración del balasto");
@@ -3666,6 +3676,14 @@ public class PpalView extends javax.swing.JFrame {
     private void balastoLeerConfig_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoLeerConfig_jButtonActionPerformed
       //continuar aqui maniana
     }//GEN-LAST:event_balastoLeerConfig_jButtonActionPerformed
+
+    private void balastoConfiguracion_jComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoConfiguracion_jComboBoxPropertyChange
+     
+    }//GEN-LAST:event_balastoConfiguracion_jComboBoxPropertyChange
+
+    private void balastoConfiguracion_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoConfiguracion_jComboBoxActionPerformed
+         balastoConfigCtrl.showSelectedElement(balastoConfiguracion_jComboBox.getSelectedItem().toString(), this);
+    }//GEN-LAST:event_balastoConfiguracion_jComboBoxActionPerformed
 
     //</editor-fold>
     /**

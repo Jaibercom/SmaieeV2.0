@@ -328,8 +328,9 @@ public class ConfiguracionDAOJmodbus {
             JOptionPane.showMessageDialog(null, "Guardada la información en la flash exitósamente");
         }catch(Exception ex){
             System.out.println("Excepcion al guardar en Flash");
-            JOptionPane.showMessageDialog(null, "Error guardando la informacion en flash. "+ex.getLocalizedMessage());
             Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.SEVERE, null,ex);
+            JOptionPane.showMessageDialog(null, "Error guardando la informacion en flash. "+ex.getLocalizedMessage());
+            
         }
         
     }

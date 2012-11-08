@@ -3239,6 +3239,10 @@
                           </StringArray>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="balastoConfiguracion_jComboBoxActionPerformed"/>
+                        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="balastoConfiguracion_jComboBoxPropertyChange"/>
+                      </Events>
                     </Component>
                     <Container class="javax.swing.JPanel" name="balastoDali_jPanel">
                       <Properties>

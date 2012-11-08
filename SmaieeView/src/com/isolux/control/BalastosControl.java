@@ -29,6 +29,7 @@ public class BalastosControl implements OperacionesElemento_Interface, ElementoC
 
     /**
      * Gets the inserted balasts.
+     * Obtiene los balastos insertadod, y los muestra en el 
      */
     @Override
     public void readElements(PpalView ppalView) {
