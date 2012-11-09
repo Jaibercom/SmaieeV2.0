@@ -3180,7 +3180,7 @@
                                               <Component id="balastoConfiguracion_jComboBox" min="-2" pref="170" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
-                                              <Component id="balastoLeerConfig_jButton" min="-2" max="-2" attributes="0"/>
+                                              <Component id="balastoResetConfig_jButton" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="balastoEscribirConfig_jButton" min="-2" max="-2" attributes="0"/>
                                           </Group>
@@ -3209,7 +3209,7 @@
                                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="balastoEscribirConfig_jButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="balastoLeerConfig_jButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="balastoResetConfig_jButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -3830,12 +3830,12 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JButton" name="balastoLeerConfig_jButton">
+                    <Component class="javax.swing.JButton" name="balastoResetConfig_jButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Leer"/>
+                        <Property name="text" type="java.lang.String" value="Reset"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="balastoLeerConfig_jButtonActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="balastoResetConfig_jButtonActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="balastoEscribirConfig_jButton">

@@ -462,7 +462,7 @@ public class PpalView extends javax.swing.JFrame {
         sliderConValor14 = new com.isolux.view.componentes.SliderConValor();
         sliderConValor15 = new com.isolux.view.componentes.SliderConValor();
         sliderConValor16 = new com.isolux.view.componentes.SliderConValor();
-        balastoLeerConfig_jButton = new javax.swing.JButton();
+        balastoResetConfig_jButton = new javax.swing.JButton();
         balastoEscribirConfig_jButton = new javax.swing.JButton();
         monitoreoTiempoReal_jPanel = new javax.swing.JPanel();
         panelTiempoReal = new javax.swing.JPanel();
@@ -2606,10 +2606,10 @@ public class PpalView extends javax.swing.JFrame {
         sliderConValor16.setLabel("16");
         escenasDeBalasto_jPanel.add(sliderConValor16, new java.awt.GridBagConstraints());
 
-        balastoLeerConfig_jButton.setText("Leer");
-        balastoLeerConfig_jButton.addActionListener(new java.awt.event.ActionListener() {
+        balastoResetConfig_jButton.setText("Reset");
+        balastoResetConfig_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                balastoLeerConfig_jButtonActionPerformed(evt);
+                balastoResetConfig_jButtonActionPerformed(evt);
             }
         });
 
@@ -2629,7 +2629,7 @@ public class PpalView extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(balastoConfiguracion_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(configuracionBalastos_jPanelLayout.createSequentialGroup()
-                                .addComponent(balastoLeerConfig_jButton)
+                                .addComponent(balastoResetConfig_jButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(balastoEscribirConfig_jButton)))
                         .addGap(18, 18, 18)
@@ -2651,7 +2651,7 @@ public class PpalView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(configuracionBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(balastoEscribirConfig_jButton)
-                            .addComponent(balastoLeerConfig_jButton))))
+                            .addComponent(balastoResetConfig_jButton))))
                 .addGap(0, 0, 0)
                 .addComponent(gruposDeBalasto_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -3673,9 +3673,9 @@ public class PpalView extends javax.swing.JFrame {
         System.out.println("Se gano el foco");
     }//GEN-LAST:event_configuracionBalastos_jPanelFocusGained
 
-    private void balastoLeerConfig_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoLeerConfig_jButtonActionPerformed
+    private void balastoResetConfig_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoResetConfig_jButtonActionPerformed
       //continuar aqui maniana
-    }//GEN-LAST:event_balastoLeerConfig_jButtonActionPerformed
+    }//GEN-LAST:event_balastoResetConfig_jButtonActionPerformed
 
     private void balastoConfiguracion_jComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoConfiguracion_jComboBoxPropertyChange
      
@@ -3720,11 +3720,11 @@ public class PpalView extends javax.swing.JFrame {
     protected javax.swing.JTextField balastoFT_jTextField;
     protected javax.swing.JTextField balastoLF_jTextField;
     protected javax.swing.JTextField balastoLX_jTextField;
-    private javax.swing.JButton balastoLeerConfig_jButton;
     protected javax.swing.JTextField balastoMax_jTextField;
     protected javax.swing.JTextField balastoMin_jTextField;
     protected javax.swing.JComboBox balastoNum_jComboBox;
     protected javax.swing.JTextField balastoPot_jTextField;
+    private javax.swing.JButton balastoResetConfig_jButton;
     private javax.swing.JList balastosAfectados_jList;
     private javax.swing.JList balastrosDisponibles_jList;
     private javax.swing.JCheckBox balastros_jCheckBox;

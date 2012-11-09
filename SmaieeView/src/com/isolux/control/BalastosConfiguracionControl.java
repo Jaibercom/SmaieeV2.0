@@ -138,23 +138,28 @@ public class BalastosConfiguracionControl implements OperacionesElemento_Interfa
 
     }
 
-    private void seleccionEscenas(PpalView ppalView, boolean b) {
-        ppalView.getSliderConValor1().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor2().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor3().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor4().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor5().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor6().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor7().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor8().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor9().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor10().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor11().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor12().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor13().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor14().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor15().getCheckBox().setSelected(b);
-        ppalView.getSliderConValor16().getCheckBox().setSelected(b);
+    /**
+     * Método que limpia o selecciona todas las escenas.
+     * @param ppalView
+     * @param act boolean que representa si se seleccionan o se deseleccionan todas las escenas
+     */
+    private void seleccionEscenas(PpalView ppalView, boolean act) {
+        ppalView.getSliderConValor1().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor2().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor3().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor4().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor5().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor6().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor7().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor8().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor9().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor10().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor11().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor12().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor13().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor14().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor15().getCheckBox().setSelected(act);
+        ppalView.getSliderConValor16().getCheckBox().setSelected(act);
         
     }
     
