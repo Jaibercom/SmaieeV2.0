@@ -13,7 +13,7 @@ import java.util.HashMap;
  *
  * @author Juan Diego Toro Cano
  */
-public class BalastoDAOJmodbus implements OperacionesElemento_Interface{
+public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
 
     private static DAOJmodbus dao;
 
@@ -65,7 +65,7 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface{
             //                nameOffset++;
             //            }
             //</editor-fold>
-            
+
 //            codifica el nombre y lo mete en el array
             UtilsJmodbus.encriptarNombre(balastArray, 3, balasto.getName(), 5);
 
@@ -77,6 +77,22 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface{
             balastArray[13] = balasto.getLf();              //2013
             balastArray[14] = balasto.getLx();              //2014
             balastArray[15] = balasto.getPot();             //2015
+
+        
+
+
+            /**
+             * Numero dentro del array que corresponde al offset desde donde se empezarán a guardar los datos de los grupos
+             */
+            int gruposOffset = 16;
+            int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
+            int[] gruposAfect = balasto.getGruposAfectados();
+            int cuantosElementos=16;
+            gruposAfect = UtilsJmodbus.obtenerElementosAfectados(balastArray, gruposOffset, cuantosElementos, tamReg, 8, 8);
+            balasto.setGruposAfectados(gruposAfect);
+           
+            
+
 
             //Save array
             dao.setRegValue(initOffset, balastArray);
@@ -195,7 +211,7 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface{
             //            BigInteger totalBytes = new BigInteger(balastName, 2);
             //            balasto.setName(new String(totalBytes.toByteArray()));
             //</editor-fold>
-            
+
             balasto.setName(UtilsJmodbus.desencriptarNombre(balastArray, 3, 5));
 
             balasto.setDir(balastArray[8]);
@@ -468,7 +484,7 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface{
         int usedRegisters = Integer.parseInt(PropHandler.getProperty("balast.memory.registers"));
         int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
         return UtilsJmodbus.getElementosEnMemoriaInt(numBalastos, dao, initOffset, usedRegisters, tamReg);
-        
+
     }
 
     /**
@@ -614,20 +630,17 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface{
 //        }
     }
 
-    
     @Override
     public String[] elementosSinGrabar() {
         int[] addedBalastsCardArray = BalastoDAOJmodbus.getAddedBalastsCardArray();
-        String[] ele=new String[addedBalastsCardArray.length];
-        
-        for (int i = 0; i < addedBalastsCardArray.length; i++) {
-            ele[i]=Integer.toString(addedBalastsCardArray[i]);
-        }
-        
-        return ele;
-        
-        
-    }
+        String[] ele = new String[addedBalastsCardArray.length];
 
-   
+        for (int i = 0; i < addedBalastsCardArray.length; i++) {
+            ele[i] = Integer.toString(addedBalastsCardArray[i]);
+        }
+
+        return ele;
+
+
+    }
 }
