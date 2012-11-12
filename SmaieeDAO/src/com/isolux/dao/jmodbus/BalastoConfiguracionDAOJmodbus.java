@@ -38,8 +38,8 @@ public class BalastoConfiguracionDAOJmodbus extends BalastoDAOJmodbus {
      */
     private int[] getBalastosEnRed() {
         
-        OperacionesBalastoConfiguracionDaoJmodbus ob=new OperacionesBalastoConfiguracionDaoJmodbus();
-        
+        OperacionesBalastoConfiguracionDaoJmodbus ob=OperacionesBalastoConfiguracionDaoJmodbus.getInstancia();
+        ob.setDao(getDao());
         ob.balastosEnRed();
         int numBalastos = Integer.parseInt(PropHandler.getProperty("balast.max.number"));
         int initOffset = Integer.parseInt(PropHandler.getProperty("balastosenred"));

@@ -12,7 +12,13 @@ import com.isolux.dao.modbus.DAOJmodbus;
  */
 public class ElementoDAOJmobdus {
 
+    /**
+     * Constante que representa el modo de configuración para la tarjeta.
+     */
     public static final int MODE_CONFIG=1;
+    /**
+     * Modo de ejecución en la tarjeta.
+     */
     public static final int MODE_RUN=0;
     
     private DAOJmodbus dao;
@@ -23,9 +29,7 @@ public class ElementoDAOJmobdus {
 
     public ElementoDAOJmobdus() {
     }
-
-    
-    
+   
     public DAOJmodbus getDao() {
         return dao;
     }

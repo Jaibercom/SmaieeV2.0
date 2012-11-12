@@ -43,13 +43,27 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      * para que titile
      */
     public static final int OPCODE_SELECCIONAR_BALASTO = 20;
-    private final int regNumBalsat;
-
-    public OperacionesBalastoConfiguracionDaoJmodbus() {
-
-        regNumBalsat = Integer.parseInt(PropHandler.getProperty("balast.init.position"));
-
+    private final int regNumBalsat = Integer.parseInt(PropHandler.getProperty("balast.init.position"));
+    private static OperacionesBalastoConfiguracionDaoJmodbus instancia=null;
+        
+    
+    private OperacionesBalastoConfiguracionDaoJmodbus() {
+        
+       
     }
+
+    /**
+     * Obtiene la instancia única de la clase.
+     * @return 
+     */
+    public static OperacionesBalastoConfiguracionDaoJmodbus getInstancia() {
+        if (instancia==null) {
+            instancia=new OperacionesBalastoConfiguracionDaoJmodbus();
+        }         
+        return instancia;
+    }
+    
+    
 
     public void escribirValores() {
     }

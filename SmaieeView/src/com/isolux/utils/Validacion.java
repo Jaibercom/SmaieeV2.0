@@ -25,17 +25,17 @@ public class Validacion {
     private static final int ERROR_DIALOG = JOptionPane.ERROR;
     /**
      *Balastos disponibles son los balastos que no han sido creados aun en el smaiee
-     * y por tanto probablemente no estén configurados.
+     * y por tanto probablemente no estén configurados. Son los que se representan con 0
      */
     public static final int BALASTOS_DISPONIBLES = 1;
     /**
-     *Balastos no disponibles son los balastos que ya han sido creados aun en el smaiee
+     *Balastos no disponibles son los balastos que ya han sido creados en el smaiee. Son los que se representan con 1.
      * 
      */
     public static final int BALASTOS_NO_DISPONIBLES = 2;
     /**
      *Se usa para indicar que se quieren filtrar todos los balastos, incluyendo 
-     * disponibles y no disponibles
+     * disponibles y no disponibles (0 y 1 respectivamente)
      */
     public static final int BALASTOS_TODOS = 3;
 
