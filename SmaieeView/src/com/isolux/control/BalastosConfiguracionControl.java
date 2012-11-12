@@ -8,9 +8,7 @@ import com.isolux.bo.Balasto;
 import com.isolux.dao.jmodbus.BalastoDAOJmodbus;
 import com.isolux.dao.jmodbus.ElementoDAOJmobdus;
 import com.isolux.dao.jmodbus.OperacionesElemento_Interface;
-import com.isolux.dao.jmodbus.UtilsJmodbus;
 import com.isolux.dao.modbus.DAOJmodbus;
-import com.isolux.dao.properties.PropHandler;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 
@@ -59,6 +57,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
     @Override
     public String[] elementosDisponibles(PpalView ppalView) {
         BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
+        BalastoConfigacionDAOJmodbus dAOJmodbus;
         String[] ses;
         ses = dao.elementosSinGrabar();
 
@@ -84,79 +83,79 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
     @Override
     public void saveElement(PpalView ppalView) {
-        boolean state = false;
-        int balastNumber = balasto.getBalastNumber();
-
-        try {
-            //MODO Escritura
-            setSingleReg(0, 1);
-
-            //Init offset.
-            int initOffset = Integer.parseInt(PropHandler.getProperty("balast.init.position"));
-            int[] balastArray = new int[Integer.parseInt(PropHandler.getProperty("balast.memory.size"))];
-
-            System.out.println("SAVE BALAST NUMBER: " + balastNumber);
-
-            balastArray[0] = balastNumber;                  //2000
-            balastArray[1] = balasto.getLevel();            //2001
-            balastArray[2] = balasto.getActivation();       //2002
-
-            //            //<editor-fold defaultstate="collapsed" desc="codigo antiguo">
-//            int nameOffset = 3;
-            //            ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(balasto.getName());
-            //            int size = balastNameBytes.size();
-            //            for (int i = 0; i < 5; i++) {
-            //                if (i < size) {
-            //                    balastArray[nameOffset] = balastNameBytes.get(i).intValue();
-            //                } else {
-            //                    balastArray[nameOffset] = 0;
-            //                }
-            //                nameOffset++;
-            //            }
-            //</editor-fold>
-
-//            codifica el nombre y lo mete en el array
-            UtilsJmodbus.encriptarNombre(balastArray, 3, balasto.getName(), 5);
-
-            balastArray[8] = balasto.getDir();              //2008
-            balastArray[9] = balasto.getMin();              //2009
-            balastArray[10] = balasto.getMax();             //2010
-            balastArray[11] = balasto.getFt();              //2011
-            balastArray[12] = balasto.getFr();              //2012
-            balastArray[13] = balasto.getLf();              //2013
-            balastArray[14] = balasto.getLx();              //2014
-            balastArray[15] = balasto.getPot();             //2015
-
-
-
-
-            /**
-             * Numero dentro del array que corresponde al offset desde donde se
-             * empezarán a guardar los datos de los grupos
-             */
-            int gruposOffset = 16;
-            int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
-            int[] gruposAfect = balasto.getGruposAfectados();
-            int cuantosElementos = 16;
-            gruposAfect = UtilsJmodbus.obtenerElementosAfectados(balastArray, gruposOffset, cuantosElementos, tamReg, 8, 8);
-            balasto.setGruposAfectados(gruposAfect);
-
-
-
-
-            //Save array
-            dao.setRegValue(initOffset, balastArray);
-            addBalast(balastNumber);// agrega el indice a la lista de balastros en memoria
-
-            //MODO
-            setSingleReg(0, 0);
-
-            System.out.println("Balast No.:" + balastNumber + " saved.");
-            state = true;
-        } catch (Exception e) {
-            state = false;
-            e.printStackTrace();
-        }
+//        boolean state = false;
+//        int balastNumber = balasto.getBalastNumber();
+//
+//        try {
+//            //MODO Escritura
+//            setSingleReg(0, 1);
+//
+//            //Init offset.
+//            int initOffset = Integer.parseInt(PropHandler.getProperty("balast.init.position"));
+//            int[] balastArray = new int[Integer.parseInt(PropHandler.getProperty("balast.memory.size"))];
+//
+//            System.out.println("SAVE BALAST NUMBER: " + balastNumber);
+//
+//            balastArray[0] = balastNumber;                  //2000
+//            balastArray[1] = balasto.getLevel();            //2001
+//            balastArray[2] = balasto.getActivation();       //2002
+//
+//            //            //<editor-fold defaultstate="collapsed" desc="codigo antiguo">
+////            int nameOffset = 3;
+//            //            ArrayList<BigInteger> balastNameBytes = UtilsJmodbus.getNameBytesReverse(balasto.getName());
+//            //            int size = balastNameBytes.size();
+//            //            for (int i = 0; i < 5; i++) {
+//            //                if (i < size) {
+//            //                    balastArray[nameOffset] = balastNameBytes.get(i).intValue();
+//            //                } else {
+//            //                    balastArray[nameOffset] = 0;
+//            //                }
+//            //                nameOffset++;
+//            //            }
+//            //</editor-fold>
+//
+////            codifica el nombre y lo mete en el array
+//            UtilsJmodbus.encriptarNombre(balastArray, 3, balasto.getName(), 5);
+//
+//            balastArray[8] = balasto.getDir();              //2008
+//            balastArray[9] = balasto.getMin();              //2009
+//            balastArray[10] = balasto.getMax();             //2010
+//            balastArray[11] = balasto.getFt();              //2011
+//            balastArray[12] = balasto.getFr();              //2012
+//            balastArray[13] = balasto.getLf();              //2013
+//            balastArray[14] = balasto.getLx();              //2014
+//            balastArray[15] = balasto.getPot();             //2015
+//
+//
+//
+//
+//            /**
+//             * Numero dentro del array que corresponde al offset desde donde se
+//             * empezarán a guardar los datos de los grupos
+//             */
+//            int gruposOffset = 16;
+//            int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
+//            int[] gruposAfect = balasto.getGruposAfectados();
+//            int cuantosElementos = 16;
+//            gruposAfect = UtilsJmodbus.obtenerElementosAfectados(balastArray, gruposOffset, cuantosElementos, tamReg, 8, 8);
+//            balasto.setGruposAfectados(gruposAfect);
+//
+//
+//
+//
+//            //Save array
+//            dao.setRegValue(initOffset, balastArray);
+//            addBalast(balastNumber);// agrega el indice a la lista de balastros en memoria
+//
+//            //MODO
+//            setSingleReg(0, 0);
+//
+//            System.out.println("Balast No.:" + balastNumber + " saved.");
+//            state = true;
+//        } catch (Exception e) {
+//            state = false;
+//            e.printStackTrace();
+//        }
 
        
     }

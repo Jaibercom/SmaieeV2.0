@@ -17,6 +17,16 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
 
     private static DAOJmodbus dao;
 
+    public static DAOJmodbus getDao() {
+        return dao;
+    }
+
+    public static void setDao(DAOJmodbus dao) {
+        BalastoDAOJmodbus.dao = dao;
+    }
+
+    
+    
     public BalastoDAOJmodbus(DAOJmodbus dao) {
         this.dao = dao;
     }
