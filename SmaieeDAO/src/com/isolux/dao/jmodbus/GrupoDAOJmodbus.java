@@ -26,16 +26,16 @@ public class GrupoDAOJmodbus extends OperacionesDaoJModbus {
         this.dao = dao;
     }
 
-    /**
-     * Escribe un registro individual
-     *
-     * @param pos Posicion de registro
-     * @param mode El modo en el que se quiere ese registro
-     */
-    public static void setSingleReg(int pos, int mode) {
-        int[] values = {mode};
-        dao.setRegValue(pos, values);
-    }
+//    /**
+//     * Escribe un registro individual
+//     *
+//     * @param pos Posicion de registro
+//     * @param mode El modo en el que se quiere ese registro
+//     */
+//    public static void setSingleReg(int pos, int mode) {
+//        int[] values = {mode};
+//        dao.setRegValue(pos, values);
+//    }
 
     /**
      * Saves the group.

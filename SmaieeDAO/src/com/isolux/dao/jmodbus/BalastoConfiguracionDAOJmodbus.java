@@ -31,7 +31,16 @@ public class BalastoConfiguracionDAOJmodbus extends BalastoDAOJmodbus {
         return ele; //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Método que obtiene desde el buffer del SMAIEE la información de los balastos
+     * que se encuentran en la red.
+     * @return 
+     */
     private int[] getBalastosEnRed() {
+        
+        OperacionesBalastoConfiguracionDaoJmodbus ob=new OperacionesBalastoConfiguracionDaoJmodbus();
+        
+        ob.balastosEnRed();
         int numBalastos = Integer.parseInt(PropHandler.getProperty("balast.max.number"));
         int initOffset = Integer.parseInt(PropHandler.getProperty("balastosenred"));
         int usedRegisters = Integer.parseInt(PropHandler.getProperty("balast.memory.registers"));

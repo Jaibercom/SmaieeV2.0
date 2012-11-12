@@ -5,6 +5,7 @@
 package com.isolux.control;
 
 import com.isolux.bo.Balasto;
+import com.isolux.dao.jmodbus.BalastoConfiguracionDAOJmodbus;
 import com.isolux.dao.jmodbus.BalastoDAOJmodbus;
 import com.isolux.dao.jmodbus.ElementoDAOJmobdus;
 import com.isolux.dao.jmodbus.OperacionesElemento_Interface;
@@ -56,8 +57,10 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
     @Override
     public String[] elementosDisponibles(PpalView ppalView) {
-        BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
-        BalastoConfigacionDAOJmodbus dAOJmodbus;
+//        BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
+        
+        BalastoConfiguracionDAOJmodbus dao=new BalastoConfiguracionDAOJmodbus(ppalView.getDao());
+        
         String[] ses;
         ses = dao.elementosSinGrabar();
 

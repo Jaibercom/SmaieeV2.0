@@ -27,13 +27,13 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
         this.dao = dao;
     }
 
-    /**
-     * Write a single register.
-     */
-    public static void setSingleReg(int pos, int mode) {
-        int[] values = {mode};
-        dao.setRegValue(pos, values);
-    }
+//    /**
+//     * Write a single register.
+//     */
+//    public static void setSingleReg(int pos, int mode) {
+//        int[] values = {mode};
+//        dao.setRegValue(pos, values);
+//    }
 
     /**
      * Saves the balast.

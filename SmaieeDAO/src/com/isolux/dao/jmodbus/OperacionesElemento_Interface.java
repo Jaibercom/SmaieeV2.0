@@ -4,11 +4,9 @@
  */
 package com.isolux.dao.jmodbus;
 
-import java.util.ArrayList;
-
 /**
  *  Interface de las operaciones comunes de los datos jmodbus
- * @author Juan Camilo Canias
+ * @author Juan Camilo Cañas
  */
 public interface OperacionesElemento_Interface {
     

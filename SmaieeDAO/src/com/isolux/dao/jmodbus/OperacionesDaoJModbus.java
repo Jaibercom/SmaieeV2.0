@@ -6,9 +6,9 @@ package com.isolux.dao.jmodbus;
 
 /**
  *Clase padre de las clases DAOJModbus
- * @author Juan Camilo Canias Gómez
+ * @author Juan Camilo Cañas Gómez
  */
-public abstract class OperacionesDaoJModbus implements OperacionesElemento_Interface, OperacionesDaoJModbusInterface{
+public abstract class OperacionesDaoJModbus extends ElementoDAOJmobdus implements OperacionesElemento_Interface, OperacionesDaoJModbusInterface{
 
     public OperacionesDaoJModbus() {
     }

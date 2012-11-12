@@ -1,7 +1,6 @@
 package com.isolux.dao.properties;
 
 import com.isolux.dao.jmodbus.BalastoDAOJmodbus;
-import com.isolux.dao.jmodbus.BalastoDAOJmodbus1;
 import com.isolux.dao.jmodbus.EntradaDAOJmodbus;
 import com.isolux.dao.jmodbus.EscenaDAOJmodbus;
 import com.isolux.dao.jmodbus.EventoDAOJmodbus;
@@ -185,8 +184,8 @@ public class PropHandler {
     
     
       public static ArrayList<String> getAddedBalasts(OperacionesDaoJModbus dao) {
-        BalastoDAOJmodbus1 dao1=(BalastoDAOJmodbus1)dao;
-          return dao1.getAddedElements();
+//        BalastoDAOJmodbus dao1=(BalastoDAOJmodbus)dao;
+          return dao.getAddedElements();
     }
     
     
