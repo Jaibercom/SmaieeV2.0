@@ -211,6 +211,8 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             //        BalastoDAOJmodbus dao=new BalastoDAOJmodbus(new DAOJmodbus());
 
             OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES, Integer.parseInt(num));
+            hilo.setLabel(ppalView.getStatusLabel());
+            hilo.setBar(ppalView.getBarraProgreso_jProgressBar());
 
             hilo.execute();
             hilo.get();
@@ -232,13 +234,15 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
 
             //creamos el balasto con la nueva informacion
-
-
-        } catch (InterruptedException ex) {
-            Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ExecutionException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ExecutionException ex) {
+//            Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
 
     }
@@ -325,17 +329,17 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
         recojerDatosBasicos(ppalView);
         recojerInfoGrupos(ppalView);
-        recojerInfoEscenas(ppalView);
-        recojerNivelesEscenas(ppalView);
+//        recojerInfoEscenas(ppalView);
+//        recojerNivelesEscenas(ppalView);
 
 
     }
 
     private void recojerInfoGrupos(PpalView ppalView) {
-       
-        StringBuilder binario= new StringBuilder();
-        
-        Stack<JCheckBox> componentes=new Stack<JCheckBox>();
+
+        StringBuilder binario = new StringBuilder();
+
+        Stack<JCheckBox> componentes = new Stack<JCheckBox>();
         //ingresamos los grupos a la pila
         componentes.push(ppalView.getGrupo_jCheckBox1());
         componentes.push(ppalView.getGrupo_jCheckBox2());
@@ -347,31 +351,34 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         componentes.push(ppalView.getGrupo_jCheckBox8());
         componentes.push(ppalView.getGrupo_jCheckBox9());
         componentes.push(ppalView.getGrupo_jCheckBox10());
+        componentes.push(ppalView.getGrupo_jCheckBox11());
         componentes.push(ppalView.getGrupo_jCheckBox12());
         componentes.push(ppalView.getGrupo_jCheckBox13());
         componentes.push(ppalView.getGrupo_jCheckBox14());
         componentes.push(ppalView.getGrupo_jCheckBox15());
         componentes.push(ppalView.getGrupo_jCheckBox16());
-        
-        
-        
-        
-        for (JCheckBox jCheckBox : componentes) {
-            if (jCheckBox.isSelected()) {
+
+
+
+        while (!componentes.isEmpty()) {
+            JCheckBox pop = componentes.pop();
+
+            if (pop.isSelected()) {
                 binario.append(1);
-                
-            }else{
+
+            } else {
                 binario.append(0);
             }
         }
+
+
+
         //teniendo contruido el binario en texto procedemos a convertirlo a entero
         Integer binarioAEntero = Conversion.binarioAEntero(binario.toString());
-        balasto.setGruposAfectados(gruposAfectados);
-       
-        
-       
-        
-        
+        System.out.println(binarioAEntero);
+//        balasto.setGruposAfectados(gruposAfectados);
+
+
     }
 
     private void recojerInfoEscenas(PpalView ppalView) {

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  *
  * @author Juan Camilo Cañas Gómez
  */
-public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdus {
+public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdus{
 
     /**
      * Codigo de operacion de escribir valores. Se usa para escribir los valores
@@ -42,7 +42,9 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      * Código de operación que se usa para cuando un balasto es seleccionado y
      * para que titile
      */
-    public static final int OPCODE_SELECCIONAR_BALASTO = 20;
+    public static final int OPCODE_SELECCIONAR_BALASTO = 25;
+    
+    
     private final int regNumBalsat = Integer.parseInt(PropHandler.getProperty("balast.init.position"));
     private static OperacionesBalastoConfiguracionDaoJmodbus instancia = null;
 
@@ -163,13 +165,15 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
     /**
      * Método que resetea los valores de un balasto.
      *
-     * @param numBalasto valasto a ser reseteado
+     * @param numBalasto balasto a ser reseteado
      * @return true si la operación es exitosa.
      */
     public boolean reset(int numBalasto) {
         try {
             setMode(MODE_CONFIG);
+            setSingleReg(regNumBalsat, numBalasto);
             setSingleReg(0, OPCODE_RESET);
+            setMode(MODE_RUN);
             leeValores(numBalasto);
             return true;
         } catch (Exception e) {

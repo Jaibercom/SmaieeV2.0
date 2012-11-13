@@ -18,6 +18,7 @@ import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
 import com.isolux.dao.jmodbus.OperacionesBalastoConfiguracionDaoJmodbus;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
+import com.isolux.hilos.ColaOperaciones;
 import com.isolux.hilos.OperacionesDaoHilo;
 import com.isolux.utils.LimitadorDeCaracteresNum_InputVerifier;
 import com.isolux.utils.Validacion;
@@ -63,6 +64,10 @@ import javax.swing.tree.TreePath;
  */
 public class PpalView extends javax.swing.JFrame {
 
+    /**
+     * variable booleana que indica si existe una operacion modbus en progreso.
+     */
+    private boolean operacionModbusEnProgreso=false;
     //GENERAL
     private static PpalView index;
     private Map<String, Character> menuParents;
@@ -490,6 +495,7 @@ public class PpalView extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         statusLabel = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
+        barraProgreso_jProgressBar = new javax.swing.JProgressBar();
         mainMenuBar = new javax.swing.JMenuBar();
         archivo_jMenu = new javax.swing.JMenu();
         guardarEnFlash_jMenuItem = new javax.swing.JMenuItem();
@@ -2866,35 +2872,41 @@ public class PpalView extends javax.swing.JFrame {
         jLabel45.setMaximumSize(new java.awt.Dimension(33, 9));
         jLabel45.setMinimumSize(new java.awt.Dimension(33, 9));
 
+        barraProgreso_jProgressBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         javax.swing.GroupLayout statusBarLayout = new javax.swing.GroupLayout(statusBar);
         statusBar.setLayout(statusBarLayout);
         statusBarLayout.setHorizontalGroup(
             statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statusBarLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(69, Short.MAX_VALUE)
                 .addComponent(jLabel34)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(124, 124, 124)
+                .addGap(276, 276, 276)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(306, 306, 306)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusLabel)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addGap(201, 201, 201)
+                .addComponent(barraProgreso_jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         statusBarLayout.setVerticalGroup(
             statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statusBarLayout.createSequentialGroup()
+                .addGroup(statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(barraProgreso_jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statusLabel)
+                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statusBarLayout.createSequentialGroup()
+                .addComponent(jSeparator2)
+                .addGap(11, 11, 11))
             .addGroup(statusBarLayout.createSequentialGroup()
-                .addGroup(statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator2)
-                        .addGroup(statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(statusLabel))
-                .addContainerGap())
+                .addComponent(jSeparator1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelPrincipal_jPanel.add(statusBar, java.awt.BorderLayout.PAGE_END);
@@ -3478,37 +3490,54 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void selectTab(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_selectTab
-//        try {
+        try {
             //        generalCtrl.continueConfigurationViewData(this);
-                    this.realCtrl.showAreas(this);
-                    String panel = getTabbedPane().getSelectedComponent().getName();
-                    int numeroPanel = getTabbedPane().getSelectedIndex();
-                    System.out.println("Se cambio a el panel " + panel + " num " + numeroPanel);
+            this.realCtrl.showAreas(this);
+            String panel = getTabbedPane().getSelectedComponent().getName();
+            int numeroPanel = getTabbedPane().getSelectedIndex();
+            System.out.println("Se cambio a el panel " + panel + " num " + numeroPanel);
 
 
-                    switch (numeroPanel) {
-                        case 0:
-                            balastoCtrl.refrescarVista(this);
-                            break;
-                        case 1:
-                            
-                            OperacionesDaoHilo hilo =new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
-                            hilo.execute();
-                            
-//                            hilo.get();
-            //                balastoConfigCtrl.refrescarVista(this);
-                            System.out.println("Se termino de cargar la lista de balastos en la red");
-                            break;
-                        case 2:
-                            
-                            break;
-
+            switch (numeroPanel) {
+                case 0:
+                    while (isOperacionModbusEnProgreso()) {
+                        Thread.sleep(1000);
+                        
                     }
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+
+                    setOperacionModbusEnProgreso(true);
+                    balastoCtrl.refrescarVista(this);
+                    setOperacionModbusEnProgreso(false);
+
+                    break;
+                case 1:
+            
+                    ColaOperaciones cola = ColaOperaciones.getInstancia();
+                    
+                    OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
+                    
+                    hilo.setLabel(getStatusLabel());
+                    hilo.getLabel().setText("Iniciando operacion");
+                    hilo.setBar(getBarraProgreso_jProgressBar());
+//                    this.getStatusLabel().setText("Verificando la red...");
+                    cola.addObserver(hilo);
+                    
+                    hilo.execute();
+                    
+//                    hilo.get();
+                    //                balastoConfigCtrl.refrescarVista(this);
+//                    this.getStatusLabel().setText("Se termino de cargar la lista de balastos en la red");
+                    break;
+                case 2:
+
+                    break;
+
+            }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
 //        } catch (ExecutionException ex) {
 //            Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        }
 
 
 
@@ -3694,15 +3723,15 @@ public class PpalView extends javax.swing.JFrame {
     }//GEN-LAST:event_configuracionBalastos_jPanelFocusGained
 
     private void balastoResetConfig_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoResetConfig_jButtonActionPerformed
-     
     }//GEN-LAST:event_balastoResetConfig_jButtonActionPerformed
 
     private void balastoConfiguracion_jComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoConfiguracion_jComboBoxPropertyChange
-     
     }//GEN-LAST:event_balastoConfiguracion_jComboBoxPropertyChange
 
     private void balastoConfiguracion_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoConfiguracion_jComboBoxActionPerformed
-         balastoConfigCtrl.showSelectedElement(balastoConfiguracion_jComboBox.getSelectedItem().toString(), this);
+       
+        
+        balastoConfigCtrl.showSelectedElement(balastoConfiguracion_jComboBox.getSelectedItem().toString(), this);
     }//GEN-LAST:event_balastoConfiguracion_jComboBoxActionPerformed
 
     private void balastoEscribirConfig_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoEscribirConfig_jButtonActionPerformed
@@ -3752,6 +3781,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JList balastosAfectados_jList;
     private javax.swing.JList balastrosDisponibles_jList;
     private javax.swing.JCheckBox balastros_jCheckBox;
+    private javax.swing.JProgressBar barraProgreso_jProgressBar;
     private javax.swing.ButtonGroup botoneraComportamiento;
     private javax.swing.ButtonGroup botoneraTipoContacto;
     private javax.swing.JCheckBox cbIsStaticConfiguration;
@@ -4057,8 +4087,6 @@ public class PpalView extends javax.swing.JFrame {
                 getImage(ClassLoader.getSystemResource("images/icono.png"));
         return retValue;
     }
-    
-    
 
     /**
      * GET SETS
@@ -6297,8 +6325,6 @@ public class PpalView extends javax.swing.JFrame {
         this.escenaNumero_jComboBox = jComboBox6;
     }
 
-    
-    
 //    public JTextField getjTextField13() {
 //        return numEvento_jTextField;
 //    }
@@ -6729,8 +6755,28 @@ public class PpalView extends javax.swing.JFrame {
     public void setSliderConValor9(com.isolux.view.componentes.SliderConValor sliderConValor9) {
         this.sliderConValor9 = sliderConValor9;
     }
-    
-    
+
+    public boolean isOperacionModbusEnProgreso() {
+        return operacionModbusEnProgreso;
+    }
+
+    public void setOperacionModbusEnProgreso(boolean operacionModbusEnProgreso) {
+        this.operacionModbusEnProgreso = operacionModbusEnProgreso;
+    }
+
+    /**
+     * @return the barraProgreso_jProgressBar
+     */
+    public javax.swing.JProgressBar getBarraProgreso_jProgressBar() {
+        return barraProgreso_jProgressBar;
+    }
+
+    /**
+     * @param barraProgreso_jProgressBar the barraProgreso_jProgressBar to set
+     */
+    public void setBarraProgreso_jProgressBar(javax.swing.JProgressBar barraProgreso_jProgressBar) {
+        this.barraProgreso_jProgressBar = barraProgreso_jProgressBar;
+    }
 
     // End of variables declaration                   
     //</editor-fold>

@@ -5,32 +5,42 @@
 package com.isolux.hilos;
 
 import com.isolux.dao.jmodbus.OperacionesBalastoConfiguracionDaoJmodbus;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 import javax.swing.SwingWorker;
 
 /**
  * Clase que administra los hilos de las operaciones sobre la tarjeta. Estas
  * operaciones son del tipo register, por tanto tardan un tiempo en realizarse.
  * Inicialmente se usa para administrar las operaciones de la configuración de
- * balastos por su naturaleza demorada, pero despues se puede aplicar el mismo
- * concepto a las demás operaciones, para encapsularlas a travez de hilos de
+ * balastos por su naturaleza demorada, pero después se puede aplicar el mismo
+ * concepto a las demás operaciones, para encapsularlas a través de hilos de
  * este mismo tipo.
  *
  * @author Juan Camilo Cañas Gómez
  */
-public class OperacionesDaoHilo extends SwingWorker<Boolean, String> {
+public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements Observer {
 
     /**
-     * Operacion es un valor de la clase
+     * Operación es un valor de la clase
      * OperacionesBalastoConfiguracionDaoJmodbus, que determina qué operación se
-     * va a realizar seobre la tarjeta.
+     * va a realizar sobre la tarjeta.
      */
     int operacion;
     OperacionesBalastoConfiguracionDaoJmodbus obcdj = OperacionesBalastoConfiguracionDaoJmodbus.getInstancia();
     int parm1;
     int parm2;
+    
+    private JLabel label;
+    private JProgressBar bar;
 
     /**
-     * Constructor para la operacion de cambiarDirBalasto
+     * Constructor para la operación de cambiarDirBalasto
      *
      * @param operacion
      * @param parm1
@@ -40,6 +50,7 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, String> {
         this.operacion = operacion;
         this.parm1 = parm1;
         this.parm2 = parm2;
+
     }
 
     /**
@@ -67,18 +78,28 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, String> {
 
     @Override
     protected Boolean doInBackground() throws Exception {
+
+        int i = 0;
+        while (ColaOperaciones.getInstancia().isProgreso()==true) {
+            Thread.sleep(100);
+            publish(i);
+            i++;
+        }
+
+        ColaOperaciones.getInstancia().setProgreso(true);
         boolean termino = false;
+        publish(50);
 
         switch (operacion) {
             case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_CAMBIAR_DIR_BALASTO:
 
-               termino= obcdj.cambiarDirBalasto(operacion, operacion);
+                termino = obcdj.cambiarDirBalasto(operacion, operacion);
 //                termino = true;
                 break;
 
             case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_ESCRIBIR_VALORES:
 
-                termino=obcdj.escribirValores(parm1);
+                termino = obcdj.escribirValores(parm1);
 //                termino = true;
                 break;
 
@@ -111,13 +132,57 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, String> {
                 break;
         }
 
+        publish(100);
+
         return termino;
     }
 
     @Override
+    protected void process(List<Integer> chunks) {
+        if (bar != null) {
+            bar.setValue(chunks.get(0));
+        }
+
+    }
+
+    @Override
     protected void done() {
-        
-        System.out.println("Se realizó la operacion.");
-        
+        try {
+
+            if (label != null) {
+                label.setText("Operacion terminada con exito");
+                Thread.sleep(3000);
+                label.setText("");
+                getBar().setValue(0);
+            }
+            ColaOperaciones.getInstancia().setProgreso(false);
+        } catch (Exception ex) {
+            Logger.getLogger(OperacionesDaoHilo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+//        boolean c = ColaOperaciones.getInstancia().isProgreso();
+        System.out.println("Hay una operacion en progreso? "+ColaOperaciones.getInstancia().isProgreso() );
+
+
+    }
+
+    public JLabel getLabel() {
+        return label;
+    }
+
+    public void setLabel(JLabel label) {
+        this.label = label;
+    }
+
+    public JProgressBar getBar() {
+        return bar;
+    }
+
+    public void setBar(JProgressBar bar) {
+        this.bar = bar;
     }
 }
