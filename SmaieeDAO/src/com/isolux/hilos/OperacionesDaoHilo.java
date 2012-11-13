@@ -20,15 +20,49 @@ import javax.swing.SwingWorker;
 public class OperacionesDaoHilo extends SwingWorker<Boolean, String> {
 
     /**
-     * Operacion es un valor de la clase OperacionesBalastoConfiguracionDaoJmodbus,
-     * que determina qué operación se va a realizar seobre la tarjeta.
+     * Operacion es un valor de la clase
+     * OperacionesBalastoConfiguracionDaoJmodbus, que determina qué operación se
+     * va a realizar seobre la tarjeta.
      */
     int operacion;
-    OperacionesBalastoConfiguracionDaoJmodbus obcdj=OperacionesBalastoConfiguracionDaoJmodbus.getInstancia();
+    OperacionesBalastoConfiguracionDaoJmodbus obcdj = OperacionesBalastoConfiguracionDaoJmodbus.getInstancia();
+    int parm1;
+    int parm2;
 
+    /**
+     * Constructor para la operacion de cambiarDirBalasto
+     *
+     * @param operacion
+     * @param parm1
+     * @param parm2
+     */
+    public OperacionesDaoHilo(int operacion, int parm1, int parm2) {
+        this.operacion = operacion;
+        this.parm1 = parm1;
+        this.parm2 = parm2;
+    }
+
+    /**
+     * Constructor para los metodos de un solo parametro. estos son: <br>
+     * escribirValores(numBalasto)<br> leerValores(numeroBalasto)<br>
+     * reset(numeroBalasto)<br>
+     *
+     * @param operacion
+     * @param parm1
+     */
+    public OperacionesDaoHilo(int operacion, int parm1) {
+        this.operacion = operacion;
+        this.parm1 = parm1;
+    }
+
+    /**
+     * Constructor para los métodos de:<br> balastosEnRed()<br>
+     *
+     *
+     * @param operacion
+     */
     public OperacionesDaoHilo(int operacion) {
         this.operacion = operacion;
-        
     }
 
     @Override
@@ -38,39 +72,43 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, String> {
         switch (operacion) {
             case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_CAMBIAR_DIR_BALASTO:
 
-
-                termino = true;
+               termino= obcdj.cambiarDirBalasto(operacion, operacion);
+//                termino = true;
                 break;
 
             case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_ESCRIBIR_VALORES:
 
-
-                termino = true;
+                termino=obcdj.escribirValores(parm1);
+//                termino = true;
                 break;
 
             case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES:
-
+                obcdj.leeValores(parm1);
 
                 termino = true;
                 break;
 
             case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_RESET:
-
+                obcdj.reset(parm1);
 
                 termino = true;
                 break;
 
             case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED:
-
+                obcdj.balastosEnRed();
 
                 termino = true;
                 break;
 
-           
-           
+
+
 
             default: //se seleccionó el balasto y se manda para que titile.
-                throw new AssertionError();
+
+//                OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_SELECCIONAR_BALASTO;
+                obcdj.seleccionaBalasto(parm1);
+
+                break;
         }
 
         return termino;
@@ -78,10 +116,8 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, String> {
 
     @Override
     protected void done() {
-        super.done(); //To change body of generated methods, choose Tools | Templates.
+        
+        System.out.println("Se realizó la operacion.");
+        
     }
-    
-    
-    
-    
 }

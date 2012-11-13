@@ -15,8 +15,10 @@ import com.isolux.control.GeneralControl;
 import com.isolux.control.GroupsControl;
 import com.isolux.control.RealTimeControl;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
+import com.isolux.dao.jmodbus.OperacionesBalastoConfiguracionDaoJmodbus;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
+import com.isolux.hilos.OperacionesDaoHilo;
 import com.isolux.utils.LimitadorDeCaracteresNum_InputVerifier;
 import com.isolux.utils.Validacion;
 import com.isolux.view.threads.ThreadManager;
@@ -26,6 +28,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -2614,6 +2617,11 @@ public class PpalView extends javax.swing.JFrame {
         });
 
         balastoEscribirConfig_jButton.setText("Escribir");
+        balastoEscribirConfig_jButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                balastoEscribirConfig_jButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout configuracionBalastos_jPanelLayout = new javax.swing.GroupLayout(configuracionBalastos_jPanel);
         configuracionBalastos_jPanel.setLayout(configuracionBalastos_jPanelLayout);
@@ -3470,25 +3478,37 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void selectTab(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_selectTab
-//        generalCtrl.continueConfigurationViewData(this);
-        this.realCtrl.showAreas(this);
-        String panel = getTabbedPane().getSelectedComponent().getName();
-        int numeroPanel = getTabbedPane().getSelectedIndex();
-        System.out.println("Se cambio a el panel " + panel + " num " + numeroPanel);
+//        try {
+            //        generalCtrl.continueConfigurationViewData(this);
+                    this.realCtrl.showAreas(this);
+                    String panel = getTabbedPane().getSelectedComponent().getName();
+                    int numeroPanel = getTabbedPane().getSelectedIndex();
+                    System.out.println("Se cambio a el panel " + panel + " num " + numeroPanel);
 
 
-        switch (numeroPanel) {
-            case 0:
-                balastoCtrl.refrescarVista(this);
-                break;
-            case 1:
-                balastoConfigCtrl.refrescarVista(this);
-                break;
-            case 2:
-                
-                break;
+                    switch (numeroPanel) {
+                        case 0:
+                            balastoCtrl.refrescarVista(this);
+                            break;
+                        case 1:
+                            
+                            OperacionesDaoHilo hilo =new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
+                            hilo.execute();
+                            
+//                            hilo.get();
+            //                balastoConfigCtrl.refrescarVista(this);
+                            System.out.println("Se termino de cargar la lista de balastos en la red");
+                            break;
+                        case 2:
+                            
+                            break;
 
-        }
+                    }
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ExecutionException ex) {
+//            Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
 
 
@@ -3684,6 +3704,10 @@ public class PpalView extends javax.swing.JFrame {
     private void balastoConfiguracion_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoConfiguracion_jComboBoxActionPerformed
          balastoConfigCtrl.showSelectedElement(balastoConfiguracion_jComboBox.getSelectedItem().toString(), this);
     }//GEN-LAST:event_balastoConfiguracion_jComboBoxActionPerformed
+
+    private void balastoEscribirConfig_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoEscribirConfig_jButtonActionPerformed
+        balastoConfigCtrl.saveElement(this);
+    }//GEN-LAST:event_balastoEscribirConfig_jButtonActionPerformed
 
     //</editor-fold>
     /**

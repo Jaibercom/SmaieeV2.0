@@ -44,28 +44,46 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      */
     public static final int OPCODE_SELECCIONAR_BALASTO = 20;
     private final int regNumBalsat = Integer.parseInt(PropHandler.getProperty("balast.init.position"));
-    private static OperacionesBalastoConfiguracionDaoJmodbus instancia=null;
-        
-    
+    private static OperacionesBalastoConfiguracionDaoJmodbus instancia = null;
+
     private OperacionesBalastoConfiguracionDaoJmodbus() {
-        
-       
     }
 
     /**
      * Obtiene la instancia única de la clase.
-     * @return 
+     *
+     * @return
      */
     public static OperacionesBalastoConfiguracionDaoJmodbus getInstancia() {
-        if (instancia==null) {
-            instancia=new OperacionesBalastoConfiguracionDaoJmodbus();
-        }         
+        if (instancia == null) {
+            instancia = new OperacionesBalastoConfiguracionDaoJmodbus();
+        }
         return instancia;
     }
-    
-    
 
-    public void escribirValores() {
+    /**
+     * Método que escribe los valores de un balasto.
+     *
+     * @param numBalasto
+     */
+    public boolean escribirValores(int numBalasto) {
+
+        boolean f = false;
+        try {
+            if (getMode() == MODE_RUN) {
+                setMode(MODE_CONFIG);
+            }
+            setSingleReg(1, OPCODE_ESCRIBIR_VALORES);
+            setMode(MODE_RUN);
+            f = true;
+        } catch (Exception e) {
+            Logger.getLogger(OperacionesBalastoConfiguracionDaoJmodbus.class.getName()).log(Level.SEVERE, "No se pudo escribir los datos del balasto " + numBalasto, e);
+            f = false;
+        }
+
+
+        return f;
+
     }
 
     /**
@@ -79,6 +97,12 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      */
     public boolean leeValores(int numBalasto) {
 
+        boolean f = false;
+        if (getMode() == MODE_RUN) {
+            setMode(MODE_CONFIG);
+        }
+
+
         System.out.println("Leyendo los datos del balasto " + numBalasto);
         try {
             setMode(MODE_CONFIG);
@@ -91,15 +115,14 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
             setMode(MODE_RUN);
             Logger.getLogger(OperacionesBalastoConfiguracionDaoJmodbus.class.getName()).log(Level.INFO, "Leidos los datos del balasto {0}", numBalasto);
 
-            return true;
+            f = true;
 
         } catch (NumberFormatException ex) {
             Logger.getLogger(OperacionesBalastoConfiguracionDaoJmodbus.class.getName()).log(Level.INFO, "No se pudo leer los datos del balasto " + numBalasto, ex);
+            f = false;
 
-        } finally {
-            System.out.println("No se pudo leer los datos del balasto " + numBalasto);
-            return false;
         }
+        return f;
 
 
 
@@ -160,9 +183,19 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      * Método que lee los valores de los balstos que se encuentran en la red.
      */
     public void balastosEnRed() {
-        setMode(MODE_CONFIG);
-        setSingleReg(1, OPCODE_VERIFICA_RED);
-        setMode(MODE_RUN);
+        if (getMode() == MODE_RUN) {
+            setMode(MODE_CONFIG);
+        }
+
+        try {
+
+            setSingleReg(1, OPCODE_VERIFICA_RED);
+            setMode(MODE_RUN);
+        } catch (Exception e) {
+            System.out.println("ERROR: No se pudo mirar la informacion de los balastos en red");
+            e.printStackTrace();
+            setMode(MODE_RUN);
+        }
 
     }
 
@@ -170,8 +203,9 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      * Método que se usa para que cuando se seleccione un balaso este prenda y
      * apague para indicar que se seleccionó
      */
-    public void seleccionaBalasto() {
+    public void seleccionaBalasto(int numBalasto) {
         setMode(MODE_CONFIG);
+        setSingleReg(regNumBalsat, numBalasto);
         setSingleReg(1, OPCODE_SELECCIONAR_BALASTO);
         setMode(MODE_RUN);
     }
