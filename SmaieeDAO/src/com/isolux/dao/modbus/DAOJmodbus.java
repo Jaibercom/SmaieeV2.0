@@ -11,8 +11,17 @@ import org.apache.commons.lang3.ArrayUtils;
 public class DAOJmodbus {
 
     private static ModbusTCPMaster master;
+    private static DAOJmodbus instancia = null;
 
-    public DAOJmodbus() {
+    public static DAOJmodbus getInstancia() {
+
+        if (instancia == null) {
+            instancia = new DAOJmodbus();
+        }
+        return instancia;
+    }
+
+    private DAOJmodbus() {
         String ip = PropHandler.getProperty("general.ip");
         int port = Integer.parseInt(PropHandler.getProperty("general.port"));
         this.master = new ModbusTCPMaster(ip, port);
@@ -32,7 +41,7 @@ public class DAOJmodbus {
     public int[] getRegValue(int pos, int length) {
         int[] result = new int[length];
         if (length == 128) {
-            result = getRegValueGeneral(pos, length,8);
+            result = getRegValueGeneral(pos, length, 8);
 
         } else if (length >= 60 && length < 128) {
             result = getRegValue60(pos, length);
@@ -135,18 +144,20 @@ public class DAOJmodbus {
 
     /**
      * Método que lee un conjunto de registros. Estaba pensado para 128bits,
-     * pero se puede pensar para cualquier numero de bits. Funciona para cualquier
-     * numero
+     * pero se puede pensar para cualquier numero de bits. Funciona para
+     * cualquier numero
      *
      * @param pos Representa el offset inicial
-     * @param length Numero de bloques a leer. Típicamente para saber que numero es
-     * este se hace lo siguiente. Si son 1024 elementos se divide por el tamanio del
-     * registro que es normalmente 8, por tanto son 128.
-     * @param len Numero de registros que se han de leer por iteracion. Se usa este numero
-     * para leer por porciones o en varios intentos la memoria. Es un numero entre 10 y 60 
-     * @return int[] result, que representa el array construido sin importar su extencion.
+     * @param length Numero de bloques a leer. Típicamente para saber que numero
+     * es este se hace lo siguiente. Si son 1024 elementos se divide por el
+     * tamanio del registro que es normalmente 8, por tanto son 128.
+     * @param len Numero de registros que se han de leer por iteracion. Se usa
+     * este numero para leer por porciones o en varios intentos la memoria. Es
+     * un numero entre 10 y 60
+     * @return int[] result, que representa el array construido sin importar su
+     * extencion.
      */
-    private int[] getRegValueGeneral(int pos, int length,int len) {
+    private int[] getRegValueGeneral(int pos, int length, int len) {
 
         int[] result = new int[0];
 
@@ -154,7 +165,7 @@ public class DAOJmodbus {
 
         /*Se calcula el numero de arrays que se van a crear dependiendo del tamanio length
          y del numero de elementos len que va a tener cada arreglo*/
-                
+
         int lim = 0;
         if (length % len == 0) {
             lim = length / len;
@@ -162,7 +173,7 @@ public class DAOJmodbus {
             lim = length / len + 1;
         }
 
-     
+
         int[] result1 = null;
         for (int i = 0; i < lim; i++) {
 
@@ -170,7 +181,7 @@ public class DAOJmodbus {
 
                 result1 = getRegValueNormal(pos, len);
                 pos = pos + len + 1;//new int[len];
-                
+
 //                result1 = getRegValueNormal(pos, len);
             } else {
                 result1 = getRegValueNormal(pos, length - (i * len));

@@ -38,7 +38,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
     @Override
     public String[] elementosSinGrabar() {
 
-        BalastoDAOJmodbus dao1 = new BalastoDAOJmodbus(new DAOJmodbus());
+        BalastoDAOJmodbus dao1 = new BalastoDAOJmodbus(DAOJmodbus.getInstancia());
         int[] addedBalastsCardArray = dao1.getAddedBalastsCardArray();
         String[] ele = new String[addedBalastsCardArray.length];
 

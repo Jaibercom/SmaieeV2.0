@@ -150,7 +150,7 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public void initModbus() {
-        this.dao = new DAOJmodbus();
+        this.dao = DAOJmodbus.getInstancia();
     }
 
     public void getConnectionProperties() {
