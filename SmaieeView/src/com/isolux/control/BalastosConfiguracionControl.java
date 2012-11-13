@@ -134,17 +134,29 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             balastArray[15] = balasto.getPot();             //2015
 
 
+            //debemos convertir el array de enteros a num
+              int[] gruposAfect = balasto.getGruposAfectados();
+              
+//vamos aqui            
+            
+//            int j=16;
+//            int[] gruposAfect = balasto.getGruposAfectados();
+//            for (int i = 0; i < 15; i++) {
+//                 
+//                 balastArray[j]=gruposAfect[i];
+//                 j++;
+//            }
 
 
             /**
              * Numero dentro del array que corresponde al offset desde donde se
              * empezarán a guardar los datos de los grupos
-             */
-            int gruposOffset = 16;
-            int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
-            int[] gruposAfect = balasto.getGruposAfectados();
-            int cuantosElementos = 16;
-            gruposAfect = UtilsJmodbus.obtenerElementosAfectados(balastArray, gruposOffset, cuantosElementos, tamReg, 8, 8);
+//             */
+//            int gruposOffset = 16;
+//            int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
+//            int[] gruposAfect = balasto.getGruposAfectados();
+//            int cuantosElementos = 16;
+//            gruposAfect = UtilsJmodbus.obtenerElementosAfectados(balastArray, gruposOffset, cuantosElementos, tamReg, 8, 8);
             balasto.setGruposAfectados(gruposAfect);
 
 
@@ -329,8 +341,8 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
         recojerDatosBasicos(ppalView);
         recojerInfoGrupos(ppalView);
-//        recojerInfoEscenas(ppalView);
-//        recojerNivelesEscenas(ppalView);
+        recojerInfoEscenas(ppalView);
+        recojerNivelesEscenas(ppalView);
 
 
     }
@@ -338,6 +350,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
     private void recojerInfoGrupos(PpalView ppalView) {
 
         StringBuilder binario = new StringBuilder();
+        int[] gruposAfectados = new int[16];
 
         Stack<JCheckBox> componentes = new Stack<JCheckBox>();
         //ingresamos los grupos a la pila
@@ -359,30 +372,81 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         componentes.push(ppalView.getGrupo_jCheckBox16());
 
 
-
+        int i = gruposAfectados.length - 1;
         while (!componentes.isEmpty()) {
             JCheckBox pop = componentes.pop();
 
             if (pop.isSelected()) {
                 binario.append(1);
+                gruposAfectados[i] = 1;
 
             } else {
                 binario.append(0);
+                gruposAfectados[i] = 0;
             }
+
+            i--;
         }
 
 
 
         //teniendo contruido el binario en texto procedemos a convertirlo a entero
         Integer binarioAEntero = Conversion.binarioAEntero(binario.toString());
-        System.out.println(binarioAEntero);
-//        balasto.setGruposAfectados(gruposAfectados);
+        System.out.println("Representacion binaria de grupos: " + binario);
+        System.out.println("Representacion entera de grupos: " + binarioAEntero);
+        balasto.setGruposAfectados(gruposAfectados);
 
 
     }
 
     private void recojerInfoEscenas(PpalView ppalView) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        StringBuilder binario = new StringBuilder();
+        int[] escenasAfectadas = new int[16];
+
+        Stack<JCheckBox> componentes = new Stack<JCheckBox>();
+        //ingresamos los grupos a la pila
+        componentes.push(ppalView.getSliderConValor1().getCheckBox());
+        componentes.push(ppalView.getSliderConValor2().getCheckBox());
+        componentes.push(ppalView.getSliderConValor3().getCheckBox());
+        componentes.push(ppalView.getSliderConValor4().getCheckBox());
+        componentes.push(ppalView.getSliderConValor5().getCheckBox());
+        componentes.push(ppalView.getSliderConValor6().getCheckBox());
+        componentes.push(ppalView.getSliderConValor7().getCheckBox());
+        componentes.push(ppalView.getSliderConValor8().getCheckBox());
+        componentes.push(ppalView.getSliderConValor9().getCheckBox());
+        componentes.push(ppalView.getSliderConValor10().getCheckBox());
+        componentes.push(ppalView.getSliderConValor11().getCheckBox());
+        componentes.push(ppalView.getSliderConValor12().getCheckBox());
+        componentes.push(ppalView.getSliderConValor13().getCheckBox());
+        componentes.push(ppalView.getSliderConValor14().getCheckBox());
+        componentes.push(ppalView.getSliderConValor15().getCheckBox());
+        componentes.push(ppalView.getSliderConValor16().getCheckBox());
+
+
+        int i = escenasAfectadas.length - 1;
+        while (!componentes.isEmpty()) {
+            JCheckBox pop = componentes.pop();
+
+            if (pop.isSelected()) {
+                binario.append(1);
+                escenasAfectadas[i] = 1;
+
+            } else {
+                binario.append(0);
+                escenasAfectadas[i] = 0;
+            }
+
+            i--;
+        }
+
+
+
+        //teniendo contruido el binario en texto procedemos a convertirlo a entero
+        Integer binarioAEntero = Conversion.binarioAEntero(binario.toString());
+        System.out.println("Representacion binaria de escenas: " + binario);
+        System.out.println("Representacion entera de escenas: " + binarioAEntero);
+        balasto.setEscenasAfectadas(escenasAfectadas);
     }
 
     private void recojerDatosBasicos(PpalView ppalView) {
@@ -397,6 +461,33 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
     }
 
     private void recojerNivelesEscenas(PpalView ppalView) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder binario = new StringBuilder();
+        int[] escenasAfectadas = new int[16];
+
+        Stack<Integer> componentes = new Stack<Integer>();
+        //ingresamos los grupos a la pila
+        componentes.push(ppalView.getSliderConValor1().getValor());
+        componentes.push(ppalView.getSliderConValor2().getValor());
+        componentes.push(ppalView.getSliderConValor10().getValor());
+        componentes.push(ppalView.getSliderConValor11().getValor());
+        componentes.push(ppalView.getSliderConValor12().getValor());
+        componentes.push(ppalView.getSliderConValor13().getValor());
+        componentes.push(ppalView.getSliderConValor14().getValor());
+        componentes.push(ppalView.getSliderConValor15().getValor());
+        componentes.push(ppalView.getSliderConValor16().getValor());
+
+
+        int i = escenasAfectadas.length - 1;
+        while (!componentes.isEmpty()) {
+            Integer pop = componentes.pop();
+
+            binario.append(pop);
+            escenasAfectadas[i] = pop;
+
+            i--;
+        }
+
+        //teniendo contruido el binario en texto procedemos a convertirlo a entero
+               balasto.setNivelesEscenas(escenasAfectadas);
     }
 }

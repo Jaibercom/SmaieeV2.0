@@ -5,6 +5,7 @@
 package com.isolux.dao.jmodbus;
 
 import com.isolux.dao.properties.PropHandler;
+import com.isolux.hilos.OperacionesDaoHilo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
