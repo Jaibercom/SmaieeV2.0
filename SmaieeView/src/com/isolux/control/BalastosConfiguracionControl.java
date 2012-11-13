@@ -14,11 +14,17 @@ import com.isolux.dao.jmodbus.UtilsJmodbus;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.hilos.OperacionesDaoHilo;
+import com.isolux.utils.Conversion;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
+import java.util.List;
+import java.util.Stack;
+import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.naming.BinaryRefAddr;
+import javax.swing.JCheckBox;
 
 /**
  *
@@ -89,8 +95,10 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
     @Override
     public void saveElement(PpalView ppalView) {
+        setDao(ppalView.getDao());
         boolean state = false;
 
+        recojerDatos(ppalView);
 
         int balastNumber = balasto.getBalastNumber();
 
@@ -111,7 +119,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             balastArray[1] = balasto.getLevel();            //2001
             balastArray[2] = balasto.getActivation();       //2002
 
-        
+
 
 //            codifica el nombre y lo mete en el array
             UtilsJmodbus.encriptarNombre(balastArray, 3, balasto.getName(), 5);
@@ -162,20 +170,21 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             //Save array
             getDao().setRegValue(initOffset, balastArray);
 //            addElement(balastNumber);// agrega el indice a la lista de balastros en memoria
-            
+
 //            Luego escribimos el valor
-            OperacionesDaoHilo h=new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_ESCRIBIR_VALORES, balastNumber);
+            OperacionesDaoHilo h = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_ESCRIBIR_VALORES, balastNumber);
             h.execute();
 
             //MODO
             setMode(MODE_RUN);
 
             Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "Balasto numero {0} guardado correctamente.", balastNumber);
+            ppalView.getStatusLabel().setText("Balasto numero " + balastNumber + " guardado correctamente.");
 //            System.out.println("Balast No.:" + balastNumber + " saved.");
             state = true;
         } catch (Exception e) {
             state = false;
-            Logger.getLogger(BalastoConfiguracionDAOJmodbus.class.getName()).log(Level.SEVERE, "ERROR guardando el balasto "+ balastNumber, e);
+            Logger.getLogger(BalastoConfiguracionDAOJmodbus.class.getName()).log(Level.SEVERE, "ERROR guardando el balasto " + balastNumber, e);
         }
 
 
@@ -206,6 +215,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             hilo.execute();
             hilo.get();
             Balasto selectedBalast = BalastoDAOJmodbus.readBalast(Integer.parseInt(num));
+            balasto = selectedBalast;
             ppalView.getBalastoDir_jTextField().setText(String.valueOf(selectedBalast.getDir()));
             ppalView.getBalastoMin_jTextField().setText(String.valueOf(selectedBalast.getMin()));
             ppalView.getBalastoMax_jTextField().setText(String.valueOf(selectedBalast.getMax()));
@@ -219,6 +229,11 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
             gruposPert(num);
             ecenasPert(num);
+
+
+            //creamos el balasto con la nueva informacion
+
+
         } catch (InterruptedException ex) {
             Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ExecutionException ex) {
@@ -303,5 +318,78 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
     }
 
     private void buscarElementos(String numBalasto) {
+    }
+
+    public void recojerDatos(PpalView ppalView) {
+
+
+        recojerDatosBasicos(ppalView);
+        recojerInfoGrupos(ppalView);
+        recojerInfoEscenas(ppalView);
+        recojerNivelesEscenas(ppalView);
+
+
+    }
+
+    private void recojerInfoGrupos(PpalView ppalView) {
+       
+        StringBuilder binario= new StringBuilder();
+        
+        Stack<JCheckBox> componentes=new Stack<JCheckBox>();
+        //ingresamos los grupos a la pila
+        componentes.push(ppalView.getGrupo_jCheckBox1());
+        componentes.push(ppalView.getGrupo_jCheckBox2());
+        componentes.push(ppalView.getGrupo_jCheckBox3());
+        componentes.push(ppalView.getGrupo_jCheckBox4());
+        componentes.push(ppalView.getGrupo_jCheckBox5());
+        componentes.push(ppalView.getGrupo_jCheckBox6());
+        componentes.push(ppalView.getGrupo_jCheckBox7());
+        componentes.push(ppalView.getGrupo_jCheckBox8());
+        componentes.push(ppalView.getGrupo_jCheckBox9());
+        componentes.push(ppalView.getGrupo_jCheckBox10());
+        componentes.push(ppalView.getGrupo_jCheckBox12());
+        componentes.push(ppalView.getGrupo_jCheckBox13());
+        componentes.push(ppalView.getGrupo_jCheckBox14());
+        componentes.push(ppalView.getGrupo_jCheckBox15());
+        componentes.push(ppalView.getGrupo_jCheckBox16());
+        
+        
+        
+        
+        for (JCheckBox jCheckBox : componentes) {
+            if (jCheckBox.isSelected()) {
+                binario.append(1);
+                
+            }else{
+                binario.append(0);
+            }
+        }
+        //teniendo contruido el binario en texto procedemos a convertirlo a entero
+        Integer binarioAEntero = Conversion.binarioAEntero(binario.toString());
+        balasto.setGruposAfectados(gruposAfectados);
+       
+        
+       
+        
+        
+    }
+
+    private void recojerInfoEscenas(PpalView ppalView) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void recojerDatosBasicos(PpalView ppalView) {
+        balasto.setDir(Integer.parseInt(ppalView.getBalastoDir_jTextField().getText()));
+        balasto.setMin(Integer.parseInt(ppalView.getBalastoMin_jTextField().getText()));
+        balasto.setMax(Integer.parseInt(ppalView.getBalastoMax_jTextField().getText()));
+        balasto.setFt(Integer.parseInt(ppalView.getBalastoFT_jTextField().getText()));
+        balasto.setFr(Integer.parseInt(ppalView.getBalastoFR_jTextField().getText()));
+        balasto.setLf(Integer.parseInt(ppalView.getBalastoLF_jTextField().getText()));
+        balasto.setLx(Integer.parseInt(ppalView.getBalastoLX_jTextField().getText()));
+        balasto.setPot(Integer.parseInt(ppalView.getBalastoPot_jTextField().getText()));
+    }
+
+    private void recojerNivelesEscenas(PpalView ppalView) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
