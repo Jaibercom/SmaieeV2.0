@@ -58,7 +58,7 @@ public class DAOJmodbus {
      * @param length
      * @return
      */
-    public boolean setRegValue(int pos, int[] values) {
+    public boolean setRegValue(int pos, int[] values) throws Exception {
         int length = values.length;
         boolean result = false;
         if (length == 128) {
@@ -67,7 +67,12 @@ public class DAOJmodbus {
         } else if (length >= 60) {
             result = setRegValue60(pos, values);
         } else {
+            //            result = setRegValueNormal(pos, values); //??
             result = setRegValueNormal(pos, values); //??
+//            result = master.writeMultipleRegisters(pos, values.length, values);
+
+
+            
         }
         return result;
     }
@@ -137,7 +142,7 @@ public class DAOJmodbus {
      * Set information in the card. unit id, offset, length, transaction id,
      * values to write array.
      */
-    private boolean setRegValueNormal(int pos, int[] values) {
+    private boolean setRegValueNormal(int pos, int[] values) throws Exception {
         boolean result = master.writeMultipleRegisters(1, pos, values.length, 1, values);
         return result;
     }
@@ -155,7 +160,7 @@ public class DAOJmodbus {
      * este numero para leer por porciones o en varios intentos la memoria. Es
      * un numero entre 10 y 60
      * @return int[] result, que representa el array construido sin importar su
-     * extencion.
+     * extension.
      */
     private int[] getRegValueGeneral(int pos, int length, int len) {
 

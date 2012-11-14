@@ -5,8 +5,8 @@
 package com.isolux.dao.jmodbus;
 
 import com.isolux.bo.Elemento;
-import com.isolux.dao.Utils;
 import com.isolux.bo.Entrada;
+import com.isolux.dao.Utils;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import java.math.BigInteger;

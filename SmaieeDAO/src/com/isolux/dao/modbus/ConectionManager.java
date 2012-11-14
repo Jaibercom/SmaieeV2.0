@@ -10,7 +10,6 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.wimpi.modbus.net.TCPMasterConnection;
-import sun.security.provider.VerificationProvider;
 
 
 /**

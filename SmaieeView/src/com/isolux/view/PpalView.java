@@ -491,10 +491,10 @@ public class PpalView extends javax.swing.JFrame {
         jButton47 = new javax.swing.JButton();
         statusBar = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         statusLabel = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
         barraProgreso_jProgressBar = new javax.swing.JProgressBar();
         mainMenuBar = new javax.swing.JMenuBar();
         archivo_jMenu = new javax.swing.JMenu();
@@ -2861,16 +2861,16 @@ public class PpalView extends javax.swing.JFrame {
 
         jLabel34.setText("Conexion");
 
+        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/connection.jpg"))); // NOI18N
+        jLabel45.setText("jLabel45");
+        jLabel45.setMaximumSize(new java.awt.Dimension(33, 9));
+        jLabel45.setMinimumSize(new java.awt.Dimension(33, 9));
+
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         statusLabel.setText("#");
-
-        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/connection.jpg"))); // NOI18N
-        jLabel45.setText("jLabel45");
-        jLabel45.setMaximumSize(new java.awt.Dimension(33, 9));
-        jLabel45.setMinimumSize(new java.awt.Dimension(33, 9));
 
         barraProgreso_jProgressBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -2885,9 +2885,9 @@ public class PpalView extends javax.swing.JFrame {
                 .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(276, 276, 276)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
                 .addComponent(statusLabel)
-                .addGap(201, 201, 201)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(barraProgreso_jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -3517,7 +3517,7 @@ public class PpalView extends javax.swing.JFrame {
                     OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
                     
                     hilo.setLabel(getStatusLabel());
-                    hilo.getLabel().setText("Iniciando operacion");
+                    hilo.getLabel().setText("Cargando elementos de la configuracion de balastos...");
                     hilo.setBar(getBarraProgreso_jProgressBar());
 //                    this.getStatusLabel().setText("Verificando la red...");
                     cola.addObserver(hilo);

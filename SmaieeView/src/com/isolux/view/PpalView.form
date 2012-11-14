@@ -4143,9 +4143,9 @@
                           <Component id="jLabel45" min="-2" pref="13" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="276" max="-2" attributes="0"/>
                           <Component id="jSeparator1" min="-2" pref="11" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace pref="201" max="32767" attributes="0"/>
                           <Component id="statusLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="barraProgreso_jProgressBar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jSeparator2" min="-2" pref="11" max="-2" attributes="0"/>
@@ -4180,6 +4180,20 @@
                     <Property name="text" type="java.lang.String" value="Conexion"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JLabel" name="jLabel45">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/images/connection.jpg"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="jLabel45"/>
+                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[33, 9]"/>
+                    </Property>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[33, 9]"/>
+                    </Property>
+                  </Properties>
+                </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator1">
                   <Properties>
                     <Property name="orientation" type="int" value="1"/>
@@ -4193,20 +4207,6 @@
                 <Component class="javax.swing.JLabel" name="statusLabel">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="#"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel45">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/connection.jpg"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="jLabel45"/>
-                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[33, 9]"/>
-                    </Property>
-                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[33, 9]"/>
-                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JProgressBar" name="barraProgreso_jProgressBar">
