@@ -253,15 +253,15 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             //        BalastoDAOJmodbus dao=new BalastoDAOJmodbus(new DAOJmodbus());
 
             Integer numeroBalasto = Integer.parseInt(num);
-            
+
 
             OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES, Integer.parseInt(num));
             hilo.setLabel(ppalView.getStatusLabel());
             hilo.setBar(ppalView.getBarraProgreso_jProgressBar());
-            cola.getCola().enqueue(hilo);
-
-//            hilo.execute();
-//            hilo.get();
+//            cola.getCola().enqueue(hilo);
+            hilo.getLabel().setText("Cargando los valores del balasto "+num);
+            hilo.execute();
+            hilo.get();
             Balasto selectedBalast = BalastoDAOJmodbus.readBalast(Integer.parseInt(num));
             balasto = selectedBalast;
             ppalView.getBalastoDir_jTextField().setText(String.valueOf(selectedBalast.getDir()));
@@ -284,12 +284,13 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             hilo1.setLabel(ppalView.getStatusLabel());
             hilo1.getLabel().setText("Seleccionando visualmente balasto...");
             hilo1.setBar(ppalView.getBarraProgreso_jProgressBar());
-            cola.getCola().enqueue(hilo1);
+//            cola.getCola().enqueue(hilo1);
 
 
             //Inicimos todas las operaciones
-            cola.iniciarOperaciones();
+//            cola.iniciarOperaciones();
 
+            hilo1.execute();
 //            setSingleReg(2000, numeroBalasto);
 //            setSingleReg(1, 25);
 

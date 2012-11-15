@@ -4,7 +4,7 @@
  */
 package com.isolux.hilos;
 
-
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingWorker;
@@ -14,7 +14,7 @@ import sun.misc.Queue;
  *
  * @author Sebastian Rodriguez
  */
-public class ColaOperaciones {
+public class ColaOperaciones extends SwingWorker<Object, Object> {
 
     private boolean progreso = false;
     private static ColaOperaciones instancia = null;
@@ -39,6 +39,7 @@ public class ColaOperaciones {
     }
 
     private ColaOperaciones() {
+       
     }
 
     public Queue getCola() {
@@ -48,49 +49,58 @@ public class ColaOperaciones {
     /**
      * Método que inicia toda las operaciones que se encuentran en la cola
      */
-    public void iniciarOperaciones(){
-        HiloCola nuevoHilo=new HiloCola();
-        nuevoHilo.execute();
+    public void iniciarOperaciones() throws InterruptedException {
+//        HiloCola nuevoHilo = new HiloCola();
+//        nuevoHilo.execute();
+//        iniciarCola();
     }
-    
+
     /**
      * Método que ejecuta el hilo que está pendiente.
      */
-    synchronized private void iniciarCola() throws InterruptedException {
+    synchronized private void iniciarDesencolar() throws InterruptedException {
 
-
-        if (cola.isEmpty() == false) {
-            OperacionesDaoHilo elemento = (OperacionesDaoHilo) cola.dequeue();
-            System.out.println("Desencolando "+elemento.getClass().toString());
-            elemento.execute();
-            
-
-            while (elemento.isDone() == false) {
-                Thread.sleep(500);
+        while (cola.isEmpty() == false) {
+            if (cola.isEmpty() == false) {
+                try {
+                    OperacionesDaoHilo elemento = (OperacionesDaoHilo) cola.dequeue();
+                    System.out.println("Desencolando " + elemento.getClass().toString());
+                    elemento.execute();
+                    elemento.get();
+                    elemento.getLabel().setText("La tarea se realizo exitosamente.");
+                } catch (ExecutionException ex) {
+                    Logger.getLogger(ColaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-
-            elemento.getLabel().setText("La tarea se realizo exitosamente.");
         }
-
 
     }
 
-    private class HiloCola extends SwingWorker<Void, String> {
+    @Override
+    protected Object doInBackground() throws Exception {
+       iniciarDesencolar(); 
+        return null;
+    }
+    
+    
 
-        
+//    private class HiloCola extends SwingWorker<Void, String> {
+//
+//        @Override
+//        protected void done() {
+//            Logger.getLogger(HiloCola.class.getName()).log(Level.INFO, "La cola no contiene más operaciones");
+//
+//        }
+//
+//        @Override
+//        protected Void doInBackground() throws Exception {
+//            iniciarDesencolar();
+//            return null;
+//        }
+//    }
 
-        @Override
-        protected void done() {
-            Logger.getLogger(HiloCola.class.getName()).log(Level.INFO,"La cola no contiene más operaciones");
-            
-        }
-
-        @Override
-        protected Void doInBackground() throws Exception {
-            iniciarCola();
-            return null;
-        }
-        
-        
+    @Override
+    protected void done() {
+        Logger.getLogger(ColaOperaciones.class.getName()).log(Level.INFO, "La cola no contiene más operaciones");
     }
 }

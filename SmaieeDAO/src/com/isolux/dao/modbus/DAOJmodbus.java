@@ -38,7 +38,7 @@ public class DAOJmodbus {
      * @param length
      * @return
      */
-    public int[] getRegValue(int pos, int length) {
+    synchronized public int[] getRegValue(int pos, int length) {
         int[] result = new int[length];
         if (length == 128) {
             result = getRegValueGeneral(pos, length, 8);
@@ -58,7 +58,7 @@ public class DAOJmodbus {
      * @param length
      * @return
      */
-    public boolean setRegValue(int pos, int[] values) throws Exception {
+    synchronized public boolean setRegValue(int pos, int[] values) throws Exception {
         int length = values.length;
         boolean result = false;
         if (length == 128) {
