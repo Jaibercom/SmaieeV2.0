@@ -597,7 +597,7 @@ public class GeneralControl {
         }
     }
 
-    public void setRunMode(PpalView ppalView) {
+    public void setRunMode(PpalView ppalView) throws Exception {
         ConfiguracionDAOJmodbus cDao = new ConfiguracionDAOJmodbus(ppalView.getDao());
         cDao.setSingleReg(0, 0);
     }

@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Juan Camilo Cañas Gómez
  */
-public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdus{
+public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdus {
 
     /**
      * Codigo de operacion de escribir valores. Se usa para escribir los valores
@@ -44,8 +44,6 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      * para que titile
      */
     public static final int OPCODE_SELECCIONAR_BALASTO = 25;
-    
-    
     private final int regNumBalsat = Integer.parseInt(PropHandler.getProperty("balast.init.position"));
     private static OperacionesBalastoConfiguracionDaoJmodbus instancia = null;
 
@@ -73,17 +71,14 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
 
         boolean f = false;
         try {
-            if (getMode() == MODE_RUN) {
-                setMode(MODE_CONFIG);
-            }
+
             setSingleReg(1, OPCODE_ESCRIBIR_VALORES);
-            setMode(MODE_RUN);
+
             f = true;
         } catch (Exception e) {
             Logger.getLogger(OperacionesBalastoConfiguracionDaoJmodbus.class.getName()).log(Level.SEVERE, "No se pudo escribir los datos del balasto " + numBalasto, e);
             f = false;
         }
-
 
         return f;
 
@@ -98,24 +93,20 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      *
      * @param numBalasto Numero del balasto que se quiere leer.
      */
-    public boolean leeValores(int numBalasto) {
+    public boolean leeValores(int numBalasto) throws Exception {
 
         boolean f = false;
-        if (getMode() == MODE_RUN) {
-            setMode(MODE_CONFIG);
-        }
-
-
+        
         System.out.println("Leyendo los datos del balasto " + numBalasto);
         try {
-            setMode(MODE_CONFIG);
+            
 
             //escribimos para obtener la info del buffer (el numero del balasto deseado.
             setSingleReg(regNumBalsat, numBalasto);
             //luego escribimos en el registro 1 la orden de lectura
             setSingleReg(1, OPCODE_LEER_VALORES);
 
-            setMode(MODE_RUN);
+            
             Logger.getLogger(OperacionesBalastoConfiguracionDaoJmodbus.class.getName()).log(Level.INFO, "Leidos los datos del balasto {0}", numBalasto);
 
             f = true;
@@ -145,7 +136,7 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
             int dirOrigialOffset = Integer.parseInt(PropHandler.getProperty("balast.init.position"));
             int dirbOffset = Integer.parseInt(PropHandler.getProperty("balast.memoy.dirbOffset"));
 
-            setMode(MODE_CONFIG);
+
 
             setSingleReg(dirOrigialOffset, numBalasto);
 
@@ -153,7 +144,7 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
 
             setSingleReg(1, OPCODE_CAMBIAR_DIR_BALASTO);
 
-            setMode(MODE_RUN);
+
 
             Logger.getLogger(OperacionesBalastoConfiguracionDaoJmodbus.class.getName()).log(Level.INFO, "Direcci\u00f3n del balasto {0} cambiada  por la direcci\u00f3n {1}", new Object[]{numBalasto, nuevaDir});
             return true;
@@ -171,10 +162,10 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      */
     public boolean reset(int numBalasto) {
         try {
-            setMode(MODE_CONFIG);
+           
             setSingleReg(regNumBalsat, numBalasto);
             setSingleReg(0, OPCODE_RESET);
-            setMode(MODE_RUN);
+            
             leeValores(numBalasto);
             return true;
         } catch (Exception e) {
@@ -188,18 +179,15 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      * Método que lee los valores de los balstos que se encuentran en la red.
      */
     public void balastosEnRed() {
-        if (getMode() == MODE_RUN) {
-            setMode(MODE_CONFIG);
-        }
 
         try {
 
             setSingleReg(1, OPCODE_VERIFICA_RED);
-            setMode(MODE_RUN);
+
         } catch (Exception e) {
             System.out.println("ERROR: No se pudo mirar la informacion de los balastos en red");
-            e.printStackTrace();
-            setMode(MODE_RUN);
+            Logger.getLogger(OperacionesBalastoConfiguracionDaoJmodbus.class.getName()).log(Level.SEVERE, "No se pudo leer los balastos en red.");
+
         }
 
     }
@@ -208,10 +196,10 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      * Método que se usa para que cuando se seleccione un balaso este prenda y
      * apague para indicar que se seleccionó
      */
-    public void seleccionaBalasto(int numBalasto) {
-        setMode(MODE_CONFIG);
+    public void seleccionaBalasto(int numBalasto) throws Exception {
+       
         setSingleReg(regNumBalsat, numBalasto);
         setSingleReg(1, OPCODE_SELECCIONAR_BALASTO);
-        setMode(MODE_RUN);
+        
     }
 }

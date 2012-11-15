@@ -50,7 +50,7 @@ public class ConfiguracionDAOJmodbus {
     /**
      * Write a single register.
      */
-    public static void setSingleReg(int pos, int mode){
+    public static void setSingleReg(int pos, int mode) throws Exception{
         int[] values = {mode};
         dao.setRegValue(pos, values);
     }
@@ -104,7 +104,7 @@ public class ConfiguracionDAOJmodbus {
      * Save the rol of the card.
      * @param rol 
      */
-    public void saveRol(String rol){
+    public void saveRol(String rol) throws Exception{
 //        DAO4j dao = new DAO4j();
         int rolOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.rol"));
         

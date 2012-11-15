@@ -842,7 +842,7 @@ public class UtilsJmodbus {
         }
     }
 
-    public static void setSingleReg(int pos, int mode, DAOJmodbus dao) {
+    public static void setSingleReg(int pos, int mode, DAOJmodbus dao) throws Exception {
         int[] values = {mode};
         dao.setRegValue(pos, values);
     }

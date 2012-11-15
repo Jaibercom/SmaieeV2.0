@@ -4,6 +4,7 @@
  */
 package com.isolux.dao.jmodbus;
 
+import com.isolux.dao.modbus.DAO;
 import com.isolux.dao.modbus.DAOJmodbus;
 
 /**
@@ -20,7 +21,7 @@ public class ElementoDAOJmobdus {
      * Modo de ejecución en la tarjeta.
      */
     public static final int MODE_RUN = 0;
-    private DAOJmodbus dao;
+    private DAOJmodbus dao=DAOJmodbus.getInstancia();
 
     public ElementoDAOJmobdus(DAOJmodbus dao) {
         this.dao = dao;
@@ -44,9 +45,9 @@ public class ElementoDAOJmobdus {
      * @param pos
      * @param value
      */
-    public void setSingleReg(int pos, int value) {
+    public void setSingleReg(int pos, int value) throws Exception {
         int[] values = {value};
-        dao.setRegValue(pos, values);
+        getDao().setRegValue(pos, values);
     }
 
     /**
@@ -58,7 +59,7 @@ public class ElementoDAOJmobdus {
      *
      *
      */
-    public void setMode(int mode) {
+    public void setMode(int mode) throws Exception {
         setSingleReg(0, mode);
     }
 

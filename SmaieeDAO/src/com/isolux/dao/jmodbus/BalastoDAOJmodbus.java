@@ -5,6 +5,7 @@ import com.isolux.dao.Utils;
 import com.isolux.dao.modbus.DAO4j;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
+import com.isolux.test.DAOJmodbusTest;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import java.util.HashMap;
  */
 public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
 
-    private static DAOJmodbus dao;
+    private static DAOJmodbus dao=DAOJmodbus.getInstancia();
 
     public static DAOJmodbus getDao() {
         return dao;
@@ -34,7 +35,7 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
     /**
      * Write a single register.
      */
-    public static void setSingleReg(int pos, int mode) {
+    public static void setSingleReg(int pos, int mode) throws Exception {
         int[] values = {mode};
         dao.setRegValue(pos, values);
     }

@@ -8,6 +8,7 @@ package com.isolux.view;
 import com.isolux.bo.*;
 import com.isolux.control.BalastosConfiguracionControl;
 import com.isolux.control.BalastosControl;
+import com.isolux.control.ElementoControl_Interface;
 import com.isolux.control.EntradaControl;
 import com.isolux.control.EscenaControl;
 import com.isolux.control.EventControl;
@@ -15,6 +16,7 @@ import com.isolux.control.GeneralControl;
 import com.isolux.control.GroupsControl;
 import com.isolux.control.RealTimeControl;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
+import com.isolux.dao.jmodbus.ElementoDAOJmobdus;
 import com.isolux.dao.jmodbus.OperacionesBalastoConfiguracionDaoJmodbus;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
@@ -67,7 +69,7 @@ public class PpalView extends javax.swing.JFrame {
     /**
      * variable booleana que indica si existe una operacion modbus en progreso.
      */
-    private boolean operacionModbusEnProgreso=false;
+    private boolean operacionModbusEnProgreso = false;
     //GENERAL
     private static PpalView index;
     private Map<String, Character> menuParents;
@@ -3500,41 +3502,36 @@ public class PpalView extends javax.swing.JFrame {
 
             switch (numeroPanel) {
                 case 0:
-                    while (isOperacionModbusEnProgreso()) {
-                        Thread.sleep(1000);
-                        
-                    }
+                    
 
-                    setOperacionModbusEnProgreso(true);
                     balastoCtrl.refrescarVista(this);
-                    setOperacionModbusEnProgreso(false);
+
 
                     break;
-                case 1:
-            
+                case 1: //caso del panel de configuracion de balastos.
+                    
+//                    OperacionesBalastoConfiguracionDaoJmodbus.setMode(OperacionesBalastoConfiguracionDaoJmodbus.MODE_CONFIG);
+
                     ColaOperaciones cola = ColaOperaciones.getInstancia();
-                    
                     OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
-                    
                     hilo.setLabel(getStatusLabel());
                     hilo.getLabel().setText("Cargando elementos de la configuracion de balastos...");
                     hilo.setBar(getBarraProgreso_jProgressBar());
-//                    this.getStatusLabel().setText("Verificando la red...");
-                    cola.addObserver(hilo);
-                    
-                    hilo.execute();
-                    
-//                    hilo.get();
-                    //                balastoConfigCtrl.refrescarVista(this);
-//                    this.getStatusLabel().setText("Se termino de cargar la lista de balastos en la red");
+                    cola.getCola().enqueue(hilo);
+                    cola.iniciarOperaciones();
+
+
+
+
                     break;
                 case 2:
+                    
 
                     break;
 
             }
-        } catch (InterruptedException ex) {
-            Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, "Error en la seleccion de los tabbs", ex);
 //        } catch (ExecutionException ex) {
 //            Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -3729,9 +3726,20 @@ public class PpalView extends javax.swing.JFrame {
     }//GEN-LAST:event_balastoConfiguracion_jComboBoxPropertyChange
 
     private void balastoConfiguracion_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoConfiguracion_jComboBoxActionPerformed
-       
-        
+
+//         ColaOperaciones cola = ColaOperaciones.getInstancia();
+//                    
+//                    OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.);
+//                    
+//                    hilo.setLabel(getStatusLabel());
+//                    hilo.getLabel().setText("Cargando elementos de la configuracion de balastos...");
+//                    hilo.setBar(getBarraProgreso_jProgressBar());
+//                    cola.getCola().enqueue(hilo);
+//                    cola.iniciarOperaciones();
+
         balastoConfigCtrl.showSelectedElement(balastoConfiguracion_jComboBox.getSelectedItem().toString(), this);
+
+
     }//GEN-LAST:event_balastoConfiguracion_jComboBoxActionPerformed
 
     private void balastoEscribirConfig_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoEscribirConfig_jButtonActionPerformed

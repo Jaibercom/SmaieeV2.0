@@ -4,7 +4,11 @@
  */
 package com.isolux.hilos;
 
+import com.isolux.dao.jmodbus.BalastoConfiguracionDAOJmodbus;
+import com.isolux.dao.jmodbus.ElementoDAOJmobdus;
 import com.isolux.dao.jmodbus.OperacionesBalastoConfiguracionDaoJmodbus;
+import com.isolux.dao.modbus.DAOJamod;
+import com.isolux.dao.modbus.DAOJmodbus;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -90,6 +94,10 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
         boolean termino = false;
         publish(50);
 
+        if (obcdj.getMode()==OperacionesBalastoConfiguracionDaoJmodbus.MODE_RUN) {
+            obcdj.setMode(OperacionesBalastoConfiguracionDaoJmodbus.MODE_CONFIG);
+        }
+        
         switch (operacion) {
             case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_CAMBIAR_DIR_BALASTO:
 
@@ -121,14 +129,14 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
                 termino = true;
                 break;
 
-
-
+                case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_SELECCIONAR_BALASTO:
+                obcdj.seleccionaBalasto(parm1);
+                termino=true;
+                break;
 
             default: //se seleccionó el balasto y se manda para que titile.
-
-//                OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_SELECCIONAR_BALASTO;
-                obcdj.seleccionaBalasto(parm1);
-
+                Logger.getLogger(OperacionesDaoHilo.class.getName()).log(Level.INFO, "Se escogio un valor invalido. se ignorará la orden");
+                termino=true;
                 break;
         }
 

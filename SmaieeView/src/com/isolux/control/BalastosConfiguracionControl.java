@@ -13,6 +13,7 @@ import com.isolux.dao.jmodbus.OperacionesElemento_Interface;
 import com.isolux.dao.jmodbus.UtilsJmodbus;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
+import com.isolux.hilos.ColaOperaciones;
 import com.isolux.hilos.OperacionesDaoHilo;
 import com.isolux.utils.Conversion;
 import com.isolux.utils.Validacion;
@@ -35,6 +36,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
     Balasto balasto = new Balasto();
     int bitsLectura = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
+    ColaOperaciones cola = ColaOperaciones.getInstancia();// cola de operaciones de configuracion.
 
     public BalastosConfiguracionControl(DAOJmodbus dao) {
         super(dao);
@@ -105,10 +107,6 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         int balastNumber = balasto.getBalastNumber();
 
         try {
-            //MODO Escritura
-            if (getMode() == MODE_RUN) {
-                setMode(MODE_CONFIG);
-            }
 
 
             //Init offset.
@@ -200,15 +198,15 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             boolean escribioBuffer = getDao().setRegValue(initOffset, balastArray);
             //            addElement(balastNumber);// agrega el indice a la lista de balastros en memoria
 
-            
-            
+
+
 //            Luego escribimos el valor
             OperacionesDaoHilo h = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_ESCRIBIR_VALORES, balastNumber);
             h.execute();
             h.setBar(ppalView.getBarraProgreso_jProgressBar());
             h.setLabel(ppalView.getStatusLabel());
-            h.getLabel().setText("Escribiendo la informacion del balasto "+balastNumber);
-            
+            h.getLabel().setText("Escribiendo la informacion del balasto " + balastNumber);
+
             h.get();
             //MODO
 //            setMode(MODE_RUN);
@@ -217,14 +215,14 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             ppalView.getStatusLabel().setText("Balasto numero " + balastNumber + " guardado correctamente.");
 //            System.out.println("Balast No.:" + balastNumber + " saved.");
             state = true;
-            
-            h=new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES,balastNumber);
+
+            h = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES, balastNumber);
             h.execute();
             h.setBar(ppalView.getBarraProgreso_jProgressBar());
             h.setLabel(ppalView.getStatusLabel());
-            h.getLabel().setText("Volviendo a leer la informacion del balasto "+balastNumber);
-            
-            
+            h.getLabel().setText("Volviendo a leer la informacion del balasto " + balastNumber);
+
+
         } catch (Exception e) {
             state = false;
             Logger.getLogger(BalastoConfiguracionDAOJmodbus.class.getName()).log(Level.SEVERE, "ERROR guardando el balasto " + balastNumber, e);
@@ -254,12 +252,16 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         try {
             //        BalastoDAOJmodbus dao=new BalastoDAOJmodbus(new DAOJmodbus());
 
+            Integer numeroBalasto = Integer.parseInt(num);
+            
+
             OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES, Integer.parseInt(num));
             hilo.setLabel(ppalView.getStatusLabel());
             hilo.setBar(ppalView.getBarraProgreso_jProgressBar());
+            cola.getCola().enqueue(hilo);
 
-            hilo.execute();
-            hilo.get();
+//            hilo.execute();
+//            hilo.get();
             Balasto selectedBalast = BalastoDAOJmodbus.readBalast(Integer.parseInt(num));
             balasto = selectedBalast;
             ppalView.getBalastoDir_jTextField().setText(String.valueOf(selectedBalast.getDir()));
@@ -275,6 +277,21 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
             gruposPert(num);
             ecenasPert(num);
+
+
+            OperacionesDaoHilo hilo1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_SELECCIONAR_BALASTO, numeroBalasto);
+
+            hilo1.setLabel(ppalView.getStatusLabel());
+            hilo1.getLabel().setText("Seleccionando visualmente balasto...");
+            hilo1.setBar(ppalView.getBarraProgreso_jProgressBar());
+            cola.getCola().enqueue(hilo1);
+
+
+            //Inicimos todas las operaciones
+            cola.iniciarOperaciones();
+
+//            setSingleReg(2000, numeroBalasto);
+//            setSingleReg(1, 25);
 
 
             //creamos el balasto con la nueva informacion
