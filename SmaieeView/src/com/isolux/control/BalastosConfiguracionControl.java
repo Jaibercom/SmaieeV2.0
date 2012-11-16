@@ -216,16 +216,22 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
             Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "Balasto numero {0} guardado correctamente.", balastNumber);
             ppalView.getStatusLabel().setText("Balasto numero " + balastNumber + " guardado correctamente.");
-//            System.out.println("Balast No.:" + balastNumber + " saved.");
+           
+            JOptionPane.showMessageDialog(ppalView, "Escritura en balasto exitosa");
+            
+            
+            
+            System.out.println("Balast No.:" + balastNumber + " saved.");
             state = true;
 
            OperacionesDaoHilo h1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES, balastNumber);
-            h1.execute();
             h1.setBar(ppalView.getBarraProgreso_jProgressBar());
             h1.setLabel(ppalView.getStatusLabel());
             h1.getLabel().setText("Volviendo a leer la informacion del balasto " + balastNumber);
+            h1.execute();
             
             showSelectedElement(Integer.toString(balastNumber), ppalView);
+            h1.get();
 
 
         } catch (Exception e) {

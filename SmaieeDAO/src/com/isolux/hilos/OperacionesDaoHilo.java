@@ -83,12 +83,12 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
     @Override
     protected Boolean doInBackground() throws Exception {
 
-        int i = 0;
-        while (ColaOperaciones.getInstancia().isProgreso()==true) {
-            Thread.sleep(100);
-            publish(i);
-            i++;
-        }
+//        int i = 0;
+//        while (ColaOperaciones.getInstancia().isProgreso()==true) {
+//            Thread.sleep(50);
+//            publish(i);
+//            i++;
+//        }
 
         ColaOperaciones.getInstancia().setProgreso(true);
         boolean termino = false;
@@ -97,7 +97,7 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
         if (obcdj.getMode()==OperacionesBalastoConfiguracionDaoJmodbus.MODE_RUN) {
             obcdj.setMode(OperacionesBalastoConfiguracionDaoJmodbus.MODE_CONFIG);
         }
-        
+        publish(70);
         switch (operacion) {
             case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_CAMBIAR_DIR_BALASTO:
 
