@@ -4,6 +4,7 @@
  */
 package com.isolux.utils;
 
+import com.isolux.dao.Conversion;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -99,4 +100,17 @@ public class ConversionTest {
         // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
     }
+    
+    @Test
+    public void testIntToBinaryArray(){
+        System.out.println(" de entero a array binario");
+        int[] resultado = {1,0,0,0,1,0,1,1};
+//        int[] resultado = {1,1,0,1,0,0,0,1};
+        int  numero = 139;
+        int[] resultadoFuncion = Conversion.intToBinaryArray(numero);
+        
+        assertEquals(resultadoFuncion, resultado);
+    }
+    
+    
 }

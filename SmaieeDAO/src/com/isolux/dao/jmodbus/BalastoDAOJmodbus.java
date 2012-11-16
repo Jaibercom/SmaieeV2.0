@@ -1,11 +1,11 @@
 package com.isolux.dao.jmodbus;
 
 import com.isolux.bo.Balasto;
+import com.isolux.dao.Conversion;
 import com.isolux.dao.Utils;
 import com.isolux.dao.modbus.DAO4j;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
-import com.isolux.test.DAOJmodbusTest;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -233,6 +233,15 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
             balasto.setLf(balastArray[13]);
             balasto.setLx(balastArray[14]);
             balasto.setPot(balastArray[15]);
+            
+            
+//            
+            int numero=balastArray[16];
+            int[] arraybinario = Conversion.intToBinaryArray(numero);
+            
+            balasto.setGruposAfectados(arraybinario);
+            //            balasto.setGruposAfectados();
+            
 
             System.out.println("Balast number " + balastNumber + " readed.");
 

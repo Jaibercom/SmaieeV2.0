@@ -15,16 +15,14 @@ import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.hilos.ColaOperaciones;
 import com.isolux.hilos.OperacionesDaoHilo;
-import com.isolux.utils.Conversion;
+import com.isolux.dao.Conversion;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
-import java.util.List;
+import com.isolux.view.componentes.SliderConValor;
 import java.util.Stack;
 import java.util.Vector;
-import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.naming.BinaryRefAddr;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 
@@ -37,9 +35,14 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
     Balasto balasto = new Balasto();
     int bitsLectura = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
     ColaOperaciones cola = ColaOperaciones.getInstancia();// cola de operaciones de configuracion.
+    private Vector<JCheckBox> gruposJCheckboxes = new Vector<JCheckBox>();
+    private Vector<SliderConValor> escenasSliders= new Vector<SliderConValor>();
+    
+    
 
     public BalastosConfiguracionControl(DAOJmodbus dao) {
         super(dao);
+        
     }
 
     public BalastosConfiguracionControl() {
@@ -259,9 +262,9 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             hilo.setLabel(ppalView.getStatusLabel());
             hilo.setBar(ppalView.getBarraProgreso_jProgressBar());
 //            cola.getCola().enqueue(hilo);
-            hilo.getLabel().setText("Cargando los valores del balasto "+num);
+            hilo.getLabel().setText("Cargando los valores del balasto " + num);
             hilo.execute();
-            hilo.get();
+//            hilo.get();
             Balasto selectedBalast = BalastoDAOJmodbus.readBalast(Integer.parseInt(num));
             balasto = selectedBalast;
             ppalView.getBalastoDir_jTextField().setText(String.valueOf(selectedBalast.getDir()));
@@ -275,8 +278,8 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             ppalView.getjLabel41().setText(num);
             //        ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
 
-            gruposPert(num);
-            ecenasPert(num);
+            gruposPert(num, ppalView);
+//            ecenasPert(num, ppalView);
 
 
             OperacionesDaoHilo hilo1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_SELECCIONAR_BALASTO, numeroBalasto);
@@ -297,7 +300,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
             //creamos el balasto con la nueva informacion
         } catch (Exception ex) {
-            Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, "Probelma mostrando la informacion del  balasto "+num, ex);
         }
 
 //        } catch (InterruptedException ex) {
@@ -369,8 +372,25 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
      *
      * @param numBalasto balasto al cual se le van a buscar los grupos
      */
-    public void gruposPert(String numBalasto) {
-//        throw new UnsupportedOperationException("Not yet implemented");
+    public void gruposPert(String numBalasto, PpalView ppalView) {
+        
+        inicializandoEscenasConSliders(ppalView);
+        inicializandoGruposCheckboxes(ppalView);
+        
+        int[] gruposAfectados = balasto.getGruposAfectados();
+
+        int i = 0;
+        for (int ele : gruposAfectados) {
+            if (ele == 1) {
+                gruposJCheckboxes.elementAt(ele).setSelected(true);
+            } else {
+                gruposJCheckboxes.elementAt(ele).setSelected(false);
+            }
+            i++;
+        }
+
+
+        //        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     /**
@@ -379,8 +399,18 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
      *
      * @param numBalasto
      */
-    private void ecenasPert(String numBalasto) {
-//        throw new UnsupportedOperationException("Not yet implemented");
+    private void ecenasPert(String numBalasto, PpalView ppalView) throws Exception{
+        int[] escenasAfectadas = balasto.getEscenasAfectadas();
+
+        int i = 0;
+        for (int ele : escenasAfectadas) {
+            if (ele == 1) {
+                escenasSliders.elementAt(ele).getCheckBox().setSelected(true);
+            } else {
+                escenasSliders.elementAt(ele).getCheckBox().setSelected(false);
+            }
+            i++;
+        }
     }
 
     private void buscarElementos(String numBalasto) {
@@ -540,4 +570,55 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         //teniendo contruido el binario en texto procedemos a convertirlo a entero
         balasto.setNivelesEscenas(escenasAfectadas);
     }
+
+    public Vector getGruposJCheckboxes() {
+        return gruposJCheckboxes;
+    }
+
+    public void setGruposJCheckboxes(Vector gruposJCheckbox) {
+        this.gruposJCheckboxes = gruposJCheckbox;
+    }
+    
+    private void inicializandoGruposCheckboxes(PpalView ppalView){
+        if (gruposJCheckboxes.isEmpty()) {
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox1());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox2());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox3());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox4());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox5());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox6());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox7());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox8());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox9());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox10());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox11());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox12());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox13());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox14());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox15());
+            gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox16());
+        }
+        
+    };
+    
+    private void inicializandoEscenasConSliders(PpalView ppalView){
+        if (escenasSliders.isEmpty()) {
+            escenasSliders.addElement(ppalView.getSliderConValor1());
+            escenasSliders.addElement(ppalView.getSliderConValor2());
+            escenasSliders.addElement(ppalView.getSliderConValor3());
+            escenasSliders.addElement(ppalView.getSliderConValor4());
+            escenasSliders.addElement(ppalView.getSliderConValor5());
+            escenasSliders.addElement(ppalView.getSliderConValor6());
+            escenasSliders.addElement(ppalView.getSliderConValor7());
+            escenasSliders.addElement(ppalView.getSliderConValor8());
+            escenasSliders.addElement(ppalView.getSliderConValor9());
+            escenasSliders.addElement(ppalView.getSliderConValor10());
+            escenasSliders.addElement(ppalView.getSliderConValor11());
+            escenasSliders.addElement(ppalView.getSliderConValor12());
+            escenasSliders.addElement(ppalView.getSliderConValor13());
+            escenasSliders.addElement(ppalView.getSliderConValor14());
+            escenasSliders.addElement(ppalView.getSliderConValor15());
+            escenasSliders.addElement(ppalView.getSliderConValor16());
+        }
+ }
 }

@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.isolux.utils;
+package com.isolux.dao;
 
+import com.isolux.dao.jmodbus.UtilsJmodbus;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,9 +37,20 @@ public class Conversion {
      * devuelve. Usa las constantes LITTLEENDIAN o BIGENDIAN
      * @return Integer[] que contiene la representacion
      */
-    public static Integer[] intToBinaryarray(Integer num, int modo) {
-        Integer[] s = null;
-
+    public static int[] intToBinaryArray(int num) {
+        
+        
+        String binaryString = Integer.toBinaryString(num);
+        StringBuilder bin1=new StringBuilder(binaryString);
+        String bin = Utils.getCeros(binaryString,8);
+        int[] s = new int[bin.length()];
+        for (int i = 0; i < binaryString.length();i++) {
+            String df = Character.toString(bin.charAt(i));
+            int parseInt = Integer.parseInt(df);
+            s[i]=parseInt;
+        }
+        
+        
         return s;
     }
 

@@ -82,7 +82,7 @@ public class DAOJmodbus {
      *
      * @return
      */
-    private int[] getRegValue60(int pos, int length) {
+    synchronized private int[] getRegValue60(int pos, int length) {
         int[] result;
         if (length > 60) {
             result = new int[0];
@@ -101,7 +101,7 @@ public class DAOJmodbus {
      * Set information in the card. unit id, offset, length, transaction id,
      * values to write array.
      */
-    private boolean setRegValue60(int pos, int[] values) {
+    synchronized private boolean setRegValue60(int pos, int[] values) {
         boolean result = false;
         int length = values.length;
         if (length > 60) {
@@ -132,7 +132,7 @@ public class DAOJmodbus {
      *
      * @return
      */
-    private int[] getRegValueNormal(int pos, int length) {
+    synchronized private int[] getRegValueNormal(int pos, int length) {
         int[] result = new int[length];
         master.readInputRegisters(1, pos, length, 1, result);
         return result;
@@ -142,7 +142,7 @@ public class DAOJmodbus {
      * Set information in the card. unit id, offset, length, transaction id,
      * values to write array.
      */
-    private boolean setRegValueNormal(int pos, int[] values) throws Exception {
+    synchronized private boolean setRegValueNormal(int pos, int[] values) throws Exception {
         boolean result = master.writeMultipleRegisters(1, pos, values.length, 1, values);
         return result;
     }
@@ -162,7 +162,7 @@ public class DAOJmodbus {
      * @return int[] result, que representa el array construido sin importar su
      * extension.
      */
-    private int[] getRegValueGeneral(int pos, int length, int len) {
+    synchronized private int[] getRegValueGeneral(int pos, int length, int len) {
 
         int[] result = new int[0];
 
@@ -214,7 +214,7 @@ public class DAOJmodbus {
      * @param values
      * @return
      */
-    private boolean setRegValue128(int pos, int[] values) {
+    synchronized private boolean setRegValue128(int pos, int[] values) {
         boolean result = false;
         int length = values.length;
         if (length == 128) {

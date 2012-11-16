@@ -2864,7 +2864,7 @@ public class PpalView extends javax.swing.JFrame {
         jLabel34.setText("Conexion");
 
         jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/connection.jpg"))); // NOI18N
-        jLabel45.setText("jLabel45");
+        jLabel45.setText("status");
         jLabel45.setMaximumSize(new java.awt.Dimension(33, 9));
         jLabel45.setMinimumSize(new java.awt.Dimension(33, 9));
 
@@ -2881,13 +2881,13 @@ public class PpalView extends javax.swing.JFrame {
         statusBarLayout.setHorizontalGroup(
             statusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statusBarLayout.createSequentialGroup()
-                .addContainerGap(69, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel34)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(276, 276, 276)
+                .addComponent(jLabel45, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addGap(140, 140, 140)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                .addGap(230, 230, 230)
                 .addComponent(statusLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(barraProgreso_jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3502,30 +3502,30 @@ public class PpalView extends javax.swing.JFrame {
 
             switch (numeroPanel) {
                 case 0:
-                    
+
 
                     balastoCtrl.refrescarVista(this);
 
 
                     break;
                 case 1: //caso del panel de configuracion de balastos.
-                    
+
 //                    OperacionesBalastoConfiguracionDaoJmodbus.setMode(OperacionesBalastoConfiguracionDaoJmodbus.MODE_CONFIG);
 
-                    ColaOperaciones cola = ColaOperaciones.getInstancia();
+//                    ColaOperaciones cola = ColaOperaciones.getInstancia();
                     OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
                     hilo.setLabel(getStatusLabel());
                     hilo.getLabel().setText("Cargando elementos de la configuracion de balastos...");
                     hilo.setBar(getBarraProgreso_jProgressBar());
-                    cola.getCola().enqueue(hilo);
-                    cola.iniciarOperaciones();
-
+//                    cola.getCola().enqueue(hilo);
+//                    cola.iniciarOperaciones();
+                    hilo.execute();
 
 
 
                     break;
                 case 2:
-                    
+
 
                     break;
 
