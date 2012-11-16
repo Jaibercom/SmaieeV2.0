@@ -3727,15 +3727,6 @@ public class PpalView extends javax.swing.JFrame {
 
     private void balastoConfiguracion_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoConfiguracion_jComboBoxActionPerformed
 
-//         ColaOperaciones cola = ColaOperaciones.getInstancia();
-//                    
-//                    OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.);
-//                    
-//                    hilo.setLabel(getStatusLabel());
-//                    hilo.getLabel().setText("Cargando elementos de la configuracion de balastos...");
-//                    hilo.setBar(getBarraProgreso_jProgressBar());
-//                    cola.getCola().enqueue(hilo);
-//                    cola.iniciarOperaciones();
 
         balastoConfigCtrl.showSelectedElement(balastoConfiguracion_jComboBox.getSelectedItem().toString(), this);
 

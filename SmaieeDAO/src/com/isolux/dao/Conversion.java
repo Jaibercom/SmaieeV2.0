@@ -41,8 +41,12 @@ public class Conversion {
         
         
         String binaryString = Integer.toBinaryString(num);
-        StringBuilder bin1=new StringBuilder(binaryString);
-        String bin = Utils.getCeros(binaryString,8);
+        StringBuilder original=new StringBuilder(binaryString);
+        String completado=Utils.getCeros(original.toString(),8);
+        StringBuilder aReversar=new StringBuilder(completado);
+        String bin=aReversar.reverse().toString();
+        
+        
         int[] s = new int[bin.length()];
         for (int i = 0; i < binaryString.length();i++) {
             String df = Character.toString(bin.charAt(i));

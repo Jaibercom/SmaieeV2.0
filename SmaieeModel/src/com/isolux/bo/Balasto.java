@@ -74,6 +74,26 @@ public class Balasto extends Elemento {
 
     }
 
+    public Balasto(int balastNumber, int level, int activation, String name, int dir, int min, int max, int ft, int fr, int lf, int lx, int pot, int[] gruposAfectados, int[] escenasAfectadas, int[] nivelesEscenas) {
+        this.balastNumber = balastNumber;
+        this.level = level;
+        this.activation = activation;
+        this.name = name;
+        this.dir = dir;
+        this.min = min;
+        this.max = max;
+        this.ft = ft;
+        this.fr = fr;
+        this.lf = lf;
+        this.lx = lx;
+        this.pot = pot;
+        this.gruposAfectados = gruposAfectados;
+        this.escenasAfectadas = escenasAfectadas;
+        this.nivelesEscenas = nivelesEscenas;
+    }
+    
+    
+
     /**
      * Constructor básico para iniciar un balasto solo con el nombre la
      * dirección y el numero de balasto.

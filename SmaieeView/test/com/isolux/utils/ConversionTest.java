@@ -37,32 +37,9 @@ public class ConversionTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getModoEscritura method, of class Conversion.
-     */
-    @Test
-    public void testGetModoEscritura() {
-        System.out.println("getModoEscritura");
-        Conversion instance = new Conversion();
-        int expResult = 0;
-        int result = instance.getModoEscritura();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+  
 
-    /**
-     * Test of setModoEscritura method, of class Conversion.
-     */
-    @Test
-    public void testSetModoEscritura() {
-        System.out.println("setModoEscritura");
-        int modoEscritura = 0;
-        Conversion instance = new Conversion();
-        instance.setModoEscritura(modoEscritura);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of intToBinaryarray method, of class Conversion.
@@ -93,7 +70,7 @@ public class ConversionTest {
     @Test
     public void testIntegerArrayToInt() {
         System.out.println("integerArrayToInt");
-        int[] array = {1,0,0,0,1,0,1,1};
+        int[] array = {1,1,0,1,0,0,0,1};
         int expResult = 139;
         int result = Conversion.integerArrayToInt(array);
         assertEquals(expResult, result);
@@ -104,12 +81,15 @@ public class ConversionTest {
     @Test
     public void testIntToBinaryArray(){
         System.out.println(" de entero a array binario");
-        int[] resultado = {1,0,0,0,1,0,1,1};
-//        int[] resultado = {1,1,0,1,0,0,0,1};
-        int  numero = 139;
+//        int[] resultado = {1,0,0,0,1,0,1,1};
+        int[] resultado = {1,1,1,1,1,0,0,0};
+        int  numero = 31;
         int[] resultadoFuncion = Conversion.intToBinaryArray(numero);
+       
+        assertArrayEquals(resultadoFuncion, resultado);
         
-        assertEquals(resultadoFuncion, resultado);
+        
+        
     }
     
     

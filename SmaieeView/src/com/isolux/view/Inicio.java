@@ -341,8 +341,8 @@ public class Inicio extends javax.swing.JFrame {
                 try {
                    
                     ce.printStackTrace();
-                    conn.cancel(true);
-                    conn.finalize();
+//                    conn.cancel(true);
+//                    conn.finalize();
                     conectar_jButton.setEnabled(true);
                     ipTextField.setEnabled(true);
                     jLabel3.setText("No se puede establecer una conexion!");

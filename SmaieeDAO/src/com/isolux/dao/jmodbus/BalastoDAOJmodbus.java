@@ -9,6 +9,9 @@ import com.isolux.dao.properties.PropHandler;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
  *
@@ -16,7 +19,7 @@ import java.util.HashMap;
  */
 public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
 
-    private static DAOJmodbus dao=DAOJmodbus.getInstancia();
+    private static DAOJmodbus dao = DAOJmodbus.getInstancia();
 
     public static DAOJmodbus getDao() {
         return dao;
@@ -26,8 +29,6 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
         BalastoDAOJmodbus.dao = dao;
     }
 
-    
-    
     public BalastoDAOJmodbus(DAOJmodbus dao) {
         this.dao = dao;
     }
@@ -89,20 +90,21 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
             balastArray[14] = balasto.getLx();              //2014
             balastArray[15] = balasto.getPot();             //2015
 
-        
+
 
 
             /**
-             * Numero dentro del array que corresponde al offset desde donde se empezarán a guardar los datos de los grupos
+             * Numero dentro del array que corresponde al offset desde donde se
+             * empezarán a guardar los datos de los grupos
              */
             int gruposOffset = 16;
             int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
             int[] gruposAfect = balasto.getGruposAfectados();
-            int cuantosElementos=16;
+            int cuantosElementos = 16;
             gruposAfect = UtilsJmodbus.obtenerElementosAfectados(balastArray, gruposOffset, cuantosElementos, tamReg, 8, 8);
             balasto.setGruposAfectados(gruposAfect);
-           
-            
+
+
 
 
             //Save array
@@ -184,7 +186,7 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
      * @param balast
      */
     public static Balasto readBalast(int balastNumber) {
-        Balasto balasto = new Balasto();
+        Balasto balastoLocal = new Balasto();
 
         try {
             //MODO
@@ -197,9 +199,9 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
             int[] balastArray = dao.getRegValue(initOffset, Integer.parseInt(PropHandler.getProperty("balast.memory.size")));
 
 
-            balasto.setBalastNumber(balastArray[0]);
-            balasto.setLevel(balastArray[1]);
-            balasto.setActivation(balastArray[2]);
+            balastoLocal.setBalastNumber(balastArray[0]);
+            balastoLocal.setLevel(balastArray[1]);
+            balastoLocal.setActivation(balastArray[2]);
 
             //           //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
             //name
@@ -223,36 +225,41 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
             //            balasto.setName(new String(totalBytes.toByteArray()));
             //</editor-fold>
 
-            balasto.setName(UtilsJmodbus.desencriptarNombre(balastArray, 3, 5));
+            balastoLocal.setName(UtilsJmodbus.desencriptarNombre(balastArray, 3, 5));
 
-            balasto.setDir(balastArray[8]);
-            balasto.setMin(balastArray[9]);
-            balasto.setMax(balastArray[10]);
-            balasto.setFt(balastArray[11]);
-            balasto.setFr(balastArray[12]);
-            balasto.setLf(balastArray[13]);
-            balasto.setLx(balastArray[14]);
-            balasto.setPot(balastArray[15]);
-            
-            
-//            
-            int numero=balastArray[16];
-            int[] arraybinario = Conversion.intToBinaryArray(numero);
-            
-            balasto.setGruposAfectados(arraybinario);
-            //            balasto.setGruposAfectados();
-            
+            balastoLocal.setDir(balastArray[8]);
+            balastoLocal.setMin(balastArray[9]);
+            balastoLocal.setMax(balastArray[10]);
+            balastoLocal.setFt(balastArray[11]);
+            balastoLocal.setFr(balastArray[12]);
+            balastoLocal.setLf(balastArray[13]);
+            balastoLocal.setLx(balastArray[14]);
+            balastoLocal.setPot(balastArray[15]);
+
+
+//  Cuando se escriben numeros superiores a 8 biots los lee y puede terminar creando un array de mas de los permitidos
+            int numeroMenosS = balastArray[16];
+            int[] grupoMenosSignificativo = Conversion.intToBinaryArray(numeroMenosS);
+            int numeroMasS = balastArray[17];
+            int[] grupoMasSignificativo = Conversion.intToBinaryArray(numeroMasS);
+
+            //concatenamos los arreglos
+            int[] gruposAfectados = ArrayUtils.addAll(grupoMenosSignificativo, grupoMasSignificativo);
+            //agregamos los grupos afectados 
+            balastoLocal.setGruposAfectados(gruposAfectados);
+
 
             System.out.println("Balast number " + balastNumber + " readed.");
 
             //MODO
-            setSingleReg(0, 0);
+//            setSingleReg(0, 0);
 
         } catch (Exception e) {
-            e.printStackTrace();
+
+            Logger.getLogger(BalastoDAOJmodbus.class.getName()).log(Level.SEVERE, "Error leyendo la informacion del balasto " + balastNumber, e);
         }
 
-        return balasto;
+        return balastoLocal;
     }
 
     /**
