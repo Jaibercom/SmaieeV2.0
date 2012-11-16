@@ -36,13 +36,11 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
     int bitsLectura = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
     ColaOperaciones cola = ColaOperaciones.getInstancia();// cola de operaciones de configuracion.
     private Vector<JCheckBox> gruposJCheckboxes = new Vector<JCheckBox>();
-    private Vector<SliderConValor> escenasSliders= new Vector<SliderConValor>();
-    
-    
+    private Vector<SliderConValor> escenasSliders = new Vector<SliderConValor>();
 
     public BalastosConfiguracionControl(DAOJmodbus dao) {
         super(dao);
-        
+
     }
 
     public BalastosConfiguracionControl() {
@@ -140,63 +138,23 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             //debemos convertir el array de enteros a num
             int[] gruposAfectMenosS = balasto.getGruposAfectados();
 
-//vamos aqui            
-
-//            int j=16;
-//            int[] gruposAfect = balasto.getGruposAfectados();
-//            for (int i = 0; i < 15; i++) {
-//                 
-//                 balastArray[j]=gruposAfect[i];
-//                 j++;
-//            }
-
-
-            /**
-             * Numero dentro del array que corresponde al offset desde donde se
-             * empezarán a guardar los datos de los grupos //
-             */
-//            int gruposOffset = 16;
-//            int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
-//            int[] gruposAfect = balasto.getGruposAfectados();
-//            int cuantosElementos = 16;
-//            gruposAfect = UtilsJmodbus.obtenerElementosAfectados(balastArray, gruposOffset, cuantosElementos, tamReg, 8, 8);
-//            int[] grupomenoss = new int[8];
-//            int[] grupoMass = new int[8];
-//            System.arraycopy(gruposAfect, 8, grupomenoss, 0, bitsLectura);
-//            System.arraycopy(gruposAfect, 8, grupoMass, 0, bitsLectura);
-//            //<editor-fold defaultstate="collapsed" desc="Dividimos el arreglo gruposAfect en dos">
-//            int j=0;
-//            for (int i = 7; i >=0 ; i--) {
-//                grupomenoss[j]=gruposAfect[i];
-//                j++;
-//            }
-//            
-//            j=0;
-//            for (int i = 15; i >= 8; i--) {
-//                grupoMass[j]=gruposAfect[i];
-//                j++;
-//            }
-//            //</editor-fold>
-//            Vector<int[]> partesDelBinario = Conversion.integerArrayTo2IntegerArrayBinarios(gruposAfect);
-//            
-//            balastArray[16] = Conversion.integerArrayToInt(partesDelBinario.elementAt(0));
-//            balastArray[17] = Conversion.integerArrayToInt(partesDelBinario.elementAt(1));
             balastArray[16] = Conversion.integerArrayToInt(gruposAfectMenosS);
+
 
             /*
              * Cargamos la informacion de escenas
              */
-//            int scenesOffset = 18;
-//            int tamReg1 = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
-//            int[] escenasAfect = balasto.getEscenasAfectadas();
-//            int cuantosElementos1 = 16;
-//            escenasAfect = UtilsJmodbus.obtenerElementosAfectados(balastArray, scenesOffset, cuantosElementos1, tamReg1, 8, 8);
-//            balasto.setEscenasAfectadas(escenasAfect);
+            int[] escenasAfect = balasto.getEscenasAfectadas();
+            balastArray[18] = Conversion.integerArrayToInt(escenasAfect);
 
 
             /*
              * Cargamos la informacion de los niveles de cada escena
              */
+
+
+
+
             //Save array
             boolean escribioBuffer = getDao().setRegValue(initOffset, balastArray);
             //            addElement(balastNumber);// agrega el indice a la lista de balastros en memoria
@@ -205,33 +163,32 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
 //            Luego escribimos el valor
             OperacionesDaoHilo h = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_ESCRIBIR_VALORES, balastNumber);
-            h.execute();
             h.setBar(ppalView.getBarraProgreso_jProgressBar());
             h.setLabel(ppalView.getStatusLabel());
             h.getLabel().setText("Escribiendo la informacion del balasto " + balastNumber);
-
+            h.execute();
             h.get();
             //MODO
 //            setMode(MODE_RUN);
 
             Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "Balasto numero {0} guardado correctamente.", balastNumber);
             ppalView.getStatusLabel().setText("Balasto numero " + balastNumber + " guardado correctamente.");
-           
-            JOptionPane.showMessageDialog(ppalView, "Escritura en balasto exitosa");
-            
-            
-            
+
+            JOptionPane.showMessageDialog(ppalView, ("La escritura en balasto" +balastNumber+" fue exitosa"));
+
+
+
             System.out.println("Balast No.:" + balastNumber + " saved.");
             state = true;
 
-           OperacionesDaoHilo h1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES, balastNumber);
+            OperacionesDaoHilo h1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES, balastNumber);
             h1.setBar(ppalView.getBarraProgreso_jProgressBar());
             h1.setLabel(ppalView.getStatusLabel());
             h1.getLabel().setText("Volviendo a leer la informacion del balasto " + balastNumber);
             h1.execute();
-            
-            showSelectedElement(Integer.toString(balastNumber), ppalView);
             h1.get();
+            showSelectedElement(Integer.toString(balastNumber), ppalView);
+
 
 
         } catch (Exception e) {
@@ -287,7 +244,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             //        ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
 
             gruposPert(num, ppalView);
-//            ecenasPert(num, ppalView);
+            ecenasPert(num, ppalView);
 
 
             OperacionesDaoHilo hilo1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_SELECCIONAR_BALASTO, numeroBalasto);
@@ -308,7 +265,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
             //creamos el balasto con la nueva informacion
         } catch (Exception ex) {
-            Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, "Probelma mostrando la informacion del  balasto "+num, ex);
+            Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, "Probelma mostrando la informacion del  balasto " + num, ex);
         }
 
 //        } catch (InterruptedException ex) {
@@ -381,20 +338,20 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
      * @param numBalasto balasto al cual se le van a buscar los grupos
      */
     public void gruposPert(String numBalasto, PpalView ppalView) {
-        
+
         inicializandoEscenasConSliders(ppalView);
         inicializandoGruposCheckboxes(ppalView);
-        
+
         int[] gruposAfectados = balasto.getGruposAfectados();
 
-        
-        for (int i=0; i<16; i++) {
+
+        for (int i = 0; i < 16; i++) {
             if (gruposAfectados[i] == 1) {
                 gruposJCheckboxes.elementAt(i).setSelected(true);
             } else {
                 gruposJCheckboxes.elementAt(i).setSelected(false);
             }
-           
+
         }
 
 
@@ -407,21 +364,20 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
      *
      * @param numBalasto
      */
-    private void ecenasPert(String numBalasto, PpalView ppalView) throws Exception{
+    private void ecenasPert(String numBalasto, PpalView ppalView) throws Exception {
         int[] escenasAfectadas = balasto.getEscenasAfectadas();
 
-        int i = 0;
-        for (int ele : escenasAfectadas) {
-            if (ele == 1) {
-                escenasSliders.elementAt(ele).getCheckBox().setSelected(true);
+
+        for (int i = 0; i < 16; i++) {
+            if (escenasAfectadas[i] == 1) {
+                escenasSliders.elementAt(i).getCheckBox().setSelected(true);
             } else {
-                escenasSliders.elementAt(ele).getCheckBox().setSelected(false);
+                escenasSliders.elementAt(i).getCheckBox().setSelected(false);
             }
-            i++;
+
         }
     }
 
-   
     public void recojerDatos(PpalView ppalView) {
 
 
@@ -584,8 +540,8 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
     public void setGruposJCheckboxes(Vector gruposJCheckbox) {
         this.gruposJCheckboxes = gruposJCheckbox;
     }
-    
-    private void inicializandoGruposCheckboxes(PpalView ppalView){
+
+    private void inicializandoGruposCheckboxes(PpalView ppalView) {
         if (gruposJCheckboxes.isEmpty()) {
             gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox1());
             gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox2());
@@ -604,10 +560,12 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox15());
             gruposJCheckboxes.addElement(ppalView.getGrupo_jCheckBox16());
         }
-        
-    };
+
+    }
+
+    ;
     
-    private void inicializandoEscenasConSliders(PpalView ppalView){
+    private void inicializandoEscenasConSliders(PpalView ppalView) {
         if (escenasSliders.isEmpty()) {
             escenasSliders.addElement(ppalView.getSliderConValor1());
             escenasSliders.addElement(ppalView.getSliderConValor2());
@@ -626,5 +584,5 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             escenasSliders.addElement(ppalView.getSliderConValor15());
             escenasSliders.addElement(ppalView.getSliderConValor16());
         }
- }
+    }
 }

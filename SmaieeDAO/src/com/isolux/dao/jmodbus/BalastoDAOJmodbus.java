@@ -97,6 +97,8 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
              * Numero dentro del array que corresponde al offset desde donde se
              * empezarán a guardar los datos de los grupos
              */
+ 
+            
             int gruposOffset = 16;
             int tamReg = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
             int[] gruposAfect = balasto.getGruposAfectados();
@@ -104,6 +106,15 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
             gruposAfect = UtilsJmodbus.obtenerElementosAfectados(balastArray, gruposOffset, cuantosElementos, tamReg, 8, 8);
             balasto.setGruposAfectados(gruposAfect);
 
+            /*
+             *Procesamos para guardar las escenas
+             */
+            int escenasOffset = 18;
+            int tamRegesc = Integer.parseInt(PropHandler.getProperty("memoria.bits.lectura"));
+            int[] escAfect = balasto.getEscenasAfectadas();
+            int cuantosElementoses = 16;
+            escAfect = UtilsJmodbus.obtenerElementosAfectados(balastArray, escenasOffset, cuantosElementoses, tamRegesc, 8, 8);
+            balasto.setEscenasAfectadas(escAfect);
 
 
 
@@ -236,19 +247,34 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
             balastoLocal.setLx(balastArray[14]);
             balastoLocal.setPot(balastArray[15]);
 
-
-//  Cuando se escriben numeros superiores a 8 biots los lee y puede terminar creando un array de mas de los permitidos
+            //<editor-fold defaultstate="collapsed" desc="Grupos en los que se incluye el balasto">
+            //  Cuando se escriben numeros superiores a 8 bits los lee y puede terminar creando un array de mas de los permitidos
             int numeroMenosS = balastArray[16];
             int[] grupoMenosSignificativo = Conversion.intToBinaryArray(numeroMenosS);
             int numeroMasS = balastArray[17];
             int[] grupoMasSignificativo = Conversion.intToBinaryArray(numeroMasS);
-
+            
             //concatenamos los arreglos
             int[] gruposAfectados = ArrayUtils.addAll(grupoMenosSignificativo, grupoMasSignificativo);
-            //agregamos los grupos afectados 
+            //agregamos los grupos afectados
             balastoLocal.setGruposAfectados(gruposAfectados);
+            //</editor-fold>
 
-
+            
+            //<editor-fold defaultstate="collapsed" desc="Escenas en las que se incluye el balasto actual">
+            //  Cuando se escriben numeros superiores a 8 bits los lee y puede terminar creando un array de mas de los permitidos
+            int numeroMenosSEsc = balastArray[18];
+            int[] escenaMenosSigni = Conversion.intToBinaryArray(numeroMenosSEsc);
+            int numeroMasSEsc = balastArray[19];
+            int[] escenaMasSigni = Conversion.intToBinaryArray(numeroMasSEsc);
+            
+            //concatenamos los arreglos
+            int[] escenasAfectadas = ArrayUtils.addAll(escenaMenosSigni, escenaMasSigni);
+            //agregamos los grupos afectados
+            balastoLocal.setEscenasAfectadas(escenasAfectadas);
+            //</editor-fold>
+            
+            
             System.out.println("Balast number " + balastNumber + " readed.");
 
             //MODO

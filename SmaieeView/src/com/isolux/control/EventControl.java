@@ -5,10 +5,10 @@
 package com.isolux.control;
 
 import com.isolux.bo.*;
+import com.isolux.dao.Conversion;
 import com.isolux.dao.Utils;
 import com.isolux.dao.jmodbus.EventoDAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
-import com.isolux.dao.Conversion;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 import com.isolux.view.ViewUtils;
