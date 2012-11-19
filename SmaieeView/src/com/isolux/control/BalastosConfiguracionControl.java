@@ -68,6 +68,8 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         filterAddedElements(ppalView);
         String[] elementosDisponibles = elementosDisponibles(ppalView);
         Validacion.actualizarCombo(ppalView.getBalastoConfiguracion_jComboBox(), elementosDisponibles, Validacion.BALASTOS_NO_DISPONIBLES);
+//        Agregamos el ultimo elemento del combo
+//        ppalView.getBalastoConfiguracion_jComboBox().addItem("255");
     }
 
     @Override
@@ -165,8 +167,8 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             //Save array
             boolean escribioBuffer = getDao().setRegValue(initOffset, balastArray);
             Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "El buffer respondio a la escritura {0}", escribioBuffer);
-            
-            
+
+
 //            Luego escribimos el valor
             OperacionesDaoHilo h = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_ESCRIBIR_VALORES, balastNumber);
             h.setBar(ppalView.getBarraProgreso_jProgressBar());
@@ -221,6 +223,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 //        throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    
     @Override
     public void showSelectedElement(String num, PpalView ppalView) {
         try {
@@ -268,7 +271,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 //            setSingleReg(2000, numeroBalasto);
 //            setSingleReg(1, 25);
 
-
+            hilo1.get();
             //creamos el balasto con la nueva informacion
         } catch (Exception ex) {
             Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, "Probelma mostrando la informacion del  balasto " + num, ex);
@@ -514,7 +517,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
     private void recojerNivelesEscenas(PpalView ppalView) {
         StringBuilder binario = new StringBuilder();
-        int[] escenasAfectadas = new int[16];
+        int[] nivelesAfectados = new int[16];
 
         Stack<Integer> componentes = new Stack<Integer>();
         //ingresamos los grupos a la pila
@@ -536,18 +539,18 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         componentes.push(ppalView.getSliderConValor16().getValor());
 
 
-        int i = escenasAfectadas.length - 1;
+        int i = nivelesAfectados.length - 1;
         while (!componentes.isEmpty()) {
             Integer pop = componentes.pop();
 
             binario.append(pop);
-            escenasAfectadas[i] = pop;
+            nivelesAfectados[i] = pop;
 
             i--;
         }
 
         //teniendo contruido el binario en texto procedemos a convertirlo a entero
-        balasto.setNivelesEscenas(escenasAfectadas);
+        balasto.setNivelesEscenas(nivelesAfectados);
     }
 
     public Vector getGruposJCheckboxes() {

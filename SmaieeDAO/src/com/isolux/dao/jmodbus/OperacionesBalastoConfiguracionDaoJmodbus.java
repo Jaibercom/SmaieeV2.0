@@ -95,7 +95,7 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      */
     public boolean leeValores(int numBalasto) throws Exception {
 
-        boolean f = false;
+            boolean f = false;
         
         System.out.println("Leyendo los datos del balasto " + numBalasto);
         try {
@@ -122,6 +122,10 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
 
     }
 
+    
+    
+    
+    
     /**
      * Método que cambia la dirección de un balasto a una nueva.
      *
@@ -185,7 +189,7 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
             setSingleReg(1, OPCODE_VERIFICA_RED);
 
         } catch (Exception e) {
-            System.out.println("ERROR: No se pudo mirar la informacion de los balastos en red");
+            System.out.println("ERROR: No se pudo leer la informacion de los balastos en red");
             Logger.getLogger(OperacionesBalastoConfiguracionDaoJmodbus.class.getName()).log(Level.SEVERE, "No se pudo leer los balastos en red.");
 
         }

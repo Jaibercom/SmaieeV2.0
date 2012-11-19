@@ -19,10 +19,9 @@ import javax.swing.ListModel;
  * @author EAFIT
  */
 public class ViewUtils {
- 
-    
+
     static Status statusWindow = null;
-    
+
     /**
      * Add selected balasts to the group.
      */
@@ -45,7 +44,7 @@ public class ViewUtils {
         for (Object object : selected) {
             defAvailModel.removeElement(object);
         }
-        
+
         //Group
         ListModel groupModel = selectedList.getModel();
         for (int i = 0; i < groupSize; i++) {
@@ -56,24 +55,24 @@ public class ViewUtils {
         for (Object object : selected) {
             defGroupModel.addElement(object);
         }
-        
+
         //Set models
         available.setModel(defAvailModel);
         selectedList.setModel(defGroupModel);
-        
-        
+
+
     }
-    
+
     /**
      * Add all balasts to the group.
      */
-    public static void addAll(JList available, JList selectedList){
+    public static void addAll(JList available, JList selectedList) {
         DefaultListModel defGroupModel = new DefaultListModel();
         DefaultListModel defAvailModel = new DefaultListModel();
 
         int groupSize = selectedList.getModel().getSize();
         int availSize = available.getModel().getSize();
-        
+
         List selected = new ArrayList();
         for (int i = 0; i < availSize; i++) {
             selected.add(available.getModel().getElementAt(i));
@@ -89,7 +88,7 @@ public class ViewUtils {
         for (Object object : selected) {
             defAvailModel.removeElement(object);
         }
-        
+
         //Group
         ListModel groupModel = selectedList.getModel();
         for (int i = 0; i < groupSize; i++) {
@@ -100,16 +99,16 @@ public class ViewUtils {
         for (Object object : selected) {
             defGroupModel.addElement(object);
         }
-        
+
         //Set models
         available.setModel(defAvailModel);
         selectedList.setModel(defGroupModel);
     }
-    
+
     /**
      * Remove a balast from the group.
      */
-    public static void remSelected(JList available, JList selectedList){
+    public static void remSelected(JList available, JList selectedList) {
         DefaultListModel defGroupModel = new DefaultListModel();
         DefaultListModel defAvailModel = new DefaultListModel();
 
@@ -128,7 +127,7 @@ public class ViewUtils {
         for (Object object : selected) {
             defAvailModel.addElement(object);
         }
-        
+
         //Group
         ListModel groupModel = selectedList.getModel();
         for (int i = 0; i < groupSize; i++) {
@@ -139,22 +138,22 @@ public class ViewUtils {
         for (Object object : selected) {
             defGroupModel.removeElement(object);
         }
-        
+
         //Set models
         available.setModel(defAvailModel);
         selectedList.setModel(defGroupModel);
     }
-    
+
     /**
      * Remove all balasts from the group.
      */
-    public static void remAll(JList available, JList selectedList){
+    public static void remAll(JList available, JList selectedList) {
         DefaultListModel defGroupModel = new DefaultListModel();
         DefaultListModel defAvailModel = new DefaultListModel();
 
         int groupSize = selectedList.getModel().getSize();
         int availSize = available.getModel().getSize();
-        
+
         List selected = new ArrayList();
         for (int i = 0; i < groupSize; i++) {
             selected.add(selectedList.getModel().getElementAt(i));
@@ -171,7 +170,7 @@ public class ViewUtils {
         for (Object object : selected) {
             defAvailModel.addElement(object);
         }
-        
+
         //Group
         ListModel groupModel = selectedList.getModel();
         for (int i = 0; i < groupSize; i++) {
@@ -182,12 +181,12 @@ public class ViewUtils {
         for (Object object : selected) {
             defGroupModel.removeElement(object);
         }
-        
+
         //Set models
         available.setModel(defAvailModel);
         selectedList.setModel(defGroupModel);
     }
-    
+
     /**
      * Disable the non-selected checks
      */
@@ -228,8 +227,7 @@ public class ViewUtils {
 //        
 //        return type;
 //    }
-    
-    public static int selectCheks(JCheckBox balasts, JCheckBox groups, JCheckBox scenes){
+    public static int selectCheks(JCheckBox balasts, JCheckBox groups, JCheckBox scenes) {
         int type = 0;
         //balasts
         if (balasts.isSelected()) {
@@ -252,14 +250,14 @@ public class ViewUtils {
             balasts.setEnabled(true);
             scenes.setEnabled(true);
         }
-        
+
         return type;
     }
-    
+
     /**
      * Disable the non-selected checks
      */
-    public static int selectCheksSensor(JCheckBox balasts, JCheckBox groups){
+    public static int selectCheksSensor(JCheckBox balasts, JCheckBox groups) {
         int type = 0;
         //balasts
         if (balasts.isSelected()) {
@@ -269,7 +267,7 @@ public class ViewUtils {
         } else {
             groups.setEnabled(true);
         }
-        
+
         //groups
         if (groups.isSelected()) {
             type = Integer.parseInt(PropHandler.getProperty("in.out.type.group"));
@@ -280,37 +278,40 @@ public class ViewUtils {
         }
         return type;
     }
-    
+
     /**
      * Gets an int property
+     *
      * @param prop
-     * @return 
+     * @return
      */
-    public static int getIntProperty(String prop){
+    public static int getIntProperty(String prop) {
         return Integer.parseInt(PropHandler.getProperty(prop));
     }
-    
+
     /**
      * Gets an string property
+     *
      * @param prop
-     * @return 
+     * @return
      */
-    public static String getStringProperty(String prop){
+    public static String getStringProperty(String prop) {
         return PropHandler.getProperty(prop);
     }
-    
+
     /**
      * Sets the in out type.
+     *
      * @param balasts
      * @param groups
      * @param scenes
-     * @param type 
+     * @param type
      */
-    public static void setInOutType(JCheckBox balasts, JCheckBox groups, JCheckBox scenes, int type){
+    public static void setInOutType(JCheckBox balasts, JCheckBox groups, JCheckBox scenes, int type) {
         int balast = Integer.parseInt(PropHandler.getProperty("in.out.type.balast"));
         int group = Integer.parseInt(PropHandler.getProperty("in.out.type.group"));
         int scene = Integer.parseInt(PropHandler.getProperty("in.out.type.scene"));
-        
+
         //balasts
         if (type == balast) {
             balasts.setEnabled(true);
@@ -318,8 +319,8 @@ public class ViewUtils {
             groups.setEnabled(false);
             scenes.setEnabled(false);
             return;
-        } 
-        
+        }
+
         //groups
         if (type == group) {
             balasts.setEnabled(false);
@@ -327,8 +328,8 @@ public class ViewUtils {
             groups.setSelected(true);
             scenes.setEnabled(false);
             return;
-        } 
-        
+        }
+
         //scene
         if (type == scene) {
             groups.setEnabled(false);
@@ -336,39 +337,39 @@ public class ViewUtils {
             scenes.setEnabled(true);
             scenes.setSelected(true);
             return;
-        } 
+        }
     }
-    
-     /**
+
+    /**
      * Sets the in out type for sensors.
+     *
      * @param balasts
      * @param groups
      * @param scenes
-     * @param type 
+     * @param type
      */
-    public static void setInOutTypeSensors(JCheckBox balasts, JCheckBox groups, int type){
+    public static void setInOutTypeSensors(JCheckBox balasts, JCheckBox groups, int type) {
         int balast = Integer.parseInt(PropHandler.getProperty("in.out.type.balast"));
         int group = Integer.parseInt(PropHandler.getProperty("in.out.type.group"));
-        
+
         //balasts
         if (type == balast) {
             balasts.setEnabled(true);
             balasts.setSelected(true);
             groups.setEnabled(false);
             return;
-        } 
-        
+        }
+
         //groups
         if (type == group) {
             balasts.setEnabled(false);
             groups.setEnabled(true);
             groups.setSelected(true);
             return;
-        } 
+        }
     }
-    
-    
-    public static Status getStatusView(){
+
+    public static Status getStatusView() {
         statusWindow = new Status();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -378,17 +379,4 @@ public class ViewUtils {
         });
         return statusWindow;
     }
-    
-    /**
-     * Metodo que limpia las listas que se le pase por parametro
-     * @param lista1
-     * @param lista2 
-     */
-    public void limpiarListas(JList lista1, JList lista2){
-        
-      
-        
-    }
-    
-    
 }
