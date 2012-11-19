@@ -16,6 +16,7 @@ import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.hilos.ColaOperaciones;
 import com.isolux.hilos.OperacionesDaoHilo;
+import com.isolux.properties.MapaDeMemoria;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 import com.isolux.view.componentes.SliderConValor;
@@ -151,16 +152,21 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             /*
              * Cargamos la informacion de los niveles de cada escena
              */
+            int[] nivelesEscenas = balasto.getNivelesEscenas();
 
+            int j = 20;//inicia desde 20 porque ese es el offset en el array de niveles de escenas
 
+            for (int elemento : nivelesEscenas) {
+                balastArray[j] = elemento;
+                j++;
+            }
 
 
             //Save array
             boolean escribioBuffer = getDao().setRegValue(initOffset, balastArray);
-            //            addElement(balastNumber);// agrega el indice a la lista de balastros en memoria
-
-
-
+            Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "El buffer respondio a la escritura {0}", escribioBuffer);
+            
+            
 //            Luego escribimos el valor
             OperacionesDaoHilo h = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_ESCRIBIR_VALORES, balastNumber);
             h.setBar(ppalView.getBarraProgreso_jProgressBar());
@@ -174,7 +180,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "Balasto numero {0} guardado correctamente.", balastNumber);
             ppalView.getStatusLabel().setText("Balasto numero " + balastNumber + " guardado correctamente.");
 
-            JOptionPane.showMessageDialog(ppalView, ("La escritura en balasto" +balastNumber+" fue exitosa"));
+            JOptionPane.showMessageDialog(ppalView, ("La escritura en balasto" + balastNumber + " fue exitosa"));
 
 
 
@@ -366,11 +372,15 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
      */
     private void ecenasPert(String numBalasto, PpalView ppalView) throws Exception {
         int[] escenasAfectadas = balasto.getEscenasAfectadas();
+        int[] nivelesEscenas = balasto.getNivelesEscenas();
+        int valor;//es el indice dentro del arreglo
 
 
         for (int i = 0; i < 16; i++) {
             if (escenasAfectadas[i] == 1) {
                 escenasSliders.elementAt(i).getCheckBox().setSelected(true);
+                valor = nivelesEscenas[i];
+                escenasSliders.elementAt(i).setValor(valor);
             } else {
                 escenasSliders.elementAt(i).getCheckBox().setSelected(false);
             }
@@ -510,6 +520,13 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         //ingresamos los grupos a la pila
         componentes.push(ppalView.getSliderConValor1().getValor());
         componentes.push(ppalView.getSliderConValor2().getValor());
+        componentes.push(ppalView.getSliderConValor3().getValor());
+        componentes.push(ppalView.getSliderConValor4().getValor());
+        componentes.push(ppalView.getSliderConValor5().getValor());
+        componentes.push(ppalView.getSliderConValor6().getValor());
+        componentes.push(ppalView.getSliderConValor7().getValor());
+        componentes.push(ppalView.getSliderConValor8().getValor());
+        componentes.push(ppalView.getSliderConValor9().getValor());
         componentes.push(ppalView.getSliderConValor10().getValor());
         componentes.push(ppalView.getSliderConValor11().getValor());
         componentes.push(ppalView.getSliderConValor12().getValor());

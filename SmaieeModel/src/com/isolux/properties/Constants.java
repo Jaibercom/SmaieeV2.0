@@ -24,4 +24,7 @@ public class Constants {
     public static final String GROUP_FILE = "../elementosGuardados/grupos.properties";
     public static final String SCENES_FILE = "../elementosGuardados/escenas.properties";
     public static final String EVENTS_FILE = "../elementosGuardados/eventos.properties";
+    
+    
+    
 }

@@ -274,8 +274,24 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
             balastoLocal.setEscenasAfectadas(escenasAfectadas);
             //</editor-fold>
             
+            //llenamos los valores de las escenas
+            
+            int[] nivelesEscenas=new int[16];
+            int indiceofsetNiveles=20;
+            for (int i = 0; i < nivelesEscenas.length; i++) {
+                nivelesEscenas[i]=balastArray[indiceofsetNiveles];
+                indiceofsetNiveles++;
+            }
+            
+            
+            balastoLocal.setNivelesEscenas(nivelesEscenas);
+            
+            
+            
             
             System.out.println("Balast number " + balastNumber + " readed.");
+            
+            
 
             //MODO
 //            setSingleReg(0, 0);
