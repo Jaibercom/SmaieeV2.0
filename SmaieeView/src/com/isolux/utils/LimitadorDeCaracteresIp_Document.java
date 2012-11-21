@@ -21,14 +21,30 @@ public class LimitadorDeCaracteresIp_Document extends PlainDocument {
 
     @Override
     public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
+        
+        StringBuilder texto = new StringBuilder(editor.getText());
         try {
 
             if (str.equals(".")) {
+                //verificamos que el numero anterior al punto sea menos a 255
+                String substring = texto.substring(texto.lastIndexOf("."), texto.length());
+                try {
+                    
+                    if (Integer.parseInt(substring)<256) {
+                        
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Ingrese un numero menor a 255");
+                        return;
+                    }
+                } catch (NumberFormatException numberFormatException) {
+                    return;
+                }
+                
             } else {
                 Integer.parseInt(str);
             }
 
-            StringBuilder texto = new StringBuilder(editor.getText());
+            
             texto.append(str);
 
 
