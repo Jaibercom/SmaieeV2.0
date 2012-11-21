@@ -18,8 +18,12 @@ public class MapaDeMemoria {
     //<editor-fold defaultstate="collapsed" desc="Balastos Mapa de memoria">
     public final static int BALASTO_OFFSET_NUMERO = Integer.parseInt(PropHandler.getProperty("balast.init.position"));
     public final static int BALASTO_NIVEL = Integer.parseInt(PropHandler.getProperty("balast.memory.levelOffset"));
+    public final static int BALASTO_NUMB=Integer.parseInt(PropHandler.getProperty("balast.memory.numb"));
+    public final static int BALASTO_DIRB=Integer.parseInt(PropHandler.getProperty("balast.memory.dirb"));
 //    public final static int BALASTO_NIVEL=Integer.parseInt(PropHandler.getProperty("balast.memory.levelOffset"));
     public final static int BALASTO_OFFSET_NIVELES_ESCENAS = Integer.parseInt(PropHandler.getProperty("balast.memory.valorescenas.memoryoffset"));
+    public final static int BALASTO_MEMORY_SIZE = Integer.parseInt(PropHandler.getProperty("balast.memory.size"));
+    
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Miscelaneas">
     public static final int REINTENTOS = 5;

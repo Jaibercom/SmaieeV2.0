@@ -98,7 +98,7 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
         switch (operacion) {
             case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_CAMBIAR_DIR_BALASTO:
 
-                termino = obcdj.cambiarDirBalasto(operacion, operacion);
+                termino = obcdj.cambiarDirBalasto(parm1, parm2);
 //                termino = true;
                 break;
 

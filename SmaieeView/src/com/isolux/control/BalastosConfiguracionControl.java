@@ -69,7 +69,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         String[] elementosDisponibles = elementosDisponibles(ppalView);
         Validacion.actualizarCombo(ppalView.getBalastoConfiguracion_jComboBox(), elementosDisponibles, Validacion.BALASTOS_NO_DISPONIBLES);
 //        Agregamos el ultimo elemento del combo
-        
+
         ppalView.getBalastoConfiguracion_jComboBox().addItem("254");
     }
 
@@ -607,5 +607,50 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             escenasSliders.addElement(ppalView.getSliderConValor15());
             escenasSliders.addElement(ppalView.getSliderConValor16());
         }
+    }
+
+    public void cambiarDireccion(PpalView ppalView) throws Exception {
+        int dir = Integer.parseInt(ppalView.getBalastoConfiguracion_jComboBox().getSelectedItem().toString());
+        int nuevaDir = Integer.parseInt(ppalView.getBalastoDir_jTextField().getText());
+        int[] dirB = new int[1];
+        dirB[0] = nuevaDir;
+
+//           escribimos en el buffer
+//            boolean escribioBuffer = getDao().setRegValue(initOffset, balastArray);
+        boolean escribioBuffer = getDao().setRegValue(MapaDeMemoria.BALASTO_DIRB, dirB);
+        Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "El buffer respondio a la escritura de dirB {0}", escribioBuffer);
+
+        int[] numbB = new int[1];
+        numbB[0] = dir;
+
+        boolean escribioBuffer1 = getDao().setRegValue(MapaDeMemoria.BALASTO_NUMB, numbB);
+        Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "El buffer respondio a la escritura de numbB {0}", escribioBuffer1);
+
+
+//            Luego escribimos el valor
+        OperacionesDaoHilo h = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_CAMBIAR_DIR_BALASTO, dir, nuevaDir);
+        h.setBar(ppalView.getBarraProgreso_jProgressBar());
+        h.setLabel(ppalView.getStatusLabel());
+        h.getLabel().setText("Cambiando la direccion del balasto " + dir + " por " + nuevaDir);
+        h.execute();
+        h.get();
+        //MODO
+//            setMode(MODE_RUN);
+
+        Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "Balasto {0} cambiado por {1} correctamente", new Object[]{dir, nuevaDir});
+        ppalView.getStatusLabel().setText("Balasto " + dir + " cambiado por " + nuevaDir+" correctamente");
+
+        JOptionPane.showMessageDialog(ppalView, ("El cambio de dirección del balasto " + nuevaDir + " fue exitoso"));
+        
+        OperacionesDaoHilo h1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
+        h1.setBar(ppalView.getBarraProgreso_jProgressBar());
+        h1.setLabel(ppalView.getStatusLabel());
+        h1.getLabel().setText("Verificando la red");
+        h1.execute();
+        h1.get();
+        
+        refrescarVista(ppalView);
+
+
     }
 }
