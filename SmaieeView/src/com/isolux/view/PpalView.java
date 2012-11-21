@@ -8,7 +8,6 @@ package com.isolux.view;
 import com.isolux.bo.*;
 import com.isolux.control.BalastosConfiguracionControl;
 import com.isolux.control.BalastosControl;
-import com.isolux.control.ElementoControl_Interface;
 import com.isolux.control.EntradaControl;
 import com.isolux.control.EscenaControl;
 import com.isolux.control.EventControl;
@@ -16,12 +15,12 @@ import com.isolux.control.GeneralControl;
 import com.isolux.control.GroupsControl;
 import com.isolux.control.RealTimeControl;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
-import com.isolux.dao.jmodbus.ElementoDAOJmobdus;
 import com.isolux.dao.jmodbus.OperacionesBalastoConfiguracionDaoJmodbus;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
-import com.isolux.hilos.ColaOperaciones;
 import com.isolux.hilos.OperacionesDaoHilo;
+import com.isolux.properties.MapaDeMemoria;
+import com.isolux.utils.LimitadorDeCaracteresIp_Document;
 import com.isolux.utils.LimitadorDeCaracteresNum_InputVerifier;
 import com.isolux.utils.Validacion;
 import com.isolux.view.threads.ThreadManager;
@@ -31,7 +30,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -403,18 +401,18 @@ public class PpalView extends javax.swing.JFrame {
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jButton24 = new javax.swing.JButton();
         jButton22 = new javax.swing.JButton();
-        jPanel12 = new javax.swing.JPanel();
+        configuracionRed_jPanel = new javax.swing.JPanel();
         cbIsStaticConfiguration = new javax.swing.JCheckBox();
         labelIp = new javax.swing.JLabel();
+        ip_jTextField = new javax.swing.JTextField();
+        fieldPort = new javax.swing.JFormattedTextField();
+        fieldMask = new javax.swing.JFormattedTextField();
+        fieldGateway = new javax.swing.JFormattedTextField();
+        fieldPuerto = new javax.swing.JTextField();
         labelMascara = new javax.swing.JLabel();
         labelGateway = new javax.swing.JLabel();
-        fieldGateway = new javax.swing.JFormattedTextField();
-        fieldMask = new javax.swing.JFormattedTextField();
-        fieldIp = new javax.swing.JFormattedTextField();
         labelDns = new javax.swing.JLabel();
-        fieldPort = new javax.swing.JFormattedTextField();
         labelPuerto = new javax.swing.JLabel();
-        fieldPuerto = new javax.swing.JTextField();
         jPanel13 = new javax.swing.JPanel();
         rbIsMaster = new javax.swing.JRadioButton();
         rbIsSlave = new javax.swing.JRadioButton();
@@ -2145,8 +2143,8 @@ public class PpalView extends javax.swing.JFrame {
             }
         });
 
-        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder("Configuración de red"));
-        jPanel12.setPreferredSize(new java.awt.Dimension(560, 147));
+        configuracionRed_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Configuración de red"));
+        configuracionRed_jPanel.setPreferredSize(new java.awt.Dimension(560, 147));
 
         cbIsStaticConfiguration.setText("Configuración estática");
         cbIsStaticConfiguration.addActionListener(new java.awt.event.ActionListener() {
@@ -2158,77 +2156,82 @@ public class PpalView extends javax.swing.JFrame {
         labelIp.setText("IP");
         labelIp.setEnabled(false);
 
+        ip_jTextField.setDocument(new LimitadorDeCaracteresIp_Document(ip_jTextField, 15));
+
+        fieldPort.setToolTipText("Puerto por defecto: 502");
+        fieldPort.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(65535));
+
+        fieldMask.setDocument(new LimitadorDeCaracteresIp_Document(fieldMask, 15));
+
+        fieldGateway.setDocument(new LimitadorDeCaracteresIp_Document(fieldGateway, 15));
+
+        fieldPuerto.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(65535));
+        fieldPuerto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldPuertoActionPerformed(evt);
+            }
+        });
+
         labelMascara.setText("Máscara");
         labelMascara.setEnabled(false);
 
         labelGateway.setText("Gateway");
         labelGateway.setEnabled(false);
 
-        fieldGateway.setEnabled(false);
-
-        fieldMask.setEnabled(false);
-
-        fieldIp.setEnabled(false);
-
         labelDns.setText("Puerto");
         labelDns.setEnabled(false);
-
-        fieldPort.setToolTipText("Puerto por defecto: 502");
-        fieldPort.setEnabled(false);
 
         labelPuerto.setText("Puerto");
         labelPuerto.setEnabled(false);
 
-        fieldPuerto.setEnabled(false);
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
+        javax.swing.GroupLayout configuracionRed_jPanelLayout = new javax.swing.GroupLayout(configuracionRed_jPanel);
+        configuracionRed_jPanel.setLayout(configuracionRed_jPanelLayout);
+        configuracionRed_jPanelLayout.setHorizontalGroup(
+            configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(configuracionRed_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelIp)
                     .addComponent(labelMascara)
                     .addComponent(labelPuerto))
                 .addGap(13, 13, 13)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fieldPuerto, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                     .addComponent(fieldMask, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addComponent(fieldIp, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
+                    .addComponent(ip_jTextField))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelDns)
                     .addComponent(labelGateway))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fieldPort, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                     .addComponent(fieldGateway, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
                 .addGap(171, 171, 171))
-            .addGroup(jPanel12Layout.createSequentialGroup()
+            .addGroup(configuracionRed_jPanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(cbIsStaticConfiguration)
                 .addContainerGap(451, Short.MAX_VALUE))
         );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
+        configuracionRed_jPanelLayout.setVerticalGroup(
+            configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(configuracionRed_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cbIsStaticConfiguration)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelIp)
-                    .addComponent(fieldIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelDns)
-                    .addComponent(fieldPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ip_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldMask, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelGateway)
                     .addComponent(fieldGateway, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelMascara))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPuerto)
                     .addComponent(fieldPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -2272,7 +2275,7 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(panelConfiguracionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                    .addComponent(configuracionRed_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addComponent(jButton22)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)))
@@ -2285,7 +2288,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(configuracionRed_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(191, 191, 191)
                 .addComponent(jButton22)
                 .addContainerGap())
@@ -3015,7 +3018,7 @@ public class PpalView extends javax.swing.JFrame {
      * Static ip configuration
      */
     protected void cbIsStaticConfigurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIsStaticConfigurationActionPerformed
-        this.generalCtrl.enableIpConfig(this);
+//        this.generalCtrl.enableIpConfig(this);
     }//GEN-LAST:event_cbIsStaticConfigurationActionPerformed
 
     /**
@@ -3520,7 +3523,34 @@ public class PpalView extends javax.swing.JFrame {
 //                    cola.getCola().enqueue(hilo);
 //                    cola.iniciarOperaciones();
                     hilo.execute();
+                    hilo.get();
 
+                    int intentosBalastosRed = 0;
+
+                    while (intentosBalastosRed < MapaDeMemoria.REINTENTOS) {
+
+                        if (this.getBalastoConfiguracion_jComboBox().getItemAt(0) == null) {
+                            OperacionesDaoHilo hilo1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
+                            hilo1.setLabel(getStatusLabel());
+                            hilo1.getLabel().setText("Cargando los balastos en red. Intento: " + (intentosBalastosRed + 1));
+                            hilo1.setBar(getBarraProgreso_jProgressBar());
+                            hilo.setDelay(MapaDeMemoria.DELAY_OPERACIONES_LARGO);
+
+//                    cola.getCola().enqueue(hilo);
+//                    cola.iniciarOperaciones();
+                            hilo1.execute();
+                            hilo1.get();
+                            intentosBalastosRed++;
+                            Thread.sleep(MapaDeMemoria.DELAY_OPERACIONES_CORTO);
+
+                            if (intentosBalastosRed == MapaDeMemoria.REINTENTOS) {
+                                JOptionPane.showMessageDialog(null, "Al parecer no hay balastos en la red. Verifique que si se encuentran conectados.\nSi estan conectados intente reiniciar el programa.", "", inType);
+                            }
+
+                        } else {
+                            intentosBalastosRed = MapaDeMemoria.REINTENTOS;
+                        }
+                    }
 
 
                     break;
@@ -3737,6 +3767,10 @@ public class PpalView extends javax.swing.JFrame {
         balastoConfigCtrl.saveElement(this);
     }//GEN-LAST:event_balastoEscribirConfig_jButtonActionPerformed
 
+    private void fieldPuertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldPuertoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldPuertoActionPerformed
+
     //</editor-fold>
     /**
      * @param args the command line arguments
@@ -3787,6 +3821,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.ButtonGroup confRol;
     private javax.swing.JMenuItem config_jMenuItem;
     private javax.swing.JPanel configuracionBalastos_jPanel;
+    private javax.swing.JPanel configuracionRed_jPanel;
     private javax.swing.JPanel configuracionSmaiee_jPanel;
     private javax.swing.ButtonGroup dias_buttonGroup;
     private javax.swing.JCheckBox domingo_jCheckBox;
@@ -3802,7 +3837,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel escenasDeBalasto_jPanel;
     private javax.swing.JComboBox eventoNum_jComboBox;
     private javax.swing.JFormattedTextField fieldGateway;
-    protected javax.swing.JFormattedTextField fieldIp;
     private javax.swing.JFormattedTextField fieldMask;
     private javax.swing.JFormattedTextField fieldPort;
     private javax.swing.JTextField fieldPuerto;
@@ -3832,6 +3866,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JLabel headerImage;
     private javax.swing.JFormattedTextField horaDiasEvento_jFormattedTextField;
     private javax.swing.JPanel infoBalasto_jPanel;
+    private javax.swing.JTextField ip_jTextField;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
@@ -3940,7 +3975,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -4388,13 +4422,13 @@ public class PpalView extends javax.swing.JFrame {
         this.fieldGateway = fieldGateway;
     }
 
-    public JFormattedTextField getFieldIp() {
-        return fieldIp;
-    }
+//    public JFormattedTextField getFieldIp() {
+////        return fieldIp;
+//    }
 
-    public void setFieldIp(JFormattedTextField fieldIp) {
-        this.fieldIp = fieldIp;
-    }
+//    public void setFieldIp(JFormattedTextField fieldIp) {
+////        this.fieldIp = fieldIp;
+//    }
 
     public JFormattedTextField getFieldMask() {
         return fieldMask;
@@ -5605,11 +5639,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JPanel getjPanel12() {
-        return jPanel12;
+        return configuracionRed_jPanel;
     }
 
     public void setjPanel12(JPanel jPanel12) {
-        this.jPanel12 = jPanel12;
+        this.configuracionRed_jPanel = jPanel12;
     }
 
     public JPanel getjPanel13() {

@@ -98,23 +98,27 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
             boolean f = false;
         
         System.out.println("Leyendo los datos del balasto " + numBalasto);
-        try {
-            
+        if (numBalasto<64) {
+            try {
 
-            //escribimos para obtener la info del buffer (el numero del balasto deseado.
-            setSingleReg(regNumBalsat, numBalasto);
-            //luego escribimos en el registro 1 la orden de lectura
-            setSingleReg(1, OPCODE_LEER_VALORES);
 
-            
-            Logger.getLogger(OperacionesBalastoConfiguracionDaoJmodbus.class.getName()).log(Level.INFO, "Leidos los datos del balasto {0}", numBalasto);
-
-            f = true;
-
-        } catch (NumberFormatException ex) {
-            Logger.getLogger(OperacionesBalastoConfiguracionDaoJmodbus.class.getName()).log(Level.INFO, "No se pudo leer los datos del balasto " + numBalasto, ex);
-            f = false;
-
+                //escribimos para obtener la info del buffer (el numero del balasto deseado.
+                setSingleReg(regNumBalsat, numBalasto);
+                //luego escribimos en el registro 1 la orden de lectura
+                setSingleReg(1, OPCODE_LEER_VALORES);
+                
+                
+                Logger.getLogger(OperacionesBalastoConfiguracionDaoJmodbus.class.getName()).log(Level.INFO, "Leidos los datos del balasto {0}", numBalasto);
+                
+                f = true;
+                
+            } catch (NumberFormatException ex) {
+                Logger.getLogger(OperacionesBalastoConfiguracionDaoJmodbus.class.getName()).log(Level.INFO, "No se pudo leer los datos del balasto " + numBalasto, ex);
+                f = false;
+                
+            }
+            Logger.getLogger(OperacionesBalastoConfiguracionDaoJmodbus.class.getName()).log(Level.INFO, "Se seleccionó el balasto generico para configurarlo");
+        } else {
         }
         return f;
 
@@ -122,9 +126,6 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
 
     }
 
-    
-    
-    
     
     /**
      * Método que cambia la dirección de un balasto a una nueva.

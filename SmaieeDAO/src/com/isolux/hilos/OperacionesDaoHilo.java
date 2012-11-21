@@ -4,11 +4,8 @@
  */
 package com.isolux.hilos;
 
-import com.isolux.dao.jmodbus.BalastoConfiguracionDAOJmodbus;
-import com.isolux.dao.jmodbus.ElementoDAOJmobdus;
 import com.isolux.dao.jmodbus.OperacionesBalastoConfiguracionDaoJmodbus;
-import com.isolux.dao.modbus.DAOJamod;
-import com.isolux.dao.modbus.DAOJmodbus;
+import com.isolux.properties.MapaDeMemoria;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -39,7 +36,7 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
     OperacionesBalastoConfiguracionDaoJmodbus obcdj = OperacionesBalastoConfiguracionDaoJmodbus.getInstancia();
     int parm1;
     int parm2;
-    
+    private int delay = 0;
     private JLabel label;
     private JProgressBar bar;
 
@@ -94,7 +91,7 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
         boolean termino = false;
         publish(50);
 
-        if (obcdj.getMode()==OperacionesBalastoConfiguracionDaoJmodbus.MODE_RUN) {
+        if (obcdj.getMode() == OperacionesBalastoConfiguracionDaoJmodbus.MODE_RUN) {
             obcdj.setMode(OperacionesBalastoConfiguracionDaoJmodbus.MODE_CONFIG);
         }
         publish(70);
@@ -129,14 +126,14 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
                 termino = true;
                 break;
 
-                case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_SELECCIONAR_BALASTO:
+            case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_SELECCIONAR_BALASTO:
                 obcdj.seleccionaBalasto(parm1);
-                termino=true;
+                termino = true;
                 break;
 
             default: //se seleccionó el balasto y se manda para que titile.
                 Logger.getLogger(OperacionesDaoHilo.class.getName()).log(Level.INFO, "Se escogio un valor invalido. se ignorará la orden");
-                termino=true;
+                termino = true;
                 break;
         }
 
@@ -159,10 +156,11 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
 
             if (label != null) {
                 label.setText("Operacion terminada con exito");
-                Thread.sleep(1500);
+                Thread.sleep(MapaDeMemoria.DELAY_OPERACIONES_LARGO);
                 label.setText("");
                 getBar().setValue(0);
             }
+            Thread.sleep(getDelay());
             ColaOperaciones.getInstancia().setProgreso(false);
         } catch (Exception ex) {
             Logger.getLogger(OperacionesDaoHilo.class.getName()).log(Level.SEVERE, null, ex);
@@ -173,7 +171,7 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
     @Override
     public void update(Observable o, Object arg) {
 //        boolean c = ColaOperaciones.getInstancia().isProgreso();
-        System.out.println("Hay una operacion en progreso? "+ColaOperaciones.getInstancia().isProgreso() );
+        System.out.println("Hay una operacion en progreso? " + ColaOperaciones.getInstancia().isProgreso());
 
 
     }
@@ -192,5 +190,14 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
 
     public void setBar(JProgressBar bar) {
         this.bar = bar;
+    }
+
+    public int getDelay() {
+
+        return delay;
+    }
+
+    public void setDelay(int delay) {
+        this.delay = delay;
     }
 }

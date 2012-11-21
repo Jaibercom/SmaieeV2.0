@@ -69,7 +69,8 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         String[] elementosDisponibles = elementosDisponibles(ppalView);
         Validacion.actualizarCombo(ppalView.getBalastoConfiguracion_jComboBox(), elementosDisponibles, Validacion.BALASTOS_NO_DISPONIBLES);
 //        Agregamos el ultimo elemento del combo
-//        ppalView.getBalastoConfiguracion_jComboBox().addItem("255");
+        
+        ppalView.getBalastoConfiguracion_jComboBox().addItem("254");
     }
 
     @Override
@@ -182,7 +183,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "Balasto numero {0} guardado correctamente.", balastNumber);
             ppalView.getStatusLabel().setText("Balasto numero " + balastNumber + " guardado correctamente.");
 
-            JOptionPane.showMessageDialog(ppalView, ("La escritura en balasto" + balastNumber + " fue exitosa"));
+            JOptionPane.showMessageDialog(ppalView, ("La escritura en balasto " + balastNumber + " fue exitosa"));
 
 
 
@@ -223,7 +224,6 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 //        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    
     @Override
     public void showSelectedElement(String num, PpalView ppalView) {
         try {
@@ -386,9 +386,12 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
                 escenasSliders.elementAt(i).setValor(valor);
             } else {
                 escenasSliders.elementAt(i).getCheckBox().setSelected(false);
+                valor = 0;
+                escenasSliders.elementAt(i).setValor(valor);
             }
 
         }
+        System.out.println("Seleccionadas las escenas y sus valores");
     }
 
     public void recojerDatos(PpalView ppalView) {

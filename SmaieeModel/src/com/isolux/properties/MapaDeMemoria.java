@@ -21,4 +21,13 @@ public class MapaDeMemoria {
 //    public final static int BALASTO_NIVEL=Integer.parseInt(PropHandler.getProperty("balast.memory.levelOffset"));
     public final static int BALASTO_OFFSET_NIVELES_ESCENAS = Integer.parseInt(PropHandler.getProperty("balast.memory.valorescenas.memoryoffset"));
     //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Miscelaneas">
+    public static final int REINTENTOS = 5;
+    /**
+     * Retardo que se inserta entre las operaciones de escritura y lectura de registros.
+     */
+    public static final int DELAY_OPERACIONES_CORTO = 500;
+    public static final int DELAY_OPERACIONES_LARGO = 1500;
+    
+    //</editor-fold>
 }

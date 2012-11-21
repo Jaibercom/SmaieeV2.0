@@ -13,6 +13,8 @@ import java.util.HashMap;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -59,7 +61,7 @@ public class CheckBalastsLevels extends Thread{
                 Thread.sleep(5 * 1000L);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(CheckBalastsLevels.class.getName()).log(Level.SEVERE, "Error en el control de tiempo real", e);
         }
     }
     

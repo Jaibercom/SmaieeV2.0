@@ -2826,7 +2826,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jPanel12" alignment="0" pref="606" max="32767" attributes="0"/>
+                                          <Component id="configuracionRed_jPanel" alignment="0" pref="606" max="32767" attributes="0"/>
                                           <Component id="jPanel13" alignment="0" pref="606" max="32767" attributes="0"/>
                                           <Component id="jButton22" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jPanel2" alignment="0" pref="606" max="32767" attributes="0"/>
@@ -2842,7 +2842,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
+                                      <Component id="configuracionRed_jPanel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
                                       <Component id="jButton22" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -2942,7 +2942,7 @@
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton22ActionPerformed"/>
                               </Events>
                             </Component>
-                            <Container class="javax.swing.JPanel" name="jPanel12">
+                            <Container class="javax.swing.JPanel" name="configuracionRed_jPanel">
                               <Properties>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -2968,9 +2968,9 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="fieldPuerto" alignment="0" pref="148" max="32767" attributes="0"/>
                                               <Component id="fieldMask" alignment="0" pref="148" max="32767" attributes="2"/>
-                                              <Component id="fieldIp" alignment="0" pref="148" max="32767" attributes="2"/>
+                                              <Component id="ip_jTextField" alignment="0" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="labelDns" min="-2" max="-2" attributes="0"/>
                                               <Component id="labelGateway" min="-2" max="-2" attributes="0"/>
@@ -2997,9 +2997,9 @@
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="labelIp" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="fieldIp" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="labelDns" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="fieldPort" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="ip_jTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
@@ -3033,6 +3033,45 @@
                                     <Property name="enabled" type="boolean" value="false"/>
                                   </Properties>
                                 </Component>
+                                <Component class="javax.swing.JTextField" name="ip_jTextField">
+                                  <Properties>
+                                    <Property name="document" type="javax.swing.text.Document" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                      <Connection code="new LimitadorDeCaracteresIp_Document(ip_jTextField, 15)" type="code"/>
+                                    </Property>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JFormattedTextField" name="fieldPort">
+                                  <Properties>
+                                    <Property name="toolTipText" type="java.lang.String" value="Puerto por defecto: 502"/>
+                                    <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                      <Connection code="new LimitadorDeCaracteresNum_InputVerifier(65535)" type="code"/>
+                                    </Property>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JFormattedTextField" name="fieldMask">
+                                  <Properties>
+                                    <Property name="document" type="javax.swing.text.Document" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                      <Connection code="new LimitadorDeCaracteresIp_Document(fieldMask, 15)" type="code"/>
+                                    </Property>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JFormattedTextField" name="fieldGateway">
+                                  <Properties>
+                                    <Property name="document" type="javax.swing.text.Document" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                      <Connection code="new LimitadorDeCaracteresIp_Document(fieldGateway, 15)" type="code"/>
+                                    </Property>
+                                  </Properties>
+                                </Component>
+                                <Component class="javax.swing.JTextField" name="fieldPuerto">
+                                  <Properties>
+                                    <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                                      <Connection code="new LimitadorDeCaracteresNum_InputVerifier(65535)" type="code"/>
+                                    </Property>
+                                  </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldPuertoActionPerformed"/>
+                                  </Events>
+                                </Component>
                                 <Component class="javax.swing.JLabel" name="labelMascara">
                                   <Properties>
                                     <Property name="text" type="java.lang.String" value="M&#xe1;scara"/>
@@ -3045,44 +3084,15 @@
                                     <Property name="enabled" type="boolean" value="false"/>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JFormattedTextField" name="fieldGateway">
-                                  <Properties>
-                                    <Property name="enabled" type="boolean" value="false"/>
-                                  </Properties>
-                                </Component>
-                                <Component class="javax.swing.JFormattedTextField" name="fieldMask">
-                                  <Properties>
-                                    <Property name="enabled" type="boolean" value="false"/>
-                                  </Properties>
-                                </Component>
-                                <Component class="javax.swing.JFormattedTextField" name="fieldIp">
-                                  <Properties>
-                                    <Property name="enabled" type="boolean" value="false"/>
-                                  </Properties>
-                                  <AuxValues>
-                                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
-                                  </AuxValues>
-                                </Component>
                                 <Component class="javax.swing.JLabel" name="labelDns">
                                   <Properties>
                                     <Property name="text" type="java.lang.String" value="Puerto"/>
                                     <Property name="enabled" type="boolean" value="false"/>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JFormattedTextField" name="fieldPort">
-                                  <Properties>
-                                    <Property name="toolTipText" type="java.lang.String" value="Puerto por defecto: 502"/>
-                                    <Property name="enabled" type="boolean" value="false"/>
-                                  </Properties>
-                                </Component>
                                 <Component class="javax.swing.JLabel" name="labelPuerto">
                                   <Properties>
                                     <Property name="text" type="java.lang.String" value="Puerto"/>
-                                    <Property name="enabled" type="boolean" value="false"/>
-                                  </Properties>
-                                </Component>
-                                <Component class="javax.swing.JTextField" name="fieldPuerto">
-                                  <Properties>
                                     <Property name="enabled" type="boolean" value="false"/>
                                   </Properties>
                                 </Component>

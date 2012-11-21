@@ -47,8 +47,8 @@ public class Conversion {
         String bin=aReversar.reverse().toString();
         
         
-        int[] s = new int[bin.length()];
-        for (int i = 0; i < binaryString.length();i++) {
+        int[] s = new int[8];
+        for (int i = 0; i < 8;i++) {
             String df = Character.toString(bin.charAt(i));
             int parseInt = Integer.parseInt(df);
             s[i]=parseInt;

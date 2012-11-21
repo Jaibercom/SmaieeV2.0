@@ -444,35 +444,35 @@ public class GeneralControl {
     /**
      * Enable or disable the static ip configuration.
      */
-    public void enableIpConfig(PpalView ppalView) {
-        if (ppalView.getCbIsStaticConfiguration().isSelected()) {
-            ppalView.getFieldIp().setEnabled(true);
-            ppalView.getFieldGateway().setEnabled(true);
-            ppalView.getFieldPort().setEnabled(true);
-            ppalView.getFieldMask().setEnabled(true);
-            ppalView.getFieldPuerto().setEnabled(true);
-
-            ppalView.getLabelDns().setEnabled(true);
-            ppalView.getLabelGateway().setEnabled(true);
-            ppalView.getLabelIp().setEnabled(true);
-            ppalView.getLabelMascara().setEnabled(true);
-            ppalView.getLabelPuerto().setEnabled(true);
-
-
-        } else {
-            ppalView.getFieldIp().setEnabled(false);
-            ppalView.getFieldGateway().setEnabled(false);
-            ppalView.getFieldPort().setEnabled(false);
-            ppalView.getFieldMask().setEnabled(false);
-            ppalView.getFieldPuerto().setEnabled(false);
-
-            ppalView.getLabelDns().setEnabled(false);
-            ppalView.getLabelGateway().setEnabled(false);
-            ppalView.getLabelIp().setEnabled(false);
-            ppalView.getLabelMascara().setEnabled(false);
-            ppalView.getLabelPuerto().setEnabled(false);
-        }
-    }
+//    public void enableIpConfig(PpalView ppalView) {
+//        if (ppalView.getCbIsStaticConfiguration().isSelected()) {
+//            ppalView.getFieldIp().setEnabled(true);
+//            ppalView.getFieldGateway().setEnabled(true);
+//            ppalView.getFieldPort().setEnabled(true);
+//            ppalView.getFieldMask().setEnabled(true);
+//            ppalView.getFieldPuerto().setEnabled(true);
+//
+//            ppalView.getLabelDns().setEnabled(true);
+//            ppalView.getLabelGateway().setEnabled(true);
+//            ppalView.getLabelIp().setEnabled(true);
+//            ppalView.getLabelMascara().setEnabled(true);
+//            ppalView.getLabelPuerto().setEnabled(true);
+//
+//
+//        } else {
+//            ppalView.getFieldIp().setEnabled(false);
+//            ppalView.getFieldGateway().setEnabled(false);
+//            ppalView.getFieldPort().setEnabled(false);
+//            ppalView.getFieldMask().setEnabled(false);
+//            ppalView.getFieldPuerto().setEnabled(false);
+//
+//            ppalView.getLabelDns().setEnabled(false);
+//            ppalView.getLabelGateway().setEnabled(false);
+//            ppalView.getLabelIp().setEnabled(false);
+//            ppalView.getLabelMascara().setEnabled(false);
+//            ppalView.getLabelPuerto().setEnabled(false);
+//        }
+//    }
 
     /**
      * Save general configuration.
@@ -547,7 +547,7 @@ public class GeneralControl {
 
                 //Network configuration
                 if (ppalView.getCbIsStaticConfiguration().isSelected()) {
-                    ip = ppalView.getFieldIp().getText();
+//                    ip = ppalView.getFieldIp().getText();
                     if (!ipValidator(ip)) {
                         Validacion.showAlertMessage("Ip invalida.\nIntente de nuevo.");
                         return;
