@@ -3824,6 +3824,9 @@ public class PpalView extends javax.swing.JFrame {
     }//GEN-LAST:event_balastoEscribirConfig_jButtonActionPerformed
 
     private void balastoResetConfig_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoResetConfig_jButtonActionPerformed
+
+        balastoConfigCtrl.resetElement(this);
+        
     }//GEN-LAST:event_balastoResetConfig_jButtonActionPerformed
 
     private void balastoConfiguracion_jComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoConfiguracion_jComboBoxPropertyChange

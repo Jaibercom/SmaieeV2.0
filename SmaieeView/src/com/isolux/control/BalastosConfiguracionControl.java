@@ -22,6 +22,7 @@ import com.isolux.view.PpalView;
 import com.isolux.view.componentes.SliderConValor;
 import java.util.Stack;
 import java.util.Vector;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JCheckBox;
@@ -638,18 +639,45 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 //            setMode(MODE_RUN);
 
         Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "Balasto {0} cambiado por {1} correctamente", new Object[]{dir, nuevaDir});
-        ppalView.getStatusLabel().setText("Balasto " + dir + " cambiado por " + nuevaDir+" correctamente");
+        ppalView.getStatusLabel().setText("Balasto " + dir + " cambiado por " + nuevaDir + " correctamente");
 
         JOptionPane.showMessageDialog(ppalView, ("El cambio de dirección del balasto " + nuevaDir + " fue exitoso"));
-        
+
         OperacionesDaoHilo h1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
         h1.setBar(ppalView.getBarraProgreso_jProgressBar());
         h1.setLabel(ppalView.getStatusLabel());
         h1.getLabel().setText("Verificando la red");
         h1.execute();
         h1.get();
-        
+
         refrescarVista(ppalView);
+
+
+    }
+
+    public void resetElement(PpalView ppalView) {
+        try {
+            
+            Integer numBalasto = Integer.parseInt(ppalView.getBalastoConfiguracion_jComboBox().getSelectedItem().toString());
+            int reset = JOptionPane.showConfirmDialog(ppalView, "¿Está seguro de que quiere resetar el balasto numero "+numBalasto+"?", "Resetear Balasto", JOptionPane.OK_CANCEL_OPTION);
+            if (reset==JOptionPane.OK_OPTION) {
+                OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_RESET, numBalasto);
+                hilo.setBar(ppalView.getBarraProgreso_jProgressBar());
+                hilo.setLabel(ppalView.getStatusLabel());
+                hilo.getLabel().setText("Reseteando balasto...");
+                hilo.execute();
+                hilo.get();
+                JOptionPane.showMessageDialog(ppalView, "Balasto reseteado correctamente");
+                refrescarVista(ppalView);
+            }
+            
+        } catch (InterruptedException ex) {
+            Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(ppalView, "Hubo un error reseteando el balasto.\nIntentelo nuevamente.");
+        } catch (ExecutionException ex) {
+            Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(ppalView, "Hubo un error reseteando el balasto.\nIntentelo nuevamente.");
+        }
 
 
     }
