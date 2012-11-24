@@ -7,6 +7,7 @@ package com.isolux.control;
 import com.isolux.bo.*;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
+import com.isolux.properties.MapaDeMemoria;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 import com.isolux.view.threads.RefreshRTC;
@@ -19,6 +20,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
@@ -37,7 +40,7 @@ public class GeneralControl {
 
     public GeneralControl() {
         this.rtc = new RefreshRTC();
-       
+
     }
 
     /**
@@ -123,13 +126,13 @@ public class GeneralControl {
 
             DefaultMutableTreeNode parentNodeText = (DefaultMutableTreeNode) node.getParent();
             String parentText;
-            if (parentNodeText==null) {
-                parentText="SMAIEE";
+            if (parentNodeText == null) {
+                parentText = "SMAIEE";
             } else {
                 parentText = (String) parentNodeText.getUserObject();
             }
-            
-            
+
+
 
             //If it's a in
             if (parentText.equals(PropHandler.getProperty("in.menu.name"))) {
@@ -160,14 +163,14 @@ public class GeneralControl {
             if (parentText.equals("SMAIEE")) {
                 //                String op = node.getUserObject().toString();
                 Character cha = ppalView.getMenuParents().get(node.getUserObject());
-                if (cha != null){
-                    
+                if (cha != null) {
+
                     opc = ppalView.getMenuParents().get(node.getUserObject());
-                    
+
                 } else {
-                     opc='x';
+                    opc = 'x';
                 }
-                
+
 //               
                 isNode = false;
             } else if (!parentText.equals(PropHandler.getProperty("in.menu.name"))) {
@@ -299,7 +302,7 @@ public class GeneralControl {
                     cl.show(ppalView.getPanelPpal(), "card6");
                     clIns.show(ppalView.getPanelConfEntradas(), "card4"); //Sensores
                     break;
-                    
+
                 case 'x':
 //                     System.out.println("Se selecciono el padre del arbol");
 //                    Object nodoPadre= ppalView.getArbol_jTree().getModel().getRoot();
@@ -308,9 +311,9 @@ public class GeneralControl {
 //                    
 //                    ppalView.expandirArbol(ppalView.getArbol_jTree(), path, colapsado);
                     break;
-                    
+
                 default:
-                   
+
                     break;
             }
         } catch (Exception e) {
@@ -365,12 +368,15 @@ public class GeneralControl {
      * @param ip
      * @return
      */
-    public boolean ipValidator(String ip) {
+    public boolean ipValidator(String ip) throws Exception {
         boolean match = false;
         Pattern pattern = Pattern.compile("(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)");
-        Matcher matcher = pattern.matcher(ip);
+//        Pattern pattern = Pattern.compile("([1-2][0-5]?[0-9]?\\.){3}([0-2][0-5]?[0-9]?)");
 
-        if (matcher.find() && matcher.group().equals(ip)) {
+        Matcher matcher = pattern.matcher(ip);
+        boolean find = matcher.find();
+        boolean equals = matcher.group().equals(ip);
+        if (find && equals) {
             match = true;
         } else {
             match = false;
@@ -549,7 +555,7 @@ public class GeneralControl {
 
                 //Network configuration
                 if (ppalView.getCbIsStaticConfiguration().isSelected()) {
-//                    ip = ppalView.getFieldIp().getText();
+                    ip = ppalView.getIp_jTextField().getText();
                     if (!ipValidator(ip)) {
                         Validacion.showAlertMessage("Ip invalida.\nIntente de nuevo.");
                         return;
@@ -586,15 +592,22 @@ public class GeneralControl {
                 confDao.saveRol(rol);
 
 
-                //Network configuration
+                //Save Network configuration
                 String type = ppalView.getCbIsStaticConfiguration().isSelected() ? "1" : "0";
                 if (ppalView.getCbIsStaticConfiguration().isSelected()) {
                     confDao.saveNetworkConf(type, ip, mask, gateway, port);
+                    
+                   
                 }
+                                
 
             } catch (Exception e) {
-                JOptionPane.showConfirmDialog(null, "Ocurrio un error!!!."
-                        + "\nIntente de nuevo.", "Alerta", -1, JOptionPane.ERROR_MESSAGE);
+
+                Logger.getLogger(GeneralControl.class.getName()).log(Level.SEVERE, "Error grabando la configuración general.", e);
+                JOptionPane.showConfirmDialog(null, "Ocurrio un error!!!.\nIntente de nuevo.", "Alerta", -1, JOptionPane.ERROR_MESSAGE);
+
+
+
             }
         }
     }
@@ -643,24 +656,24 @@ public class GeneralControl {
 //        }
 //    }
 
-   /**
-    * 
-    * @param ppalView
-    * @param a
-    * @param b
-    * @param c
-    * @param d
-    * @param f
-    * @param g
-    * @return 
-    */
-    public Boolean cargaInicial(PpalView ppalView,BalastosControl a,GroupsControl b,EscenaControl c,EventControl d, EntradaControl f, BalastosConfiguracionControl g) {
+    /**
+     *
+     * @param ppalView
+     * @param a
+     * @param b
+     * @param c
+     * @param d
+     * @param f
+     * @param g
+     * @return
+     */
+    public Boolean cargaInicial(PpalView ppalView, BalastosControl a, GroupsControl b, EscenaControl c, EventControl d, EntradaControl f, BalastosConfiguracionControl g) {
 //        BalastosControlJmodbus a = new BalastosControlJmodbus();
 //        GroupsControl b = new GroupsControl();
 //        SceneControlJmodbus c =new SceneControlJmodbus();
 //        EventControl d = new EventControl();
 //        InsControl f = new InsControl();
-        
+
         try {
             a.refrescarVista(ppalView);
             b.refrescarVista(ppalView);
@@ -668,14 +681,14 @@ public class GeneralControl {
             d.refrescarVista(ppalView);
             g.refrescarVista(ppalView);
             f.refrescarVista(ppalView);
-            
-            
+
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-        
-        
+
+
     }
 }

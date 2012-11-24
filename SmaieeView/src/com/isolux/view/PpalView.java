@@ -6919,6 +6919,14 @@ public class PpalView extends javax.swing.JFrame {
         return grabarIp_jButton;
     }
 
+    public javax.swing.JTextField getIp_jTextField() {
+        return ip_jTextField;
+    }
+
+    public void setIp_jTextField(javax.swing.JTextField ip_jTextField) {
+        this.ip_jTextField = ip_jTextField;
+    }
+
     // End of variables declaration                   
     //</editor-fold>
     private class CargaInicial extends SwingWorker<Boolean, Boolean> {
