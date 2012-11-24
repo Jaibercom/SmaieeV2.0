@@ -45,6 +45,28 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
       </AuxValues>
     </Component>
+    <Component class="javax.swing.JLabel" name="labelDns">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Puerto"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="fieldPort">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="Puerto por defecto: 502"/>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new LimitadorDeCaracteresNum_InputVerifier(65535)" type="code"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="grabarIp_jButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Grabar Ip"/>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Escribe la ip en la tarjeta.&lt;br&gt;&#xa;La nueva ip es la ip que se encuentre en la caja de texto correspondiente&lt;/p&gt;&#xa;&#xa;&lt;/html&gt;"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="mainMenuBar">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="archivo_jMenu">
@@ -2824,13 +2846,16 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="configuracionRed_jPanel" alignment="0" pref="626" max="32767" attributes="0"/>
                                           <Component id="jPanel13" alignment="0" pref="626" max="32767" attributes="0"/>
-                                          <Component id="enviarConfiguracion_jButton2" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jPanel2" alignment="0" pref="626" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <Component id="enviarConfiguracion_jButton2" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -2844,7 +2869,7 @@
                                       <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="configuracionRed_jPanel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
+                                      <EmptySpace pref="197" max="32767" attributes="0"/>
                                       <Component id="enviarConfiguracion_jButton2" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
@@ -2967,28 +2992,14 @@
                                           </Group>
                                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="fieldPuerto" alignment="0" pref="158" max="32767" attributes="0"/>
-                                              <Component id="fieldMask" alignment="0" pref="158" max="32767" attributes="2"/>
+                                              <Component id="puerto_jTextField" alignment="0" pref="158" max="32767" attributes="0"/>
+                                              <Component id="mask_jTextField" alignment="0" pref="158" max="32767" attributes="2"/>
                                               <Component id="ip_jTextField" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="labelDns" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="labelGateway" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="fieldPort" pref="157" max="32767" attributes="2"/>
-                                                      <Component id="fieldGateway" alignment="0" pref="157" max="32767" attributes="2"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                  <Component id="grabarIp_jButton" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                          <Component id="labelGateway" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                                          <Component id="gateway_jTextField" pref="157" max="32767" attributes="2"/>
                                           <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
@@ -3006,28 +3017,23 @@
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="labelIp" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelDns" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="fieldPort" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="ip_jTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                                  <Component id="labelGateway" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="gateway_jTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="fieldMask" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelGateway" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="fieldGateway" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="mask_jTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="labelMascara" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="labelPuerto" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="fieldPuerto" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="puerto_jTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace pref="20" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="grabarIp_jButton" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                 </DimensionLayout>
@@ -3049,38 +3055,20 @@
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="ip_jTextField">
                                   <Properties>
-                                    <Property name="document" type="javax.swing.text.Document" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                                      <Connection code="new LimitadorDeCaracteresIp_Document(ip_jTextField, 15)" type="code"/>
-                                    </Property>
                                     <Property name="enabled" type="boolean" value="false"/>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JFormattedTextField" name="fieldPort">
+                                <Component class="javax.swing.JFormattedTextField" name="mask_jTextField">
                                   <Properties>
-                                    <Property name="toolTipText" type="java.lang.String" value="Puerto por defecto: 502"/>
                                     <Property name="enabled" type="boolean" value="false"/>
-                                    <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                                      <Connection code="new LimitadorDeCaracteresNum_InputVerifier(65535)" type="code"/>
-                                    </Property>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JFormattedTextField" name="fieldMask">
+                                <Component class="javax.swing.JFormattedTextField" name="gateway_jTextField">
                                   <Properties>
-                                    <Property name="document" type="javax.swing.text.Document" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                                      <Connection code="new LimitadorDeCaracteresIp_Document(fieldMask, 15)" type="code"/>
-                                    </Property>
                                     <Property name="enabled" type="boolean" value="false"/>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JFormattedTextField" name="fieldGateway">
-                                  <Properties>
-                                    <Property name="document" type="javax.swing.text.Document" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                                      <Connection code="new LimitadorDeCaracteresIp_Document(fieldGateway, 15)" type="code"/>
-                                    </Property>
-                                    <Property name="enabled" type="boolean" value="false"/>
-                                  </Properties>
-                                </Component>
-                                <Component class="javax.swing.JTextField" name="fieldPuerto">
+                                <Component class="javax.swing.JTextField" name="puerto_jTextField">
                                   <Properties>
                                     <Property name="enabled" type="boolean" value="false"/>
                                     <Property name="inputVerifier" type="javax.swing.InputVerifier" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -3088,7 +3076,7 @@
                                     </Property>
                                   </Properties>
                                   <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldPuertoActionPerformed"/>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="puerto_jTextFieldActionPerformed"/>
                                   </Events>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="labelMascara">
@@ -3103,22 +3091,9 @@
                                     <Property name="enabled" type="boolean" value="false"/>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JLabel" name="labelDns">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="Puerto"/>
-                                    <Property name="enabled" type="boolean" value="false"/>
-                                  </Properties>
-                                </Component>
                                 <Component class="javax.swing.JLabel" name="labelPuerto">
                                   <Properties>
                                     <Property name="text" type="java.lang.String" value="Puerto"/>
-                                    <Property name="enabled" type="boolean" value="false"/>
-                                  </Properties>
-                                </Component>
-                                <Component class="javax.swing.JButton" name="grabarIp_jButton">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="Grabar Ip"/>
-                                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&lt;p&gt;Escribe la ip en la tarjeta.&lt;br&gt;&#xa;La nueva ip es la ip que se encuentre en la caja de texto correspondiente&lt;/p&gt;&#xa;&#xa;&lt;/html&gt;"/>
                                     <Property name="enabled" type="boolean" value="false"/>
                                   </Properties>
                                 </Component>
@@ -3211,7 +3186,7 @@
                                   <Component id="gruposDeBalasto_jPanel" pref="795" max="32767" attributes="0"/>
                                   <Component id="escenasDeBalasto_jPanel" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="balastoConfigBasico_jPanel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="balastoDali_jPanel" max="32767" attributes="0"/>
                                   </Group>
@@ -3226,7 +3201,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="balastoDali_jPanel" max="32767" attributes="0"/>
-                                  <Component id="jPanel4" max="32767" attributes="0"/>
+                                  <Component id="balastoConfigBasico_jPanel" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="gruposDeBalasto_jPanel" min="-2" max="-2" attributes="0"/>
@@ -3790,7 +3765,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Container class="javax.swing.JPanel" name="jPanel4">
+                    <Container class="javax.swing.JPanel" name="balastoConfigBasico_jPanel">
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">

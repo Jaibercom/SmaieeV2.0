@@ -217,6 +217,9 @@ public class PpalView extends javax.swing.JFrame {
         leerFlash_jMenuItem = new javax.swing.JMenuItem();
         nivel_jLabel = new javax.swing.JLabel();
         nivel_jTextField = new javax.swing.JTextField();
+        labelDns = new javax.swing.JLabel();
+        fieldPort = new javax.swing.JFormattedTextField();
+        grabarIp_jButton = new javax.swing.JButton();
         principal_jScrollPane = new javax.swing.JScrollPane();
         panelPrincipal_jPanel = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
@@ -405,15 +408,12 @@ public class PpalView extends javax.swing.JFrame {
         cbIsStaticConfiguration = new javax.swing.JCheckBox();
         labelIp = new javax.swing.JLabel();
         ip_jTextField = new javax.swing.JTextField();
-        fieldPort = new javax.swing.JFormattedTextField();
-        fieldMask = new javax.swing.JFormattedTextField();
-        fieldGateway = new javax.swing.JFormattedTextField();
-        fieldPuerto = new javax.swing.JTextField();
+        mask_jTextField = new javax.swing.JFormattedTextField();
+        gateway_jTextField = new javax.swing.JFormattedTextField();
+        puerto_jTextField = new javax.swing.JTextField();
         labelMascara = new javax.swing.JLabel();
         labelGateway = new javax.swing.JLabel();
-        labelDns = new javax.swing.JLabel();
         labelPuerto = new javax.swing.JLabel();
-        grabarIp_jButton = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         rbIsMaster = new javax.swing.JRadioButton();
         rbIsSlave = new javax.swing.JRadioButton();
@@ -467,7 +467,7 @@ public class PpalView extends javax.swing.JFrame {
         sliderConValor14 = new com.isolux.view.componentes.SliderConValor();
         sliderConValor15 = new com.isolux.view.componentes.SliderConValor();
         sliderConValor16 = new com.isolux.view.componentes.SliderConValor();
-        jPanel4 = new javax.swing.JPanel();
+        balastoConfigBasico_jPanel = new javax.swing.JPanel();
         jLabel35 = new javax.swing.JLabel();
         balastoDir_jTextField = new javax.swing.JTextField();
         balastoConfiguracion_jComboBox = new javax.swing.JComboBox();
@@ -523,6 +523,17 @@ public class PpalView extends javax.swing.JFrame {
         nivel_jLabel.setText("Nivel");
 
         nivel_jTextField.setText("0");
+
+        labelDns.setText("Puerto");
+        labelDns.setEnabled(false);
+
+        fieldPort.setToolTipText("Puerto por defecto: 502");
+        fieldPort.setEnabled(false);
+        fieldPort.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(65535));
+
+        grabarIp_jButton.setText("Grabar Ip");
+        grabarIp_jButton.setToolTipText("<html><p>Escribe la ip en la tarjeta.<br>\nLa nueva ip es la ip que se encuentre en la caja de texto correspondiente</p>\n\n</html>");
+        grabarIp_jButton.setEnabled(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SMAIEE - Configuración DALI");
@@ -2159,24 +2170,17 @@ public class PpalView extends javax.swing.JFrame {
         labelIp.setText("IP");
         labelIp.setEnabled(false);
 
-        ip_jTextField.setDocument(new LimitadorDeCaracteresIp_Document(ip_jTextField, 15));
         ip_jTextField.setEnabled(false);
 
-        fieldPort.setToolTipText("Puerto por defecto: 502");
-        fieldPort.setEnabled(false);
-        fieldPort.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(65535));
+        mask_jTextField.setEnabled(false);
 
-        fieldMask.setDocument(new LimitadorDeCaracteresIp_Document(fieldMask, 15));
-        fieldMask.setEnabled(false);
+        gateway_jTextField.setEnabled(false);
 
-        fieldGateway.setDocument(new LimitadorDeCaracteresIp_Document(fieldGateway, 15));
-        fieldGateway.setEnabled(false);
-
-        fieldPuerto.setEnabled(false);
-        fieldPuerto.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(65535));
-        fieldPuerto.addActionListener(new java.awt.event.ActionListener() {
+        puerto_jTextField.setEnabled(false);
+        puerto_jTextField.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(65535));
+        puerto_jTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldPuertoActionPerformed(evt);
+                puerto_jTextFieldActionPerformed(evt);
             }
         });
 
@@ -2186,15 +2190,8 @@ public class PpalView extends javax.swing.JFrame {
         labelGateway.setText("Gateway");
         labelGateway.setEnabled(false);
 
-        labelDns.setText("Puerto");
-        labelDns.setEnabled(false);
-
         labelPuerto.setText("Puerto");
         labelPuerto.setEnabled(false);
-
-        grabarIp_jButton.setText("Grabar Ip");
-        grabarIp_jButton.setToolTipText("<html><p>Escribe la ip en la tarjeta.<br>\nLa nueva ip es la ip que se encuentre en la caja de texto correspondiente</p>\n\n</html>");
-        grabarIp_jButton.setEnabled(false);
 
         javax.swing.GroupLayout configuracionRed_jPanelLayout = new javax.swing.GroupLayout(configuracionRed_jPanel);
         configuracionRed_jPanel.setLayout(configuracionRed_jPanelLayout);
@@ -2208,22 +2205,13 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(labelPuerto))
                 .addGap(13, 13, 13)
                 .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fieldPuerto, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(fieldMask, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                    .addComponent(puerto_jTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                    .addComponent(mask_jTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                     .addComponent(ip_jTextField))
                 .addGap(18, 18, 18)
-                .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(configuracionRed_jPanelLayout.createSequentialGroup()
-                        .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelDns)
-                            .addComponent(labelGateway))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldPort, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                            .addComponent(fieldGateway, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))
-                    .addGroup(configuracionRed_jPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(grabarIp_jButton)))
+                .addComponent(labelGateway)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gateway_jTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                 .addGap(171, 171, 171))
             .addGroup(configuracionRed_jPanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
@@ -2238,24 +2226,19 @@ public class PpalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelIp)
-                    .addComponent(labelDns)
-                    .addComponent(fieldPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ip_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ip_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelGateway)
+                        .addComponent(gateway_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldMask, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelGateway)
-                    .addComponent(fieldGateway, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mask_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelMascara))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPuerto)
-                    .addComponent(fieldPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(puerto_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, configuracionRed_jPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(grabarIp_jButton)
-                .addContainerGap())
         );
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder("Rol"));
@@ -2298,8 +2281,10 @@ public class PpalView extends javax.swing.JFrame {
                 .addGroup(panelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(configuracionRed_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
-                    .addComponent(enviarConfiguracion_jButton2)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                    .addGroup(panelConfiguracionLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(enviarConfiguracion_jButton2))))
         );
         panelConfiguracionLayout.setVerticalGroup(
             panelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2310,7 +2295,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(configuracionRed_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(191, 191, 191)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
                 .addComponent(enviarConfiguracion_jButton2)
                 .addContainerGap())
         );
@@ -2609,7 +2594,7 @@ public class PpalView extends javax.swing.JFrame {
         sliderConValor16.setLabel("16");
         escenasDeBalasto_jPanel.add(sliderConValor16, new java.awt.GridBagConstraints());
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Balasto"));
+        balastoConfigBasico_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Balasto"));
 
         jLabel35.setText("Dir");
 
@@ -2668,46 +2653,46 @@ public class PpalView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout balastoConfigBasico_jPanelLayout = new javax.swing.GroupLayout(balastoConfigBasico_jPanel);
+        balastoConfigBasico_jPanel.setLayout(balastoConfigBasico_jPanelLayout);
+        balastoConfigBasico_jPanelLayout.setHorizontalGroup(
+            balastoConfigBasico_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(balastoConfigBasico_jPanelLayout.createSequentialGroup()
+                .addGroup(balastoConfigBasico_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(balastoConfigBasico_jPanelLayout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(balastoConfigBasico_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, balastoConfigBasico_jPanelLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(cambiarDir_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(balastoConfigBasico_jPanelLayout.createSequentialGroup()
+                                .addGroup(balastoConfigBasico_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(14, 14, 14)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                                .addGroup(balastoConfigBasico_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                                     .addComponent(balastoDir_jTextField)
                                     .addComponent(balastoConfiguracion_jComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, balastoConfigBasico_jPanelLayout.createSequentialGroup()
                         .addContainerGap(109, Short.MAX_VALUE)
                         .addComponent(balastoResetConfig_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(balastoEscribirConfig_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        balastoConfigBasico_jPanelLayout.setVerticalGroup(
+            balastoConfigBasico_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(balastoConfigBasico_jPanelLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(balastoConfigBasico_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(balastoConfiguracion_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGroup(balastoConfigBasico_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(balastoResetConfig_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(balastoEscribirConfig_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(balastoConfigBasico_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(balastoDir_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2725,7 +2710,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(gruposDeBalasto_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
                     .addComponent(escenasDeBalasto_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(configuracionBalastos_jPanelLayout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(balastoConfigBasico_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(balastoDali_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -2736,7 +2721,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(configuracionBalastos_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(balastoDali_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(balastoConfigBasico_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gruposDeBalasto_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -3085,6 +3070,7 @@ public class PpalView extends javax.swing.JFrame {
      */
     protected void cbIsStaticConfigurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIsStaticConfigurationActionPerformed
         this.generalCtrl.enableIpConfig(this);
+        this.generalCtrl.cargarVarolesIpConfig(this);
     }//GEN-LAST:event_cbIsStaticConfigurationActionPerformed
 
     /**
@@ -3811,9 +3797,9 @@ public class PpalView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_balastoNum_jComboBoxActionPerformed
 
-    private void fieldPuertoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldPuertoActionPerformed
+    private void puerto_jTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puerto_jTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_fieldPuertoActionPerformed
+    }//GEN-LAST:event_puerto_jTextFieldActionPerformed
 
     private void configuracionBalastos_jPanelFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_configuracionBalastos_jPanelFocusGained
         System.out.println("Se gano el foco");
@@ -3900,20 +3886,21 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JScrollPane arbolJerarquia_jScrollPane;
     private javax.swing.JTree arbol_jTree;
     private javax.swing.JMenu archivo_jMenu;
+    private javax.swing.JPanel balastoConfigBasico_jPanel;
     private javax.swing.JComboBox balastoConfiguracion_jComboBox;
     private javax.swing.JPanel balastoDali_jPanel;
-    private javax.swing.JTextField balastoDir_jTextField;
+    protected javax.swing.JTextField balastoDir_jTextField;
     private javax.swing.JButton balastoEliminar_jButton;
     private javax.swing.JButton balastoEnviar_jButton;
     private javax.swing.JButton balastoEscribirConfig_jButton;
-    private javax.swing.JTextField balastoFR_jTextField;
-    private javax.swing.JTextField balastoFT_jTextField;
-    private javax.swing.JTextField balastoLF_jTextField;
-    private javax.swing.JTextField balastoLX_jTextField;
-    private javax.swing.JTextField balastoMax_jTextField;
-    private javax.swing.JTextField balastoMin_jTextField;
+    protected javax.swing.JTextField balastoFR_jTextField;
+    protected javax.swing.JTextField balastoFT_jTextField;
+    protected javax.swing.JTextField balastoLF_jTextField;
+    protected javax.swing.JTextField balastoLX_jTextField;
+    protected javax.swing.JTextField balastoMax_jTextField;
+    protected javax.swing.JTextField balastoMin_jTextField;
     protected javax.swing.JComboBox balastoNum_jComboBox;
-    private javax.swing.JTextField balastoPot_jTextField;
+    protected javax.swing.JTextField balastoPot_jTextField;
     private javax.swing.JButton balastoResetConfig_jButton;
     private javax.swing.JList balastosAfectados_jList;
     private javax.swing.JList balastrosDisponibles_jList;
@@ -3942,12 +3929,10 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel escenasBalastos_jPanel;
     private javax.swing.JPanel escenasDeBalasto_jPanel;
     private javax.swing.JComboBox eventoNum_jComboBox;
-    private javax.swing.JFormattedTextField fieldGateway;
-    private javax.swing.JFormattedTextField fieldMask;
     private javax.swing.JFormattedTextField fieldPort;
-    private javax.swing.JTextField fieldPuerto;
     private javax.swing.JMenuItem formatear_jMenuItem;
     private javax.swing.JCheckBox fotoceldas_entrada_escenas_jCheckBox;
+    private javax.swing.JFormattedTextField gateway_jTextField;
     private javax.swing.JButton grabarIp_jButton;
     private javax.swing.JCheckBox grupo_jCheckBox1;
     private javax.swing.JCheckBox grupo_jCheckBox10;
@@ -4084,7 +4069,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton1;
@@ -4134,6 +4118,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JCheckBox lunes_jCheckBox;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JCheckBox martes_jCheckBox;
+    private javax.swing.JFormattedTextField mask_jTextField;
     private javax.swing.JCheckBox miercoles_jCheckBox;
     private javax.swing.JPanel monitoreoTiempoReal_jPanel;
     private javax.swing.JLabel nivelEscena_jLabel;
@@ -4163,6 +4148,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel porFechaYHora_jPanel;
     private javax.swing.JLabel pot_jLabel;
     private javax.swing.JScrollPane principal_jScrollPane;
+    private javax.swing.JTextField puerto_jTextField;
     private javax.swing.JRadioButton rbIsMaster;
     private javax.swing.JRadioButton rbIsSlave;
     private javax.swing.JButton removerBalastoEscena_jButton;
@@ -4522,11 +4508,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JFormattedTextField getFieldGateway() {
-        return fieldGateway;
+        return gateway_jTextField;
     }
 
     public void setFieldGateway(JFormattedTextField fieldGateway) {
-        this.fieldGateway = fieldGateway;
+        this.gateway_jTextField = fieldGateway;
     }
 
     public JTextField getFieldIp() {
@@ -4538,11 +4524,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JFormattedTextField getFieldMask() {
-        return fieldMask;
+        return mask_jTextField;
     }
 
     public void setFieldMask(JFormattedTextField fieldMask) {
-        this.fieldMask = fieldMask;
+        this.mask_jTextField = fieldMask;
     }
 
     public JFormattedTextField getFieldPort() {
@@ -4554,11 +4540,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JTextField getFieldPuerto() {
-        return fieldPuerto;
+        return puerto_jTextField;
     }
 
     public void setFieldPuerto(JTextField fieldPuerto) {
-        this.fieldPuerto = fieldPuerto;
+        this.puerto_jTextField = fieldPuerto;
     }
 
     public JPanel getHeader() {
@@ -6928,6 +6914,30 @@ public class PpalView extends javax.swing.JFrame {
 
     public void setIp_jTextField(javax.swing.JTextField ip_jTextField) {
         this.ip_jTextField = ip_jTextField;
+    }
+
+    public javax.swing.JFormattedTextField getGateway_jTextField() {
+        return gateway_jTextField;
+    }
+
+    public void setGateway_jTextField(javax.swing.JFormattedTextField gateway_jTextField) {
+        this.gateway_jTextField = gateway_jTextField;
+    }
+
+    public javax.swing.JFormattedTextField getMask_jTextField() {
+        return mask_jTextField;
+    }
+
+    public void setMask_jTextField(javax.swing.JFormattedTextField mask_jTextField) {
+        this.mask_jTextField = mask_jTextField;
+    }
+
+    public javax.swing.JTextField getPuerto_jTextField() {
+        return puerto_jTextField;
+    }
+
+    public void setPuerto_jTextField(javax.swing.JTextField puerto_jTextField) {
+        this.puerto_jTextField = puerto_jTextField;
     }
 
     // End of variables declaration                   

@@ -35,8 +35,10 @@ public class MapaDeMemoria {
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Configuracion general">
     public final static String CONFIGURACION_GENERAL_IP_GENERAL = PropHandler.getProperty("general.ip");
-    public final static String CONFIGURACION_GENERAL_PUERTO_GENERAL = PropHandler.getProperty("general.port");
-    public final static String CONFIGURACION_GENERAL_BITS_NOMBRE = PropHandler.getProperty("general.name.bytes");
-    public final static String CONFIGURACION_GENERAL_PUERTO_MAXIMONUM = PropHandler.getProperty("general.offset.max");
+    public final static String CONFIGURACION_GENERAL_IP_MASCARA = PropHandler.getProperty("general.ip.mask");
+    public final static String CONFIGURACION_GENERAL_IP_GATEWAY = PropHandler.getProperty("general.ip.gateway");
+    public final static int CONFIGURACION_GENERAL_PUERTO_GENERAL = Integer.parseInt(PropHandler.getProperty("general.port"));
+    public final static int CONFIGURACION_GENERAL_BITS_NOMBRE = Integer.parseInt(PropHandler.getProperty("general.name.bytes"));
+    public final static int CONFIGURACION_GENERAL_PUERTO_MAXIMONUM = Integer.parseInt(PropHandler.getProperty("general.offset.max"));
     //</editor-fold>
 }

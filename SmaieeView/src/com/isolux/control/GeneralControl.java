@@ -561,7 +561,7 @@ public class GeneralControl {
                         return;
                     }
 
-                    port = ppalView.getFieldPuerto().getText();
+                    port = ppalView.getPuerto_jTextField().getText();
                     if (!portValidator(port)) {
                         Validacion.showAlertMessage("Puerto invalido.\nIntente de nuevo.");
                         return;
@@ -596,11 +596,10 @@ public class GeneralControl {
                 String type = ppalView.getCbIsStaticConfiguration().isSelected() ? "1" : "0";
                 if (ppalView.getCbIsStaticConfiguration().isSelected()) {
                     confDao.saveNetworkConf(type, ip, mask, gateway, port);
-                    
-                   
-                }
-                                
 
+
+                }
+                JOptionPane.showMessageDialog(ppalView, "¡Guardada la configuracion exitosamente!");
             } catch (Exception e) {
 
                 Logger.getLogger(GeneralControl.class.getName()).log(Level.SEVERE, "Error grabando la configuración general.", e);
@@ -688,6 +687,16 @@ public class GeneralControl {
             e.printStackTrace();
             return false;
         }
+
+
+    }
+
+    public void cargarVarolesIpConfig(PpalView ppalView) {
+        //cargamos valores de ip, gateway, mascara, puerto
+        ppalView.getIp_jTextField().setText(MapaDeMemoria.CONFIGURACION_GENERAL_IP_GENERAL);
+        ppalView.getMask_jTextField().setText(MapaDeMemoria.CONFIGURACION_GENERAL_IP_MASCARA);
+        ppalView.getGateway_jTextField().setText(MapaDeMemoria.CONFIGURACION_GENERAL_IP_GATEWAY);
+        ppalView.getPuerto_jTextField().setText(String.valueOf(MapaDeMemoria.CONFIGURACION_GENERAL_PUERTO_GENERAL));
 
 
     }

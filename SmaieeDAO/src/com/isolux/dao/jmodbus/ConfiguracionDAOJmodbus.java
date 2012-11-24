@@ -191,6 +191,9 @@ public class ConfiguracionDAOJmodbus {
                 System.exit(1);
 
             } else {
+               PropHandler.setProperty("general.ip.mask", mask);
+               PropHandler.setProperty("general.ip.gateway", gateway);
+               PropHandler.setProperty("general.port", port);
 
 
 
