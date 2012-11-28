@@ -76,7 +76,7 @@ public class EntradaControl implements ElementoControl_Interface {
             int ganancia = Integer.parseInt(ppalView.getjTextField10().getText());
 
             int nivIlumXvoltio = Integer.parseInt(ppalView.getjTextField8().getText());
-            int nivelDeseado = Integer.parseInt(ppalView.getjTextField9().getText());
+            int nivelDeseado = Integer.parseInt(ppalView.getEntradaFotoceldaNivelDeseado_jTextField().getText());
 
             int tipoSalida = ppalView.getInOutType();
             int[] balastosAfectados = ppalView.getInOutType() == ViewUtils.getIntProperty("in.out.type.balast") ? getSelectedInItems(ppalView)
@@ -233,8 +233,9 @@ public class EntradaControl implements ElementoControl_Interface {
             ppalView.getjTextField10().setText(String.valueOf(selectedIn.getGanancia()));
             ppalView.getjTextField8().setText(String.valueOf(((int) selectedIn.getNivIlumxvoltio())));
 
-            float nivelDeseado = ((((int) selectedIn.getNivIlumxvoltio()) * 10) * (int) selectedIn.getNivelDeseado()) / 100;
-            ppalView.getjTextField9().setText(String.valueOf((int) nivelDeseado));
+//            float nivelDeseado = ((((int) selectedIn.getNivIlumxvoltio()) * 10) * (int) selectedIn.getNivelDeseado()) / 100;
+            float nivelDeseado=selectedIn.getNivelDeseado();
+            ppalView.getEntradaFotoceldaNivelDeseado_jTextField().setText(String.valueOf((int) nivelDeseado));
             ViewUtils.setInOutType(ppalView.getjCheckBox10(), ppalView.getjCheckBox11(), ppalView.getFotoceldasEntradas_jCheckBox(), selectedIn.getTipoSalida());
             showInItems(ppalView.getjList8(), ppalView.getjList9(), selectedIn, ppalView);
         } else if (ppalView.getInType() == prefixSensor) {    //Sensor
@@ -252,11 +253,11 @@ public class EntradaControl implements ElementoControl_Interface {
     }
 
     /**
-     * Gets the inserted scenes.
+     * Gets the inserted in.
      */
     @Override
     public void readElements(PpalView ppalView) {
-        EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(ppalView.getDao());
+            EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(ppalView.getDao());
         ppalView.setIns(new HashMap<String, Entrada>());
 
         //Added in numbers.
@@ -297,7 +298,7 @@ public class EntradaControl implements ElementoControl_Interface {
         //Ftcld
         ppalView.getjTextField7().setText("0");
         ppalView.getjTextField8().setText("0");
-        ppalView.getjTextField9().setText("0");
+        ppalView.getEntradaFotoceldaNivelDeseado_jTextField().setText("0");
         ppalView.getjTextField10().setText("0");
         ppalView.getjList8().setModel(model);
         ppalView.getjList9().setModel(model);

@@ -316,7 +316,7 @@ public class PpalView extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        entradaFotoceldaNivelDeseado_jTextField = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jButton18 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
@@ -1340,7 +1340,7 @@ public class PpalView extends javax.swing.JFrame {
 
         jLabel13.setText("Nivel deseado");
 
-        jTextField9.setText("0");
+        entradaFotoceldaNivelDeseado_jTextField.setText("0");
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Configuración"));
 
@@ -1485,7 +1485,7 @@ public class PpalView extends javax.swing.JFrame {
                             .addComponent(jLabel14))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelFotoceldaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField9)
+                            .addComponent(entradaFotoceldaNivelDeseado_jTextField)
                             .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFotoceldaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1508,7 +1508,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addGroup(panelFotoceldaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(entradaFotoceldaNivelDeseado_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2224,12 +2224,13 @@ public class PpalView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(cbIsStaticConfiguration)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelIp)
-                    .addComponent(ip_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelGateway)
-                        .addComponent(gateway_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(gateway_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelIp)
+                        .addComponent(ip_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mask_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3920,6 +3921,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton eliminarEscena_jButton;
     private javax.swing.JButton eliminarEvento_jButton;
     private javax.swing.JButton eliminarGrupo_jButton;
+    private javax.swing.JTextField entradaFotoceldaNivelDeseado_jTextField;
     private javax.swing.JComboBox entradaNumero_jComboBox;
     private javax.swing.JButton enviarConfiguracion_jButton2;
     private javax.swing.JButton enviarEscena_jButton;
@@ -4107,7 +4109,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JCheckBox jueves_jCheckBox;
     private javax.swing.JLabel labelDns;
     private javax.swing.JLabel labelGateway;
@@ -6203,12 +6204,12 @@ public class PpalView extends javax.swing.JFrame {
         this.jTextField8 = jTextField8;
     }
 
-    public JTextField getjTextField9() {
-        return jTextField9;
+    public JTextField getEntradaFotoceldaNivelDeseado_jTextField() {
+        return entradaFotoceldaNivelDeseado_jTextField;
     }
 
     public void setjTextField9(JTextField jTextField9) {
-        this.jTextField9 = jTextField9;
+        this.entradaFotoceldaNivelDeseado_jTextField = jTextField9;
     }
 
     public JTree getArbol_jTree() {

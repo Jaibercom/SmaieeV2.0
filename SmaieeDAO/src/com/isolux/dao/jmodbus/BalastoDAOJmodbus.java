@@ -14,7 +14,8 @@ import java.util.logging.Logger;
 import org.apache.commons.lang3.ArrayUtils;
 
 /**
- *
+ * Clase que se encarga de la conexión de bajo nivel con la tarjeta.
+ * Aquí se hace uso directo de los daos del objero balasto 
  * @author Juan Diego Toro Cano
  */
 public class BalastoDAOJmodbus implements OperacionesElemento_Interface {

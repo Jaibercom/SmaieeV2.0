@@ -72,7 +72,7 @@ public class EntradaDAOJmodbus extends OperacionesDaoJModbus{
 
 
 
-            //balasto
+            //balastos afectados
             int[] balastos = in.getBalastos();
 
             //Get a string with the bits of the selected values.

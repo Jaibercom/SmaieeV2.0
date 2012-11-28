@@ -17,8 +17,20 @@ import java.util.logging.Logger;
  */
 public class Conversion {
 
+    /**
+     * usado para determinar en que manera se están trabajando los
+     * números binarios.
+     * @deprecated 
+     */
     public static int LITTLEENDIAN = 1;
+    /**
+     * usado para determinar en que manera se están trabajando los
+     * números binarios.
+     * @deprecated 
+     */
     public static int BIGENDIAN = 2;
+    
+    
     private int modoEscritura;
 
     public int getModoEscritura() {
@@ -30,12 +42,10 @@ public class Conversion {
     }
 
     /**
-     * Convierte un numero entero a la representacion en binario en Integer[]
+     * Convierte un numero entero a la representacion en binario en int[]
      *
-     * @param num
-     * @param modo es la forma en la que se va a representar elk arreglo que se
-     * devuelve. Usa las constantes LITTLEENDIAN o BIGENDIAN
-     * @return Integer[] que contiene la representacion
+     * @param num numero a convertir
+     * @return int[] que contiene la representacion del número num
      */
     public static int[] intToBinaryArray(int num) {
         
@@ -76,9 +86,9 @@ public class Conversion {
     }
 
     /**
-     *
-     * @param num
-     * @return
+     * Método que convierte un binario dado en string a la representación en entero
+     * @param num Numero en string a convertir. Está compuesto por unos y ceros
+     * @return int que representa a la cadena bianria ingresada
      */
     public static Integer binarioAEntero(String num) {
         String bD = binarioToDecimal(num);
@@ -91,7 +101,7 @@ public class Conversion {
      * Método que convierte de un array de enteros de 1 y 0 a un entero
      *
      * @param array Array entero de 1's y 0's
-     * @return entero que representa el
+     * @return entero que representa a el array de enteros ingresadoS
      */
     public static int integerArrayToInt(int[] array) {
         StringBuilder binario = new StringBuilder();

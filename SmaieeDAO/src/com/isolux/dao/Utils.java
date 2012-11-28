@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Utils {
 
     /**
-     * Get the bytes of a balas.
+     * Get the bytes of a balast.
      */
     public static ArrayList<BigInteger> getNameBytes(String balastName) {
         byte[] nameBytes = balastName.getBytes();

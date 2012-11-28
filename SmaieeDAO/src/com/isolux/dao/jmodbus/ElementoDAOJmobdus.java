@@ -4,12 +4,12 @@
  */
 package com.isolux.dao.jmodbus;
 
-import com.isolux.dao.modbus.DAO;
 import com.isolux.dao.modbus.DAOJmodbus;
 
 /**
- *
- * @author Juan Camilo CAñas Gómez
+ * Clase padre de los daos de la cual extienden todos. Se usa para albergar las 
+ * implementaciones de operaciones comunes.
+ * @author Juan Camilo Cañas Gómez
  */
 public class ElementoDAOJmobdus {
 
@@ -30,17 +30,24 @@ public class ElementoDAOJmobdus {
     public ElementoDAOJmobdus() {
     }
 
+    /**
+     * Método que entrega el dao general
+     * @return dao
+     */
     public DAOJmodbus getDao() {
         return dao;
     }
-
+/**
+ * Metodo que establece el dao general
+ * @param dao 
+ */
     public void setDao(DAOJmodbus dao) {
         this.dao = dao;
     }
 
     /**
      * Setea un registro de la tarjeta. Método usado en operaciones directas con
-     * la tarjeta
+     * la tarjeta mediante el uso del objeto dao
      *
      * @param pos
      * @param value
