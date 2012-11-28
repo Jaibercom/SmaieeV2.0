@@ -75,7 +75,7 @@ public class EntradaControl implements ElementoControl_Interface {
             int tiempoRetardo = ppalView.getjTextField7().getText().equals("0") ? Integer.parseInt(ppalView.getjTextField36().getText()) : Integer.parseInt(ppalView.getjTextField7().getText());
             int ganancia = Integer.parseInt(ppalView.getjTextField10().getText());
 
-            int nivIlumXvoltio = Integer.parseInt(ppalView.getjTextField8().getText());
+            int nivIlumXvoltio = Integer.parseInt(ppalView.getEntradaFotoceldaNivelIlum_jTextField().getText());
             int nivelDeseado = Integer.parseInt(ppalView.getEntradaFotoceldaNivelDeseado_jTextField().getText());
 
             int tipoSalida = ppalView.getInOutType();
@@ -231,7 +231,7 @@ public class EntradaControl implements ElementoControl_Interface {
         } else if (ppalView.getInType() == prefixFtcld) { //Fotocelda
             ppalView.getjTextField7().setText(String.valueOf(selectedIn.getTiempoRetardo()));
             ppalView.getjTextField10().setText(String.valueOf(selectedIn.getGanancia()));
-            ppalView.getjTextField8().setText(String.valueOf(((int) selectedIn.getNivIlumxvoltio())));
+            ppalView.getEntradaFotoceldaNivelIlum_jTextField().setText(String.valueOf((int) selectedIn.getNivIlumxvoltio()));
 
 //            float nivelDeseado = ((((int) selectedIn.getNivIlumxvoltio()) * 10) * (int) selectedIn.getNivelDeseado()) / 100;
             float nivelDeseado=selectedIn.getNivelDeseado();
@@ -297,7 +297,7 @@ public class EntradaControl implements ElementoControl_Interface {
 
         //Ftcld
         ppalView.getjTextField7().setText("0");
-        ppalView.getjTextField8().setText("0");
+        ppalView.getEntradaFotoceldaNivelIlum_jTextField().setText("0");
         ppalView.getEntradaFotoceldaNivelDeseado_jTextField().setText("0");
         ppalView.getjTextField10().setText("0");
         ppalView.getjList8().setModel(model);

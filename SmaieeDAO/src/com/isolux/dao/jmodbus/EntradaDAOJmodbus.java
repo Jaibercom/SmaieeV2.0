@@ -296,7 +296,8 @@ public class EntradaDAOJmodbus extends OperacionesDaoJModbus{
             in.setNivelOFF(inArray[6]);
             in.setTiempoRetardo(inArray[7]);
             in.setGanancia(inArray[8]);
-            in.setNivIlumxvoltio(inArray[9] + 256);
+//            in.setNivIlumxvoltio(inArray[9] + 256);
+            in.setNivIlumxvoltio(inArray[9]);
             in.setNivelDeseado(inArray[10]);
             in.setTipoSalida(inArray[11]);
 

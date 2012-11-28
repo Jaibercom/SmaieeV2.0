@@ -314,7 +314,7 @@ public class PpalView extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        entradaFotoceldaNivelIlum_jTextField = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         entradaFotoceldaNivelDeseado_jTextField = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
@@ -1335,8 +1335,8 @@ public class PpalView extends javax.swing.JFrame {
 
         jTextField7.setText("5");
 
-        jTextField8.setText("0");
-        jTextField8.setToolTipText("");
+        entradaFotoceldaNivelIlum_jTextField.setText("0");
+        entradaFotoceldaNivelIlum_jTextField.setToolTipText("");
 
         jLabel13.setText("Nivel deseado");
 
@@ -1476,7 +1476,7 @@ public class PpalView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelFotoceldaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField7)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                            .addComponent(entradaFotoceldaNivelIlum_jTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel37)
                         .addGap(13, 13, 13)
@@ -1509,7 +1509,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(jLabel13)
                     .addComponent(entradaFotoceldaNivelDeseado_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(entradaFotoceldaNivelIlum_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3922,6 +3922,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton eliminarEvento_jButton;
     private javax.swing.JButton eliminarGrupo_jButton;
     private javax.swing.JTextField entradaFotoceldaNivelDeseado_jTextField;
+    private javax.swing.JTextField entradaFotoceldaNivelIlum_jTextField;
     private javax.swing.JComboBox entradaNumero_jComboBox;
     private javax.swing.JButton enviarConfiguracion_jButton2;
     private javax.swing.JButton enviarEscena_jButton;
@@ -4108,7 +4109,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JCheckBox jueves_jCheckBox;
     private javax.swing.JLabel labelDns;
     private javax.swing.JLabel labelGateway;
@@ -6196,12 +6196,12 @@ public class PpalView extends javax.swing.JFrame {
         this.jTextField7 = jTextField7;
     }
 
-    public JTextField getjTextField8() {
-        return jTextField8;
+    public JTextField getEntradaFotoceldaNivelIlum_jTextField() {
+        return entradaFotoceldaNivelIlum_jTextField;
     }
 
-    public void setjTextField8(JTextField jTextField8) {
-        this.jTextField8 = jTextField8;
+    public void setEntradaFotoceldaNivelIlum_jTextField(JTextField jTextField8) {
+        this.entradaFotoceldaNivelIlum_jTextField = jTextField8;
     }
 
     public JTextField getEntradaFotoceldaNivelDeseado_jTextField() {
