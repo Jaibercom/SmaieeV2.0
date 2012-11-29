@@ -6918,6 +6918,14 @@ public class PpalView extends javax.swing.JFrame {
         this.puerto_jTextField = puerto_jTextField;
     }
 
+    public javax.swing.JFormattedTextField getHoraDiasEvento_jFormattedTextField() {
+        return horaDiasEvento_jFormattedTextField;
+    }
+
+    public void setHoraDiasEvento_jFormattedTextField(javax.swing.JFormattedTextField horaDiasEvento_jFormattedTextField) {
+        this.horaDiasEvento_jFormattedTextField = horaDiasEvento_jFormattedTextField;
+    }
+
     // End of variables declaration                   
     //</editor-fold>
     private class CargaInicial extends SwingWorker<Boolean, Boolean> {

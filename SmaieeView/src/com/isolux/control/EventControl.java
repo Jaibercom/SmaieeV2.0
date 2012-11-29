@@ -52,6 +52,7 @@ public class EventControl implements ElementoControl_Interface {
             String name = ppalView.getNombreevento_jTextField().getText();
             int porFechaODias = ppalView.getPorDiasEvento_jCheckBox().isSelected() ? 2 : 1;
 
+            String[] time;
             int dia = 0;
             int mes = 0;
             int anho = 0;
@@ -73,6 +74,11 @@ public class EventControl implements ElementoControl_Interface {
             }
 
             if (ppalView.getPorDiasEvento_jCheckBox().isSelected()) { //Por dias
+                
+                time = ppalView.getHoraDiasEvento_jFormattedTextField().getText().split(":");
+                hora = Integer.parseInt(time[0]);
+                minuto = Integer.parseInt(time[1]);
+                
                 int[] dias = new int[16];
                 dias[0] = ppalView.getDomingo_jCheckBox().isSelected() ? 1 : 0;//comienza la semana con domingo y no con lunes
                 dias[1] = ppalView.getLunes_jCheckBox().isSelected() ? 1 : 0;
@@ -105,7 +111,7 @@ public class EventControl implements ElementoControl_Interface {
                 mes = Integer.parseInt(date[1]);
                 anho = Integer.parseInt(date[2]);
 
-                String[] time = ppalView.getjFormattedTextField2().getText().split(":");
+                time = ppalView.getjFormattedTextField2().getText().split(":");
                 hora = Integer.parseInt(time[0]);
                 minuto = Integer.parseInt(time[1]);
             }
@@ -256,6 +262,7 @@ public class EventControl implements ElementoControl_Interface {
             StringBuffer byn = new StringBuffer(ceros);
 
             selectAffectedDays(byn, Conversion.LITTLEENDIAN, ppalView);
+            ppalView.getHoraDiasEvento_jFormattedTextField().setText(selectedEvent.getHora() + ":" + selectedEvent.getMinuto());
 
         } else {
             Date date = new Date();
@@ -263,7 +270,7 @@ public class EventControl implements ElementoControl_Interface {
 //            date = new SimpleDateFormat("dd/MM/yyyy").parse(selectedEvent.getDia() + "/" + selectedEvent.getMes() + "/" + selectedEvent.getAnho());
                 date = new SimpleDateFormat("dd/MM/yyyy").parse(selectedEvent.getDia() + "/" + selectedEvent.getMes() + "/" + (selectedEvent.getAnho()));
             } catch (ParseException ex) {
-                Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, "Problemas parseando la hora", ex);
             }
             ppalView.getjDateChooser2().setDate(date);
             ppalView.getjFormattedTextField2().setText(selectedEvent.getHora() + ":" + selectedEvent.getMinuto());
@@ -408,6 +415,7 @@ public class EventControl implements ElementoControl_Interface {
         ppalView.getPorDiasEvento_jCheckBox().setSelected(false);
         ppalView.getjDateChooser2().setDate(null);
         ppalView.getjFormattedTextField2().setText("00:00");
+        ppalView.getHoraDiasEvento_jFormattedTextField().setText("00:00");
         ppalView.getjTextField25().setText("0");
         ppalView.getjLabel23().setText("#");
         ppalView.getselBalastosEvento_jCheckBox().setSelected(false);
