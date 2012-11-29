@@ -232,7 +232,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             Integer numeroBalasto = Integer.parseInt(num);
 
 //            Si el balasto no es el de fabrica se lee. 
-            if (numeroBalasto!=MapaDeMemoria.BALASTO_DE_FABRICA) {
+            if (numeroBalasto!=MapaDeMemoria.getBALASTO_DE_FABRICA()) {
 
                 OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES, Integer.parseInt(num));
                 hilo.setLabel(ppalView.getStatusLabel());
@@ -620,13 +620,13 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 
 //           escribimos en el buffer
 //            boolean escribioBuffer = getDao().setRegValue(initOffset, balastArray);
-        boolean escribioBuffer = getDao().setRegValue(MapaDeMemoria.BALASTO_DIRB, dirB);
+        boolean escribioBuffer = getDao().setRegValue(MapaDeMemoria.getBALASTO_DIRB(), dirB);
         Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "El buffer respondio a la escritura de dirB {0}", escribioBuffer);
 
         int[] numbB = new int[1];
         numbB[0] = dir;
 
-        boolean escribioBuffer1 = getDao().setRegValue(MapaDeMemoria.BALASTO_NUMB, numbB);
+        boolean escribioBuffer1 = getDao().setRegValue(MapaDeMemoria.getBALASTO_NUMB(), numbB);
         Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "El buffer respondio a la escritura de numbB {0}", escribioBuffer1);
 
 

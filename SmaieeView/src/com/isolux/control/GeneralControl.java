@@ -593,7 +593,8 @@ public class GeneralControl {
 
 
                 //Save Network configuration
-                String type = ppalView.getCbIsStaticConfiguration().isSelected() ? "1" : "0";
+//                String type = ppalView.getCbIsStaticConfiguration().isSelected() ? "1" : "0";
+                String type = ppalView.getCbIsStaticConfiguration().isSelected() ? "0" : "1";
                 if (ppalView.getCbIsStaticConfiguration().isSelected()) {
                     confDao.saveNetworkConf(type, ip, mask, gateway, port);
 
@@ -674,13 +675,17 @@ public class GeneralControl {
 //        InsControl f = new InsControl();
 
         try {
+//            ppalView.getBarraProgreso_jProgressBar().setIndeterminate(true);
             a.refrescarVista(ppalView);
+
             b.refrescarVista(ppalView);
             c.refrescarVista(ppalView);
             d.refrescarVista(ppalView);
             g.refrescarVista(ppalView);
             f.refrescarVista(ppalView);
 
+            cargarVarolesIpConfig(ppalView);
+//            ppalView.getBarraProgreso_jProgressBar().setIndeterminate(false);
 
             return true;
         } catch (Exception e) {
@@ -692,12 +697,21 @@ public class GeneralControl {
     }
 
     public void cargarVarolesIpConfig(PpalView ppalView) {
-        //cargamos valores de ip, gateway, mascara, puerto
-        ppalView.getIp_jTextField().setText(MapaDeMemoria.CONFIGURACION_GENERAL_IP_GENERAL);
-        ppalView.getMask_jTextField().setText(MapaDeMemoria.CONFIGURACION_GENERAL_IP_MASCARA);
-        ppalView.getGateway_jTextField().setText(MapaDeMemoria.CONFIGURACION_GENERAL_IP_GATEWAY);
-        ppalView.getPuerto_jTextField().setText(String.valueOf(MapaDeMemoria.CONFIGURACION_GENERAL_PUERTO_GENERAL));
+        try {
+            //cargamos valores de ip, gateway, mascara, puerto
+            String ip = com.isolux.properties.PropHandler.getProperty("general.ip");
+            String mask = com.isolux.properties.PropHandler.getProperty("general.ip.mask");
+            String gateway = com.isolux.properties.PropHandler.getProperty("general.ip.gateway");
+            String puerto = com.isolux.properties.PropHandler.getProperty("general.port");
 
+
+            ppalView.getIp_jTextField().setText(ip);
+            ppalView.getMask_jTextField().setText(mask);
+            ppalView.getGateway_jTextField().setText(gateway);
+            ppalView.getPuerto_jTextField().setText(puerto);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(ppalView, "Configurando por primera vez");
+        }
 
     }
 }

@@ -3553,28 +3553,28 @@ public class PpalView extends javax.swing.JFrame {
 
                     int intentosBalastosRed = 0;
 
-                    while (intentosBalastosRed < MapaDeMemoria.REINTENTOS) {
+                    while (intentosBalastosRed < MapaDeMemoria.getREINTENTOS()) {
 
                         if (this.getBalastoConfiguracion_jComboBox().getItemAt(0) == null) {
                             OperacionesDaoHilo hilo1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
                             hilo1.setLabel(getStatusLabel());
                             hilo1.getLabel().setText("Cargando los balastos en red. Intento: " + (intentosBalastosRed + 1));
                             hilo1.setBar(getBarraProgreso_jProgressBar());
-                            hilo.setDelay(MapaDeMemoria.DELAY_OPERACIONES_LARGO);
+                            hilo.setDelay(MapaDeMemoria.getDELAY_OPERACIONES_LARGO());
 
 //                    cola.getCola().enqueue(hilo);
 //                    cola.iniciarOperaciones();
                             hilo1.execute();
                             hilo1.get();
                             intentosBalastosRed++;
-                            Thread.sleep(MapaDeMemoria.DELAY_OPERACIONES_CORTO);
+                            Thread.sleep(MapaDeMemoria.getDELAY_OPERACIONES_CORTO());
 
-                            if (intentosBalastosRed == MapaDeMemoria.REINTENTOS) {
+                            if (intentosBalastosRed == MapaDeMemoria.getREINTENTOS()) {
                                 JOptionPane.showMessageDialog(null, "Al parecer no hay balastos en la red. Verifique que si se encuentran conectados.\nSi estan conectados intente reiniciar el programa.", "", inType);
                             }
 
                         } else {
-                            intentosBalastosRed = MapaDeMemoria.REINTENTOS;
+                            intentosBalastosRed = MapaDeMemoria.getREINTENTOS();
                         }
                     }
 
@@ -6941,7 +6941,10 @@ public class PpalView extends javax.swing.JFrame {
 
             GeneralControl generalCtrl = new GeneralControl();
 
+            ppalView.getArbol_jTree().setEnabled(false);
+            ppalView.getBarraProgreso_jProgressBar().setIndeterminate(true);
             Boolean c = generalCtrl.cargaInicial(ppalView, balastoCtrl, groupsCtrl, sceneCtrl, eventCtrl, insCtrl, balastoConfigCtrl);
+            
 
             return c;
 
@@ -6952,6 +6955,9 @@ public class PpalView extends javax.swing.JFrame {
 //            expandirArbol(getArbol_jTree());
             Object nodo = arbol_jTree.getModel().getRoot();
             expandirArbol(arbol_jTree, new TreePath(nodo), true);
+            ppalView.getBarraProgreso_jProgressBar().setIndeterminate(false);
+            ppalView.getStatusLabel().setText("");
+            ppalView.getArbol_jTree().setEnabled(true);
             super.done();
 
         }

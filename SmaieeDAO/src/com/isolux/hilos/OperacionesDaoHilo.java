@@ -156,7 +156,7 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
 
             if (label != null) {
                 label.setText("Operacion terminada con exito");
-                Thread.sleep(MapaDeMemoria.DELAY_OPERACIONES_LARGO);
+                Thread.sleep(MapaDeMemoria.getDELAY_OPERACIONES_LARGO());
                 label.setText("");
                 getBar().setValue(0);
             }

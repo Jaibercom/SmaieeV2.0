@@ -167,38 +167,18 @@ public class ConfiguracionDAOJmodbus {
             network[13] = Integer.parseInt(port);
             //Save array
             boolean grabado = dao.setRegValue(networkOffset, network);
-            System.out.println("Grabo la configuracion en el buffer?: " + grabado);
+//            System.out.println("Grabo la configuracion en el buffer?: " + grabado);
 
+            
+            String ipTarjeta=com.isolux.properties.PropHandler.getProperty("general.ip");
+            String maskTarjeta=com.isolux.properties.PropHandler.getProperty("general.ip.mask");
+            String gatwayTarjeta=com.isolux.properties.PropHandler.getProperty("general.ip.gateway");
+            String portTarjeta=com.isolux.properties.PropHandler.getProperty("general.port");
 
-            if (ip == null ? MapaDeMemoria.CONFIGURACION_GENERAL_IP_GENERAL != null : !ip.equals(MapaDeMemoria.CONFIGURACION_GENERAL_IP_GENERAL)) {
+//            if (ip == null ? com.isolux.properties.PropHandler.getProperty("general.ip") != null : !ip.equals(com.isolux.properties.PropHandler.getProperty("general.ip"))) {
+            if (ip !=ipTarjeta ||mask!=maskTarjeta||gateway!=gatwayTarjeta||port!=portTarjeta) {
                 //cambiamos la ip
                 setSingleReg(1, 3);
-                
-                   //CONFIRM
-                setSingleReg(1, 1);
-
-
-                //MODO
-                setSingleReg(0, 0);
-
-                Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.INFO, "Se cambió la ip correctamente");
-
-                System.out.println("NETWORK CONF saved");
-                
-                PropHandler.setProperty("general.ip", ip);
-                
-                JOptionPane.showMessageDialog(null, "Debe reiniciar el software para que el cambio de la ip sea exitoso.\nSe cerrará el programa.", "Cambio de la ip", JOptionPane.WARNING_MESSAGE);
-                System.exit(1);
-
-            } else {
-               PropHandler.setProperty("general.ip.mask", mask);
-               PropHandler.setProperty("general.ip.gateway", gateway);
-               PropHandler.setProperty("general.port", port);
-
-
-
-//            guardamos la informacion de la ip en un archivo serializado.
-//            falta por desarrollar
 
                 //CONFIRM
                 setSingleReg(1, 1);
@@ -207,9 +187,22 @@ public class ConfiguracionDAOJmodbus {
                 //MODO
                 setSingleReg(0, 0);
 
+                Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.INFO, "Se cambió la ip correctamente");
+
+//                System.out.println("NETWORK CONF saved");
+
+                PropHandler.setProperty("general.ip", ip);
+                PropHandler.setProperty("general.ip.mask", mask);
+                PropHandler.setProperty("general.ip.gateway", gateway);
+                PropHandler.setProperty("general.port", port);
+
+
                 Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.INFO, "Se grabó la informacion de red correctamente");
 
                 System.out.println("NETWORK CONF saved");
+
+                JOptionPane.showMessageDialog(null, "Debe reiniciar el software para que el cambio de la ip sea exitoso.\nSe cerrará el programa.", "Cambio de la ip", JOptionPane.WARNING_MESSAGE);
+                System.exit(1);
             }
         } catch (Exception e) {
             Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.SEVERE, "Error grabando la información de red", e);
