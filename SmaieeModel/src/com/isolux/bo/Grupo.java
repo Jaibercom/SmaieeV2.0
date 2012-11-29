@@ -25,6 +25,13 @@ public class Grupo extends Elemento {
         this.name = name;
         this.balastosAfectados = balastosAfectados;
     }
+
+    public Grupo(int groupNumber, long activation, String name) {
+        this.groupNumber = groupNumber;
+        this.activation = activation;
+        this.name = name;
+    }
+
     
     
     public Grupo(){

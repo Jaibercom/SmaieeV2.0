@@ -32,6 +32,7 @@ public class MapaDeMemoria {
      */
     public static final int DELAY_OPERACIONES_CORTO = 500;
     public static final int DELAY_OPERACIONES_LARGO = 1500;
+    public static final int BALASTO_DE_FABRICA=Integer.parseInt(PropHandler.getProperty("balast.config.defabrica"));
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Configuracion general">
     public final static String CONFIGURACION_GENERAL_IP_GENERAL = PropHandler.getProperty("general.ip");

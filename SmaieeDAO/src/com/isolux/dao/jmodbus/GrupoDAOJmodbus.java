@@ -100,22 +100,23 @@ public class GrupoDAOJmodbus extends OperacionesDaoJModbus {
             UtilsJmodbus.encriptarNombre(groupsArray, 2, group.getName(), 5);
 
             //balastos afectados
-            int[] balastos = group.getBalastosAfectados();
-
-            //Get a string with the bits of the selected values.
-            String seleBal = "";
-            for (int i : balastos) {
-                seleBal = String.valueOf(i) + seleBal;
-            }
-
-            //Get BitIntegers every 16 bits and store them in the card.
-            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal, 16);
-            int affectedBalasts = 7;
-            for (int i = name.size() - 1; i >= 0; i--) {
-                groupsArray[affectedBalasts] = name.get(i).intValue();
-                affectedBalasts += 2;
-            }
-
+            ////<editor-fold defaultstate="collapsed" desc="Codigo removido por congif balastos">
+//            int[] balastos = group.getBalastosAfectados();
+            //
+            //            //Get a string with the bits of the selected values.
+            //            String seleBal = "";
+            //            for (int i : balastos) {
+            //                seleBal = String.valueOf(i) + seleBal;
+            //            }
+            //
+            //            //Get BitIntegers every 16 bits and store them in the card.
+            //            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal, 16);
+            //            int affectedBalasts = 7;
+            //            for (int i = name.size() - 1; i >= 0; i--) {
+            //                groupsArray[affectedBalasts] = name.get(i).intValue();
+            //                affectedBalasts += 2;
+            //            }
+            //</editor-fold>
             dao.setRegValue(initOffset, groupsArray);
             addElement(groupNumber);
 
@@ -166,25 +167,28 @@ public class GrupoDAOJmodbus extends OperacionesDaoJModbus {
                     nameOffset++;
                 }
             } catch (Exception e) {
+                e.printStackTrace();
             }
 
+            //           //<editor-fold defaultstate="collapsed" desc="Codigo removido por config de balastos.">
             //balastos afectados
-            int[] balastos = new Grupo().getBalastosAfectados();
-
-            //Get a string with the bits of the selected values.
-            String seleBal = "";
-            for (int i : balastos) {
-                seleBal = String.valueOf(i) + seleBal;
-            }
-
-            //Get BitIntegers every 16 bits and store them in the card.
-            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal);
-            int affectedBalasts = 7;
-            for (int i = name.size() - 1; i >= 0; i--) {
-                groupsArray[affectedBalasts] = 0;
-                affectedBalasts++;
-            }
-
+            //            int[] balastos = new Grupo().getBalastosAfectados();
+            //
+            //            //Get a string with the bits of the selected values.
+            //            String seleBal = "";
+            //            for (int i : balastos) {
+            //                seleBal = String.valueOf(i) + seleBal;
+            //            }
+            //
+            //            //Get BitIntegers every 16 bits and store them in the card.
+            //            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal);
+            //            int affectedBalasts = 7;
+            //            for (int i = name.size() - 1; i >= 0; i--) {
+            //                groupsArray[affectedBalasts] = 0;
+            //                affectedBalasts++;
+            //            }
+            //</editor-fold>
+            
             dao.setRegValue(initOffset, groupsArray);
             deleteElement(groupNumber);
 
@@ -267,49 +271,49 @@ public class GrupoDAOJmodbus extends OperacionesDaoJModbus {
                 System.out.println("Error al leer el nombre del grupo.");
             }
 //
-            int balastOffset = 7;
-            int tamReg = 8;
-            int[] balastos = grupo.getBalastosAfectados();
-//            float bytesToRead = balastos.length / tamReg;
-
-            //balastos afectados
-            //            <editor-fold defaultstate="collapsed" desc="Balastros afectados codigo antiguo corregido">
-//            try {
-//                int balastsOffset = 7;
-//                int tamReg = 16;
-//                int[] balastos = grupo.getBalastosAfectados();
-//                float bytesToRead = balastos.length / tamReg;
-//                ArrayList<BigInteger> affectedBalasts = new ArrayList<BigInteger>();
-//                
-//                //Get the bytes from the card.
-//                for (int i = 0; i < bytesToRead; i++) {
-//                    affectedBalasts.add(new BigInteger(String.valueOf(groupArray[balastsOffset] & 0xFFFF)));
-//                    balastsOffset++;
-//                }
-//                
-//                String balastName = "";
-//                for (BigInteger nameByte : affectedBalasts) {
-//                    String value = nameByte.toString(2);
-//                    value = Utils.getCeros(value,16);
-//                    balastName = value + balastName;
-//                }
-//                
-//                int j = 0;
-//                for (int i = balastos.length - 1; i >= 0; i--) {
-//                    String bit = String.valueOf(balastName.charAt(i));
-//                    balastos[j] = Integer.parseInt(bit);
-//                    j++;
-//                }
-//                
-////                agregamos los balastos al objeto grupo
-//                grupo.setBalastosAfectados(balastos);
-//            } catch (Exception e) {
-//                System.out.println("Error al leer los balastos afectados por el grupo.");
-//            }
-            //</editor-fold>
-
-            balastos = UtilsJmodbus.obtenerElementosAfectados(groupArray, balastOffset, 64, tamReg, 8, 8);
-            grupo.setBalastosAfectados(balastos);
+//            int balastOffset = 7;
+//            int tamReg = 8;
+//            int[] balastos = grupo.getBalastosAfectados();
+////            float bytesToRead = balastos.length / tamReg;
+//
+//            //balastos afectados
+//            //            <editor-fold defaultstate="collapsed" desc="Balastros afectados codigo antiguo corregido">
+////            try {
+////                int balastsOffset = 7;
+////                int tamReg = 16;
+////                int[] balastos = grupo.getBalastosAfectados();
+////                float bytesToRead = balastos.length / tamReg;
+////                ArrayList<BigInteger> affectedBalasts = new ArrayList<BigInteger>();
+////                
+////                //Get the bytes from the card.
+////                for (int i = 0; i < bytesToRead; i++) {
+////                    affectedBalasts.add(new BigInteger(String.valueOf(groupArray[balastsOffset] & 0xFFFF)));
+////                    balastsOffset++;
+////                }
+////                
+////                String balastName = "";
+////                for (BigInteger nameByte : affectedBalasts) {
+////                    String value = nameByte.toString(2);
+////                    value = Utils.getCeros(value,16);
+////                    balastName = value + balastName;
+////                }
+////                
+////                int j = 0;
+////                for (int i = balastos.length - 1; i >= 0; i--) {
+////                    String bit = String.valueOf(balastName.charAt(i));
+////                    balastos[j] = Integer.parseInt(bit);
+////                    j++;
+////                }
+////                
+//////                agregamos los balastos al objeto grupo
+////                grupo.setBalastosAfectados(balastos);
+////            } catch (Exception e) {
+////                System.out.println("Error al leer los balastos afectados por el grupo.");
+////            }
+//            //</editor-fold>
+//
+//            balastos = UtilsJmodbus.obtenerElementosAfectados(groupArray, balastOffset, 64, tamReg, 8, 8);
+//            grupo.setBalastosAfectados(balastos);
 
             //MODO
             setSingleReg(0, 0);

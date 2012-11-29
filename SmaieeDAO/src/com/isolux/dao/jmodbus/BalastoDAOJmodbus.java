@@ -205,6 +205,7 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
             setSingleReg(0, 1);
 
             System.out.println("READING BALASTO No.:" + balastNumber);
+            
             int initOffset = Integer.parseInt(PropHandler.getProperty("balast.init.position"));             //2000
 
             setSingleReg(initOffset, balastNumber);

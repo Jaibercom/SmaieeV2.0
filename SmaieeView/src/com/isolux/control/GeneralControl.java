@@ -68,7 +68,7 @@ public class GeneralControl {
      * Show the available balasts.
      */
     public void showAvailableGroups(JList show, JList remove, PpalView ppalView) {
-        new GroupsControl().readElements(ppalView);
+        new GrupoControl().readElements(ppalView);
         DefaultListModel modelo = new DefaultListModel();
         DefaultListModel cleanModelo = new DefaultListModel();
         show.setModel(modelo);
@@ -103,8 +103,8 @@ public class GeneralControl {
     }
 
     /**
-     * Tree selection. Controla la seleccion del elemento en el arbol de
-     * jerarquia
+     * Tree selection. Controla la selección del elemento en el árbol de
+     * jerarquía
      */
     public void treeSelection(PpalView ppalView, RealTimeControl realCtrl) {
         //Stops current threads.
@@ -206,7 +206,7 @@ public class GeneralControl {
                     break;
 
                 case 'g':
-                    GroupsControl groupCtrl = new GroupsControl();
+                    GrupoControl groupCtrl = new GrupoControl();
                     if (isNode) {
                         groupCtrl.cleanView(ppalView);
                         String groupNumber = (String) node.getUserObject();
@@ -666,7 +666,7 @@ public class GeneralControl {
      * @param g
      * @return
      */
-    public Boolean cargaInicial(PpalView ppalView, BalastosControl a, GroupsControl b, EscenaControl c, EventControl d, EntradaControl f, BalastosConfiguracionControl g) {
+    public Boolean cargaInicial(PpalView ppalView, BalastosControl a, GrupoControl b, EscenaControl c, EventControl d, EntradaControl f, BalastosConfiguracionControl g) {
 //        BalastosControlJmodbus a = new BalastosControlJmodbus();
 //        GroupsControl b = new GroupsControl();
 //        SceneControlJmodbus c =new SceneControlJmodbus();
@@ -684,7 +684,7 @@ public class GeneralControl {
 
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(GeneralControl.class.getName()).log(Level.SEVERE, null, e);
             return false;
         }
 

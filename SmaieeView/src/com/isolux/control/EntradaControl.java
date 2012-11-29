@@ -491,7 +491,7 @@ public class EntradaControl implements ElementoControl_Interface {
             available.setModel(modelo);
         } else if (ppalView.getInOutType() == prefixGroup) { //Grupos
             //Afected balasts
-            new GroupsControl().readElements(ppalView);
+            new GrupoControl().readElements(ppalView);
             DefaultListModel groupBalasts = new DefaultListModel();
             int[] selectedGroups = selectedIn.getGrupos();
             ArrayList sel = new ArrayList();

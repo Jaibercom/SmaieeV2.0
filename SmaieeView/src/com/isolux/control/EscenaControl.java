@@ -33,18 +33,19 @@ public class EscenaControl implements ElementoControl_Interface{
             boolean isUpdate = !ppalView.getjLabel61().getText().equals("#");
             int sceneNumber = !ppalView.getjLabel61().getText().equals("#") ? Integer.parseInt(ppalView.getjLabel61().getText()) : Integer.parseInt((String) ppalView.getEscenaNumero_jComboBox().getSelectedItem());
 
-            int balastsMaxNumber = Integer.parseInt(PropHandler.getProperty("balast.max.number"));
-            int[] balastsLevels = new int[balastsMaxNumber];
-            ListModel selectedBalasts = ppalView.getBalastosAfectados_jList().getModel();
-            for (int i = 0; i < selectedBalasts.getSize(); i++) {
-                String item = selectedBalasts.getElementAt(i).toString();
-                String[] level = item.split(" - ");
-                balastsLevels[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length - 2]);
-//                balastsLevels[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length - 1]);
+//            int balastsMaxNumber = Integer.parseInt(PropHandler.getProperty("balast.max.number"));
+//            int[] balastsLevels = new int[balastsMaxNumber];
+//            ListModel selectedBalasts = ppalView.getBalastosAfectados_jList().getModel();
+//            for (int i = 0; i < selectedBalasts.getSize(); i++) {
+//                String item = selectedBalasts.getElementAt(i).toString();
+//                String[] level = item.split(" - ");
+//                balastsLevels[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length - 2]);
+////                balastsLevels[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length - 1]);
+//
+//            }
 
-            }
-
-            Escena newScene = new Escena(sceneNumber, 1, ppalView.getNombreEscenaJTextField().getText(), balastsLevels, getSelectedSceneBalasts(ppalView));
+//            Escena newScene = new Escena(sceneNumber, 1, ppalView.getNombreEscenaJTextField().getText(), balastsLevels, getSelectedSceneBalasts(ppalView));
+            Escena newScene=new Escena(sceneNumber, 0, ppalView.getNombreEscenaJTextField().getText());
 
             //Saves the balast remotelly
             EscenaDAOJmodbus dao = new EscenaDAOJmodbus(ppalView.getDao());
@@ -131,30 +132,32 @@ public class EscenaControl implements ElementoControl_Interface{
 //        ppalView.getjTextField24().setText(String.valueOf(selectedScene.getActivacion()));
         ppalView.getjLabel61().setText(sceneNumber);
 
+        ////<editor-fold defaultstate="collapsed" desc="Codigo removido por el cambio de config de balastos">
         //Afected balasts
-        DefaultListModel sceneBalastsL = new DefaultListModel();
-        int[] selectedBalasts = selectedScene.getBalastosAfectados();
-        int[] selectedBalastsLevels = selectedScene.getNivelBalasto();
-        ArrayList sel = new ArrayList();
-        for (int i = 0; i < selectedBalasts.length; i++) {
-            if (selectedBalasts[i] == 1) {
-                Balasto sce = balasts.get(String.valueOf(i));
-                sceneBalastsL.addElement(sce.getBalastNumber() + " - " + sce.getName() + ": " + selectedBalastsLevels[i]);
-                sel.add(String.valueOf(i));
-            }
-        }
-        ppalView.getBalastosAfectados_jList().setModel(sceneBalastsL);
-
-        //Available balasts
-        DefaultListModel modelo = new DefaultListModel();
-        ArrayList<String> addedBalasts = PropHandler.getAddedBalasts(ppalView.getDao());
-        for (String balastNumber : addedBalasts) {
-            if (!sel.contains(balastNumber)) {
-                Balasto balasto = balasts.get(balastNumber);
-                modelo.addElement(balasto.getBalastNumber() + " - " + balasto.getName());
-            }
-        }
-        ppalView.getjList4().setModel(modelo);
+        //        DefaultListModel sceneBalastsL = new DefaultListModel();
+        //        int[] selectedBalasts = selectedScene.getBalastosAfectados();
+        //        int[] selectedBalastsLevels = selectedScene.getNivelBalasto();
+        //        ArrayList sel = new ArrayList();
+        //        for (int i = 0; i < selectedBalasts.length; i++) {
+        //            if (selectedBalasts[i] == 1) {
+        //                Balasto sce = balasts.get(String.valueOf(i));
+        //                sceneBalastsL.addElement(sce.getBalastNumber() + " - " + sce.getName() + ": " + selectedBalastsLevels[i]);
+        //                sel.add(String.valueOf(i));
+        //            }
+        //        }
+        //        ppalView.getBalastosAfectados_jList().setModel(sceneBalastsL);
+        //
+        //        //Available balasts
+        //        DefaultListModel modelo = new DefaultListModel();
+        //        ArrayList<String> addedBalasts = PropHandler.getAddedBalasts(ppalView.getDao());
+        //        for (String balastNumber : addedBalasts) {
+        //            if (!sel.contains(balastNumber)) {
+        //                Balasto balasto = balasts.get(balastNumber);
+        //                modelo.addElement(balasto.getBalastNumber() + " - " + balasto.getName());
+        //            }
+        //        }
+        //        ppalView.getjList4().setModel(modelo);
+        //</editor-fold>
     }
 
     /**
@@ -221,6 +224,7 @@ public class EscenaControl implements ElementoControl_Interface{
 
     /**
      * Show the available balasts.
+     * @deprecated Modificado por la inclusión de la nueva interfaz de configuración de balastos.
      */
     public void showAvailableSceneBalasts(PpalView ppalView) {
         new BalastosControl().readElements(ppalView);
@@ -237,6 +241,7 @@ public class EscenaControl implements ElementoControl_Interface{
 
     /**
      * Get a string with the selected balasts.
+     * @deprecated Cambiado por la inclusión de la interfaz de configuración de balastos.
      */
     private int[] getSelectedSceneBalasts(PpalView ppalView) {
         String selected = new String();
@@ -255,6 +260,7 @@ public class EscenaControl implements ElementoControl_Interface{
 
     /**
      * Select a scene balast.
+     * @deprecated Modificado por la inclusión de la nueva interfaz de configuración de balastos.
      */
     public void selectEsceneBalast(PpalView ppalView) {
         String[] balasto = ppalView.getBalastosAfectados_jList().getSelectedValue().toString().split(": ");

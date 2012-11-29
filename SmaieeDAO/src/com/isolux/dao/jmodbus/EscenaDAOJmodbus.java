@@ -12,6 +12,8 @@ import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -180,23 +182,25 @@ public class EscenaDAOJmodbus extends OperacionesDaoJModbus{
             //</editor-fold>
 
             UtilsJmodbus.encriptarNombre(escenasArray, 2, escena.getNombre(), 5);
-
-            //balastos afectados
-            int[] escenas = escena.getBalastosAfectados();
-
-            //Get a string with the bits of the selected values.
-            String seleBal = "";
-            for (int i : escenas) {
-                seleBal = String.valueOf(i) + seleBal;
-            }
-
-            //Get BitIntegers every 16 bits and store them in the card.
-            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal);
-            int affectedBalasts = 7;
-            for (int i = name.size() - 1; i >= 0; i--) {
-                escenasArray[affectedBalasts] = name.get(i).intValue();
-                affectedBalasts++;
-            }
+            
+            //<editor-fold defaultstate="collapsed" desc="Codigo quitado de balastos afectados en la escena">
+            //            //balastos afectados
+            //            int[] escenas = escena.getBalastosAfectados();
+            //
+            //            //Get a string with the bits of the selected values.
+            //            String seleBal = "";
+            //            for (int i : escenas) {
+            //                seleBal = String.valueOf(i) + seleBal;
+            //            }
+            //
+            //            //Get BitIntegers every 16 bits and store them in the card.
+            //            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal);
+            //            int affectedBalasts = 7;
+            //            for (int i = name.size() - 1; i >= 0; i--) {
+            //                escenasArray[affectedBalasts] = name.get(i).intValue();
+            //                affectedBalasts++;
+            //            }
+            //</editor-fold>
 
             dao.setRegValue(initOffset, escenasArray);
             addElement(escenaNumero);
@@ -205,11 +209,13 @@ public class EscenaDAOJmodbus extends OperacionesDaoJModbus{
             setSingleReg(0, 0);
 
             System.out.println("Scene number " + escenaNumero + " saved.");
+            Logger.getLogger(EscenaDAOJmodbus.class.getName()).log(Level.INFO, "Escena numero {0} grabada.", escenaNumero);
 
             state = true;
         } catch (Exception e) {
             state = false;
-            e.printStackTrace();
+//            e.printStackTrace();
+             Logger.getLogger(EscenaDAOJmodbus.class.getName()).log(Level.SEVERE, "Escena numero"+escenaNumero+ "grabada.",e );
         }
         return state;
     }
@@ -523,50 +529,50 @@ public class EscenaDAOJmodbus extends OperacionesDaoJModbus{
             } catch (Exception e) {
                 System.out.println("Error al leer el nombre del grupo.");
             }
+////
+//            int balastOffset = 7;
+//            int tamReg = 16;
+//            int[] balastos = escena.getBalastosAfectados();
+////            float bytesToRead = balastos.length / tamReg;
 //
-            int balastOffset = 7;
-            int tamReg = 16;
-            int[] balastos = escena.getBalastosAfectados();
-//            float bytesToRead = balastos.length / tamReg;
-
-            //balastos afectados
-            //            <editor-fold defaultstate="collapsed" desc="Balastros afectados codigo antiguo corregido">
-//            try {
-//                int balastsOffset = 7;
-//                int tamReg = 16;
-//                int[] balastos = grupo.getBalastosAfectados();
-//                float bytesToRead = balastos.length / tamReg;
-//                ArrayList<BigInteger> affectedBalasts = new ArrayList<BigInteger>();
-//                
-//                //Get the bytes from the card.
-//                for (int i = 0; i < bytesToRead; i++) {
-//                    affectedBalasts.add(new BigInteger(String.valueOf(groupArray[balastsOffset] & 0xFFFF)));
-//                    balastsOffset++;
-//                }
-//                
-//                String balastName = "";
-//                for (BigInteger nameByte : affectedBalasts) {
-//                    String value = nameByte.toString(2);
-//                    value = Utils.getCeros(value,16);
-//                    balastName = value + balastName;
-//                }
-//                
-//                int j = 0;
-//                for (int i = balastos.length - 1; i >= 0; i--) {
-//                    String bit = String.valueOf(balastName.charAt(i));
-//                    balastos[j] = Integer.parseInt(bit);
-//                    j++;
-//                }
-//                
-////                agregamos los balastos al objeto grupo
-//                grupo.setBalastosAfectados(balastos);
-//            } catch (Exception e) {
-//                System.out.println("Error al leer los balastos afectados por el grupo.");
-//            }
-            //</editor-fold>
-
-            balastos = UtilsJmodbus.obtenerElementosAfectados(sceneArray, balastOffset, 64, tamReg, 16);
-            escena.setBalastosAfectados(balastos);
+//            //balastos afectados
+//            //            <editor-fold defaultstate="collapsed" desc="Balastros afectados codigo antiguo corregido">
+////            try {
+////                int balastsOffset = 7;
+////                int tamReg = 16;
+////                int[] balastos = grupo.getBalastosAfectados();
+////                float bytesToRead = balastos.length / tamReg;
+////                ArrayList<BigInteger> affectedBalasts = new ArrayList<BigInteger>();
+////                
+////                //Get the bytes from the card.
+////                for (int i = 0; i < bytesToRead; i++) {
+////                    affectedBalasts.add(new BigInteger(String.valueOf(groupArray[balastsOffset] & 0xFFFF)));
+////                    balastsOffset++;
+////                }
+////                
+////                String balastName = "";
+////                for (BigInteger nameByte : affectedBalasts) {
+////                    String value = nameByte.toString(2);
+////                    value = Utils.getCeros(value,16);
+////                    balastName = value + balastName;
+////                }
+////                
+////                int j = 0;
+////                for (int i = balastos.length - 1; i >= 0; i--) {
+////                    String bit = String.valueOf(balastName.charAt(i));
+////                    balastos[j] = Integer.parseInt(bit);
+////                    j++;
+////                }
+////                
+//////                agregamos los balastos al objeto grupo
+////                grupo.setBalastosAfectados(balastos);
+////            } catch (Exception e) {
+////                System.out.println("Error al leer los balastos afectados por el grupo.");
+////            }
+//            //</editor-fold>
+//
+//            balastos = UtilsJmodbus.obtenerElementosAfectados(sceneArray, balastOffset, 64, tamReg, 16);
+//            escena.setBalastosAfectados(balastos);
 
             //MODO
             setSingleReg(0, 0);
@@ -574,7 +580,8 @@ public class EscenaDAOJmodbus extends OperacionesDaoJModbus{
             System.out.println("scene number " + sceneNumber + " readed.");
 
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            Logger.getLogger(EscenaDAOJmodbus.class.getName()).log(Level.SEVERE,null,e);
         }
 
         return escena;

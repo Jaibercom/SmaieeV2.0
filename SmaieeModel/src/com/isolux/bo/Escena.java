@@ -37,6 +37,19 @@ public class Escena extends Elemento {
     }
 
     
+    /**
+     * 
+     * @param numeroEscena numero de la escena que se quiere crear
+     * @param activacion Campo de activación. al momento de setear debe estar en cero por lo general.
+     * @param nombre Nombre de la escena que se quiere crear.
+     */
+    public Escena(int numeroEscena, int activacion, String nombre) {
+        this.numeroEscena = numeroEscena;
+        this.activacion = activacion;
+        this.nombre = nombre;
+    }
+
+    
     
     public int getActivacion() {
         return activacion;

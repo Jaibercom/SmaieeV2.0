@@ -26,7 +26,7 @@ import javax.swing.tree.TreePath;
  *
  * @author EAFIT
  */
-public class GroupsControl implements ElementoControl_Interface{
+public class GrupoControl implements ElementoControl_Interface{
 
     /**
      * Saves a group.
@@ -43,7 +43,8 @@ public class GroupsControl implements ElementoControl_Interface{
             int groupNumber = !ppalView.getjLabel58().getText().equals("#") ? Integer.parseInt(ppalView.getjLabel58().getText()) : Integer.parseInt((String) ppalView.getGruposNum_jComboBox().getSelectedItem());
 
 
-            Grupo newGroup = new Grupo(groupNumber, 0, ppalView.getjTextField3().getText(), getSelectedBalasts(ppalView));
+//            Grupo newGroup = new Grupo(groupNumber, 0, ppalView.getjTextField3().getText(), getSelectedBalasts(ppalView));
+            Grupo newGroup = new Grupo(groupNumber, 0, ppalView.getjTextField3().getText());
 
             //Saves the balast remotelly
 
@@ -83,7 +84,7 @@ public class GroupsControl implements ElementoControl_Interface{
                         ppalView.getStatusLabel().setText("Ocurrió un error guardando el grupo.");
                     }
 
-                    //Show balast in tree
+                    //Show group in tree
                     DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                     TreePath path = ppalView.getArbol_jTree().getNextMatch(PropHandler.getProperty("group.menu.name"), 0, Position.Bias.Forward);
                     MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
@@ -111,7 +112,7 @@ public class GroupsControl implements ElementoControl_Interface{
                 gDao.deleteElement(ppalView.getSelectedGroupNumber());
                 treeModel.removeNodeFromParent(nodeToDelete);
                 ppalView.getGroups().remove(ppalView.getSelectedGroupNumber());
-                new GroupsControl().cleanView(ppalView);
+                new GrupoControl().cleanView(ppalView);
             }
         }
         refrescarVista(ppalView);
@@ -128,29 +129,31 @@ public class GroupsControl implements ElementoControl_Interface{
         ppalView.getjTextField3().setText(selectedGroup.getName());
         ppalView.getjLabel58().setText(groupNumber);
 
+        //       //<editor-fold defaultstate="collapsed" desc="Codigo removido por lo de config de balastos">
         //Afected balasts
-        DefaultListModel groupBalastsL = new DefaultListModel();
-        int[] selectedBalasts = selectedGroup.getBalastosAfectados();
-        ArrayList sel = new ArrayList();
-        for (int i = 0; i < selectedBalasts.length; i++) {
-            if (selectedBalasts[i] == 1) {
-                Balasto bal = balasts.get(String.valueOf(i));
-                groupBalastsL.addElement(bal.getBalastNumber() + " - " + balasts.get(String.valueOf(i)).getName());
-                sel.add(String.valueOf(i));
-            }
-        }
-        ppalView.getjList3().setModel(groupBalastsL);
-
+        //        DefaultListModel groupBalastsL = new DefaultListModel();
+        //        int[] selectedBalasts = selectedGroup.getBalastosAfectados();
+        //        ArrayList sel = new ArrayList();
+        //        for (int i = 0; i < selectedBalasts.length; i++) {
+        //            if (selectedBalasts[i] == 1) {
+        //                Balasto bal = balasts.get(String.valueOf(i));
+        //                groupBalastsL.addElement(bal.getBalastNumber() + " - " + balasts.get(String.valueOf(i)).getName());
+        //                sel.add(String.valueOf(i));
+        //            }
+        //        }
+        //        ppalView.getjList3().setModel(groupBalastsL);
+    
         //Available balasts
-        DefaultListModel modelo = new DefaultListModel();
-        ArrayList<String> addedBalasts = PropHandler.getAddedBalasts(ppalView.getDao());
-        for (String balastNumber : addedBalasts) {
-            if (!sel.contains(balastNumber)) {
-                Balasto balasto = balasts.get(balastNumber);
-                modelo.addElement(balasto.getBalastNumber() + " - " + balasto.getName());
-            }
-        }
-        ppalView.getjList2().setModel(modelo);
+//        DefaultListModel modelo = new DefaultListModel();
+//        ArrayList<String> addedBalasts = PropHandler.getAddedBalasts(ppalView.getDao());
+//        for (String balastNumber : addedBalasts) {
+//            if (!sel.contains(balastNumber)) {
+//                Balasto balasto = balasts.get(balastNumber);
+//                modelo.addElement(balasto.getBalastNumber() + " - " + balasto.getName());
+//            }
+//        }
+//        ppalView.getjList2().setModel(modelo);
+            //</editor-fold>
     }
 
    
@@ -190,7 +193,7 @@ public class GroupsControl implements ElementoControl_Interface{
     public void filterAddedElements(PpalView ppalView) {
         if (!ppalView.getGroupsStauts()) {
             ppalView.getStatusLabel().setText("Leyendo grupos de la tarjeta...");
-            new GroupsControl().readElements(ppalView);
+            new GrupoControl().readElements(ppalView);
             int startRow = 0;
             String prefix = PropHandler.getProperty("group.menu.name");
             TreePath path = ppalView.getArbol_jTree().getNextMatch(prefix, startRow, Position.Bias.Forward);
