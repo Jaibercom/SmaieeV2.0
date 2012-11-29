@@ -91,7 +91,7 @@ public final class MapaDeMemoria {
     private static int BALASTO_MEMORY_SIZE = Integer.parseInt(PropHandler.getProperty("balast.memory.size"));
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Miscelaneas">
-    private static final int REINTENTOS = 5;
+    private static int REINTENTOS = 5;
     /**
      * Retardo que se inserta entre las operaciones de escritura y lectura de
      * registros.
