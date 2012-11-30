@@ -45,6 +45,7 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      */
     public static final int OPCODE_SELECCIONAR_BALASTO = 25;
     public static final int OPCODE_GRABAR_EN_FLASH=10;
+    public static final int OPCODE_FORMATEAR_FLASH=7;
     
     private final int regNumBalsat = Integer.parseInt(PropHandler.getProperty("balast.init.position"));
     

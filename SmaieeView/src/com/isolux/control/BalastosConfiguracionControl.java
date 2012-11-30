@@ -232,7 +232,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             Integer numeroBalasto = Integer.parseInt(num);
 
 //            Si el balasto no es el de fabrica se lee. 
-            if (numeroBalasto!=MapaDeMemoria.BALASTO_DE_FABRICA) {
+            if (numeroBalasto!=Integer.parseInt(PropHandler.getProperty("balast.config.defabrica"))) {
 
                 OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES, Integer.parseInt(num));
                 hilo.setLabel(ppalView.getStatusLabel());
@@ -279,13 +279,6 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         } catch (Exception ex) {
             Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, "Probelma mostrando la informacion del  balasto " + num, ex);
         }
-
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (ExecutionException ex) {
-//            Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
 
     }
 

@@ -169,14 +169,14 @@ public class ConfiguracionDAOJmodbus {
             boolean grabado = dao.setRegValue(networkOffset, network);
 //            System.out.println("Grabo la configuracion en el buffer?: " + grabado);
 
-            
-            String ipTarjeta=com.isolux.properties.PropHandler.getProperty("general.ip");
-            String maskTarjeta=com.isolux.properties.PropHandler.getProperty("general.ip.mask");
-            String gatwayTarjeta=com.isolux.properties.PropHandler.getProperty("general.ip.gateway");
-            String portTarjeta=com.isolux.properties.PropHandler.getProperty("general.port");
+
+            String ipTarjeta = com.isolux.properties.PropHandler.getProperty("general.ip");
+            String maskTarjeta = com.isolux.properties.PropHandler.getProperty("general.ip.mask");
+            String gatwayTarjeta = com.isolux.properties.PropHandler.getProperty("general.ip.gateway");
+            String portTarjeta = com.isolux.properties.PropHandler.getProperty("general.port");
 
 //            if (ip == null ? com.isolux.properties.PropHandler.getProperty("general.ip") != null : !ip.equals(com.isolux.properties.PropHandler.getProperty("general.ip"))) {
-            if (ip !=ipTarjeta ||mask!=maskTarjeta||gateway!=gatwayTarjeta||port!=portTarjeta) {
+            if (ip != ipTarjeta || mask != maskTarjeta || gateway != gatwayTarjeta || port != portTarjeta) {
                 //cambiamos la ip
                 setSingleReg(1, 3);
 
@@ -348,7 +348,7 @@ public class ConfiguracionDAOJmodbus {
     public void saveToFlash() {
         System.out.println("Guardando en flash");
         try {
-            
+
             setSingleReg(0, 1);// ponemos en modo configuracion
             setSingleReg(1, 10);// escribimos el valor 
             setSingleReg(0, 0);// volvemos a poner el modo run
@@ -380,13 +380,17 @@ public class ConfiguracionDAOJmodbus {
     /**
      * Erase the flash memory.
      */
-    public static void eraseMemory() {
+    public void eraseMemory() {
         System.out.println("Borrando la memoria");
         try {
             setSingleReg(0, 1);
             setSingleReg(1, 7);
             setSingleReg(0, 0);
+            
+            
+            Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.INFO, "Memoria formateada");
         } catch (Exception e) {
+            Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.SEVERE, "Error formateando la meoria", e);
         }
         System.out.println("Borrada");
     }

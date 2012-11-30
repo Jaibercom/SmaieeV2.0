@@ -138,6 +138,11 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
                 configdao.saveToFlash();
                 termino = true;
                 break;
+                
+                 case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_FORMATEAR_FLASH:
+                configdao.eraseMemory();
+                termino = true;
+                break;
 
             default: //se seleccionó el balasto y se manda para que titile.
                 Logger.getLogger(OperacionesDaoHilo.class.getName()).log(Level.INFO, "Se escogio un valor invalido. se ignorará la orden");

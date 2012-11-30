@@ -26,7 +26,7 @@ public final class MapaDeMemoria {
     public static int BALASTO_MEMORY_SIZE = Integer.parseInt(PropHandler.getProperty("balast.memory.size"));
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Miscelaneas">
-    public static int REINTENTOS;
+    public static final int REINTENTOS;
     /**
      * Retardo que se inserta entre las operaciones de escritura y lectura de
      * registros.
@@ -53,7 +53,7 @@ public final class MapaDeMemoria {
         DELAY_OPERACIONES_CORTO = 500;
 
 
-        BALASTO_DE_FABRICA = Integer.parseInt(PropHandler.getProperty("balast.config.defabrica"));
+            BALASTO_DE_FABRICA = Integer.parseInt(PropHandler.getProperty("balast.config.defabrica"));
         BALASTO_DIRB = Integer.parseInt(PropHandler.getProperty("balast.memory.dirb"));
         BALASTO_NUMB=Integer.parseInt(PropHandler.getProperty("balast.memory.numb"));
 

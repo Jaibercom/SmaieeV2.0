@@ -30,6 +30,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -3553,7 +3554,7 @@ public class PpalView extends javax.swing.JFrame {
 
                     int intentosBalastosRed = 0;
 
-                    while (intentosBalastosRed < MapaDeMemoria.REINTENTOS) {
+                    while (intentosBalastosRed < 5) {
 
                         if (this.getBalastoConfiguracion_jComboBox().getItemAt(0) == null) {
                             OperacionesDaoHilo hilo1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
@@ -3574,13 +3575,14 @@ public class PpalView extends javax.swing.JFrame {
                             }
 
                         } else {
-                            intentosBalastosRed = MapaDeMemoria.REINTENTOS;
+                            intentosBalastosRed = 5;
                         }
                     }
 
 
                     break;
                 case 2:
+                    
 
 
                     break;
@@ -3736,15 +3738,31 @@ public class PpalView extends javax.swing.JFrame {
         int confirm = JOptionPane.showConfirmDialog(null, "Está apunto de borrar la memoria flash. Desea continuar?");
         if (confirm == JOptionPane.OK_OPTION) {
             try {
-                getBarraProgreso_jProgressBar().setIndeterminate(true);
-                getStatusLabel().setText("Formateando memoria...");
-                ConfiguracionDAOJmodbus c = new ConfiguracionDAOJmodbus(dao);
-                c.eraseMemory();
+               OperacionesDaoHilo hilo=new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_FORMATEAR_FLASH);
+                hilo.setBar(barraProgreso_jProgressBar);
+                hilo.setLabel(getStatusLabel());
+                hilo.getBar().setIndeterminate(true);
+                hilo.getLabel().setText("Formateando memoria...");
+                hilo.execute();
+//                
+//                getBarraProgreso_jProgressBar().setIndeterminate(true);
+//                getStatusLabel().setText("Formateando memoria...");
+//                ConfiguracionDAOJmodbus c = new ConfiguracionDAOJmodbus(dao);
+//                c.eraseMemory();
                 limpiarArbol(getArbol_jTree());
                 establecerModeloArbolDefault(this.getArbol_jTree());
-                getStatusLabel().setText("");
-                getBarraProgreso_jProgressBar().setIndeterminate(false);
+                
+                hilo.get();
+                CargaInicial ci=new CargaInicial(this);
+                ci.execute();
+                
+//                getStatusLabel().setText("");
+//                getBarraProgreso_jProgressBar().setIndeterminate(false);
                 JOptionPane.showMessageDialog(null, "Memoria flash borrada exitósamente");
+            } catch (InterruptedException ex) {
+                Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ExecutionException ex) {
+                Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
             } catch (HeadlessException ex) {
                 ex.printStackTrace();
                 getStatusLabel().setText("");
