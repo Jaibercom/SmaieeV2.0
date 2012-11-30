@@ -9,7 +9,7 @@ import com.isolux.dao.jmodbus.EntradaDAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
-import com.isolux.view.ViewUtils;
+import com.isolux.utils.ViewUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;

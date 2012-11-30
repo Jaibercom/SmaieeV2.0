@@ -10,6 +10,7 @@
  */
 package com.isolux.view;
 
+import com.isolux.view.PpalView;
 import com.isolux.bo.Balasto;
 import com.isolux.control.RealTimeControl;
 import com.isolux.dao.properties.PropHandler;

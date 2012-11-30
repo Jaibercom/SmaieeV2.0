@@ -5,6 +5,7 @@
  */
 package com.isolux.view;
 
+import com.isolux.utils.ViewUtils;
 import com.isolux.bo.*;
 import com.isolux.control.BalastosConfiguracionControl;
 import com.isolux.control.BalastosControl;
@@ -20,9 +21,9 @@ import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.hilos.OperacionesDaoHilo;
 import com.isolux.properties.MapaDeMemoria;
-import com.isolux.utils.LimitadorDeCaracteresIp_Document;
 import com.isolux.utils.LimitadorDeCaracteresNum_InputVerifier;
 import com.isolux.utils.Validacion;
+import com.isolux.view.threads.CargaInicial;
 import com.isolux.view.threads.ThreadManager;
 import com.toedter.calendar.JDateChooser;
 import java.awt.HeadlessException;
@@ -55,7 +56,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTree;
-import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 import javax.swing.tree.TreePath;
 
@@ -1009,19 +1009,20 @@ public class PpalView extends javax.swing.JFrame {
             panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelEscenasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nombreEscena_jLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nombreEscena_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel61)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
-                .addComponent(escenaNumero_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEscenasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(enviarEscena_jButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(eliminarEscena_jButton)
+                .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelEscenasLayout.createSequentialGroup()
+                        .addComponent(nombreEscena_jLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nombreEscena_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel61)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
+                        .addComponent(escenaNumero_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEscenasLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(enviarEscena_jButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(eliminarEscena_jButton)))
                 .addContainerGap())
         );
         panelEscenasLayout.setVerticalGroup(
@@ -3582,7 +3583,7 @@ public class PpalView extends javax.swing.JFrame {
 
                     break;
                 case 2:
-                    
+
 
 
                     break;
@@ -3649,29 +3650,31 @@ public class PpalView extends javax.swing.JFrame {
      */
     private void guardarEnFlash(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarEnFlash
         try {
-            
-            
-            
+
+
+
 //            getBarraProgreso_jProgressBar().setIndeterminate(true);
 //            getStatusLabel().setText("Guardando en flash...");
 //            
-            OperacionesDaoHilo hilo =new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_GRABAR_EN_FLASH);
+            OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_GRABAR_EN_FLASH);
             hilo.setBar(barraProgreso_jProgressBar);
             hilo.setLabel(getStatusLabel());
             hilo.getBar().setIndeterminate(true);
             hilo.getLabel().setText("Guardando en flash...");
+            
+            
 //            ConfiguracionDAOJmodbus g = new ConfiguracionDAOJmodbus(dao);
 //            
 //            getBarraProgreso_jProgressBar().setIndeterminate(false);
 //            getStatusLabel().setText("");
-            
+
             hilo.execute();
-            
+
         } catch (Exception e) {
             getBarraProgreso_jProgressBar().setIndeterminate(false);
             getStatusLabel().setText("");
             Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, "Problemas guardando en flash", e);
-            JOptionPane.showMessageDialog(this, "Hubo problemas guardando","Error guardando en flash",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Hubo problemas guardando", "Error guardando en flash", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_guardarEnFlash
 
@@ -3738,7 +3741,7 @@ public class PpalView extends javax.swing.JFrame {
         int confirm = JOptionPane.showConfirmDialog(null, "Está apunto de borrar la memoria flash. Desea continuar?");
         if (confirm == JOptionPane.OK_OPTION) {
             try {
-               OperacionesDaoHilo hilo=new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_FORMATEAR_FLASH);
+                OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_FORMATEAR_FLASH);
                 hilo.setBar(barraProgreso_jProgressBar);
                 hilo.setLabel(getStatusLabel());
                 hilo.getBar().setIndeterminate(true);
@@ -3752,17 +3755,19 @@ public class PpalView extends javax.swing.JFrame {
                 limpiarArbol(getArbol_jTree());
                 establecerModeloArbolDefault(this.getArbol_jTree());
                 
-                hilo.get();
-                CargaInicial ci=new CargaInicial(this);
-                ci.execute();
-                
+
+//                hilo.get();
+
+
 //                getStatusLabel().setText("");
 //                getBarraProgreso_jProgressBar().setIndeterminate(false);
                 JOptionPane.showMessageDialog(null, "Memoria flash borrada exitósamente");
-            } catch (InterruptedException ex) {
-                Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ExecutionException ex) {
-                Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+                this.getGeneralCtrl().habilitarTodo(this.getTabbedPane(), true);
+                
+//            } catch (InterruptedException ex) {
+//                Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (ExecutionException ex) {
+//                Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
             } catch (HeadlessException ex) {
                 ex.printStackTrace();
                 getStatusLabel().setText("");
@@ -6975,38 +6980,31 @@ public class PpalView extends javax.swing.JFrame {
 
     // End of variables declaration                   
     //</editor-fold>
-    private class CargaInicial extends SwingWorker<Boolean, Boolean> {
+    public BalastosControl getBalastoCtrl() {
+        return balastoCtrl;
+    }
 
-        PpalView ppalView;
+    public EventControl getEventCtrl() {
+        return eventCtrl;
+    }
 
-        public CargaInicial(PpalView ppalView) {
-            this.ppalView = ppalView;
-        }
+    public GrupoControl getGroupsCtrl() {
+        return groupsCtrl;
+    }
 
-        @Override
-        protected Boolean doInBackground() throws Exception {
+    public EntradaControl getInsCtrl() {
+        return insCtrl;
+    }
 
-            GeneralControl generalCtrl = new GeneralControl();
+    public EscenaControl getSceneCtrl() {
+        return sceneCtrl;
+    }
 
-            ppalView.getArbol_jTree().setEnabled(false);
-            ppalView.getBarraProgreso_jProgressBar().setIndeterminate(true);
-            Boolean c = generalCtrl.cargaInicial(ppalView, balastoCtrl, groupsCtrl, sceneCtrl, eventCtrl, insCtrl, balastoConfigCtrl);
+    public BalastosConfiguracionControl getBalastoConfigCtrl() {
+        return balastoConfigCtrl;
+    }
 
-
-            return c;
-
-        }
-
-        @Override
-        protected void done() {
-//            expandirArbol(getArbol_jTree());
-            Object nodo = arbol_jTree.getModel().getRoot();
-            expandirArbol(arbol_jTree, new TreePath(nodo), true);
-            ppalView.getBarraProgreso_jProgressBar().setIndeterminate(false);
-            ppalView.getStatusLabel().setText("");
-            ppalView.getArbol_jTree().setEnabled(true);
-            super.done();
-
-        }
+    public javax.swing.JButton getEnviarConfiguracion_jButton2() {
+        return enviarConfiguracion_jButton2;
     }
 }

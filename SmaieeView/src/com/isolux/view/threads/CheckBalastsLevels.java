@@ -6,15 +6,12 @@ package com.isolux.view.threads;
 
 import com.isolux.bo.Balasto;
 import com.isolux.dao.jmodbus.BalastoDAOJmodbus;
-import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.view.PpalView;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *

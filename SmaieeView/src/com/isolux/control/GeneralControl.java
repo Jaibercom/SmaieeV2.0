@@ -6,14 +6,17 @@ package com.isolux.control;
 
 import com.isolux.bo.*;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
+import com.isolux.dao.jmodbus.UtilsJmodbus;
 import com.isolux.dao.properties.PropHandler;
-import com.isolux.properties.MapaDeMemoria;
+import com.isolux.utils.SwingUtils;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 import com.isolux.view.threads.RefreshRTC;
 import com.isolux.view.threads.ThreadManager;
 import com.toedter.calendar.IDateEditor;
 import java.awt.CardLayout;
+import java.awt.Component;
+import java.awt.Container;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,8 +28,10 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.text.MaskFormatter;
 import javax.swing.tree.DefaultMutableTreeNode;
 
@@ -714,4 +719,14 @@ public class GeneralControl {
         }
 
     }
+    
+    /**
+     * Activa o desactiva todos los componentes de la interfaz
+     * @param c
+     * @param activar 
+     */
+   public void habilitarTodo(Container c, boolean activar) { 
+      SwingUtils.setEnableContainer(c, activar);
+    }
+
 }

@@ -4,10 +4,10 @@
  */
 package com.isolux.hilos;
 
+
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
 import com.isolux.dao.jmodbus.OperacionesBalastoConfiguracionDaoJmodbus;
 import com.isolux.dao.modbus.DAOJmodbus;
-import com.isolux.properties.MapaDeMemoria;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -16,6 +16,9 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingWorker;
+
+
+
 
 /**
  * Clase que administra los hilos de las operaciones sobre la tarjeta. Estas
@@ -37,11 +40,13 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
     int operacion;
     OperacionesBalastoConfiguracionDaoJmodbus obcdj = OperacionesBalastoConfiguracionDaoJmodbus.getInstancia();
     ConfiguracionDAOJmodbus configdao = new ConfiguracionDAOJmodbus(DAOJmodbus.getInstancia());
+    
     int parm1;
     int parm2;
     private int delay = 0;
     private JLabel label;
     private JProgressBar bar;
+    
 
     /**
      * Constructor para la operación de cambiarDirBalasto
@@ -92,12 +97,16 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
 
         ColaOperaciones.getInstancia().setProgreso(true);
         boolean termino = false;
+        
+        
         publish(50);
 
         if (obcdj.getMode() == OperacionesBalastoConfiguracionDaoJmodbus.MODE_RUN) {
             obcdj.setMode(OperacionesBalastoConfiguracionDaoJmodbus.MODE_CONFIG);
         }
         publish(70);
+        
+        
         switch (operacion) {
             case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_CAMBIAR_DIR_BALASTO:
 
@@ -141,6 +150,7 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
                 
                  case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_FORMATEAR_FLASH:
                 configdao.eraseMemory();
+                
                 termino = true;
                 break;
 

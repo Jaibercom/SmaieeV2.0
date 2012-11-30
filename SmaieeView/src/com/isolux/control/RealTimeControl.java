@@ -7,25 +7,23 @@ package com.isolux.control;
 import com.isolux.bo.Balasto;
 import com.isolux.dao.Utils;
 import com.isolux.dao.jmodbus.BalastoDAOJmodbus;
-import com.isolux.dao.modbus.DAOJamod;
 import com.isolux.dao.properties.Constants;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.dao.properties.facadeBack.TiempoRealDAO;
-import com.isolux.view.threads.CheckBalastsLevels;
 import com.isolux.utils.Validacion;
 import com.isolux.view.AreaBalasts;
 import com.isolux.view.PpalView;
+import com.isolux.view.threads.CheckBalastsLevels;
 import com.isolux.view.threads.ThreadManager;
+import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import java.awt.Image;
-import javax.swing.table.DefaultTableModel;
-import java.util.Set;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *

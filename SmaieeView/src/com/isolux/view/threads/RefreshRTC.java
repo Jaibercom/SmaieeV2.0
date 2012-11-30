@@ -7,7 +7,6 @@ package com.isolux.view.threads;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
 import com.isolux.view.PpalView;
 import java.util.Date;
-import javax.swing.JTable;
 
 /**
  *

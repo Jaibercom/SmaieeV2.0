@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.isolux.view;
+package com.isolux.utils;
 
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.dao.view.Status;

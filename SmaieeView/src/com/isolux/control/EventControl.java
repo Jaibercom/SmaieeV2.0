@@ -11,7 +11,7 @@ import com.isolux.dao.jmodbus.EventoDAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
-import com.isolux.view.ViewUtils;
+import com.isolux.utils.ViewUtils;
 import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

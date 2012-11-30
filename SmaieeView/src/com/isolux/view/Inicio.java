@@ -12,8 +12,6 @@ package com.isolux.view;
 
 import com.isolux.dao.modbus.DAOJamod;
 import com.isolux.dao.properties.PropHandler;
-import com.isolux.properties.MapaDeMemoria;
-import com.isolux.utils.LimitadorDeCaracteresIp_Document;
 import com.isolux.utils.LimitadorDeCaracteresNum_InputVerifier;
 import java.net.ConnectException;
 import java.util.logging.Level;

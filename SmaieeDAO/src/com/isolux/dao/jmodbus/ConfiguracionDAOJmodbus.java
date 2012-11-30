@@ -5,10 +5,8 @@
 package com.isolux.dao.jmodbus;
 
 import com.isolux.bo.*;
-import com.isolux.dao.modbus.DAO4j;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
-import com.isolux.properties.MapaDeMemoria;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -386,6 +384,7 @@ public class ConfiguracionDAOJmodbus {
             setSingleReg(0, 1);
             setSingleReg(1, 7);
             setSingleReg(0, 0);
+            
             
             
             Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.INFO, "Memoria formateada");
