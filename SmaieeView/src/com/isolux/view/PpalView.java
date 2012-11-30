@@ -3553,28 +3553,28 @@ public class PpalView extends javax.swing.JFrame {
 
                     int intentosBalastosRed = 0;
 
-                    while (intentosBalastosRed < MapaDeMemoria.getREINTENTOS()) {
+                    while (intentosBalastosRed < MapaDeMemoria.REINTENTOS) {
 
                         if (this.getBalastoConfiguracion_jComboBox().getItemAt(0) == null) {
                             OperacionesDaoHilo hilo1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
                             hilo1.setLabel(getStatusLabel());
                             hilo1.getLabel().setText("Cargando los balastos en red. Intento: " + (intentosBalastosRed + 1));
                             hilo1.setBar(getBarraProgreso_jProgressBar());
-                            hilo.setDelay(MapaDeMemoria.getDELAY_OPERACIONES_LARGO());
+                            hilo.setDelay(MapaDeMemoria.DELAY_OPERACIONES_LARGO);
 
 //                    cola.getCola().enqueue(hilo);
 //                    cola.iniciarOperaciones();
                             hilo1.execute();
                             hilo1.get();
                             intentosBalastosRed++;
-                            Thread.sleep(MapaDeMemoria.getDELAY_OPERACIONES_CORTO());
+                            Thread.sleep(MapaDeMemoria.DELAY_OPERACIONES_CORTO);
 
-                            if (intentosBalastosRed == MapaDeMemoria.getREINTENTOS()) {
+                            if (intentosBalastosRed == MapaDeMemoria.REINTENTOS) {
                                 JOptionPane.showMessageDialog(null, "Al parecer no hay balastos en la red. Verifique que si se encuentran conectados.\nSi estan conectados intente reiniciar el programa.", "", inType);
                             }
 
                         } else {
-                            intentosBalastosRed = MapaDeMemoria.getREINTENTOS();
+                            intentosBalastosRed = MapaDeMemoria.REINTENTOS;
                         }
                     }
 
@@ -3647,16 +3647,29 @@ public class PpalView extends javax.swing.JFrame {
      */
     private void guardarEnFlash(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarEnFlash
         try {
-            getBarraProgreso_jProgressBar().setIndeterminate(true);
-            getStatusLabel().setText("Guardando en flash...");
-            ConfiguracionDAOJmodbus g = new ConfiguracionDAOJmodbus(dao);
-            ConfiguracionDAOJmodbus.saveToFlash();
-            getBarraProgreso_jProgressBar().setIndeterminate(false);
-            getStatusLabel().setText("");
+            
+            
+            
+//            getBarraProgreso_jProgressBar().setIndeterminate(true);
+//            getStatusLabel().setText("Guardando en flash...");
+//            
+            OperacionesDaoHilo hilo =new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_GRABAR_EN_FLASH);
+            hilo.setBar(barraProgreso_jProgressBar);
+            hilo.setLabel(getStatusLabel());
+            hilo.getBar().setIndeterminate(true);
+            hilo.getLabel().setText("Guardando en flash...");
+//            ConfiguracionDAOJmodbus g = new ConfiguracionDAOJmodbus(dao);
+//            
+//            getBarraProgreso_jProgressBar().setIndeterminate(false);
+//            getStatusLabel().setText("");
+            
+            hilo.execute();
+            
         } catch (Exception e) {
             getBarraProgreso_jProgressBar().setIndeterminate(false);
             getStatusLabel().setText("");
             Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, "Problemas guardando en flash", e);
+            JOptionPane.showMessageDialog(this, "Hubo problemas guardando","Error guardando en flash",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_guardarEnFlash
 

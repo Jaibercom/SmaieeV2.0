@@ -345,7 +345,7 @@ public class ConfiguracionDAOJmodbus {
     /**
      * Save program to the flash memory.
      */
-    public static void saveToFlash() {
+    public void saveToFlash() {
         System.out.println("Guardando en flash");
         try {
             

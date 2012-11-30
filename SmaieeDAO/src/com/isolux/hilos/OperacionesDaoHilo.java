@@ -4,7 +4,9 @@
  */
 package com.isolux.hilos;
 
+import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
 import com.isolux.dao.jmodbus.OperacionesBalastoConfiguracionDaoJmodbus;
+import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.properties.MapaDeMemoria;
 import java.util.List;
 import java.util.Observable;
@@ -34,6 +36,7 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
      */
     int operacion;
     OperacionesBalastoConfiguracionDaoJmodbus obcdj = OperacionesBalastoConfiguracionDaoJmodbus.getInstancia();
+    ConfiguracionDAOJmodbus configdao = new ConfiguracionDAOJmodbus(DAOJmodbus.getInstancia());
     int parm1;
     int parm2;
     private int delay = 0;
@@ -131,6 +134,11 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
                 termino = true;
                 break;
 
+            case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_GRABAR_EN_FLASH:
+                configdao.saveToFlash();
+                termino = true;
+                break;
+
             default: //se seleccionó el balasto y se manda para que titile.
                 Logger.getLogger(OperacionesDaoHilo.class.getName()).log(Level.INFO, "Se escogio un valor invalido. se ignorará la orden");
                 termino = true;
@@ -154,15 +162,20 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
     protected void done() {
         try {
 
+
             if (label != null) {
                 label.setText("Operacion terminada con exito");
-                Thread.sleep(MapaDeMemoria.getDELAY_OPERACIONES_LARGO());
+                Thread.sleep(1500);
                 label.setText("");
                 getBar().setValue(0);
+                getBar().setIndeterminate(false);
             }
             Thread.sleep(getDelay());
             ColaOperaciones.getInstancia().setProgreso(false);
         } catch (Exception ex) {
+            label.setText("");
+            getBar().setValue(0);
+            getBar().setIndeterminate(false);
             Logger.getLogger(OperacionesDaoHilo.class.getName()).log(Level.SEVERE, null, ex);
         }
 

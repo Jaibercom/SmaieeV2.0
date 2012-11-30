@@ -44,9 +44,13 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
      * para que titile
      */
     public static final int OPCODE_SELECCIONAR_BALASTO = 25;
+    public static final int OPCODE_GRABAR_EN_FLASH=10;
+    
     private final int regNumBalsat = Integer.parseInt(PropHandler.getProperty("balast.init.position"));
+    
     private static OperacionesBalastoConfiguracionDaoJmodbus instancia = null;
 
+    
     private OperacionesBalastoConfiguracionDaoJmodbus() {
     }
 
