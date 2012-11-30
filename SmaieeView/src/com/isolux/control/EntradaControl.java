@@ -13,8 +13,11 @@ import com.isolux.view.ViewUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.text.Position;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -53,73 +56,74 @@ public class EntradaControl implements ElementoControl_Interface {
      * Saves an in.
      */
     @Override
-    public void saveElement(PpalView ppalView) {
-        boolean connectionStatus = true; //DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
-        new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
-        if (connectionStatus) {
-
-            ppalView.getStatusLabel().setText("Guardando entrada");
-            //in number
-            boolean isUpdate = !ppalView.getjLabel63().getText().equals("#");
-
-            int inNumber = ppalView.getjLabel63().getText().equals("#") ? Integer.parseInt((String) ppalView.getEntradaNumero_jComboBox().getSelectedItem()) : Integer.parseInt(ppalView.getjLabel63().getText());
+    public void saveElement(PpalView ppalView){
+        try {
+            boolean connectionStatus = true; //DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
+            new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
+            if (connectionStatus) {
+                
+                ppalView.getStatusLabel().setText("Guardando entrada");
+                //in number
+                boolean isUpdate = !ppalView.getjLabel63().getText().equals("#");
+                
+                int inNumber = ppalView.getjLabel63().getText().equals("#") ? Integer.parseInt((String) ppalView.getEntradaNumero_jComboBox().getSelectedItem()) : Integer.parseInt(ppalView.getjLabel63().getText());
 //        int balastNumber = !jLabel63.getText().equals("#") ? Integer.parseInt(jLabel63.getText()) : Integer.parseInt((String) jComboBox4.getSelectedItem());
 //        int balastNumber = !jLabel63.getText().equals("#") ? Integer.parseInt(jLabel63.getText()) : Integer.parseInt((String) jComboBox4.getSelectedItem());
 
-            int activacion = 1;
-            int tipo = ppalView.getInType();
-            int comp1 = ppalView.getjRadioButton1().isSelected() ? 1 : ppalView.getjRadioButton2().isSelected() ? 2 : 0; //Mantenido = 1 o momentaneo = 2
-            int comp2 = ppalView.getjRadioButton3().isSelected() ? 1 : ppalView.getjRadioButton4().isSelected() ? 2 : 0; //NA = 1, o NC = 2
-            int nivelON = ppalView.getjTextField5().getText().equals("0") ? Integer.parseInt(ppalView.getjTextField34().getText()) : Integer.parseInt(ppalView.getjTextField5().getText());
-            int NivelOFF = ppalView.getjTextField6().getText().equals("0") ? Integer.parseInt(ppalView.getjTextField35().getText()) : Integer.parseInt(ppalView.getjTextField6().getText());
-            int tiempoRetardo = ppalView.getjTextField7().getText().equals("0") ? Integer.parseInt(ppalView.getjTextField36().getText()) : Integer.parseInt(ppalView.getjTextField7().getText());
-            int ganancia = Integer.parseInt(ppalView.getjTextField10().getText());
+                int activacion = 1;
+                int tipo = ppalView.getInType();
+                int comp1 = ppalView.getjRadioButton1().isSelected() ? 1 : ppalView.getjRadioButton2().isSelected() ? 2 : 0; //Mantenido = 1 o momentaneo = 2
+                int comp2 = ppalView.getjRadioButton3().isSelected() ? 1 : ppalView.getjRadioButton4().isSelected() ? 2 : 0; //NA = 1, o NC = 2
+                int nivelON = ppalView.getjTextField5().getText().equals("0") ? Integer.parseInt(ppalView.getjTextField34().getText()) : Integer.parseInt(ppalView.getjTextField5().getText());
+                int NivelOFF = ppalView.getjTextField6().getText().equals("0") ? Integer.parseInt(ppalView.getjTextField35().getText()) : Integer.parseInt(ppalView.getjTextField6().getText());
+                int tiempoRetardo = ppalView.getjTextField7().getText().equals("0") ? Integer.parseInt(ppalView.getjTextField36().getText()) : Integer.parseInt(ppalView.getjTextField7().getText());
+                int ganancia = Integer.parseInt(ppalView.getjTextField10().getText());
+                
+                int nivIlumXvoltio = Integer.parseInt(ppalView.getEntradaFotoceldaNivelIlum_jTextField().getText());
+                int nivelDeseado = Integer.parseInt(ppalView.getEntradaFotoceldaNivelDeseado_jTextField().getText());
+                
+                int tipoSalida = ppalView.getInOutType();
+                int[] balastosAfectados = ppalView.getInOutType() == ViewUtils.getIntProperty("in.out.type.balast") ? getSelectedInItems(ppalView)
+                        : new int[Integer.parseInt(PropHandler.getProperty("balast.max.number"))];
+                int[] gruposAfectados = ppalView.getInOutType() == ViewUtils.getIntProperty("in.out.type.group") ? getSelectedInItems(ppalView)
+                        : new int[Integer.parseInt(PropHandler.getProperty("group.max.number"))];
+                int[] escenasAfecadas = ppalView.getInOutType() == ViewUtils.getIntProperty("in.out.type.scene") ? getSelectedInItems(ppalView)
+                        : new int[Integer.parseInt(PropHandler.getProperty("scene.max.number"))];
+                int valorAdc = 0;
+                
+                Entrada newIn = new Entrada(
+                        inNumber,
+                        activacion,
+                        tipo,
+                        comp1,
+                        comp2,
+                        nivelON,
+                        NivelOFF,
+                        tiempoRetardo,
+                        ganancia,
+                        nivIlumXvoltio,
+                        nivelDeseado,
+                        tipoSalida,
+                        balastosAfectados,
+                        gruposAfectados,
+                        escenasAfecadas,
+                        valorAdc);
 
-            int nivIlumXvoltio = Integer.parseInt(ppalView.getEntradaFotoceldaNivelIlum_jTextField().getText());
-            int nivelDeseado = Integer.parseInt(ppalView.getEntradaFotoceldaNivelDeseado_jTextField().getText());
-
-            int tipoSalida = ppalView.getInOutType();
-            int[] balastosAfectados = ppalView.getInOutType() == ViewUtils.getIntProperty("in.out.type.balast") ? getSelectedInItems(ppalView)
-                    : new int[Integer.parseInt(PropHandler.getProperty("balast.max.number"))];
-            int[] gruposAfectados = ppalView.getInOutType() == ViewUtils.getIntProperty("in.out.type.group") ? getSelectedInItems(ppalView)
-                    : new int[Integer.parseInt(PropHandler.getProperty("group.max.number"))];
-            int[] escenasAfecadas = ppalView.getInOutType() == ViewUtils.getIntProperty("in.out.type.scene") ? getSelectedInItems(ppalView)
-                    : new int[Integer.parseInt(PropHandler.getProperty("scene.max.number"))];
-            int valorAdc = 0;
-
-            Entrada newIn = new Entrada(
-                    inNumber,
-                    activacion,
-                    tipo,
-                    comp1,
-                    comp2,
-                    nivelON,
-                    NivelOFF,
-                    tiempoRetardo,
-                    ganancia,
-                    nivIlumXvoltio,
-                    nivelDeseado,
-                    tipoSalida,
-                    balastosAfectados,
-                    gruposAfectados,
-                    escenasAfecadas,
-                    valorAdc);
-
-            //Saves the balast remotelly
-            boolean resultado = false;
-
-            EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(ppalView.getDao());
-            resultado = jDao.saveElement(newIn);
-            if (isUpdate) {
-                //Update balast locally.
-                ppalView.getIns().remove(String.valueOf(newIn.getNumeroEntrada()));
-                ppalView.getIns().put(String.valueOf(newIn.getNumeroEntrada()), newIn);
-
-                if (resultado) {
-                    ppalView.getStatusLabel().setText("Entrada actualizada.");
-                } else {
-                    ppalView.getStatusLabel().setText("Ocurrió un error guardando la entrada");
-                }
+                //Saves the balast remotelly
+                boolean resultado = false;
+                
+                EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(ppalView.getDao());
+                resultado = jDao.saveElement(newIn);
+                if (isUpdate) {
+                    //Update balast locally.
+                    ppalView.getIns().remove(String.valueOf(newIn.getNumeroEntrada()));
+                    ppalView.getIns().put(String.valueOf(newIn.getNumeroEntrada()), newIn);
+                    
+                    if (resultado) {
+                        ppalView.getStatusLabel().setText("Entrada actualizada.");
+                    } else {
+                        ppalView.getStatusLabel().setText("Ocurrió un error guardando la entrada");
+                    }
 
 //            //Update name in the tree.
 //            String btnText = PropHandler.getProperty("scenes.menu.name");
@@ -142,36 +146,36 @@ public class EntradaControl implements ElementoControl_Interface {
 //                }
 //            }
 
-            } else {
-                if (new BalastosControl().validateBalastoForm()) {
-                    ppalView.getIns().put(String.valueOf(newIn.getNumeroEntrada()), newIn);
+                } else {
+                    if (new BalastosControl().validateBalastoForm()) {
+                        ppalView.getIns().put(String.valueOf(newIn.getNumeroEntrada()), newIn);
+                        
+                        if (resultado) {
+                            ppalView.getStatusLabel().setText("Entrada guardada");
+                        } else {
+                            ppalView.getStatusLabel().setText("Ocurrió un error guardando la entrada.");
+                        }
 
-                    if (resultado) {
-                        ppalView.getStatusLabel().setText("Entrada guardada");
-                    } else {
-                        ppalView.getStatusLabel().setText("Ocurrió un error guardando la entrada.");
-                    }
+                        //Update name in the tree.
+                        String btnText = PropHandler.getProperty("btns.menu.name");
+                        String ftcldText = PropHandler.getProperty("ftcl.menu.name");
+                        String sensorText = PropHandler.getProperty("sensors.menu.name");
+                        
+                        String parentNodeText = ppalView.getInType() == ViewUtils.getIntProperty("in.type.btns") ? btnText
+                                : ppalView.getInType() == ViewUtils.getIntProperty("in.type.ftcld") ? ftcldText
+                                : ppalView.getInType() == ViewUtils.getIntProperty("in.type.sensor") ? sensorText : "";
 
-                    //Update name in the tree.
-                    String btnText = PropHandler.getProperty("btns.menu.name");
-                    String ftcldText = PropHandler.getProperty("ftcl.menu.name");
-                    String sensorText = PropHandler.getProperty("sensors.menu.name");
-
-                    String parentNodeText = ppalView.getInType() == ViewUtils.getIntProperty("in.type.btns") ? btnText
-                            : ppalView.getInType() == ViewUtils.getIntProperty("in.type.ftcld") ? ftcldText
-                            : ppalView.getInType() == ViewUtils.getIntProperty("in.type.sensor") ? sensorText : "";
-
-                    //Show balast in tree
-                    DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
-                    TreePath path = ppalView.getArbol_jTree().getNextMatch(parentNodeText, 0, Position.Bias.Forward);
-                    MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
-                    DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(String.valueOf(newIn.getNumeroEntrada()));
-                    model.insertNodeInto(newNode, balastNode, balastNode.getChildCount());
-
-                    ppalView.getjLabel63().setText(String.valueOf(inNumber));
+                        //Show balast in tree
+                        DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
+                        TreePath path = ppalView.getArbol_jTree().getNextMatch(parentNodeText, 0, Position.Bias.Forward);
+                        MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
+                        DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(String.valueOf(newIn.getNumeroEntrada()));
+                        model.insertNodeInto(newNode, balastNode, balastNode.getChildCount());
+                        
+                        ppalView.getjLabel63().setText(String.valueOf(inNumber));
 //                            ppalView.getjComboBox4().removeItem(inNumber);
+                    }
                 }
-            }
 
 //            if (nivIlumXvoltio > 0) {
 //                if (nivelDeseado <= (nivIlumXvoltio * 10)) {
@@ -181,8 +185,12 @@ public class EntradaControl implements ElementoControl_Interface {
 //            } else {
 //                Validation.showAlertMessage("El nivel de iluminacion por voltio no puede ser cero.");
 //            }
+            }
+            refrescarVista(ppalView);
+        } catch (NumberFormatException ex) {
+            Logger.getLogger(Entrada.class.getName()).log(Level.OFF, "No se seleccionó un numero de la lista desplegable", ex);
+            JOptionPane.showMessageDialog(ppalView, "Debe seleccionar un numero de la lista desplegable.");
         }
-        refrescarVista(ppalView);
     }
 
     /**

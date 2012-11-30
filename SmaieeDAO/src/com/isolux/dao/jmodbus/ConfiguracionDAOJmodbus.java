@@ -348,7 +348,7 @@ public class ConfiguracionDAOJmodbus {
     public static void saveToFlash() {
         System.out.println("Guardando en flash");
         try {
-            setSingleReg(0, 0);// volvemos a poner el modo run
+            
             setSingleReg(0, 1);// ponemos en modo configuracion
             setSingleReg(1, 10);// escribimos el valor 
             setSingleReg(0, 0);// volvemos a poner el modo run
@@ -383,7 +383,9 @@ public class ConfiguracionDAOJmodbus {
     public static void eraseMemory() {
         System.out.println("Borrando la memoria");
         try {
+            setSingleReg(0, 1);
             setSingleReg(1, 7);
+            setSingleReg(0, 0);
         } catch (Exception e) {
         }
         System.out.println("Borrada");

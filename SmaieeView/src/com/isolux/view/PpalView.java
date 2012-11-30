@@ -3646,8 +3646,18 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void guardarEnFlash(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarEnFlash
-        ConfiguracionDAOJmodbus g = new ConfiguracionDAOJmodbus(dao);
-        ConfiguracionDAOJmodbus.saveToFlash();
+        try {
+            getBarraProgreso_jProgressBar().setIndeterminate(true);
+            getStatusLabel().setText("Guardando en flash...");
+            ConfiguracionDAOJmodbus g = new ConfiguracionDAOJmodbus(dao);
+            ConfiguracionDAOJmodbus.saveToFlash();
+            getBarraProgreso_jProgressBar().setIndeterminate(false);
+            getStatusLabel().setText("");
+        } catch (Exception e) {
+            getBarraProgreso_jProgressBar().setIndeterminate(false);
+            getStatusLabel().setText("");
+            Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, "Problemas guardando en flash", e);
+        }
     }//GEN-LAST:event_guardarEnFlash
 
     /**
@@ -3713,13 +3723,19 @@ public class PpalView extends javax.swing.JFrame {
         int confirm = JOptionPane.showConfirmDialog(null, "Está apunto de borrar la memoria flash. Desea continuar?");
         if (confirm == JOptionPane.OK_OPTION) {
             try {
+                getBarraProgreso_jProgressBar().setIndeterminate(true);
+                getStatusLabel().setText("Formateando memoria...");
                 ConfiguracionDAOJmodbus c = new ConfiguracionDAOJmodbus(dao);
                 c.eraseMemory();
                 limpiarArbol(getArbol_jTree());
                 establecerModeloArbolDefault(this.getArbol_jTree());
+                getStatusLabel().setText("");
+                getBarraProgreso_jProgressBar().setIndeterminate(false);
                 JOptionPane.showMessageDialog(null, "Memoria flash borrada exitósamente");
             } catch (HeadlessException ex) {
                 ex.printStackTrace();
+                getStatusLabel().setText("");
+                getBarraProgreso_jProgressBar().setIndeterminate(false);
                 JOptionPane.showMessageDialog(null, "Error borrando la memoria flash: " + ex.getMessage());
             }
         }
@@ -3786,7 +3802,7 @@ public class PpalView extends javax.swing.JFrame {
     private void balastoResetConfig_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoResetConfig_jButtonActionPerformed
 
         balastoConfigCtrl.resetElement(this);
-        
+
     }//GEN-LAST:event_balastoResetConfig_jButtonActionPerformed
 
     private void balastoConfiguracion_jComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_balastoConfiguracion_jComboBoxPropertyChange
@@ -6944,7 +6960,7 @@ public class PpalView extends javax.swing.JFrame {
             ppalView.getArbol_jTree().setEnabled(false);
             ppalView.getBarraProgreso_jProgressBar().setIndeterminate(true);
             Boolean c = generalCtrl.cargaInicial(ppalView, balastoCtrl, groupsCtrl, sceneCtrl, eventCtrl, insCtrl, balastoConfigCtrl);
-            
+
 
             return c;
 
