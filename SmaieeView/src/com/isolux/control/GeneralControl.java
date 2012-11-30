@@ -8,7 +8,7 @@ import com.isolux.bo.*;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
 import com.isolux.dao.jmodbus.UtilsJmodbus;
 import com.isolux.dao.properties.PropHandler;
-import com.isolux.utils.SwingUtils;
+import com.isolux.dao.utils.SwingUtils;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 import com.isolux.view.threads.RefreshRTC;

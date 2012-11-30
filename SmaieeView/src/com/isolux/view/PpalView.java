@@ -3661,6 +3661,7 @@ public class PpalView extends javax.swing.JFrame {
             hilo.setLabel(getStatusLabel());
             hilo.getBar().setIndeterminate(true);
             hilo.getLabel().setText("Guardando en flash...");
+            hilo.setPpalView(this.getTabbedPane());
             
             
 //            ConfiguracionDAOJmodbus g = new ConfiguracionDAOJmodbus(dao);
@@ -3746,6 +3747,7 @@ public class PpalView extends javax.swing.JFrame {
                 hilo.setLabel(getStatusLabel());
                 hilo.getBar().setIndeterminate(true);
                 hilo.getLabel().setText("Formateando memoria...");
+                hilo.setPpalView(this.getTabbedPane());
                 hilo.execute();
 //                
 //                getBarraProgreso_jProgressBar().setIndeterminate(true);
@@ -3761,8 +3763,10 @@ public class PpalView extends javax.swing.JFrame {
 
 //                getStatusLabel().setText("");
 //                getBarraProgreso_jProgressBar().setIndeterminate(false);
-                JOptionPane.showMessageDialog(null, "Memoria flash borrada exitósamente");
-                this.getGeneralCtrl().habilitarTodo(this.getTabbedPane(), true);
+//                JOptionPane.showMessageDialog(null, "Memoria flash formateandose. Cuando el sistema termine se mostra");
+                CargaInicial ci=new CargaInicial(this);
+                ci.execute();
+//                this.getGeneralCtrl().habilitarTodo(this.getTabbedPane(), true);
                 
 //            } catch (InterruptedException ex) {
 //                Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);

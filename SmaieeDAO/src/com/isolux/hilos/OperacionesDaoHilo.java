@@ -8,6 +8,8 @@ package com.isolux.hilos;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
 import com.isolux.dao.jmodbus.OperacionesBalastoConfiguracionDaoJmodbus;
 import com.isolux.dao.modbus.DAOJmodbus;
+import com.isolux.dao.utils.SwingUtils;
+import java.awt.Container;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -46,7 +48,7 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
     private int delay = 0;
     private JLabel label;
     private JProgressBar bar;
-    
+    private Container ppalView;
 
     /**
      * Constructor para la operación de cambiarDirBalasto
@@ -106,7 +108,10 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
         }
         publish(70);
         
-        
+        try {
+            SwingUtils.setEnableContainer(ppalView, false);
+        } catch (Exception e) {
+        }
         switch (operacion) {
             case OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_CAMBIAR_DIR_BALASTO:
 
@@ -178,6 +183,11 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
         try {
 
 
+            try {
+                SwingUtils.setEnableContainer(ppalView, true);
+            } catch (Exception e) {
+            }
+            
             if (label != null) {
                 label.setText("Operacion terminada con exito");
                 Thread.sleep(1500);
@@ -227,5 +237,13 @@ public class OperacionesDaoHilo extends SwingWorker<Boolean, Integer> implements
 
     public void setDelay(int delay) {
         this.delay = delay;
+    }
+
+    public Container getPpalView() {
+        return ppalView;
+    }
+
+    public void setPpalView(Container ppalView) {
+        this.ppalView = ppalView;
     }
 }
