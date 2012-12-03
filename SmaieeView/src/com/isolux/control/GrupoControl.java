@@ -260,6 +260,7 @@ public class GrupoControl implements ElementoControl_Interface{
         filterAddedElements(ppalView);
         String[] elementosDisponibles = elementosDisponibles(ppalView);
         Validacion.actualizarCombo(ppalView.getGruposNum_jComboBox(), elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);
+        ppalView.getGruposNombreSmaiee_jTextField().requestFocusInWindow();
 
     }
     

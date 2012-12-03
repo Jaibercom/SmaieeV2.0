@@ -311,6 +311,8 @@ public class EscenaControl implements ElementoControl_Interface{
         filterAddedElements(ppalView);
         String[] elementosDisponibles = elementosDisponibles(ppalView);
         Validacion.actualizarCombo(ppalView.getEscenaNumero_jComboBox(), elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);
+        ppalView.getNombreEscena_jTextField().requestFocusInWindow();
+        
     }
 
     @Override

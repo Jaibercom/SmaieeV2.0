@@ -25,11 +25,11 @@ import javax.swing.tree.TreePath;
  *
  * @author Juan Diego Toro
  */
-public class BalastosControl implements OperacionesElemento_Interface, ElementoControl_Interface{
+public class BalastosControl implements OperacionesElemento_Interface, ElementoControl_Interface {
 
     /**
-     * Gets the inserted balasts.
-     * Obtiene los balastos insertadod, y los muestra en el 
+     * Gets the inserted balasts. Obtiene los balastos insertadod, y los muestra
+     * en el
      */
     @Override
     public void readElements(PpalView ppalView) {
@@ -71,7 +71,7 @@ public class BalastosControl implements OperacionesElemento_Interface, ElementoC
             }
         }
         refrescarVista(ppalView);
-        
+
     }
 
     /**
@@ -163,7 +163,6 @@ public class BalastosControl implements OperacionesElemento_Interface, ElementoC
         refrescarVista(ppalView);
     }
 
-    
     @Override
     public void filterAddedElements(PpalView ppalView) {
         if (!ppalView.getBalastsStauts()) {
@@ -262,17 +261,17 @@ public class BalastosControl implements OperacionesElemento_Interface, ElementoC
         cleanView(ppalView);
         filterAddedElements(ppalView);
         String[] elementosDisponibles = elementosDisponibles(ppalView);
-        Validacion.actualizarCombo(ppalView.getBalastoNum_jComboBox(), elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);
+        Validacion.actualizarCombo(ppalView.getBalastoNum_jComboBox(), elementosDisponibles, Validacion.BALASTOS_DISPONIBLES);
+        ppalView.getBalastoNombreSmaiee_jTextField().requestFocusInWindow();
 
     }
 
-   
     @Override
     public String[] elementosDisponibles(PpalView ppalView) {
         BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
         String[] ses;
         ses = dao.elementosSinGrabar();
-      
+
         return ses;
     }
 
@@ -280,6 +279,4 @@ public class BalastosControl implements OperacionesElemento_Interface, ElementoC
     public String[] elementosSinGrabar() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-   
 }
