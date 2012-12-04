@@ -234,7 +234,7 @@ public class GeneralControl {
                         sceneCtrl.showSelectedElement(ppalView.getSelectedSceneNumber(), ppalView);
                     } else {
                         sceneCtrl.cleanView(ppalView);
-                        sceneCtrl.showAvailableSceneBalasts(ppalView);
+//                        sceneCtrl.showAvailableSceneBalasts(ppalView);
                         sceneCtrl.filterAddedElements(ppalView);
                     }
                     cl.show(ppalView.getPanelPpal(), "card5"); //Escenas

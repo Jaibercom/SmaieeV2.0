@@ -9,6 +9,7 @@ import com.isolux.view.PpalView;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Set;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 import javax.swing.text.Position;
@@ -21,9 +22,8 @@ import javax.swing.tree.TreePath;
  *
  * @author Juan Diego Toro Cano
  */
-public class EscenaControl implements ElementoControl_Interface{
+public class EscenaControl implements ElementoControl_Interface {
 
-   
     @Override
     public void saveElement(PpalView ppalView) {
         new GeneralControl().updateConnectionStatus(true, ppalView);
@@ -45,16 +45,18 @@ public class EscenaControl implements ElementoControl_Interface{
 //            }
 
 //            Escena newScene = new Escena(sceneNumber, 1, ppalView.getNombreEscenaJTextField().getText(), balastsLevels, getSelectedSceneBalasts(ppalView));
-            Escena newScene=new Escena(sceneNumber, 0, ppalView.getNombreEscenaJTextField().getText());
+            Escena newScene = new Escena(sceneNumber - 1, 0, ppalView.getNombreEscenaJTextField().getText());
 
             //Saves the balast remotelly
             EscenaDAOJmodbus dao = new EscenaDAOJmodbus(ppalView.getDao());
             boolean resultado = dao.saveElement(newScene);
 
+            String numAumentado = String.valueOf(newScene.getNumeroEscena()+ 1);
+
             if (isUpdate) {
                 //Update balast locally.
-                ppalView.getScenes().remove(String.valueOf(newScene.getNumeroEscena()));
-                ppalView.getScenes().put(String.valueOf(newScene.getNumeroEscena()), newScene);
+                ppalView.getScenes().remove(numAumentado);
+                ppalView.getScenes().put(numAumentado, newScene);
 
                 if (resultado) {
                     ppalView.getStatusLabel().setText("Escena actualizada.");
@@ -88,7 +90,7 @@ public class EscenaControl implements ElementoControl_Interface{
                     DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                     TreePath path = ppalView.getArbol_jTree().getNextMatch(PropHandler.getProperty("scenes.menu.name"), 0, Position.Bias.Forward);
                     MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
-                    DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(String.valueOf(newScene.getNumeroEscena()) + " - " + newScene.getNombre());
+                    DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(numAumentado + " - " + newScene.getNombre());
                     model.insertNodeInto(newNode, balastNode, balastNode.getChildCount());
 
                     //Remove balast from the list of available ones (jComboBox)
@@ -174,7 +176,10 @@ public class EscenaControl implements ElementoControl_Interface{
 
             //Scene.
             for (String sceneNumber : addedScenes) {
-                ppalView.getScenes().put(sceneNumber, dao.readElement(Integer.parseInt(sceneNumber)));
+                int numero = (Integer.parseInt(sceneNumber) + 1);
+                String numeroAumentado = Integer.toString(numero);
+
+                ppalView.getScenes().put(numeroAumentado, dao.readElement(Integer.parseInt(sceneNumber)));
             }
         }
     }
@@ -211,12 +216,18 @@ public class EscenaControl implements ElementoControl_Interface{
             ArrayList<String> addedScenes = PropHandler.getAddedScenes(ppalView.getDao());
             DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
 
+            HashMap<String, Escena> escenas = ppalView.getScenes();
+            Set<String> scenesKeys = escenas.keySet();
+
             //Remove the used balast numbers from the list and add them to the menu.
-            for (String string : addedScenes) {
-                Escena scene = ppalView.getScenes().get(string);
+//            
+
+            for (String string : scenesKeys) {
+                Escena scene = escenas.get(string);
                 DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(string + " - " + scene.getNombre());
                 model.insertNodeInto(newNode, selectedNode, selectedNode.getChildCount());
             }
+
             ppalView.setSceneStauts(true);
             ppalView.getStatusLabel().setText("Escenas leidas.");
         }
@@ -224,7 +235,9 @@ public class EscenaControl implements ElementoControl_Interface{
 
     /**
      * Show the available balasts.
-     * @deprecated Modificado por la inclusión de la nueva interfaz de configuración de balastos.
+     *
+     * @deprecated Modificado por la inclusión de la nueva interfaz de
+     * configuración de balastos.
      */
     public void showAvailableSceneBalasts(PpalView ppalView) {
         new BalastosControl().readElements(ppalView);
@@ -241,7 +254,9 @@ public class EscenaControl implements ElementoControl_Interface{
 
     /**
      * Get a string with the selected balasts.
-     * @deprecated Cambiado por la inclusión de la interfaz de configuración de balastos.
+     *
+     * @deprecated Cambiado por la inclusión de la interfaz de configuración de
+     * balastos.
      */
     private int[] getSelectedSceneBalasts(PpalView ppalView) {
         String selected = new String();
@@ -260,7 +275,9 @@ public class EscenaControl implements ElementoControl_Interface{
 
     /**
      * Select a scene balast.
-     * @deprecated Modificado por la inclusión de la nueva interfaz de configuración de balastos.
+     *
+     * @deprecated Modificado por la inclusión de la nueva interfaz de
+     * configuración de balastos.
      */
     public void selectEsceneBalast(PpalView ppalView) {
         String[] balasto = ppalView.getBalastosAfectados_jList().getSelectedValue().toString().split(": ");
@@ -303,24 +320,23 @@ public class EscenaControl implements ElementoControl_Interface{
 
     }
 
-   
     @Override
     public void refrescarVista(PpalView ppalView) {
         cleanView(ppalView);
-        showAvailableSceneBalasts(ppalView);
+//        showAvailableSceneBalasts(ppalView);
         filterAddedElements(ppalView);
         String[] elementosDisponibles = elementosDisponibles(ppalView);
-        Validacion.actualizarCombo(ppalView.getEscenaNumero_jComboBox(), elementosDisponibles,Validacion.BALASTOS_DISPONIBLES);
+        Validacion.actualizarCombo(ppalView.getEscenaNumero_jComboBox(), elementosDisponibles, Validacion.BALASTOS_DISPONIBLES);
         ppalView.getNombreEscena_jTextField().requestFocusInWindow();
-        
+
     }
 
     @Override
     public String[] elementosDisponibles(PpalView ppalView) {
-       EscenaDAOJmodbus dao = new EscenaDAOJmodbus(ppalView.getDao());
+        EscenaDAOJmodbus dao = new EscenaDAOJmodbus(ppalView.getDao());
         String[] ses;
         ses = dao.elementosSinGrabar();
-      
+
         return ses;
     }
 }

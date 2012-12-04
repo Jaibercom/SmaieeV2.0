@@ -272,8 +272,13 @@ public class EntradaControl implements ElementoControl_Interface {
         ArrayList<String> addedIns = PropHandler.getAddedIns(ppalView.getDao());
 
         //In.
+        
+        
         for (String inNumber : addedIns) {
-            ppalView.getIns().put(inNumber, jDao.readElement(Integer.parseInt(inNumber)));
+            
+             int numero=(Integer.parseInt(inNumber)+1);
+                String numeroAumentado=Integer.toString(numero);
+            ppalView.getIns().put(numeroAumentado, jDao.readElement(Integer.parseInt(inNumber)));
         }
     }
 
