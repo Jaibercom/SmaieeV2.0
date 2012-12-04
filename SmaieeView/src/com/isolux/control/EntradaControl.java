@@ -366,9 +366,12 @@ public class EntradaControl implements ElementoControl_Interface {
                 ArrayList<String> addedIns = PropHandler.getAddedIns(ppalView.getDao());
                 DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
 
+                HashMap<String, Entrada> ins = ppalView.getIns();
+            Set<String> balastsKeys = ins.keySet();
+                
                 //Remove the used balast numbers from the list and add them to the menu.
-                for (String string : addedIns) {
-                    Entrada in = ppalView.getIns().get(string);
+                for (String string : balastsKeys) {
+                    Entrada in = ins.get(string);
                     DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(string);
 //                ppalView.getjComboBox4().removeItem(string);
                     if (in.getTipo() == ViewUtils.getIntProperty("in.type.btns")) { //Botonera
@@ -387,6 +390,7 @@ public class EntradaControl implements ElementoControl_Interface {
         } catch (Exception e) {
             ppalView.setInStauts(false);
             ppalView.getStatusLabel().setText("Entradas no leidas.");
+            Logger.getLogger(EntradaControl.class.getName()).log(Level.SEVERE, "Error leyendo las entradas", e);
         }
     }
 
@@ -574,9 +578,7 @@ public class EntradaControl implements ElementoControl_Interface {
     @Override
     public void refrescarVista(PpalView ppalView) {
         cleanView(ppalView);
-//        show
         filterAddedElements(ppalView);
-
         String[] elementosDisponibles = elementosDisponibles(ppalView);
         Validacion.actualizarCombo(ppalView.getEntradaNumero_jComboBox(), elementosDisponibles, Validacion.BALASTOS_DISPONIBLES);
     }
