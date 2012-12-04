@@ -16,6 +16,7 @@ import com.isolux.control.GeneralControl;
 import com.isolux.control.GrupoControl;
 import com.isolux.control.RealTimeControl;
 import com.isolux.dao.jmodbus.ConfiguracionDAOJmodbus;
+import com.isolux.dao.jmodbus.ElementoDAOJmobdus;
 import com.isolux.dao.jmodbus.OperacionesBalastoConfiguracionDaoJmodbus;
 import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
@@ -3518,7 +3519,7 @@ public class PpalView extends javax.swing.JFrame {
 
 
             switch (numeroPanel) {
-                case 0:
+                case 0: //caso de smaiee
 
 
                     balastoCtrl.refrescarVista(this);
@@ -3527,15 +3528,13 @@ public class PpalView extends javax.swing.JFrame {
                     break;
                 case 1: //caso del panel de configuracion de balastos.
 
-//                    OperacionesBalastoConfiguracionDaoJmodbus.setMode(OperacionesBalastoConfiguracionDaoJmodbus.MODE_CONFIG);
 
-//                    ColaOperaciones cola = ColaOperaciones.getInstancia();
                     OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
                     hilo.setLabel(getStatusLabel());
                     hilo.getLabel().setText("Cargando elementos de la configuracion de balastos...");
                     hilo.setBar(getBarraProgreso_jProgressBar());
-//                    cola.getCola().enqueue(hilo);
-//                    cola.iniciarOperaciones();
+                    hilo.setPpalView(this.getTabbedPane());
+
                     hilo.execute();
                     hilo.get();
 
@@ -3550,8 +3549,6 @@ public class PpalView extends javax.swing.JFrame {
                             hilo1.setBar(getBarraProgreso_jProgressBar());
                             hilo.setDelay(MapaDeMemoria.DELAY_OPERACIONES_LARGO);
 
-//                    cola.getCola().enqueue(hilo);
-//                    cola.iniciarOperaciones();
                             hilo1.execute();
                             hilo1.get();
                             intentosBalastosRed++;
@@ -3568,10 +3565,9 @@ public class PpalView extends javax.swing.JFrame {
 
 
                     break;
-                case 2:
-
-
-
+                case 2://tiempo real
+                    ElementoDAOJmobdus edaoj=new ElementoDAOJmobdus(); //Modo config
+                    edaoj.setMode(ElementoDAOJmobdus.MODE_CONFIG);
                     break;
 
             }
