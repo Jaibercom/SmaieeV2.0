@@ -44,7 +44,11 @@ public class BalastosControl implements OperacionesElemento_Interface, ElementoC
 
             //Balasts.
             for (String balastNumber : addedBalasts) {
-                balasts.put(balastNumber, dao.readBalast(Integer.parseInt(balastNumber)));
+                
+                int numero=(Integer.parseInt(balastNumber)+1);
+                String numeroAumentado=Integer.toString(numero);
+                
+                balasts.put(numeroAumentado, dao.readBalast(Integer.parseInt(balastNumber)));
             }
             ppalView.setBalasts(balasts);
 
@@ -107,17 +111,21 @@ public class BalastosControl implements OperacionesElemento_Interface, ElementoC
 
 
             ppalView.getStatusLabel().setText("Guardando balasto");
-            Balasto balast = new Balasto(balastNumber, level, activation, name, dir, min, max, ft, fr, lf, lx, pot);
+            Balasto balast = new Balasto((balastNumber-1), level, activation, name, dir, min, max, ft, fr, lf, lx, pot);
 
             //Saves the balast remotelly
             boolean resultado = dao.saveBalast(balast);
+            
+//            usamos el numero aumentado para mostrar a nivel de interfaz de usuario
+             String numAumentado=String.valueOf(balast.getBalastNumber()+1);
+            
             HashMap<String, Balasto> ppalBalasts = ppalView.getBalasts();
 
             if (isUpdate) {
 
                 //Update balast locally.
-                ppalBalasts.remove(String.valueOf(balast.getBalastNumber()));
-                ppalBalasts.put(String.valueOf(balast.getBalastNumber()), balast);
+                ppalBalasts.remove(numAumentado);
+                ppalBalasts.put(numAumentado, balast);
 
                 if (resultado) {
                     ppalView.getStatusLabel().setText("Balasto actualizado.");
@@ -139,7 +147,10 @@ public class BalastosControl implements OperacionesElemento_Interface, ElementoC
 
             } else {
                 if (validateBalastoForm()) {
-                    ppalBalasts.put(String.valueOf(balast.getBalastNumber()), balast);
+                    
+                   
+                    
+                    ppalBalasts.put(numAumentado, balast);
 
                     if (resultado) {
                         ppalView.getStatusLabel().setText("Balasto guardado");
@@ -151,7 +162,7 @@ public class BalastosControl implements OperacionesElemento_Interface, ElementoC
                     DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                     TreePath path = ppalView.getArbol_jTree().getNextMatch(PropHandler.getProperty("balast.menu.name"), 0, Position.Bias.Forward);
                     MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
-                    DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(String.valueOf(balast.getBalastNumber()) + " - " + String.valueOf(balast.getName()));
+                    DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(numAumentado + " - " + String.valueOf(balast.getName()));
                     model.insertNodeInto(newNode, balastNode, balastNode.getChildCount());
 
                     //Remove balast from the list of available ones (jComboBox)

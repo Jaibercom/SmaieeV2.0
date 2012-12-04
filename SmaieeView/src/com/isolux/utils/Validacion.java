@@ -195,18 +195,18 @@ public class Validacion {
             switch (disponibilidadBalasto) {
                 case BALASTOS_DISPONIBLES:
                     if (elementosDisponibles[i].equals("0")) {
-                        valores.add(Integer.toString(i));
+                        valores.add(Integer.toString(i+1));
                     }
 
                     break;
 
                 case BALASTOS_NO_DISPONIBLES:
                     if (elementosDisponibles[i].equals("1")) {
-                        valores.add(Integer.toString(i));
+                        valores.add(Integer.toString(i+1));
                     }
                     break;
                 case BALASTOS_TODOS:
-                    valores.add(Integer.toString(i));
+                    valores.add(Integer.toString(i+1));
                     break;
             }
         }

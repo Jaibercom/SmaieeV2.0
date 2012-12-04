@@ -44,17 +44,19 @@ public class GrupoControl implements ElementoControl_Interface{
 
 
 //            Grupo newGroup = new Grupo(groupNumber, 0, ppalView.getjTextField3().getText(), getSelectedBalasts(ppalView));
-            Grupo newGroup = new Grupo(groupNumber, 0, ppalView.getjTextField3().getText());
+            Grupo newGroup = new Grupo(groupNumber-1, 0, ppalView.getjTextField3().getText());
 
             //Saves the balast remotelly
 
             GrupoDAOJmodbus gDao = new GrupoDAOJmodbus(ppalView.getDao());
             boolean resultado = gDao.saveElement(newGroup);
 
+            String numeAumentado=String.valueOf(newGroup.getGroupNumber()+1);
+            
             if (isUpdate) {
                 //Update balast locally.
-                ppalView.getGroups().remove(String.valueOf(newGroup.getGroupNumber()));
-                ppalView.getGroups().put(String.valueOf(newGroup.getGroupNumber()), newGroup);
+                ppalView.getGroups().remove(numeAumentado);
+                ppalView.getGroups().put(numeAumentado, newGroup);
 
                 if (resultado) {
                     ppalView.getStatusLabel().setText("Grupo actualizado.");
@@ -76,7 +78,7 @@ public class GrupoControl implements ElementoControl_Interface{
 
             } else {
                 if (new BalastosControl().validateBalastoForm()) {
-                    ppalView.getGroups().put(String.valueOf(newGroup.getGroupNumber()), newGroup);
+                    ppalView.getGroups().put(numeAumentado, newGroup);
 
                     if (resultado) {
                         ppalView.getStatusLabel().setText("Grupo guardado");
@@ -88,7 +90,7 @@ public class GrupoControl implements ElementoControl_Interface{
                     DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                     TreePath path = ppalView.getArbol_jTree().getNextMatch(PropHandler.getProperty("group.menu.name"), 0, Position.Bias.Forward);
                     MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
-                    DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(String.valueOf(newGroup.getGroupNumber()) + " - " + newGroup.getName());
+                    DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(numeAumentado + " - " + newGroup.getName());
                     model.insertNodeInto(newNode, balastNode, balastNode.getChildCount());
 
                     //Remove balast from the list of available ones (jComboBox)
@@ -168,7 +170,11 @@ public class GrupoControl implements ElementoControl_Interface{
 
             //Balasts.
             for (String groupNumber : addedGroups) {
-                ppalView.getGroups().put(groupNumber, gDao.readElement(Integer.parseInt(groupNumber)));
+                
+                int numero=(Integer.parseInt(groupNumber)+1);
+                String numeroAumentado=Integer.toString(numero);
+                
+                ppalView.getGroups().put(numeroAumentado, gDao.readElement(Integer.parseInt(groupNumber)));
             }
         }
     }
@@ -201,14 +207,23 @@ public class GrupoControl implements ElementoControl_Interface{
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) path.getLastPathComponent();
             ArrayList<String> addedGroups = PropHandler.getAddedGroups(ppalView.getDao());
             DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
+            
+            HashMap<String,Grupo> grupos=ppalView.getGroups();
+            Set<String> grupoKeys =grupos.keySet();
 
             //Remove the used balast numbers from the list and add them to the menu.
-            for (String string : addedGroups) {
-                Grupo group = ppalView.getGroups().get(string);
+//            for (String string : addedGroups) {
+//                Grupo group = ppalView.getGroups().get(string);
+//                DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(string + " - " + group.getName());
+//                model.insertNodeInto(newNode, selectedNode, selectedNode.getChildCount());
+//            }
+
+            for (String string : grupoKeys) {
+                Grupo group = grupos.get(string);
                 DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(string + " - " + group.getName());
                 model.insertNodeInto(newNode, selectedNode, selectedNode.getChildCount());
             }
-
+            
             ppalView.setGroupsStauts(true);
 
             ppalView.getStatusLabel().setText("Grupos leidos.");

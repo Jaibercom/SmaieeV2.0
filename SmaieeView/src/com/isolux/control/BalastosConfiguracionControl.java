@@ -660,6 +660,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
                 hilo.setBar(ppalView.getBarraProgreso_jProgressBar());
                 hilo.setLabel(ppalView.getStatusLabel());
                 hilo.getLabel().setText("Reseteando balasto...");
+                hilo.setPpalView(ppalView.getTabbedPane());
                 hilo.execute();
                 hilo.get();
                 JOptionPane.showMessageDialog(ppalView, "Balasto reseteado correctamente");
