@@ -80,9 +80,16 @@ public class GeneralControl {
         remove.setModel(cleanModelo);
 
         ArrayList<String> addedGroups = PropHandler.getAddedGroups(ppalView.getDao());
+        HashMap<String, Grupo> gruposAgregados = ppalView.getGroups();
+
+
         for (String groupNumber : addedGroups) {
-            Grupo group = ppalView.getGroups().get(groupNumber);
-            modelo.addElement(group.getGroupNumber() + " - " + group.getName());
+
+            int numero = (Integer.parseInt(groupNumber) + 1);
+            String numeroAumentado = Integer.toString(numero);
+
+            Grupo group = gruposAgregados.get(numeroAumentado);
+            modelo.addElement(numeroAumentado + " - " + group.getName());
         }
         show.setModel(modelo);
         remove.removeAll();
@@ -719,14 +726,14 @@ public class GeneralControl {
         }
 
     }
-    
+
     /**
      * Activa o desactiva todos los componentes de la interfaz
+     *
      * @param c
-     * @param activar 
+     * @param activar
      */
-   public void habilitarTodo(Container c, boolean activar) { 
-      SwingUtils.setEnableContainer(c, activar);
+    public void habilitarTodo(Container c, boolean activar) {
+        SwingUtils.setEnableContainer(c, activar);
     }
-
 }
