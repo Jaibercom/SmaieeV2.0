@@ -483,95 +483,107 @@ public class EntradaControl implements ElementoControl_Interface {
      * Show the in items.
      */
     public void showInItems(JList available, JList affected, Entrada selectedIn, PpalView ppalView) {
-        int prefixBalast = Integer.parseInt(PropHandler.getProperty("in.out.type.balast"));
-        int prefixGroup = Integer.parseInt(PropHandler.getProperty("in.out.type.group"));
-        int prefixScene = Integer.parseInt(PropHandler.getProperty("in.out.type.scene"));
-        HashMap<String, Balasto> balasts = ppalView.getBalasts();
-
-        if (ppalView.getInOutType() == prefixBalast) {  //Balastos
-            //Afected balasts
-            new BalastosControl().readElements(ppalView);
-            DefaultListModel inAffecBalasts = new DefaultListModel();
-            int[] selectedBalasts = selectedIn.getBalastos();
-            ArrayList sel = new ArrayList();
-            for (int i = 0; i < selectedBalasts.length; i++) {
-                if (selectedBalasts[i] == 1) {
-                    Balasto sce = balasts.get(String.valueOf(i));
-                    if (sce != null) {
-                        inAffecBalasts.addElement((sce.getBalastNumber()+1) + " - " + sce.getName());
-                        sel.add(String.valueOf(i));
+        try {
+            int prefixBalast = Integer.parseInt(PropHandler.getProperty("in.out.type.balast"));
+            int prefixGroup = Integer.parseInt(PropHandler.getProperty("in.out.type.group"));
+            int prefixScene = Integer.parseInt(PropHandler.getProperty("in.out.type.scene"));
+            HashMap<String, Balasto> balasts = ppalView.getBalasts();
+            
+            if (ppalView.getInOutType() == prefixBalast) {  //Balastos
+                //Afected balasts
+                new BalastosControl().readElements(ppalView);
+                DefaultListModel inAffecBalasts = new DefaultListModel();
+                int[] selectedBalasts = selectedIn.getBalastos();
+                ArrayList sel = new ArrayList();
+                for (int i = 0; i < selectedBalasts.length; i++) {
+                    if (selectedBalasts[i] == 1) {
+                        Balasto sce = balasts.get(String.valueOf(i));
+                        if (sce != null) {
+                            inAffecBalasts.addElement((sce.getBalastNumber() + 1) + " - " + sce.getName());
+                            sel.add(String.valueOf(i));
+                        }
                     }
                 }
-            }
-            affected.setModel(inAffecBalasts);
+                affected.setModel(inAffecBalasts);
 
-            //Available balasts
-            DefaultListModel modelo = new DefaultListModel();
+                //Available balasts
+                DefaultListModel modelo = new DefaultListModel();
 //            ArrayList<String> addedBalasts = PropHandler.getAddedBalasts(ppalView.getDao());
 
-
-            Set<String> addedBalasts = balasts.keySet();
-            for (String balastNumber : addedBalasts) {
-                if (!sel.contains(balastNumber)) {
-                    Balasto balasto = balasts.get(balastNumber);
-                    modelo.addElement((balasto.getBalastNumber()+1) + " - " + balasto.getName());
-                }
-            }
-            available.setModel(modelo);
-        } else if (ppalView.getInOutType() == prefixGroup) { //Grupos
-            //Afected balasts
-            new GrupoControl().readElements(ppalView);
-            DefaultListModel groupBalasts = new DefaultListModel();
-            int[] selectedGroups = selectedIn.getGrupos();
-            ArrayList sel = new ArrayList();
-            for (int i = 0; i < selectedGroups.length; i++) {
-                if (selectedGroups[i] == 1) {
-                    Grupo sce = ppalView.getGroups().get(String.valueOf(i));
-                    if (sce != null) {
-                        groupBalasts.addElement(sce.getGroupNumber() + " - " + sce.getName());
-                        sel.add(String.valueOf(i));
+                
+                Set<String> addedBalasts = balasts.keySet();
+                for (String balastNumber : addedBalasts) {
+                    if (!sel.contains(balastNumber)) {
+                        Balasto balasto = balasts.get(balastNumber);
+                        modelo.addElement((balasto.getBalastNumber() + 1) + " - " + balasto.getName());
                     }
                 }
-            }
-            affected.setModel(groupBalasts);
-
-            //Available balasts
-            DefaultListModel modelo = new DefaultListModel();
-            ArrayList<String> addedGroups = PropHandler.getAddedGroups(ppalView.getDao());
-            for (String groupNumber : addedGroups) {
-                if (sel.size() > 0 && !sel.contains(groupNumber)) {
-                    Grupo grupo = ppalView.getGroups().get(groupNumber);
-                    modelo.addElement(grupo.getGroupNumber() + " - " + grupo.getName());
-                }
-            }
-            available.setModel(modelo);
-        } else if (ppalView.getInOutType() == prefixScene) {    //Escenas
-            //Afected balasts
-            new EscenaControl().readElements(ppalView);
-            DefaultListModel sceneBalastsL = new DefaultListModel();
-            int[] selectedBalasts = selectedIn.getEscenas();
-            ArrayList sel = new ArrayList();
-            for (int i = 0; i < selectedBalasts.length; i++) {
-                if (selectedBalasts[i] == 1) {
-                    Escena sce = ppalView.getScenes().get(String.valueOf(i));
-                    if (sce != null) {
-                        sceneBalastsL.addElement(sce.getNumeroEscena() + " - " + sce.getNombre());
-                        sel.add(String.valueOf(i));
+                available.setModel(modelo);
+            } else if (ppalView.getInOutType() == prefixGroup) { //Grupos
+                //Afected Groups
+                new GrupoControl().readElements(ppalView);
+                DefaultListModel groupBalasts = new DefaultListModel();
+                int[] selectedGroups = selectedIn.getGrupos();
+                ArrayList sel = new ArrayList();
+                for (int i = 0; i < selectedGroups.length; i++) {
+                    if (selectedGroups[i] == 1) {
+                        Grupo sce = ppalView.getGroups().get(String.valueOf(i));
+                        if (sce != null) {
+                            groupBalasts.addElement((sce.getGroupNumber() + 1) + " - " + sce.getName());
+                            sel.add(String.valueOf(i));
+                        }
                     }
                 }
-            }
-            affected.setModel(sceneBalastsL);
+                affected.setModel(groupBalasts);
 
-            //Available balasts
-            DefaultListModel modelo = new DefaultListModel();
-            ArrayList<String> addedScenes = PropHandler.getAddedScenes(ppalView.getDao());
-            for (String sceneNumber : addedScenes) {
-                if (!sel.contains(sceneNumber)) {
-                    Escena escena = ppalView.getScenes().get(sceneNumber);
-                    modelo.addElement(escena.getNumeroEscena() + " - " + escena.getNombre());
+                //Available Groups
+                DefaultListModel modelo = new DefaultListModel();
+                ArrayList<String> addedGroups = PropHandler.getAddedGroups(ppalView.getDao());
+                
+                HashMap<String, Grupo> gruposAgregados=ppalView.getGroups();
+                Set<String> keys=gruposAgregados.keySet();
+                
+                for (String groupNumber : keys) {
+                    if (sel.size() > 0 && !sel.contains(groupNumber)) {
+                        Grupo grupo = ppalView.getGroups().get(groupNumber);
+                        modelo.addElement((grupo.getGroupNumber() + 1) + " - " + grupo.getName());
+                    }
                 }
+                available.setModel(modelo);
+            } else if (ppalView.getInOutType() == prefixScene) {    //Escenas
+                //Afected 
+                new EscenaControl().readElements(ppalView);
+                DefaultListModel sceneBalastsL = new DefaultListModel();
+                int[] selectedBalasts = selectedIn.getEscenas();
+                ArrayList sel = new ArrayList();
+                for (int i = 0; i < selectedBalasts.length; i++) {
+                    if (selectedBalasts[i] == 1) {
+                        Escena sce = ppalView.getScenes().get(String.valueOf(i));
+                        if (sce != null) {
+                            sceneBalastsL.addElement((sce.getNumeroEscena() + 1) + " - " + sce.getNombre());
+                            sel.add(String.valueOf(i));
+                        }
+                    }
+                }
+                affected.setModel(sceneBalastsL);
+
+                //Available scenes
+                DefaultListModel modelo = new DefaultListModel();
+                ArrayList<String> addedScenes = PropHandler.getAddedScenes(ppalView.getDao());
+                
+                HashMap<String, Escena> escenasAgregadas=ppalView.getScenes();
+                Set<String> keys=escenasAgregadas.keySet();
+                
+                for (String sceneNumber : keys) {
+                    if (!sel.contains(sceneNumber)) {
+                        Escena escena = ppalView.getScenes().get(sceneNumber);
+                        modelo.addElement((escena.getNumeroEscena() + 1) + " - " + escena.getNombre());
+                    }
+                }
+                available.setModel(modelo);
             }
-            available.setModel(modelo);
+        } catch (NumberFormatException ex) {
+            Logger.getLogger(EntradaControl.class.getName()).log(Level.SEVERE, "Error cargando elementos afectados", ex);
         }
     }
 
