@@ -63,7 +63,7 @@ public class GeneralControl {
         Set<String> addedBalasts = balasts.keySet();
         for (String balastNumber : addedBalasts) {
             Balasto balasto = balasts.get(balastNumber);
-            modelo.addElement(balasto.getBalastNumber() + " - " + balasto.getName());
+            modelo.addElement(balastNumber + " - " + balasto.getName());
         }
         show.setModel(modelo);
         remove.removeAll();
@@ -106,9 +106,15 @@ public class GeneralControl {
         remove.setModel(cleanModelo);
 
         ArrayList<String> addedScenes = PropHandler.getAddedScenes(ppalView.getDao());
+        HashMap<String, Escena> escenasAgregadas = ppalView.getScenes();
+
         for (String sceneNumber : addedScenes) {
-            Escena scene = ppalView.getScenes().get(sceneNumber);
-            modelo.addElement(scene.getNumeroEscena() + " - " + scene.getNombre());
+            
+            int numero = (Integer.parseInt(sceneNumber) + 1);
+            String numeroAumentado = Integer.toString(numero);
+            
+            Escena scene = escenasAgregadas.get(numeroAumentado);
+            modelo.addElement(numeroAumentado + " - " + scene.getNombre());
         }
         show.setModel(modelo);
         remove.removeAll();

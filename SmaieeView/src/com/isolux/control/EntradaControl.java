@@ -395,7 +395,11 @@ public class EntradaControl implements ElementoControl_Interface {
                 ppalView.setInStauts(true);
                 ppalView.getStatusLabel().setText("Entradas leidas.");
             }
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
+            ppalView.setInStauts(false);
+            ppalView.getStatusLabel().setText("Entradas no leidas.");
+//            Logger.getLogger(EntradaControl.class.getName()).log(Level.OFF, "Error leyendo las entradas", e);
+        }catch (Exception e){
             ppalView.setInStauts(false);
             ppalView.getStatusLabel().setText("Entradas no leidas.");
             Logger.getLogger(EntradaControl.class.getName()).log(Level.SEVERE, "Error leyendo las entradas", e);
@@ -494,7 +498,7 @@ public class EntradaControl implements ElementoControl_Interface {
                 if (selectedBalasts[i] == 1) {
                     Balasto sce = balasts.get(String.valueOf(i));
                     if (sce != null) {
-                        inAffecBalasts.addElement(sce.getBalastNumber() + " - " + sce.getName());
+                        inAffecBalasts.addElement((sce.getBalastNumber()+1) + " - " + sce.getName());
                         sel.add(String.valueOf(i));
                     }
                 }
