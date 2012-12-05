@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JTree;
 import javax.swing.text.Position;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -56,16 +57,16 @@ public class EntradaControl implements ElementoControl_Interface {
      * Saves an in.
      */
     @Override
-    public void saveElement(PpalView ppalView){
+    public void saveElement(PpalView ppalView) {
         try {
             boolean connectionStatus = true; //DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
             new GeneralControl().updateConnectionStatus(connectionStatus, ppalView);
             if (connectionStatus) {
-                
+
                 ppalView.getStatusLabel().setText("Guardando entrada");
                 //in number
                 boolean isUpdate = !ppalView.getjLabel63().getText().equals("#");
-                
+
                 int inNumber = ppalView.getjLabel63().getText().equals("#") ? Integer.parseInt((String) ppalView.getEntradaNumero_jComboBox().getSelectedItem()) : Integer.parseInt(ppalView.getjLabel63().getText());
 //        int balastNumber = !jLabel63.getText().equals("#") ? Integer.parseInt(jLabel63.getText()) : Integer.parseInt((String) jComboBox4.getSelectedItem());
 //        int balastNumber = !jLabel63.getText().equals("#") ? Integer.parseInt(jLabel63.getText()) : Integer.parseInt((String) jComboBox4.getSelectedItem());
@@ -78,10 +79,10 @@ public class EntradaControl implements ElementoControl_Interface {
                 int NivelOFF = ppalView.getjTextField6().getText().equals("0") ? Integer.parseInt(ppalView.getjTextField35().getText()) : Integer.parseInt(ppalView.getjTextField6().getText());
                 int tiempoRetardo = ppalView.getjTextField7().getText().equals("0") ? Integer.parseInt(ppalView.getjTextField36().getText()) : Integer.parseInt(ppalView.getjTextField7().getText());
                 int ganancia = Integer.parseInt(ppalView.getjTextField10().getText());
-                
+
                 int nivIlumXvoltio = Integer.parseInt(ppalView.getEntradaFotoceldaNivelIlum_jTextField().getText());
                 int nivelDeseado = Integer.parseInt(ppalView.getEntradaFotoceldaNivelDeseado_jTextField().getText());
-                
+
                 int tipoSalida = ppalView.getInOutType();
                 int[] balastosAfectados = ppalView.getInOutType() == ViewUtils.getIntProperty("in.out.type.balast") ? getSelectedInItems(ppalView)
                         : new int[Integer.parseInt(PropHandler.getProperty("balast.max.number"))];
@@ -90,9 +91,9 @@ public class EntradaControl implements ElementoControl_Interface {
                 int[] escenasAfecadas = ppalView.getInOutType() == ViewUtils.getIntProperty("in.out.type.scene") ? getSelectedInItems(ppalView)
                         : new int[Integer.parseInt(PropHandler.getProperty("scene.max.number"))];
                 int valorAdc = 0;
-                
+
                 Entrada newIn = new Entrada(
-                        inNumber,
+                        inNumber - 1,
                         activacion,
                         tipo,
                         comp1,
@@ -111,45 +112,47 @@ public class EntradaControl implements ElementoControl_Interface {
 
                 //Saves the balast remotelly
                 boolean resultado = false;
-                
+
                 EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(ppalView.getDao());
                 resultado = jDao.saveElement(newIn);
+
+                String numAumentado = String.valueOf(newIn.getNumeroEntrada() + 1);
                 if (isUpdate) {
                     //Update balast locally.
-                    ppalView.getIns().remove(String.valueOf(newIn.getNumeroEntrada()));
-                    ppalView.getIns().put(String.valueOf(newIn.getNumeroEntrada()), newIn);
-                    
+                    ppalView.getIns().remove(numAumentado);
+                    ppalView.getIns().put(numAumentado, newIn);
+
                     if (resultado) {
                         ppalView.getStatusLabel().setText("Entrada actualizada.");
                     } else {
                         ppalView.getStatusLabel().setText("Ocurrió un error guardando la entrada");
                     }
-
-//            //Update name in the tree.
-//            String btnText = PropHandler.getProperty("scenes.menu.name");
-//            String ftcldText = PropHandler.getProperty("scenes.menu.name");
-//            String sensorText = PropHandler.getProperty("scenes.menu.name");
-//
-//            String parentNodeText = inType == ViewUtils.getIntProperty("in.type.btns") ? btnText
-//                    : inType == ViewUtils.getIntProperty("in.type.ftcld") ? ftcldText
-//                    : inType == ViewUtils.getIntProperty("in.type.sensor") ? sensorText : "";
-//
-//            TreePath path = jTree1.getNextMatch(parentNodeText, 0, Position.Bias.Forward);
-//            MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
-//            Enumeration groups = balastNode.children();
-//
-//            while (groups.hasMoreElements()) {
-//                DefaultMutableTreeNode updatedScene = (DefaultMutableTreeNode) groups.nextElement();
-//                String[] b = updatedScene.getUserObject().toString().split(" - ");
-//                if (b[0].equals(String.valueOf(inNumber))) {
-//                    updatedScene.setUserObject(b[0] + " - " + newIn.get);
-//                }
-//            }
-
+                    //<editor-fold defaultstate="collapsed" desc="Codigo viejo comentado">
+                    //            //Update name in the tree.
+                    //            String btnText = PropHandler.getProperty("scenes.menu.name");
+                    //            String ftcldText = PropHandler.getProperty("scenes.menu.name");
+                    //            String sensorText = PropHandler.getProperty("scenes.menu.name");
+                    //
+                    //            String parentNodeText = inType == ViewUtils.getIntProperty("in.type.btns") ? btnText
+                    //                    : inType == ViewUtils.getIntProperty("in.type.ftcld") ? ftcldText
+                    //                    : inType == ViewUtils.getIntProperty("in.type.sensor") ? sensorText : "";
+                    //
+                    //            TreePath path = jTree1.getNextMatch(parentNodeText, 0, Position.Bias.Forward);
+                    //            MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
+                    //            Enumeration groups = balastNode.children();
+                    //
+                    //            while (groups.hasMoreElements()) {
+                    //                DefaultMutableTreeNode updatedScene = (DefaultMutableTreeNode) groups.nextElement();
+                    //                String[] b = updatedScene.getUserObject().toString().split(" - ");
+                    //                if (b[0].equals(String.valueOf(inNumber))) {
+                    //                    updatedScene.setUserObject(b[0] + " - " + newIn.get);
+                    //                }
+                    //            }
+                    //</editor-fold>
                 } else {
                     if (new BalastosControl().validateBalastoForm()) {
-                        ppalView.getIns().put(String.valueOf(newIn.getNumeroEntrada()), newIn);
-                        
+                        ppalView.getIns().put(numAumentado, newIn);
+
                         if (resultado) {
                             ppalView.getStatusLabel().setText("Entrada guardada");
                         } else {
@@ -160,7 +163,7 @@ public class EntradaControl implements ElementoControl_Interface {
                         String btnText = PropHandler.getProperty("btns.menu.name");
                         String ftcldText = PropHandler.getProperty("ftcl.menu.name");
                         String sensorText = PropHandler.getProperty("sensors.menu.name");
-                        
+
                         String parentNodeText = ppalView.getInType() == ViewUtils.getIntProperty("in.type.btns") ? btnText
                                 : ppalView.getInType() == ViewUtils.getIntProperty("in.type.ftcld") ? ftcldText
                                 : ppalView.getInType() == ViewUtils.getIntProperty("in.type.sensor") ? sensorText : "";
@@ -169,9 +172,9 @@ public class EntradaControl implements ElementoControl_Interface {
                         DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                         TreePath path = ppalView.getArbol_jTree().getNextMatch(parentNodeText, 0, Position.Bias.Forward);
                         MutableTreeNode balastNode = (MutableTreeNode) path.getLastPathComponent();
-                        DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(String.valueOf(newIn.getNumeroEntrada()));
+                        DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(numAumentado);
                         model.insertNodeInto(newNode, balastNode, balastNode.getChildCount());
-                        
+
                         ppalView.getjLabel63().setText(String.valueOf(inNumber));
 //                            ppalView.getjComboBox4().removeItem(inNumber);
                     }
@@ -242,7 +245,7 @@ public class EntradaControl implements ElementoControl_Interface {
             ppalView.getEntradaFotoceldaNivelIlum_jTextField().setText(String.valueOf((int) selectedIn.getNivIlumxvoltio()));
 
 //            float nivelDeseado = ((((int) selectedIn.getNivIlumxvoltio()) * 10) * (int) selectedIn.getNivelDeseado()) / 100;
-            float nivelDeseado=selectedIn.getNivelDeseado();
+            float nivelDeseado = selectedIn.getNivelDeseado();
             ppalView.getEntradaFotoceldaNivelDeseado_jTextField().setText(String.valueOf((int) nivelDeseado));
             ViewUtils.setInOutType(ppalView.getjCheckBox10(), ppalView.getjCheckBox11(), ppalView.getFotoceldasEntradas_jCheckBox(), selectedIn.getTipoSalida());
             showInItems(ppalView.getjList8(), ppalView.getjList9(), selectedIn, ppalView);
@@ -265,21 +268,25 @@ public class EntradaControl implements ElementoControl_Interface {
      */
     @Override
     public void readElements(PpalView ppalView) {
-            EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(ppalView.getDao());
+        EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(ppalView.getDao());
         ppalView.setIns(new HashMap<String, Entrada>());
+        
+         HashMap<String, Entrada> entradas = ppalView.getIns();
 
         //Added in numbers.
         ArrayList<String> addedIns = PropHandler.getAddedIns(ppalView.getDao());
 
         //In.
-        
-        
+
+
         for (String inNumber : addedIns) {
-            
-             int numero=(Integer.parseInt(inNumber)+1);
-                String numeroAumentado=Integer.toString(numero);
-            ppalView.getIns().put(numeroAumentado, jDao.readElement(Integer.parseInt(inNumber)));
+
+            int numero = (Integer.parseInt(inNumber) + 1);
+            String numeroAumentado = Integer.toString(numero);
+//            ppalView.getIns().put(numeroAumentado, jDao.readElement(Integer.parseInt(inNumber)));
+             entradas.put(numeroAumentado, jDao.readElement(Integer.parseInt(inNumber)));
         }
+        ppalView.setIns(entradas);
     }
 
     /**
@@ -337,14 +344,15 @@ public class EntradaControl implements ElementoControl_Interface {
     @Override
     public void filterAddedElements(PpalView ppalView) {
         try {
-            if (!ppalView.getInStauts()) {
+            boolean inStauts = ppalView.getInStauts();
+            if (!inStauts) {
                 ppalView.getStatusLabel().setText("Leyendo entradas de la tarjeta...");
                 readElements(ppalView);
                 int startRow = 0;
                 String prefixBtn = PropHandler.getProperty("btns.menu.name");
                 String prefixFtcld = PropHandler.getProperty("ftcl.menu.name");
                 String prefixSensor = PropHandler.getProperty("sensors.menu.name");
-
+                
 
                 TreePath pathBtns = ppalView.getArbol_jTree().getNextMatch(prefixBtn, startRow, Position.Bias.Forward);
                 TreePath pathFtcld = ppalView.getArbol_jTree().getNextMatch(prefixFtcld, startRow, Position.Bias.Forward);
@@ -367,8 +375,8 @@ public class EntradaControl implements ElementoControl_Interface {
                 DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
 
                 HashMap<String, Entrada> ins = ppalView.getIns();
-            Set<String> balastsKeys = ins.keySet();
-                
+                Set<String> balastsKeys = ins.keySet();
+
                 //Remove the used balast numbers from the list and add them to the menu.
                 for (String string : balastsKeys) {
                     Entrada in = ins.get(string);

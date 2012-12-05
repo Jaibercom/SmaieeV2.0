@@ -351,7 +351,7 @@ public class ConfiguracionDAOJmodbus {
             setSingleReg(1, 10);// escribimos el valor 
             setSingleReg(0, 0);// volvemos a poner el modo run
             System.out.println("Guardado");
-            JOptionPane.showMessageDialog(null, "Guardada la información en la flash exitósamente");
+//            JOptionPane.showMessageDialog(null, "Guardada la información en la flash exitósamente");
         } catch (Exception ex) {
             System.out.println("Excepcion al guardar en Flash");
             Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.SEVERE, null, ex);
