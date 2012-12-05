@@ -67,7 +67,14 @@ public class BalastosControl implements OperacionesElemento_Interface, ElementoC
             if (ppalView.getSelectedBalastNumber() != null && !ppalView.getSelectedBalastNumber().equals("")) {
                 DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
                 DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
-                dao.deleteBalast(ppalView.getSelectedBalastNumber());
+                
+                //Establecemos el decremento para borrar 
+                String selectedBalastNumber = ppalView.getSelectedBalastNumber();
+                int numBalastoSeleccionado= Integer.parseInt(selectedBalastNumber);
+                numBalastoSeleccionado=numBalastoSeleccionado-1;
+                selectedBalastNumber=selectedBalastNumber.valueOf(numBalastoSeleccionado);
+                        
+                dao.deleteBalast(selectedBalastNumber);
                 treeModel.removeNodeFromParent(nodeToDelete);
                 ppalView.getBalasts().remove(ppalView.getSelectedBalastNumber());
                 ppalView.getBalastoNum_jComboBox().addItem(ppalView.getSelectedBalastNumber());
