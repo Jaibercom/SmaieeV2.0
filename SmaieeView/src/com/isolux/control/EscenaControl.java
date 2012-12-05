@@ -78,7 +78,7 @@ public class EscenaControl implements ElementoControl_Interface {
 
             } else {
                 if (new BalastosControl().validateBalastoForm()) {
-                    ppalView.getScenes().put(String.valueOf(newScene.getNumeroEscena()), newScene);
+                    ppalView.getScenes().put(String.valueOf(numAumentado), newScene);
 
                     if (resultado) {
                         ppalView.getStatusLabel().setText("Escena guardada");
@@ -133,8 +133,12 @@ public class EscenaControl implements ElementoControl_Interface {
      */
     @Override
     public void showSelectedElement(String sceneNumber, PpalView ppalView) {
-        Escena selectedScene = ppalView.getScenes().get(sceneNumber);
-        HashMap<String, Balasto> balasts = ppalView.getBalasts();
+        
+        
+        HashMap<String, Escena> escenasHashmap = ppalView.getScenes();
+        
+        Escena selectedScene = escenasHashmap.get(sceneNumber);
+        
 
         ppalView.getNombreEscenaJTextField().setText(selectedScene.getNombre());
 //        ppalView.getjTextField24().setText(String.valueOf(selectedScene.getActivacion()));
