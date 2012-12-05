@@ -113,7 +113,13 @@ public class EscenaControl implements ElementoControl_Interface {
             if (ppalView.getSelectedSceneNumber() != null && !ppalView.getSelectedSceneNumber().equals("")) {
                 DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
                 DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
-                dao.deleteElement(ppalView.getSelectedSceneNumber());
+                
+                String selectedSceneNumber = ppalView.getSelectedSceneNumber();
+                int numEsceSeleccionado= Integer.parseInt(selectedSceneNumber);
+                numEsceSeleccionado=numEsceSeleccionado-1;
+                selectedSceneNumber=selectedSceneNumber.valueOf(numEsceSeleccionado);
+                
+                dao.deleteElement(numEsceSeleccionado);
                 treeModel.removeNodeFromParent(nodeToDelete);
                 ppalView.getScenes().remove(ppalView.getSelectedSceneNumber());
                 cleanView(ppalView);
