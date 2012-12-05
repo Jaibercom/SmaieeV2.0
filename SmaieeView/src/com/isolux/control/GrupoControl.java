@@ -111,7 +111,14 @@ public class GrupoControl implements ElementoControl_Interface{
                 DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
                 DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                 GrupoDAOJmodbus gDao = new GrupoDAOJmodbus(ppalView.getDao());
-                gDao.deleteElement(ppalView.getSelectedGroupNumber());
+                
+                String selectedGroupNumber = ppalView.getSelectedGroupNumber();
+                int numGrupoSeleccionado= Integer.parseInt(selectedGroupNumber);
+                numGrupoSeleccionado=numGrupoSeleccionado-1;
+                selectedGroupNumber=selectedGroupNumber.valueOf(numGrupoSeleccionado);
+                 
+                
+                gDao.deleteElement(selectedGroupNumber);
                 treeModel.removeNodeFromParent(nodeToDelete);
                 ppalView.getGroups().remove(ppalView.getSelectedGroupNumber());
                 new GrupoControl().cleanView(ppalView);
