@@ -208,7 +208,12 @@ public class EntradaControl implements ElementoControl_Interface {
                 DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
                 DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                 EntradaDAOJmodbus jDao = new EntradaDAOJmodbus(ppalView.getDao());
-                jDao.deleteElement(ppalView.getSelectedInNumber());
+                
+                String numDisminuido = ppalView.getSelectedInNumber();
+                int numD=Integer.parseInt(numDisminuido)-1;
+                numDisminuido=String.valueOf(numD);
+                
+                jDao.deleteElement(numDisminuido);
                 treeModel.removeNodeFromParent(nodeToDelete);
 //                ppalView.getjComboBox4().addItem(ppalView.getSelectedInNumber());
                 ppalView.getIns().remove(ppalView.getSelectedInNumber());
