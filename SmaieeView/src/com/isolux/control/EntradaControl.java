@@ -514,7 +514,7 @@ public class EntradaControl implements ElementoControl_Interface {
             for (String balastNumber : addedBalasts) {
                 if (!sel.contains(balastNumber)) {
                     Balasto balasto = balasts.get(balastNumber);
-                    modelo.addElement(balasto.getBalastNumber() + " - " + balasto.getName());
+                    modelo.addElement((balasto.getBalastNumber()+1) + " - " + balasto.getName());
                 }
             }
             available.setModel(modelo);
