@@ -2,7 +2,6 @@ package com.isolux.control;
 
 import com.isolux.bo.*;
 import com.isolux.dao.jmodbus.EscenaDAOJmodbus;
-import com.isolux.dao.jmodbus.GrupoDAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;

@@ -150,7 +150,7 @@ public class EventControl implements ElementoControl_Interface {
             }
 
             Evento newEvent = new Evento(
-                    eventNumber,
+                    eventNumber-1,
                     name,
                     porFechaODias,
                     dia,
@@ -170,11 +170,12 @@ public class EventControl implements ElementoControl_Interface {
             //Saves the balast remotelly
             EventoDAOJmodbus dao = new EventoDAOJmodbus(ppalView.getDao());
             boolean resultado = dao.saveElement(newEvent);
+            String numAumentado=String.valueOf(newEvent.getNumeroEvento()+1);
 
             if (isUpdate) {
                 //Update event locally.
-                ppalView.getEvents().remove(String.valueOf(newEvent.getNumeroEvento()));
-                ppalView.getEvents().put(String.valueOf(newEvent.getNumeroEvento()), newEvent);
+                ppalView.getEvents().remove(numAumentado);
+                ppalView.getEvents().put(numAumentado, newEvent);
 
                 if (resultado) {
                     ppalView.getStatusLabel().setText("Evento actualizado.");
@@ -199,7 +200,7 @@ public class EventControl implements ElementoControl_Interface {
 
             } else {
                 if (new BalastosControl().validateBalastoForm()) {
-                    ppalView.getEvents().put(String.valueOf(newEvent.getNumeroEvento()), newEvent);
+                    ppalView.getEvents().put(String.valueOf(numAumentado), newEvent);
 
                     if (resultado) {
                         ppalView.getStatusLabel().setText("Evento guardado");
@@ -214,7 +215,7 @@ public class EventControl implements ElementoControl_Interface {
                     DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
                     TreePath path = ppalView.getArbol_jTree().getNextMatch(eventText, 0, Position.Bias.Forward);
                     MutableTreeNode eventNode = (MutableTreeNode) path.getLastPathComponent();
-                    DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(String.valueOf(newEvent.getNumeroEvento()) + " - " + newEvent.getNombre());
+                    DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(numAumentado + " - " + newEvent.getNombre());
                     model.insertNodeInto(newNode, eventNode, eventNode.getChildCount());
 
                     ppalView.getjLabel63().setText(String.valueOf(eventNumber));
