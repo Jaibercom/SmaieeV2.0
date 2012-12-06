@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -36,7 +37,6 @@ import javax.swing.tree.TreePath;
  */
 public class EventControl implements ElementoControl_Interface {
 
-   
     @Override
     public void saveElement(PpalView ppalView) {
         boolean connectionStatus = true; //DAOJamod.testConnection(ppalView.getIp(), ppalView.getPort());
@@ -74,11 +74,11 @@ public class EventControl implements ElementoControl_Interface {
             }
 
             if (ppalView.getPorDiasEvento_jCheckBox().isSelected()) { //Por dias
-                
+
                 time = ppalView.getHoraDiasEvento_jFormattedTextField().getText().split(":");
                 hora = Integer.parseInt(time[0]);
                 minuto = Integer.parseInt(time[1]);
-                
+
                 int[] dias = new int[16];
                 dias[0] = ppalView.getDomingo_jCheckBox().isSelected() ? 1 : 0;//comienza la semana con domingo y no con lunes
                 dias[1] = ppalView.getLunes_jCheckBox().isSelected() ? 1 : 0;
@@ -150,7 +150,7 @@ public class EventControl implements ElementoControl_Interface {
             }
 
             Evento newEvent = new Evento(
-                    eventNumber-1,
+                    eventNumber - 1,
                     name,
                     porFechaODias,
                     dia,
@@ -170,7 +170,7 @@ public class EventControl implements ElementoControl_Interface {
             //Saves the balast remotelly
             EventoDAOJmodbus dao = new EventoDAOJmodbus(ppalView.getDao());
             boolean resultado = dao.saveElement(newEvent);
-            String numAumentado=String.valueOf(newEvent.getNumeroEvento()+1);
+            String numAumentado = String.valueOf(newEvent.getNumeroEvento() + 1);
 
             if (isUpdate) {
                 //Update event locally.
@@ -225,7 +225,6 @@ public class EventControl implements ElementoControl_Interface {
         refrescarVista(ppalView);
     }
 
-   
     @Override
     public void deleteElement(PpalView ppalView) {
         if (ppalView.getSelectedEventNumber() != null && !ppalView.getSelectedEventNumber().equals("")) {
@@ -241,7 +240,6 @@ public class EventControl implements ElementoControl_Interface {
         }
     }
 
-   
     @Override
     public void showSelectedElement(String eventNumber, PpalView ppalView) {
         Evento selectedEvent = ppalView.getEvents().get(eventNumber);
@@ -280,35 +278,48 @@ public class EventControl implements ElementoControl_Interface {
         //Show in type.
         if (selectedEvent.getTipoSalida() == 1) {
 
+            //            //<editor-fold defaultstate="collapsed" desc="Codigo viejo">
             //BALASTS = 1
             //Afected balasts
+            new BalastosControl().readElements(ppalView);
             DefaultListModel sceneBalastsL = new DefaultListModel();
             int[] selectedBalasts = selectedEvent.getBalastosAfectados();
             int[] selectedBalastsLevels = selectedEvent.getNivelBalasto();
             ArrayList sel = new ArrayList();
+
+            HashMap<String, Balasto> hash = ppalView.getBalasts();
+            Set<String> keys = hash.keySet();
+
             for (int i = 0; i < selectedBalasts.length; i++) {
-                if (selectedBalasts[i] == 1) {
-                    new BalastosControl().readElements(ppalView);
-                    Balasto sce = balasts.get(String.valueOf(i));
-                    sceneBalastsL.addElement(sce.getBalastNumber() + " - " + sce.getName() + ": " + selectedBalastsLevels[i]);
-                    sel.add(String.valueOf(i));
+                if (selectedBalasts[i] == 1) { //es porque esta seleccionado o afectado
+
+                    int numAumentado=i+1;
+                    Balasto balastoDeHash = hash.get(String.valueOf(numAumentado));
+                    sceneBalastsL.addElement((balastoDeHash.getBalastNumber() + 1) + " - " + balastoDeHash.getName() + ": " + selectedBalastsLevels[i]);
+                    sel.add(String.valueOf(numAumentado));
                 }
             }
+            //</editor-fold>
+
+
+
             ppalView.getjList13().setModel(sceneBalastsL);
 
             //Available balasts
             DefaultListModel modelo = new DefaultListModel();
             ArrayList<String> addedBalasts = PropHandler.getAddedBalasts(ppalView.getDao());
-            for (String balastNumber : addedBalasts) {
+            
+            
+            for (String balastNumber : keys) {
                 if (!sel.contains(balastNumber)) {
                     Balasto balasto = balasts.get(balastNumber);
-                    modelo.addElement(balasto.getBalastNumber() + " - " + balasto.getName());
+                    modelo.addElement((balastNumber) + " - " + balasto.getName());
                 }
             }
             ppalView.getselBalastosEvento_jCheckBox().setSelected(true);
             ppalView.getSelGruposEntradas_jCheckBox().setEnabled(false);
             ppalView.getjCheckBox15().setEnabled(false);
-            ppalView.getjList12().setModel(modelo);
+            ppalView.getEventoElementosDisponibles_jList().setModel(modelo);
         } else if (selectedEvent.getTipoSalida() == 2) {
             //GROUPS = 2
             //Afected groups
@@ -383,15 +394,18 @@ public class EventControl implements ElementoControl_Interface {
         DefaultListModel modelo = new DefaultListModel();
 
         ArrayList<String> addedEvents = PropHandler.getAddedEvents(ppalView.getDao());
-        for (String eventNumber : addedEvents) {
-            Evento event = ppalView.getEvents().get(eventNumber);
-            modelo.addElement(event.getNumeroEvento() + " - " + event.getNombre());
+
+        HashMap<String, Evento> hm = ppalView.getEvents();
+        Set<String> keys = hm.keySet();
+
+        for (String eventNumber : keys) {
+            Evento event = hm.get(eventNumber);
+            modelo.addElement(eventNumber + " - " + event.getNombre());
         }
         ppalView.getjList2().setModel(modelo);
         ppalView.getjList2().setLayoutOrientation(JList.VERTICAL_WRAP);
     }
 
-   
     @Override
     public void readElements(PpalView ppalView) {
         if (ppalView.getEvents() == null || ppalView.getEvents().size() == 0) {
@@ -403,12 +417,15 @@ public class EventControl implements ElementoControl_Interface {
 
             //In.
             for (String eventNumber : addedEvents) {
-                ppalView.getEvents().put(eventNumber, dao.readElement(Integer.parseInt(eventNumber)));
+                int numero = (Integer.parseInt(eventNumber) + 1);
+                String numeroAumentado = Integer.toString(numero);
+
+
+                ppalView.getEvents().put(numeroAumentado, dao.readElement(Integer.parseInt(eventNumber)));
             }
         }
     }
 
-    
     @Override
     public void cleanView(PpalView ppalView) {
         ppalView.getNombreevento_jTextField().setText("event");
@@ -451,8 +468,11 @@ public class EventControl implements ElementoControl_Interface {
             DefaultTreeModel model = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
 
             //Remove the used balast numbers from the list and add them to the menu.
-            for (String eventNumber : addedEvents) {
-                Evento event = ppalView.getEvents().get(eventNumber);
+            HashMap<String, Evento> hm = ppalView.getEvents();
+            Set<String> keys = hm.keySet();
+
+            for (String eventNumber : keys) {
+                Evento event = hm.get(eventNumber);
                 DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(eventNumber + " - " + event.getNombre());
                 model.insertNodeInto(newNode, selectedNode, selectedNode.getChildCount());
             }
@@ -508,7 +528,7 @@ public class EventControl implements ElementoControl_Interface {
         }
         String[] selectedIdx = selected.split(",");
         for (int i = 0; i < selectedIdx.length; i++) {
-            selectedItems[Integer.parseInt(selectedIdx[i])] = 1;
+            selectedItems[Integer.parseInt(selectedIdx[i])-1] = 1;
         }
 
         return selectedItems;
@@ -831,7 +851,6 @@ public class EventControl implements ElementoControl_Interface {
 ////        showAvailableEvents(ppalView);
 //        filterAddedEvent(ppalView);
 //    }
-
     @Override
     public void refrescarVista(PpalView ppalView) {
         cleanView(ppalView);

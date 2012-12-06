@@ -384,9 +384,9 @@ public class PpalView extends javax.swing.JFrame {
         jButton28 = new javax.swing.JButton();
         jButton29 = new javax.swing.JButton();
         jScrollPane13 = new javax.swing.JScrollPane();
-        jList12 = new javax.swing.JList();
+        eventoElementosDisponibles_jList = new javax.swing.JList();
         jScrollPane14 = new javax.swing.JScrollPane();
-        jList13 = new javax.swing.JList();
+        eventoElementosAfectados_jList = new javax.swing.JList();
         selBalastosEntradas_jCheckBox = new javax.swing.JCheckBox();
         selGruposEntradas_jCheckBox = new javax.swing.JCheckBox();
         selEscenaEntrada_jCheckBox = new javax.swing.JCheckBox();
@@ -881,9 +881,7 @@ public class PpalView extends javax.swing.JFrame {
                         .addComponent(balastoEnviar_jButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(balastoEliminar_jButton))
-                    .addGroup(panelBalastosLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(balastoNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(balastoNum_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         panelBalastosLayout.setVerticalGroup(
@@ -1890,14 +1888,14 @@ public class PpalView extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane13.setViewportView(jList12);
+        jScrollPane13.setViewportView(eventoElementosDisponibles_jList);
 
-        jList13.addMouseListener(new java.awt.event.MouseAdapter() {
+        eventoElementosAfectados_jList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 selectElements(evt);
             }
         });
-        jScrollPane14.setViewportView(jList13);
+        jScrollPane14.setViewportView(eventoElementosAfectados_jList);
 
         selBalastosEntradas_jCheckBox.setText("Balastos");
         selBalastosEntradas_jCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -3419,7 +3417,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-        ViewUtils.addSelected(jList12, jList13);
+        ViewUtils.addSelected(eventoElementosDisponibles_jList, eventoElementosAfectados_jList);
     }//GEN-LAST:event_jButton27ActionPerformed
 
     /**
@@ -3428,7 +3426,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        ViewUtils.remSelected(jList12, jList13);
+        ViewUtils.remSelected(eventoElementosDisponibles_jList, eventoElementosAfectados_jList);
     }//GEN-LAST:event_jButton26ActionPerformed
 
     /**
@@ -3437,7 +3435,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        ViewUtils.addAll(jList12, jList13);
+        ViewUtils.addAll(eventoElementosDisponibles_jList, eventoElementosAfectados_jList);
     }//GEN-LAST:event_jButton28ActionPerformed
 
     /**
@@ -3446,7 +3444,7 @@ public class PpalView extends javax.swing.JFrame {
      * @param evt
      */
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-        ViewUtils.remAll(jList12, jList13);
+        ViewUtils.remAll(eventoElementosDisponibles_jList, eventoElementosAfectados_jList);
     }//GEN-LAST:event_jButton29ActionPerformed
 
     /**
@@ -3456,7 +3454,7 @@ public class PpalView extends javax.swing.JFrame {
      */
     private void selBalastosEntradas_jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selBalastosEntradas_jCheckBoxActionPerformed
         eventOutType = ViewUtils.selectCheks(selBalastosEntradas_jCheckBox, selGruposEntradas_jCheckBox, selEscenaEntrada_jCheckBox);
-        this.generalCtrl.showAvailableBalasts(jList12, jList13, this);
+        this.generalCtrl.showAvailableBalasts(eventoElementosDisponibles_jList, eventoElementosAfectados_jList, this);
     }//GEN-LAST:event_selBalastosEntradas_jCheckBoxActionPerformed
 
     /**
@@ -3466,7 +3464,7 @@ public class PpalView extends javax.swing.JFrame {
      */
     private void selGruposEntradas_jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selGruposEntradas_jCheckBoxActionPerformed
         eventOutType = ViewUtils.selectCheks(selBalastosEntradas_jCheckBox, selGruposEntradas_jCheckBox, selEscenaEntrada_jCheckBox);
-        this.generalCtrl.showAvailableGroups(jList12, jList13, this);
+        this.generalCtrl.showAvailableGroups(eventoElementosDisponibles_jList, eventoElementosAfectados_jList, this);
     }//GEN-LAST:event_selGruposEntradas_jCheckBoxActionPerformed
 
     /**
@@ -3476,7 +3474,7 @@ public class PpalView extends javax.swing.JFrame {
      */
     private void selEscenaEntrada_jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selEscenaEntrada_jCheckBoxActionPerformed
         eventOutType = ViewUtils.selectCheks(selBalastosEntradas_jCheckBox, selGruposEntradas_jCheckBox, selEscenaEntrada_jCheckBox);
-        this.generalCtrl.showAvailableScenes(jList12, jList13, this);
+        this.generalCtrl.showAvailableScenes(eventoElementosDisponibles_jList, eventoElementosAfectados_jList, this);
     }//GEN-LAST:event_selEscenaEntrada_jCheckBoxActionPerformed
 
     /**
@@ -3967,6 +3965,8 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JComboBox escenaNumero_jComboBox;
     private javax.swing.JPanel escenasBalastos_jPanel;
     private javax.swing.JPanel escenasDeBalasto_jPanel;
+    private javax.swing.JList eventoElementosAfectados_jList;
+    private javax.swing.JList eventoElementosDisponibles_jList;
     private javax.swing.JComboBox eventoNum_jComboBox;
     private javax.swing.JFormattedTextField fieldPort;
     private javax.swing.JMenuItem formatear_jMenuItem;
@@ -4091,8 +4091,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList jList12;
-    private javax.swing.JList jList13;
     private javax.swing.JList jList14;
     private javax.swing.JList jList15;
     private javax.swing.JList jList16;
@@ -5614,19 +5612,19 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JList getjList12() {
-        return jList12;
+        return eventoElementosDisponibles_jList;
     }
 
     public void setjList12(JList jList12) {
-        this.jList12 = jList12;
+        this.eventoElementosDisponibles_jList = jList12;
     }
 
     public JList getjList13() {
-        return jList13;
+        return eventoElementosAfectados_jList;
     }
 
     public void setjList13(JList jList13) {
-        this.jList13 = jList13;
+        this.eventoElementosAfectados_jList = jList13;
     }
 
     public JList getjList14() {
@@ -7039,5 +7037,21 @@ public class PpalView extends javax.swing.JFrame {
 
     public void setNombreEvento_jTextField(javax.swing.JTextField nombreEvento_jTextField) {
         this.nombreEvento_jTextField = nombreEvento_jTextField;
+    }
+
+    public javax.swing.JList getEventoElementosAfectados_jList() {
+        return eventoElementosAfectados_jList;
+    }
+
+    public void setEventoElementosAfectados_jList(javax.swing.JList eventoElementosAfectados_jList) {
+        this.eventoElementosAfectados_jList = eventoElementosAfectados_jList;
+    }
+
+    public javax.swing.JList getEventoElementosDisponibles_jList() {
+        return eventoElementosDisponibles_jList;
+    }
+
+    public void setEventoElementosDisponibles_jList(javax.swing.JList eventoElementosDisponibles_jList) {
+        this.eventoElementosDisponibles_jList = eventoElementosDisponibles_jList;
     }
 }

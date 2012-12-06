@@ -217,13 +217,14 @@ public class GrupoControl implements ElementoControl_Interface{
             
             HashMap<String,Grupo> grupos=ppalView.getGroups();
             Set<String> grupoKeys =grupos.keySet();
-
+            //<editor-fold defaultstate="collapsed" desc="codigo viejo comentado">
             //Remove the used balast numbers from the list and add them to the menu.
-//            for (String string : addedGroups) {
-//                Grupo group = ppalView.getGroups().get(string);
-//                DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(string + " - " + group.getName());
-//                model.insertNodeInto(newNode, selectedNode, selectedNode.getChildCount());
-//            }
+            //            for (String string : addedGroups) {
+            //                Grupo group = ppalView.getGroups().get(string);
+            //                DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(string + " - " + group.getName());
+            //                model.insertNodeInto(newNode, selectedNode, selectedNode.getChildCount());
+            //            }
+            //</editor-fold>
 
             for (String string : grupoKeys) {
                 Grupo group = grupos.get(string);
@@ -250,7 +251,7 @@ public class GrupoControl implements ElementoControl_Interface{
         Set<String> addedBalasts = balasts.keySet();
         for (String balastNumber : addedBalasts) {
             Balasto balasto = ppalView.getGroupBalasts().get(balastNumber);
-            modelo.addElement(balasto.getBalastNumber() + " - " + balasto.getName());
+            modelo.addElement(balastNumber + " - " + balasto.getName());
         }
         ppalView.getjList2().setModel(modelo);
         ppalView.getjList2().setLayoutOrientation(JList.VERTICAL_WRAP);
