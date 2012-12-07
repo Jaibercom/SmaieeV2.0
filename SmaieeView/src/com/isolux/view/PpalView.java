@@ -390,11 +390,11 @@ public class PpalView extends javax.swing.JFrame {
         selBalastosEntradas_jCheckBox = new javax.swing.JCheckBox();
         selGruposEntradas_jCheckBox = new javax.swing.JCheckBox();
         selEscenaEntrada_jCheckBox = new javax.swing.JCheckBox();
-        jLabel21 = new javax.swing.JLabel();
+        eventoNivel_jLabel = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
-        jButton48 = new javax.swing.JButton();
+        eventoNivel_jTextField = new javax.swing.JTextField();
+        actualizarNivel_jButton = new javax.swing.JButton();
         enviarEventos_jButton = new javax.swing.JButton();
         eliminarEvento_jButton = new javax.swing.JButton();
         eventoNum_jComboBox = new javax.swing.JComboBox();
@@ -1720,6 +1720,11 @@ public class PpalView extends javax.swing.JFrame {
         jLabel64.setText("#");
 
         porDias_jCheckBox.setText("Por días");
+        porDias_jCheckBox.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                porDias_jCheckBoxStateChanged(evt);
+            }
+        });
         porDias_jCheckBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 porDias_jCheckBoxItemStateChanged(evt);
@@ -1912,24 +1917,29 @@ public class PpalView extends javax.swing.JFrame {
         });
 
         selEscenaEntrada_jCheckBox.setText("Escena");
+        selEscenaEntrada_jCheckBox.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                selEscenaEntrada_jCheckBoxStateChanged(evt);
+            }
+        });
         selEscenaEntrada_jCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selEscenaEntrada_jCheckBoxActionPerformed(evt);
             }
         });
 
-        jLabel21.setText("Nivel");
+        eventoNivel_jLabel.setText("Nivel");
 
         jLabel22.setText("Balasto / Grupo:");
 
         jLabel23.setText("#");
 
-        jTextField25.setText("0");
+        eventoNivel_jTextField.setText("0");
 
-        jButton48.setText("Actualizar nivel");
-        jButton48.addActionListener(new java.awt.event.ActionListener() {
+        actualizarNivel_jButton.setText("Actualizar nivel");
+        actualizarNivel_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton48ActionPerformed(evt);
+                actualizarNivel_jButtonActionPerformed(evt);
             }
         });
 
@@ -1959,15 +1969,15 @@ public class PpalView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel21)
+                        .addComponent(eventoNivel_jLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eventoNivel_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel23)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton48)))
+                        .addComponent(actualizarNivel_jButton)))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -1975,11 +1985,11 @@ public class PpalView extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eventoNivel_jLabel)
+                    .addComponent(eventoNivel_jTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
                     .addComponent(jLabel23)
-                    .addComponent(jButton48))
+                    .addComponent(actualizarNivel_jButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selBalastosEntradas_jCheckBox)
@@ -3475,6 +3485,7 @@ public class PpalView extends javax.swing.JFrame {
     private void selEscenaEntrada_jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selEscenaEntrada_jCheckBoxActionPerformed
         eventOutType = ViewUtils.selectCheks(selBalastosEntradas_jCheckBox, selGruposEntradas_jCheckBox, selEscenaEntrada_jCheckBox);
         this.generalCtrl.showAvailableScenes(eventoElementosDisponibles_jList, eventoElementosAfectados_jList, this);
+        
     }//GEN-LAST:event_selEscenaEntrada_jCheckBoxActionPerformed
 
     /**
@@ -3612,9 +3623,9 @@ public class PpalView extends javax.swing.JFrame {
      *
      * @param evt
      */
-    private void jButton48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton48ActionPerformed
+    private void actualizarNivel_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarNivel_jButtonActionPerformed
         this.eventCtrl.updateLevel(this);
-    }//GEN-LAST:event_jButton48ActionPerformed
+    }//GEN-LAST:event_actualizarNivel_jButtonActionPerformed
 
     /**
      * Selecting an area
@@ -3715,6 +3726,7 @@ public class PpalView extends javax.swing.JFrame {
         this.realCtrl.areaBalasts(this);
     }//GEN-LAST:event_jButton44ActionPerformed
 
+    
     /**
      * Erase the memory
      */
@@ -3800,7 +3812,7 @@ public class PpalView extends javax.swing.JFrame {
     }//GEN-LAST:event_fotoceldas_entrada_escenas_jCheckBoxActionPerformed
 
     private void porDias_jCheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_porDias_jCheckBoxItemStateChanged
-        this.eventCtrl.selectByDays(this);
+        
     }//GEN-LAST:event_porDias_jCheckBoxItemStateChanged
 
     private void balastoNum_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoNum_jComboBoxActionPerformed
@@ -3895,6 +3907,20 @@ public class PpalView extends javax.swing.JFrame {
         enviarEscenaSmaiee();
     }//GEN-LAST:event_nombreEscena_jTextFieldActionPerformed
 
+    private void selEscenaEntrada_jCheckBoxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_selEscenaEntrada_jCheckBoxStateChanged
+        if (selEscenaEntrada_jCheckBox.isSelected()) {
+            eventoNivel_jTextField.setEnabled(false);
+            actualizarNivel_jButton.setEnabled(false);
+        }else{
+            eventoNivel_jTextField.setEnabled(true);
+            actualizarNivel_jButton.setEnabled(true);
+        }
+    }//GEN-LAST:event_selEscenaEntrada_jCheckBoxStateChanged
+
+    private void porDias_jCheckBoxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_porDias_jCheckBoxStateChanged
+       this.eventCtrl.selectByDays(this);
+    }//GEN-LAST:event_porDias_jCheckBoxStateChanged
+
     //</editor-fold>
     /**
      * @param args the command line arguments
@@ -3915,6 +3941,7 @@ public class PpalView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Variable declarations">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizarNivelEscena_jButton;
+    private javax.swing.JButton actualizarNivel_jButton;
     private javax.swing.JButton agregarBalastoEscena_jButton;
     private javax.swing.JButton agregarTodosBalastosEscena_jButton;
     private javax.swing.JScrollPane arbolJerarquia_jScrollPane;
@@ -3967,6 +3994,8 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel escenasDeBalasto_jPanel;
     private javax.swing.JList eventoElementosAfectados_jList;
     private javax.swing.JList eventoElementosDisponibles_jList;
+    private javax.swing.JLabel eventoNivel_jLabel;
+    private javax.swing.JTextField eventoNivel_jTextField;
     private javax.swing.JComboBox eventoNum_jComboBox;
     private javax.swing.JFormattedTextField fieldPort;
     private javax.swing.JMenuItem formatear_jMenuItem;
@@ -4028,7 +4057,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton jButton44;
     private javax.swing.JButton jButton46;
     private javax.swing.JButton jButton47;
-    private javax.swing.JButton jButton48;
     private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
@@ -4053,7 +4081,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -4132,7 +4159,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField34;
     private javax.swing.JTextField jTextField35;
     private javax.swing.JTextField jTextField36;
@@ -4915,11 +4941,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JButton getjButton48() {
-        return jButton48;
+        return actualizarNivel_jButton;
     }
 
     public void setjButton48(JButton jButton48) {
-        this.jButton48 = jButton48;
+        this.actualizarNivel_jButton = jButton48;
     }
 
     public JButton getjButton5() {
@@ -5299,11 +5325,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JLabel getjLabel21() {
-        return jLabel21;
+        return eventoNivel_jLabel;
     }
 
     public void setjLabel21(JLabel jLabel21) {
-        this.jLabel21 = jLabel21;
+        this.eventoNivel_jLabel = jLabel21;
     }
 
     public JLabel getjLabel22() {
@@ -6092,11 +6118,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JTextField getjTextField25() {
-        return jTextField25;
+        return eventoNivel_jTextField;
     }
 
     public void setjTextField25(JTextField jTextField25) {
-        this.jTextField25 = jTextField25;
+        this.eventoNivel_jTextField = jTextField25;
     }
 
     public JTextField getjTextField27() {
@@ -7053,5 +7079,13 @@ public class PpalView extends javax.swing.JFrame {
 
     public void setEventoElementosDisponibles_jList(javax.swing.JList eventoElementosDisponibles_jList) {
         this.eventoElementosDisponibles_jList = eventoElementosDisponibles_jList;
+    }
+
+    public javax.swing.JCheckBox getSelBalastosEntradas_jCheckBox() {
+        return selBalastosEntradas_jCheckBox;
+    }
+
+    public javax.swing.JCheckBox getSelEscenaEntrada_jCheckBox() {
+        return selEscenaEntrada_jCheckBox;
     }
 }

@@ -134,7 +134,7 @@ public class EventoControl implements ElementoControl_Interface {
                         String[] level = item.split(": ");
                         nivelBalasto[Integer.parseInt(item.split(" - ")[0])-1] = Integer.parseInt(level[level.length - 1]);
                     } catch (Exception e) {
-                        Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "Error calculando niveles", e);
+                        Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "Error calculando niveles de balastos", e);
                     }
                 }
             }
@@ -144,12 +144,26 @@ public class EventoControl implements ElementoControl_Interface {
                     try {
                         String item = selectedElements.getElementAt(i).toString();
                         String[] level = item.split(": ");
-                        nivelGrupo[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length - 1]);
+                        nivelGrupo[Integer.parseInt(item.split(" - ")[0])-1] = Integer.parseInt(level[level.length - 1]);
                     } catch (Exception e) {
+                        Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "Error calculando niveles de grupos", e);
                     }
                 }
             }
 
+//            if (ppalView.getSelEscenaEntrada_jCheckBox().isSelected()) {
+//                ListModel selectedElements = ppalView.getjList13().getModel();
+//                for (int i = 0; i < selectedElements.getSize(); i++) {
+//                    try {
+//                        String item = selectedElements.getElementAt(i).toString();
+//                        String[] level = item.split(": ");
+//                        nivelEscena[Integer.parseInt(item.split(" - ")[0])-1] = Integer.parseInt(level[level.length - 1]);
+//                    } catch (Exception e) {
+//                        Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "Error calculando niveles de escenas", e);
+//                    }
+//                }
+//            }
+            
             Evento newEvent = new Evento(
                     eventNumber - 1,
                     name,
@@ -232,10 +246,14 @@ public class EventoControl implements ElementoControl_Interface {
             DefaultMutableTreeNode nodeToDelete = (DefaultMutableTreeNode) ppalView.getArbol_jTree().getLastSelectedPathComponent();
             DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
             EventoDAOJmodbus dao = new EventoDAOJmodbus(ppalView.getDao());
-            dao.deleteElement(ppalView.getSelectedEventNumber());
+            String selectedEventNumber = ppalView.getSelectedEventNumber();
+            Integer numero=(Integer.parseInt(selectedEventNumber)-1);
+            selectedEventNumber=numero.toString();
+            dao.deleteElement(selectedEventNumber);
             treeModel.removeNodeFromParent(nodeToDelete);
             ppalView.getEvents().remove(ppalView.getSelectedEventNumber());
-            cleanView(ppalView);
+            refrescarVista(ppalView);
+//            cleanView(ppalView);
         } else {
             Validacion.showAlertMessage("Debe seleccionar un evento primero!");
         }
@@ -328,12 +346,18 @@ public class EventoControl implements ElementoControl_Interface {
             int[] selectedGroups = selectedEvent.getGruposAfectados();
             int[] selectedGroupLevels = selectedEvent.getNivelGrupo();
             ArrayList selGroups = new ArrayList();
+            
+            HashMap<String, Grupo> hmg= ppalView.getGroups();
+            Set<String> keysg=hmg.keySet();
+            
+            
             for (int i = 0; i < selectedGroups.length; i++) {
                 if (selectedGroups[i] == 1) {
+                    int numAumentado=i+1;
                     new GrupoControl().readElements(ppalView);
-                    Grupo group = ppalView.getGroups().get(String.valueOf(i));
-                    sceneGroupsL.addElement(group.getGroupNumber() + " - " + group.getName() + ": " + selectedGroupLevels[i]);
-                    selGroups.add(String.valueOf(i));
+                    Grupo group = hmg.get(String.valueOf(numAumentado));
+                    sceneGroupsL.addElement((group.getGroupNumber()+1) + " - " + group.getName() + ": " + selectedGroupLevels[i]);
+                    selGroups.add(String.valueOf(numAumentado));
                 }
             }
             ppalView.getjList13().setModel(sceneGroupsL);
@@ -341,10 +365,16 @@ public class EventoControl implements ElementoControl_Interface {
             //Available groups
             DefaultListModel modelGroups = new DefaultListModel();
             ArrayList<String> addedGroups = PropHandler.getAddedGroups(ppalView.getDao());
+            
+            
+            
             for (String groupNumber : addedGroups) {
-                if (!selGroups.contains(groupNumber)) {
-                    Grupo group = ppalView.getGroups().get(groupNumber);
-                    modelGroups.addElement(group.getGroupNumber() + " - " + group.getName());
+                Integer num=Integer.parseInt(groupNumber)+1;
+                String numg=num.toString();
+                
+                if (!selGroups.contains(numg)) {
+                    Grupo group = hmg.get(num.toString());
+                    modelGroups.addElement((group.getGroupNumber()+1) + " - " + group.getName());
                 }
             }
             ppalView.getSelGruposEntradas_jCheckBox().setSelected(true);
@@ -358,12 +388,17 @@ public class EventoControl implements ElementoControl_Interface {
             DefaultListModel sceneScenesL = new DefaultListModel();
             int[] selectedScenes = selectedEvent.getEscenasAfectadas();
             ArrayList selScenes = new ArrayList();
+            
+            
+            
             for (int i = 0; i < selectedScenes.length; i++) {
                 if (selectedScenes[i] == 1) {
+                    int numAumentado=i+1;
+                    
                     new EscenaControl().readElements(ppalView);
-                    Escena sce = ppalView.getScenes().get(String.valueOf(i));
-                    sceneScenesL.addElement(sce.getNumeroEscena() + " - " + sce.getNombre());
-                    selScenes.add(String.valueOf(i));
+                    Escena sce = ppalView.getScenes().get(String.valueOf(numAumentado));
+                    sceneScenesL.addElement((sce.getNumeroEscena()+1) + " - " + sce.getNombre());
+                    selScenes.add(String.valueOf(numAumentado));
                 }
             }
             ppalView.getjList13().setModel(sceneScenesL);
@@ -372,9 +407,13 @@ public class EventoControl implements ElementoControl_Interface {
             DefaultListModel modelScenes = new DefaultListModel();
             ArrayList<String> addedScenes = PropHandler.getAddedScenes(ppalView.getDao());
             for (String sceneNumber : addedScenes) {
-                if (!selScenes.contains(sceneNumber)) {
-                    Escena escena = ppalView.getScenes().get(sceneNumber);
-                    modelScenes.addElement(escena.getNumeroEscena() + " - " + escena.getNombre());
+                
+                Integer num=Integer.parseInt(sceneNumber)+1;
+                String numg=num.toString();
+                
+                if (!selScenes.contains(numg)) {
+                    Escena escena = ppalView.getScenes().get(num.toString());
+                    modelScenes.addElement((escena.getNumeroEscena()+1) + " - " + escena.getNombre());
                 }
             }
             ppalView.getjCheckBox15().setSelected(true);

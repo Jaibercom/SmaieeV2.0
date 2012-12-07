@@ -479,6 +479,7 @@
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="mainMenuBar"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -2301,6 +2302,7 @@
                                 <Property name="text" type="java.lang.String" value="Por d&#xed;as"/>
                               </Properties>
                               <Events>
+                                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="porDias_jCheckBoxStateChanged"/>
                                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="porDias_jCheckBoxItemStateChanged"/>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="porDias_jCheckBoxActionPerformed"/>
                               </Events>
@@ -2546,15 +2548,15 @@
                                                   <Component id="jScrollPane14" pref="252" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="eventoNivel_jLabel" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jTextField25" min="-2" pref="51" max="-2" attributes="0"/>
+                                                  <Component id="eventoNivel_jTextField" min="-2" pref="51" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="jButton48" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="actualizarNivel_jButton" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -2566,11 +2568,11 @@
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField25" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="eventoNivel_jLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="eventoNivel_jTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jButton48" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="actualizarNivel_jButton" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
@@ -2704,10 +2706,11 @@
                                     <Property name="text" type="java.lang.String" value="Escena"/>
                                   </Properties>
                                   <Events>
+                                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="selEscenaEntrada_jCheckBoxStateChanged"/>
                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selEscenaEntrada_jCheckBoxActionPerformed"/>
                                   </Events>
                                 </Component>
-                                <Component class="javax.swing.JLabel" name="jLabel21">
+                                <Component class="javax.swing.JLabel" name="eventoNivel_jLabel">
                                   <Properties>
                                     <Property name="text" type="java.lang.String" value="Nivel"/>
                                   </Properties>
@@ -2722,17 +2725,17 @@
                                     <Property name="text" type="java.lang.String" value="#"/>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JTextField" name="jTextField25">
+                                <Component class="javax.swing.JTextField" name="eventoNivel_jTextField">
                                   <Properties>
                                     <Property name="text" type="java.lang.String" value="0"/>
                                   </Properties>
                                 </Component>
-                                <Component class="javax.swing.JButton" name="jButton48">
+                                <Component class="javax.swing.JButton" name="actualizarNivel_jButton">
                                   <Properties>
                                     <Property name="text" type="java.lang.String" value="Actualizar nivel"/>
                                   </Properties>
                                   <Events>
-                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton48ActionPerformed"/>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarNivel_jButtonActionPerformed"/>
                                   </Events>
                                 </Component>
                               </SubComponents>
