@@ -35,7 +35,7 @@ import javax.swing.tree.TreePath;
  *
  * @author Juan Diego Toro
  */
-public class EventControl implements ElementoControl_Interface {
+public class EventoControl implements ElementoControl_Interface {
 
     @Override
     public void saveElement(PpalView ppalView) {
@@ -132,8 +132,9 @@ public class EventControl implements ElementoControl_Interface {
                     try {
                         String item = selectedElements.getElementAt(i).toString();
                         String[] level = item.split(": ");
-                        nivelBalasto[Integer.parseInt(item.split(" - ")[0])] = Integer.parseInt(level[level.length - 1]);
+                        nivelBalasto[Integer.parseInt(item.split(" - ")[0])-1] = Integer.parseInt(level[level.length - 1]);
                     } catch (Exception e) {
+                        Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "Error calculando niveles", e);
                     }
                 }
             }

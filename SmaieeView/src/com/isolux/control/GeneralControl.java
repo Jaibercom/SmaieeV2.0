@@ -258,7 +258,7 @@ public class GeneralControl {
                     break;
 
                 case 'e':
-                    EventControl eventCtrl = new EventControl();
+                    EventoControl eventCtrl = new EventoControl();
                     if (isNode) {
                         eventCtrl.cleanView(ppalView);
                         String eventNumber = (String) node.getUserObject();
@@ -687,7 +687,7 @@ public class GeneralControl {
      * @param g
      * @return
      */
-    public Boolean cargaInicial(PpalView ppalView, BalastosControl a, GrupoControl b, EscenaControl c, EventControl d, EntradaControl f, BalastosConfiguracionControl g) {
+    public Boolean cargaInicial(PpalView ppalView, BalastosControl a, GrupoControl b, EscenaControl c, EventoControl d, EntradaControl f, BalastosConfiguracionControl g) {
 //        BalastosControlJmodbus a = new BalastosControlJmodbus();
 //        GroupsControl b = new GroupsControl();
 //        SceneControlJmodbus c =new SceneControlJmodbus();

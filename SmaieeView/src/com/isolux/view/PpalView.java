@@ -11,7 +11,7 @@ import com.isolux.control.BalastosConfiguracionControl;
 import com.isolux.control.BalastosControl;
 import com.isolux.control.EntradaControl;
 import com.isolux.control.EscenaControl;
-import com.isolux.control.EventControl;
+import com.isolux.control.EventoControl;
 import com.isolux.control.GeneralControl;
 import com.isolux.control.GrupoControl;
 import com.isolux.control.RealTimeControl;
@@ -113,7 +113,7 @@ public class PpalView extends javax.swing.JFrame {
     private int eventOutType;
     //CONTROLLERS
     private BalastosControl balastoCtrl;
-    private EventControl eventCtrl;
+    private EventoControl eventCtrl;
     private GeneralControl generalCtrl;
     private GrupoControl groupsCtrl;
     private EntradaControl insCtrl;
@@ -130,7 +130,7 @@ public class PpalView extends javax.swing.JFrame {
     public void initControls() {
         this.balastoCtrl = new BalastosControl();
         this.balastoConfigCtrl = new BalastosConfiguracionControl();
-        this.eventCtrl = new EventControl();
+        this.eventCtrl = new EventoControl();
         this.generalCtrl = new GeneralControl();
         this.groupsCtrl = new GrupoControl();
         this.insCtrl = new EntradaControl();
@@ -6978,7 +6978,7 @@ public class PpalView extends javax.swing.JFrame {
         return balastoCtrl;
     }
 
-    public EventControl getEventCtrl() {
+    public EventoControl getEventCtrl() {
         return eventCtrl;
     }
 
