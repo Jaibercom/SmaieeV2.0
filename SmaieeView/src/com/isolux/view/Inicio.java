@@ -28,7 +28,7 @@ import javax.swing.UIManager;
  */
 public class Inicio extends javax.swing.JFrame {
 
-    Conectar conn;
+    Conectar conn=new Conectar();
 
     /**
      * Creates new form Inicio
@@ -182,13 +182,23 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_conectar_jButtonActionPerformed
 
     private void ipTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipTextFieldActionPerformed
-        Conectar con = new Conectar();
-        con.execute();
+        try {
+            conn=new Conectar();
+            conn.execute();
+
+        } catch (Exception ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ipTextFieldActionPerformed
 
     private void puertoInicio_jTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puertoInicio_jTextFieldActionPerformed
-        Conectar con=new Conectar();
-        con.execute();
+       try {
+            conn=new Conectar();
+            conn.execute();
+
+        } catch (Exception ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_puertoInicio_jTextFieldActionPerformed
 
     /**

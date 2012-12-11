@@ -50,11 +50,11 @@ public class CheckBalastsLevels extends Thread{
 
                 for (Integer object : selectedAreaBalasts) {
                     Balasto readed = balasts.get(object);
-                    Object nuevo[] = {readed.getBalastNumber(), readed.getName(), readed.getLevel()};
+                    Object nuevo[] = {readed.getBalastNumber()+1, readed.getName(), readed.getLevel()};
                     balastsTable.addRow(nuevo);
                 }
 
-                System.out.println("Mostrando niveles...");
+//                System.out.println("Mostrando niveles...");
                 Thread.sleep(5 * 1000L);
             }
         } catch (Exception e) {

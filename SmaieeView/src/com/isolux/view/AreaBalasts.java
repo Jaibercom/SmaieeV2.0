@@ -203,14 +203,17 @@ public class AreaBalasts extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(new JCheckBox()));
         
         for (String number : balastsNumbers) {
+            Integer parseInt = Integer.parseInt(number)-1;
+            
             Balasto readed = this.balasts.get(number);
             boolean isSelected = false;
             
-            if (selected.contains(readed.getBalastNumber()) ){
+//            if (selected.contains(readed.getBalastNumber()) ){
+            if (selected.contains(parseInt)){
               isSelected = true; 
             } 
             
-            Object nuevo[] = {readed.getBalastNumber(), readed.getName(), isSelected};
+            Object nuevo[] = {readed.getBalastNumber()+1, readed.getName(), isSelected};
             balastsTable.addRow(nuevo);
         }
     }
@@ -228,12 +231,12 @@ public class AreaBalasts extends javax.swing.JFrame {
             boolean isSelected = (Boolean)tablaTareas.getValueAt(i, 2);
             if (isSelected) {
                 int noBalastoSeleccionado = Integer.parseInt(tablaTareas.getValueAt(i, 0).toString());
-                selectedBalasts.add(noBalastoSeleccionado);
+                selectedBalasts.add(noBalastoSeleccionado-1);
             }
         }
         
         if (selectedBalasts.size() == 0) {
-            selectedBalasts.add(-1);
+            selectedBalasts.add(-1);// se pone para que halla algun numero que parsear en RealTimeControl
         }
         PropHandler.addBalasts(areaName, selectedBalasts);
         new RealTimeControl().showBalastos(ppalView);

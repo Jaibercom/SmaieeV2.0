@@ -75,11 +75,14 @@ public class ThreadManager {
             case REAL_TIME:
                 Thread.State stateReal = realTime.getState();
                 
+                
+                
                 if (stateReal.equals(Thread.State.NEW)) {
                     Thread showReal = realTime;
                     showReal.start();
                     break;
                 }
+                break;
         }
         System.out.println("Comenzado el hilo "+thread);
     }

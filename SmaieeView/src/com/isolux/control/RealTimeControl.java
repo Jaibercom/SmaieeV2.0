@@ -147,6 +147,8 @@ public class RealTimeControl {
             BalastosControl balastoCtrl = new BalastosControl();
             balastoCtrl.readElements(ppalView);
             showBalastos(areaBalasts, ppalView);
+            
+            
             ppalView.getThreadManager().getRealTime().setSelectedAreaBalasts(areaBalasts);
             ppalView.getThreadManager().startThread(ThreadManager.REAL_TIME);
             
@@ -286,35 +288,21 @@ public class RealTimeControl {
     
     public void showBalastos(PpalView ppalView) {
         DefaultTableModel tablaBalastos = (DefaultTableModel) ppalView.getjTable1().getModel();
-        
-        //Clean balasts table.
-        int rowCount = tablaBalastos.getRowCount();
-        if (rowCount > 0) {
-            for (int i = rowCount - 1; i >= 0; i--) {
-                tablaBalastos.removeRow(i);
-            }
-        }
+        limpiarTablaBalastos(tablaBalastos);
         
         ArrayList<Integer> selected = PropHandler.getAreaBalasts(ppalView.getjComboBox2().getSelectedItem().toString());
         
         //Show balasts
         for (Integer balasto : selected) {
-            Balasto readed = ppalView.getBalasts().get(String.valueOf(balasto));
-            Object nuevo[] = {readed.getBalastNumber(), readed.getName(), readed.getLevel()};
+            Balasto readed = ppalView.getBalasts().get(String.valueOf(balasto+1));
+            Object nuevo[] = {readed.getBalastNumber()+1, readed.getName(), readed.getLevel()}; //corregido
             tablaBalastos.addRow(nuevo);
         }
     }
     
     public void showBalastos(ArrayList<Integer> balastsNumbers, PpalView ppalView) {
         DefaultTableModel tablaBalastos = (DefaultTableModel) ppalView.getjTable1().getModel();
-        
-        //Clean balasts table.
-        int rowCount = tablaBalastos.getRowCount();
-        if (rowCount > 0) {
-            for (int i = rowCount - 1; i >= 0; i--) {
-                tablaBalastos.removeRow(i);
-            }
-        }
+        limpiarTablaBalastos(tablaBalastos);
         
         //Show balasts
         HashMap<String, Balasto> balasts = ppalView.getBalasts();
@@ -323,7 +311,7 @@ public class RealTimeControl {
             for (String balasto : iterador) {
                 Balasto readed = balasts.get(balasto);
                 if (balastNumber == readed.getBalastNumber()) {
-                    Object nuevo[] = {readed.getBalastNumber(), readed.getName(), readed.getLevel()};
+                    Object nuevo[] = {readed.getBalastNumber()+1, readed.getName(), readed.getLevel()};
                     tablaBalastos.addRow(nuevo);
                 }
             }
@@ -332,18 +320,22 @@ public class RealTimeControl {
     
     public void cleanRealTimeView(PpalView ppalView) {
         DefaultTableModel balastsTable = (DefaultTableModel) ppalView.getjTable1().getModel();
-        
-        int rowCount = balastsTable.getRowCount();
-        if (rowCount > 0) {
-            for (int i = rowCount - 1; i >= 0; i--) {
-                balastsTable.removeRow(i);
-            }
-        }
+        limpiarTablaBalastos(balastsTable);
         
         ppalView.getjSpinner3().setValue(0);
         ppalView.getjSlider1().setValue(0);
         ppalView.getjLabel54().setText("#");
         ppalView.getjLabel65().setText("#");
+    }
+
+    private void limpiarTablaBalastos(DefaultTableModel tablaBalastos) {
+        //Clean balasts table.
+        int rowCount = tablaBalastos.getRowCount();
+        if (rowCount > 0) {
+            for (int i = rowCount - 1; i >= 0; i--) {
+                tablaBalastos.removeRow(i);
+            }
+        }
     }
     
     /**

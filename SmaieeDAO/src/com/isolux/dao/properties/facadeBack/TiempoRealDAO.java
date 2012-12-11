@@ -26,34 +26,35 @@ import java.util.logging.Logger;
  * @author EAFIT
  */
 public class TiempoRealDAO {
-    
+
     private static DAOJmodbus dao;
-    
-    public TiempoRealDAO(DAOJmodbus dao){
-        this.dao  = dao;
+
+    public TiempoRealDAO(DAOJmodbus dao) {
+        this.dao = dao;
     }
-    
-    public TiempoRealDAO(){
-        this.dao  = dao;
+
+    public TiempoRealDAO() {
+        this.dao = dao;
     }
-    
+
     /**
      * Write a single register.
      */
-    public static void setSingleReg(int pos, int mode) throws Exception{
+    public static void setSingleReg(int pos, int mode) throws Exception {
         int[] values = {mode};
         dao.setRegValue(pos, values);
     }
-    
+
     /**
      * Gets the number of the added areas.
+     *
      * @param key
-     * @return 
+     * @return
      */
     public static ArrayList<String> getAddedAreas() {
         String file = Constants.AREAS_FILE;
         ArrayList<String> addedBalasts = new ArrayList<String>();
-         
+
         File archivo = new File(file);
         if (!archivo.isFile()) {
             try {
@@ -62,8 +63,8 @@ public class TiempoRealDAO {
                 Logger.getLogger(PropHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        
+
+
         Properties properties = new Properties();
         FileInputStream stream = null;
         try {
@@ -71,14 +72,14 @@ public class TiempoRealDAO {
             properties.load(stream);
 
             Set<String> areas = properties.stringPropertyNames();
-            
+
             for (String string : areas) {
 //                System.out.println(string + "=" +properties.getProperty(string));
-                if ( properties.getProperty(string) != null && !properties.getProperty(string).equals("")) {
+                if (properties.getProperty(string) != null && !properties.getProperty(string).equals("")) {
                     addedBalasts.add(string);
                 }
             }
-            
+
         } catch (FileNotFoundException e) {
             System.out.println("No se pudo encontrar el archivo especificado!");
             e.printStackTrace();
@@ -93,18 +94,19 @@ public class TiempoRealDAO {
                 e.printStackTrace();
             }
         }
-        
+
         return addedBalasts;
     }
-    
+
     /**
      * Add a new area.
+     *
      * @param key
-     * @return 
+     * @return
      */
     public static void addArea(String areaName) {
         String file = Constants.AREAS_FILE;
-        
+
         File archivo = new File(file);
         if (!archivo.isFile()) {
             try {
@@ -113,7 +115,7 @@ public class TiempoRealDAO {
                 Logger.getLogger(PropHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         Properties properties = new Properties();
         FileInputStream stream = null;
         try {
@@ -123,7 +125,7 @@ public class TiempoRealDAO {
             FileOutputStream fos = new FileOutputStream(archivo);
             properties.setProperty(areaName, String.valueOf(0));
             properties.store(fos, null);
-            
+
         } catch (FileNotFoundException e) {
             System.out.println("No se pudo encontrar el archivo especificado!");
             e.printStackTrace();
@@ -139,15 +141,16 @@ public class TiempoRealDAO {
             }
         }
     }
-    
+
     /**
      * Delete the specified area.
+     *
      * @param key
-     * @return 
+     * @return
      */
     public static void deleteArea(String areaName) {
         String file = Constants.AREAS_FILE;
-        
+
         File archivo = new File(file);
         if (!archivo.isFile()) {
             try {
@@ -156,7 +159,7 @@ public class TiempoRealDAO {
                 Logger.getLogger(PropHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         Properties properties = new Properties();
         FileInputStream stream = null;
         try {
@@ -166,7 +169,7 @@ public class TiempoRealDAO {
             FileOutputStream fos = new FileOutputStream(archivo);
             properties.remove(areaName);
             properties.store(fos, null);
-            
+
         } catch (FileNotFoundException e) {
             System.out.println("No se pudo encontrar el archivo especificado!");
             e.printStackTrace();
@@ -182,15 +185,16 @@ public class TiempoRealDAO {
             }
         }
     }
-    
+
     /**
      * Add balast.
+     *
      * @param key
-     * @return 
+     * @return
      */
     public static void addBalasts(String areaNumber, ArrayList<Integer> balasts) {
         String file = Constants.AREAS_FILE;
-        
+
         File archivo = new File(file);
         if (!archivo.isFile()) {
             try {
@@ -199,8 +203,8 @@ public class TiempoRealDAO {
                 Logger.getLogger(com.isolux.dao.properties.PropHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        
+
+
         Properties properties = new Properties();
         FileInputStream stream = null;
         try {
@@ -208,15 +212,15 @@ public class TiempoRealDAO {
             properties.load(stream);
 
             FileOutputStream fos = new FileOutputStream(archivo);
-            
+
             String addedBalasts = "";
             for (int balast : balasts) {
                 addedBalasts += balast + ",";
             }
-            
+
             properties.setProperty(areaNumber, addedBalasts);
             properties.store(fos, null);
-            
+
         } catch (FileNotFoundException e) {
             System.out.println("No se pudo encontrar el archivo especificado!");
             e.printStackTrace();
@@ -232,28 +236,40 @@ public class TiempoRealDAO {
             }
         }
     }
-    
+
     /**
      * Gets the number of the next balast to write.
+     *
      * @param key
-     * @return 
+     * @return
      */
     public static ArrayList<Integer> getAreaBalasts(String areaName) {
         ArrayList<Integer> areaBalasts = null;
-        
+
         File archivo = new File(Constants.AREAS_FILE);
         Properties properties = new Properties();
         FileInputStream stream = null;
         try {
             stream = new FileInputStream(archivo);
             properties.load(stream);
-            
+
             String[] balasts = properties.getProperty(areaName).split(",");
             areaBalasts = new ArrayList<Integer>();
             for (int i = 0; i < balasts.length; i++) {
-                areaBalasts.add(Integer.parseInt(balasts[i]));
+                Integer numAum = null;
+                try {
+
+
+                    numAum = Integer.parseInt(balasts[i]);
+                    areaBalasts.add(numAum);
+
+                } catch (NumberFormatException numberFormatException) {
+                    numAum = 0;
+                }
+
+
             }
-            
+
         } catch (FileNotFoundException e) {
             System.out.println("No se pudo encontrar el archivo especificado!");
             e.printStackTrace();
@@ -270,15 +286,16 @@ public class TiempoRealDAO {
         }
         return areaBalasts;
     }
-    
+
     /**
      * Get the areas that has an image.
-     * @return 
+     *
+     * @return
      */
-    public static HashMap<String,Integer> getAreaImageNames(){
+    public static HashMap<String, Integer> getAreaImageNames() {
         ArrayList<String> areas = getAddedAreas();
-        HashMap<String,Integer> areaNames = new HashMap<String,Integer>();
-        
+        HashMap<String, Integer> areaNames = new HashMap<String, Integer>();
+
         //Gets the list of files in the folder
         File dir = new File(Constants.AREA_IMAGES);
         File[] files = dir.listFiles();
@@ -290,29 +307,30 @@ public class TiempoRealDAO {
             }
         };
         files = dir.listFiles(fileFilter);
-        
+
         ArrayList<String> names = new ArrayList<String>();
         for (File fileName : files) {
             names.add(fileName.getName().substring(0, fileName.getName().length() - 4));
         }
-        
+
         //Compare the area names with the file names.
         for (String areaName : areas) {
             areaNames.put(areaName, names.contains(areaName) ? 1 : 0);
         }
-        
+
         return areaNames;
     }
-    
+
     /**
      * Indicates a change in a balast.
      */
-    public static void saveBalast(){
-        try{
+    public static void saveBalast() {
+        try {
             setSingleReg(1, 12);
-        } catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
-    
+
     //TEST
     public static void main(String[] args) {
         ArrayList<String> addedAreas = getAddedAreas();
@@ -334,12 +352,12 @@ public class TiempoRealDAO {
 
 
         //Get the file names.
-        HashMap<String,Integer> test = getAreaImageNames();
+        HashMap<String, Integer> test = getAreaImageNames();
         Set<String> names = test.keySet();
         for (String name : names) {
             System.out.println("Area: " + name + ", imagen?:" + test.get(name));
         }
-        
+
 //        File dir = new File(Constants.AREA_IMAGES);
 //        File[] files = dir.listFiles();
 //
@@ -356,6 +374,4 @@ public class TiempoRealDAO {
 //            System.out.println(image.getName());
 //        }
     }
-    
-    
 }
