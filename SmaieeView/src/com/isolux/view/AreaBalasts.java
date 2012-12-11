@@ -239,6 +239,7 @@ public class AreaBalasts extends javax.swing.JFrame {
             selectedBalasts.add(-1);// se pone para que halla algun numero que parsear en RealTimeControl
         }
         PropHandler.addBalasts(areaName, selectedBalasts);
+        PropHandler.getAreaBalasts(areaName);
         new RealTimeControl().showBalastos(ppalView);
         
         this.dispose();

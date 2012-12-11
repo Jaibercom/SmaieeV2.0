@@ -46,7 +46,9 @@ public class CheckBalastsLevels extends Thread{
                     for (int i = rowCount - 1; i >= 0; i--) {
                         balastsTable.removeRow(i);
                     }
+
                 }
+                
 
                 for (Integer object : selectedAreaBalasts) {
                     Balasto readed = balasts.get(object);

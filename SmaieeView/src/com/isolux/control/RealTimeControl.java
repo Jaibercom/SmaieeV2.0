@@ -150,7 +150,7 @@ public class RealTimeControl {
             
             
             ppalView.getThreadManager().getRealTime().setSelectedAreaBalasts(areaBalasts);
-            ppalView.getThreadManager().startThread(ThreadManager.REAL_TIME);
+//            ppalView.getThreadManager().startThread(ThreadManager.REAL_TIME);
             
 //            startCheckingBalastsLevels(ppalView, areaBalasts);
         } else {
@@ -279,7 +279,7 @@ public class RealTimeControl {
         String noBalastoSeleccionado = tablaTareas.getValueAt(filaTareaSeleccionada, 0).toString();
         Balasto balastoSeleccionado = ppalView.getBalasts().get(noBalastoSeleccionado);
         
-        ppalView.getjLabel54().setText(String.valueOf(balastoSeleccionado.getBalastNumber()));
+        ppalView.getjLabel54().setText(String.valueOf(balastoSeleccionado.getBalastNumber()+1));
         ppalView.getjLabel65().setText(balastoSeleccionado.getName());
         ppalView.getjSpinner3().setValue(balastoSeleccionado.getLevel());
         ppalView.getjSlider1().setValue(balastoSeleccionado.getLevel());
@@ -310,7 +310,7 @@ public class RealTimeControl {
         for (int balastNumber : balastsNumbers) {
             for (String balasto : iterador) {
                 Balasto readed = balasts.get(balasto);
-                if (balastNumber == readed.getBalastNumber()) {
+                if (balastNumber == readed.getBalastNumber()+1) {
                     Object nuevo[] = {readed.getBalastNumber()+1, readed.getName(), readed.getLevel()};
                     tablaBalastos.addRow(nuevo);
                 }
