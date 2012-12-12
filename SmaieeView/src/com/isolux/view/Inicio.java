@@ -28,7 +28,7 @@ import javax.swing.UIManager;
  */
 public class Inicio extends javax.swing.JFrame {
 
-    Conectar conn=new Conectar();
+    Conectar conn = new Conectar();
 
     /**
      * Creates new form Inicio
@@ -171,7 +171,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void conectar_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conectar_jButtonActionPerformed
         try {
-            conn=new Conectar();
+            conn = new Conectar();
             conn.execute();
 
         } catch (Exception ex) {
@@ -183,7 +183,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void ipTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipTextFieldActionPerformed
         try {
-            conn=new Conectar();
+            conn = new Conectar();
             conn.execute();
 
         } catch (Exception ex) {
@@ -192,8 +192,8 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_ipTextFieldActionPerformed
 
     private void puertoInicio_jTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puertoInicio_jTextFieldActionPerformed
-       try {
-            conn=new Conectar();
+        try {
+            conn = new Conectar();
             conn.execute();
 
         } catch (Exception ex) {
@@ -289,9 +289,9 @@ public class Inicio extends javax.swing.JFrame {
             puertoInicio_jTextField.setEnabled(false);
             jLabel3.setText("Conectando...");
 
-            String portString=this.puertoInicio_jTextField.getText();
+            String portString = this.puertoInicio_jTextField.getText();
             int port = Integer.parseInt(portString);
-            
+
             String ip = ipTextField.getText();
 
             if (ipValidator(ip)) {
@@ -299,7 +299,8 @@ public class Inicio extends javax.swing.JFrame {
 
                 PropHandler.setProperty("general.ip", ip);
                 PropHandler.setProperty("general.port", portString);
-                if (DAOJamod.testConnection(ip, port)) {
+                boolean testConnection = DAOJamod.testConnection(ip, port);
+                if (testConnection) {
                     //TODO: Get info and give it to the ppal
                     //Getting info...
 //                DAO4j.readMemory();
@@ -310,23 +311,28 @@ public class Inicio extends javax.swing.JFrame {
                     ppal.setVisible(true);
 //                    conn.cancel(true);
                     this.dispose(); //oculta la ventana actual (Inicio.java)
-                    
+
 
                 } else {
-
-
-                    ConnectException ce = new ConnectException("La tarjeta no esta bien conectada");
-                    throw ce;
+//                    JOptionPane.showMessageDialog(null, "Conexión rehusada.\n Verifique su conexión y vuelva a intentarlo nuevamente.", "Error de conexión", JOptionPane.ERROR_MESSAGE);
+                      conectar_jButton.setEnabled(true);
+            ipTextField.setEnabled(true);
+            puertoInicio_jTextField.setEnabled(true);
+            jLabel3.setText("No se pudo establecer la conexion!");
+//
+//                    ConnectException ce = new ConnectException("La tarjeta no esta bien conectada");
+//                    throw ce;
                 }
 
             }
-        } catch (ConnectException ce) {
-            conectar_jButton.setEnabled(true);
-            ipTextField.setEnabled(true);
-            puertoInicio_jTextField.setEnabled(true);
-            jLabel3.setText("No se puede establecer una conexion!");
-            JOptionPane.showMessageDialog(rootPane, "No se pudo conectar a la tarjeta. Revise su conexion " + ce.getLocalizedMessage(), "Error de conexión", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE,"No se pudo conectar",ce);
+        } catch (Exception e) {
+//          
+//            String message = e.getLocalizedMessage();
+//            String cause = e.toString();
+//            
+//            
+//            JOptionPane.showMessageDialog(rootPane, "No se pudo conectar a la tarjeta. \n\nCausa:\n" + message, "Error de conexión", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, "No se pudo conectar a la tarjeta. ", e);
 
 
 //            ce.printStackTrace();
@@ -341,7 +347,7 @@ public class Inicio extends javax.swing.JFrame {
         @Override
         protected String doInBackground() throws Exception {
             conectar();
-            
+
 
 //            try {
 //

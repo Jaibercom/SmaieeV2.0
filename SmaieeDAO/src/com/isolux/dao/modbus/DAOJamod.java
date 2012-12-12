@@ -8,6 +8,7 @@ import com.isolux.dao.properties.PropHandler;
 import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import net.wimpi.modbus.*;
 import net.wimpi.modbus.msg.*;
 import net.wimpi.modbus.io.*;
@@ -28,9 +29,6 @@ public class DAOJamod {
     /*
      * GENERAL OPERATIONS
      */
-   
-    
-
     /*
      * REG OPERATIONS
      */
@@ -338,7 +336,7 @@ public class DAOJamod {
      *
      * @return
      */
-    public static boolean testConnection(String ip, int port) {
+    public static boolean testConnection(String ip, int port){
         boolean connectionState = false;
 
 //        ModbusTCPMaster master = null;
@@ -356,34 +354,39 @@ public class DAOJamod {
         TCPMasterConnection con = null;  //the connection
         InetAddress addr = null; //the address
 
+
+        //1. Set the parameters.
+        String astr = ip;
         try {
-            //1. Set the parameters.
-            String astr = ip;
+//            addr=Inet4Address.getByName(astr);
             addr = InetAddress.getByName(astr);
+        } catch (UnknownHostException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            Logger.getLogger(DAOJamod.class.getName()).log(Level.SEVERE, "Host desconocido", ex);
+            
+        }
+//            addr = InetAddress.getByName(astr);
+        try {
             con = new TCPMasterConnection(addr);
 
             //2. Open the connection	
             con.setPort(port);
             con.setTimeout(2000);
             con.connect();
-
+            
             connectionState = true;
+        } catch (Exception e) {
+          connectionState=false;
+            String message = e.getLocalizedMessage();
+          
+            
+            
+            JOptionPane.showMessageDialog(null, "No se pudo conectar a la tarjeta. \n\nCausa:\n" + message, "Error de conexión", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(DAOJamod.class.getName()).log(Level.SEVERE, "No se pudo conectar", e);
+            return connectionState;
 
-
-
-//            con.close();
-        } catch (Exception ex) {
-            if (con.isConnected()) {
-                con.close();
-            }
-            connectionState = false;
-            ex.printStackTrace();
-
-        } finally {
-            //6. Close the connection.
-            con.close();
         }
-
+    
         return connectionState;
     }
 
@@ -391,17 +394,6 @@ public class DAOJamod {
      * Main test.
      */
     public static void main(String args[]) {
-        //COILS
-//        new SmaieeModMaster().setCoilValue("127.0.0.1", 6, true);
-//        new SmaieeModMaster().getCoilValue("127.0.0.1", 6);
-
-        //REGISTERS 
-        // Holding register 40108 is addressed as register 006B hex (107 decimal). Page
-//        new DAOJamod().setRegValue(0, 1);
-//        new DAOJamod().getRegValue(6);
-//        new DAOJamod().getRegValue2(6);
-
-//        new DAOJamod().setRegValue3(6, 34);
 
         try {
             new DAOJamod().getRegValue2(500);
