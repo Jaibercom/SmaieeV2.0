@@ -276,7 +276,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
 //            Si el balasto no es el de fabrica se lee. 
             if (aumentado!=Integer.parseInt(PropHandler.getProperty("balast.config.defabrica"))) {
 
-                OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES, Integer.parseInt(num));
+                OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES, numeroBalasto);
                 hilo.setLabel(ppalView.getStatusLabel());
                 hilo.setBar(ppalView.getBarraProgreso_jProgressBar());
 //            cola.getCola().enqueue(hilo);
