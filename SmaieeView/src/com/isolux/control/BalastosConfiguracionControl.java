@@ -231,9 +231,10 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         try {
             //        BalastoDAOJmodbus dao=new BalastoDAOJmodbus(new DAOJmodbus());
             Integer numeroBalasto = Integer.parseInt(num)-1;// se hace la resta por el cambio de numeracion.
+            int aumentado=numeroBalasto+1;
 
 //            Si el balasto no es el de fabrica se lee. 
-            if (numeroBalasto!=Integer.parseInt(PropHandler.getProperty("balast.config.defabrica"))) {
+            if (aumentado!=Integer.parseInt(PropHandler.getProperty("balast.config.defabrica"))) {
 
                 OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_LEER_VALORES, Integer.parseInt(num));
                 hilo.setLabel(ppalView.getStatusLabel());

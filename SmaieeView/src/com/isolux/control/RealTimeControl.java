@@ -310,7 +310,7 @@ public class RealTimeControl {
         for (int balastNumber : balastsNumbers) {
             for (String balasto : iterador) {
                 Balasto readed = balasts.get(balasto);
-                if (balastNumber == readed.getBalastNumber()+1) {
+                if (balastNumber+1 == readed.getBalastNumber()+1) {
                     Object nuevo[] = {readed.getBalastNumber()+1, readed.getName(), readed.getLevel()};
                     tablaBalastos.addRow(nuevo);
                 }

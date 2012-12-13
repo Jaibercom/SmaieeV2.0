@@ -192,6 +192,7 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
 
         try {
 
+            setMode(MODE_CONFIG);
             setSingleReg(1, OPCODE_VERIFICA_RED);
 
         } catch (Exception e) {

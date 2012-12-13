@@ -3012,11 +3012,11 @@ public class PpalView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_balastoEnviar_jButtonActionPerformed
 
-    public void enviarBalastoSmaiee() throws Exception{         
+    public void enviarBalastoSmaiee() throws Exception {
         this.balastoCtrl.saveElement(this);
-       
+
     }
-    
+
     /**
      * Show the selection file window. (Real time control).
      *
@@ -3101,16 +3101,16 @@ public class PpalView extends javax.swing.JFrame {
             enviarGrupoSmaiee();
         } catch (Exception ex) {
             Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, "Error grabando el grupo", ex);
-            JOptionPane.showMessageDialog(this, "No se pudo guardar el grupo","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se pudo guardar el grupo", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_enviarGrupo_jButtonActionPerformed
 
-    public void enviarGrupoSmaiee()throws Exception{
-         this.groupsCtrl.saveElement(this);
-         
+    public void enviarGrupoSmaiee() throws Exception {
+        this.groupsCtrl.saveElement(this);
+
     }
-    
+
     /**
      * Deletes a group
      *
@@ -3486,7 +3486,7 @@ public class PpalView extends javax.swing.JFrame {
     private void selEscenaEntrada_jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selEscenaEntrada_jCheckBoxActionPerformed
         eventOutType = ViewUtils.selectCheks(selBalastosEntradas_jCheckBox, selGruposEntradas_jCheckBox, selEscenaEntrada_jCheckBox);
         this.generalCtrl.showAvailableScenes(eventoElementosDisponibles_jList, eventoElementosAfectados_jList, this);
-        
+
     }//GEN-LAST:event_selEscenaEntrada_jCheckBoxActionPerformed
 
     /**
@@ -3539,20 +3539,20 @@ public class PpalView extends javax.swing.JFrame {
                 case 1: //caso del panel de configuracion de balastos.
 
 
-                    OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
-                    hilo.setLabel(getStatusLabel());
-                    hilo.getLabel().setText("Cargando elementos de la configuracion de balastos...");
-                    hilo.setBar(getBarraProgreso_jProgressBar());
-                    hilo.setPpalView(this.getTabbedPane());
-
-                    hilo.execute();
-                    hilo.get();
-            cargarBalastosEnRed();
+//                    OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
+//                    hilo.setLabel(getStatusLabel());
+//                    hilo.getLabel().setText("Cargando elementos de la configuracion de balastos...");
+//                    hilo.setBar(getBarraProgreso_jProgressBar());
+//                    hilo.setPpalView(this.getTabbedPane());
+//
+//                    hilo.execute();
+//                    hilo.get();
+                    cargarBalastosEnRed();
 
 
                     break;
                 case 2://tiempo real
-                    ElementoDAOJmobdus edaoj=new ElementoDAOJmobdus(); //Modo config
+                    ElementoDAOJmobdus edaoj = new ElementoDAOJmobdus(); //Modo config
                     edaoj.setMode(ElementoDAOJmobdus.MODE_CONFIG);
                     break;
 
@@ -3630,8 +3630,8 @@ public class PpalView extends javax.swing.JFrame {
             hilo.getBar().setIndeterminate(true);
             hilo.getLabel().setText("Guardando en flash...");
             hilo.setPpalView(this.getTabbedPane());
-            
-            
+
+
 //            ConfiguracionDAOJmodbus g = new ConfiguracionDAOJmodbus(dao);
 //            
 //            getBarraProgreso_jProgressBar().setIndeterminate(false);
@@ -3703,7 +3703,6 @@ public class PpalView extends javax.swing.JFrame {
         this.realCtrl.areaBalasts(this);
     }//GEN-LAST:event_jButton44ActionPerformed
 
-    
     /**
      * Erase the memory
      */
@@ -3725,7 +3724,7 @@ public class PpalView extends javax.swing.JFrame {
 //                c.eraseMemory();
                 limpiarArbol(getArbol_jTree());
                 establecerModeloArbolDefault(this.getArbol_jTree());
-                
+
 
 //                hilo.get();
 
@@ -3733,10 +3732,10 @@ public class PpalView extends javax.swing.JFrame {
 //                getStatusLabel().setText("");
 //                getBarraProgreso_jProgressBar().setIndeterminate(false);
 //                JOptionPane.showMessageDialog(null, "Memoria flash formateandose. Cuando el sistema termine se mostra");
-                CargaInicial ci=new CargaInicial(this);
+                CargaInicial ci = new CargaInicial(this);
                 ci.execute();
 //                this.getGeneralCtrl().habilitarTodo(this.getTabbedPane(), true);
-                
+
 //            } catch (InterruptedException ex) {
 //                Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
 //            } catch (ExecutionException ex) {
@@ -3789,7 +3788,6 @@ public class PpalView extends javax.swing.JFrame {
     }//GEN-LAST:event_fotoceldas_entrada_escenas_jCheckBoxActionPerformed
 
     private void porDias_jCheckBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_porDias_jCheckBoxItemStateChanged
-        
     }//GEN-LAST:event_porDias_jCheckBoxItemStateChanged
 
     private void balastoNum_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoNum_jComboBoxActionPerformed
@@ -3888,14 +3886,14 @@ public class PpalView extends javax.swing.JFrame {
         if (selEscenaEntrada_jCheckBox.isSelected()) {
             eventoNivel_jTextField.setEnabled(false);
             actualizarNivel_jButton.setEnabled(false);
-        }else{
+        } else {
             eventoNivel_jTextField.setEnabled(true);
             actualizarNivel_jButton.setEnabled(true);
         }
     }//GEN-LAST:event_selEscenaEntrada_jCheckBoxStateChanged
 
     private void porDias_jCheckBoxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_porDias_jCheckBoxStateChanged
-       this.eventCtrl.selectByDays(this);
+        this.eventCtrl.selectByDays(this);
     }//GEN-LAST:event_porDias_jCheckBoxStateChanged
 
     //</editor-fold>
@@ -5436,7 +5434,6 @@ public class PpalView extends javax.swing.JFrame {
     public void setjLabel4(JLabel jLabel4) {
         this.jLabel4 = jLabel4;
     }
-
 
     public JLabel getjLabel41() {
         return jLabel41;
@@ -7006,8 +7003,8 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     private void enviarEscenaSmaiee() {
-      this.sceneCtrl.saveElement(this);
-            
+        this.sceneCtrl.saveElement(this);
+
     }
 
     public javax.swing.JTextField getBalastoNombreSmaiee_jTextField() {
@@ -7067,15 +7064,17 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     /**
-     * Carga los balastos en red. Intenta 6 veces para determinar si hay o no balastos en la red
-     * @throws HeadlessException 
+     * Carga los balastos en red. Intenta 6 veces para determinar si hay o no
+     * balastos en la red
+     *
+     * @throws HeadlessException
      */
     public void cargarBalastosEnRed() throws HeadlessException {
         int intentosBalastosRed = 0;
 
         while (intentosBalastosRed < 5) {
-    String itemAt = this.getBalastoConfiguracion_jComboBox().getItemAt(0).toString();
-            if (itemAt == null||itemAt==String.valueOf(MapaDeMemoria.BALASTO_DE_FABRICA)) {
+            String itemAt = this.getBalastoConfiguracion_jComboBox().getItemAt(0).toString();
+            if (itemAt.equals(String.valueOf(MapaDeMemoria.BALASTO_DE_FABRICA))) {
                 try {
                     OperacionesDaoHilo hilo1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
                     hilo1.setLabel(getStatusLabel());
@@ -7086,18 +7085,22 @@ public class PpalView extends javax.swing.JFrame {
                     hilo1.execute();
                     hilo1.get();
                     intentosBalastosRed++;
-    //                            Thread.sleep(MapaDeMemoria.DELAY_OPERACIONES_CORTO);
+                    //                            Thread.sleep(MapaDeMemoria.DELAY_OPERACIONES_CORTO);
 
                     if (intentosBalastosRed == MapaDeMemoria.REINTENTOS) {
-                        JOptionPane.showMessageDialog(null, "Al parecer no hay balastos en la red. Verifique que si se encuentran conectados.\nSi estan conectados intente reiniciar el programa.", "", inType);
+                        JOptionPane.showMessageDialog(null, "Al parecer no hay balastos en la red. Verifique que si se encuentran conectados.\nSi estan conectados intente reiniciar el programa.", "No hay balastos en la red", inType);
                     }
                 } catch (InterruptedException ex) {
                     Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ExecutionException ex) {
                     Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (Exception e) {
+                    Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, e);
+                }
+                 finally {
                 }
 
-            } else {
+            }else {
                 intentosBalastosRed = 5;
             }
         }
