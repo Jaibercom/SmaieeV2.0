@@ -150,7 +150,7 @@ public class RealTimeControl {
             
             
             ppalView.getThreadManager().getRealTime().setSelectedAreaBalasts(areaBalasts);
-//            ppalView.getThreadManager().startThread(ThreadManager.REAL_TIME);
+            ppalView.getThreadManager().startThread(ThreadManager.REAL_TIME);
             
 //            startCheckingBalastsLevels(ppalView, areaBalasts);
         } else {
