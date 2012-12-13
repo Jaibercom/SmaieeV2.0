@@ -185,7 +185,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "Balasto numero {0} guardado correctamente.", balastNumber);
             ppalView.getStatusLabel().setText("Balasto numero " + balastNumber + " guardado correctamente.");
 
-            JOptionPane.showMessageDialog(ppalView, ("La escritura en balasto " + balastNumber + " fue exitosa"));
+            JOptionPane.showMessageDialog(ppalView, ("La escritura en balasto " + (balastNumber+1) + " fue exitosa"));
 
 
 

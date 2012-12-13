@@ -3046,6 +3046,7 @@ public class PpalView extends javax.swing.JFrame {
         jFormattedTextField1.setEnabled(false);
         this.generalCtrl.saveConfiguration(this);
         threadManager.startThreadIfTerminated(ThreadManager.RTC_REFRESHING);
+        
     }//GEN-LAST:event_configEnviar_jButtonActionPerformed
 
     /**
@@ -3764,6 +3765,7 @@ public class PpalView extends javax.swing.JFrame {
         } else {
             jDateChooser1.setEnabled(false);
             jFormattedTextField1.setEnabled(false);
+            this.generalCtrl.saveConfiguration(this);
             threadManager.startThreadIfTerminated(ThreadManager.RTC_REFRESHING);
         }
     }//GEN-LAST:event_configHoraSistema_jButtonActionPerformed

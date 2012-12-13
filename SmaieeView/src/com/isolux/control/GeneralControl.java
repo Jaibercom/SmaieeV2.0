@@ -641,12 +641,21 @@ public class GeneralControl {
      * Shows the configuration view.
      */
     public void initConfiguration(PpalView ppalView) {
-//        stopConfigurationViewData();
-        CardLayout cl = (CardLayout) (ppalView.getPanelPpal().getLayout());
-        ppalView.getThreadManager().stopAllCurrentThreads();
-        ppalView.getThreadManager().startThreadIfTerminated(ThreadManager.RTC_REFRESHING);
-        cl.show(ppalView.getPanelPpal(), "card3"); //Configuracion
-        activarGuiConfigGeneral(ppalView, false);
+        try {
+            //        stopConfigurationViewData();
+                    setRunMode(ppalView);
+                    CardLayout cl = (CardLayout) (ppalView.getPanelPpal().getLayout());
+                    ThreadManager threadManager = ppalView.getThreadManager();
+            //        threadManager.startThreadIfTerminated(ThreadManager.RTC_REFRESHING);
+                    threadManager.stopAllCurrentThreads();
+                     activarGuiConfigGeneral(ppalView, false);
+                    threadManager.startThreadIfTerminated(ThreadManager.RTC_REFRESHING);
+                    
+                    cl.show(ppalView.getPanelPpal(), "card3"); //Configuracion
+        } catch (Exception ex) {
+            Logger.getLogger(GeneralControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
         
        
     }
