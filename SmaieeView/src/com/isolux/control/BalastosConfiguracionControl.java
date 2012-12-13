@@ -20,6 +20,7 @@ import com.isolux.properties.MapaDeMemoria;
 import com.isolux.utils.Validacion;
 import com.isolux.view.PpalView;
 import com.isolux.view.componentes.SliderConValor;
+import java.awt.HeadlessException;
 import java.util.Stack;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
@@ -74,6 +75,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         ppalView.getBalastoConfiguracion_jComboBox().addItem("254");
     }
 
+    
     @Override
     public String[] elementosDisponibles(PpalView ppalView) {
 //        BalastoDAOJmodbus dao = new BalastoDAOJmodbus(ppalView.getDao());
@@ -84,6 +86,44 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         ses = dao.elementosSinGrabar();
 
         return ses;
+    }
+    
+    
+    public void cargarBalastosEnRed(PpalView ppalView) throws HeadlessException {
+        int intentosBalastosRed = 0;
+
+        while (intentosBalastosRed < 5) {
+            String itemAt = ppalView.getBalastoConfiguracion_jComboBox().getItemAt(0).toString();
+            if (itemAt.equals(String.valueOf(MapaDeMemoria.BALASTO_DE_FABRICA))) {
+                try {
+                    OperacionesDaoHilo hilo1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
+                    hilo1.setLabel(ppalView.getStatusLabel());
+                    hilo1.getLabel().setText("Cargando los balastos en red. Intento: " + (intentosBalastosRed + 1));
+                    hilo1.setBar(ppalView.getBarraProgreso_jProgressBar());
+                    hilo1.setDelay(MapaDeMemoria.DELAY_OPERACIONES_LARGO);
+
+                    hilo1.execute();
+                    hilo1.get();
+                    intentosBalastosRed++;
+                    //                            Thread.sleep(MapaDeMemoria.DELAY_OPERACIONES_CORTO);
+
+                    if (intentosBalastosRed == MapaDeMemoria.REINTENTOS) {
+                        JOptionPane.showMessageDialog(null, "Al parecer no hay balastos en la red. Verifique que si se encuentran conectados.\nSi estan conectados intente reiniciar el programa.", "No hay balastos en la red", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ExecutionException ex) {
+                    Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (Exception e) {
+                    Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, e);
+                }
+                 finally {
+                }
+
+            }else {
+                intentosBalastosRed = 5;
+            }
+        }
     }
 
     @Override
@@ -245,7 +285,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
                 hilo.get();
                 Balasto selectedBalast = BalastoDAOJmodbus.readBalast(numeroBalasto);
                 balasto = selectedBalast;
-                ppalView.getBalastoDir_jTextField().setText(String.valueOf(selectedBalast.getDir()));
+                ppalView.getBalastoDir_jTextField().setText(String.valueOf(selectedBalast.getDir()+1));
                 ppalView.getBalastoMin_jTextField().setText(String.valueOf(selectedBalast.getMin()));
                 ppalView.getBalastoMax_jTextField().setText(String.valueOf(selectedBalast.getMax()));
                 ppalView.getBalastoFT_jTextField().setText(String.valueOf(selectedBalast.getFt()));
@@ -608,8 +648,16 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
     }
 
     public void cambiarDireccion(PpalView ppalView) throws Exception {
-        int dir = Integer.parseInt(ppalView.getBalastoConfiguracion_jComboBox().getSelectedItem().toString());
+        int dir = Integer.parseInt(ppalView.getBalastoConfiguracion_jComboBox().getSelectedItem().toString())-1;
         int nuevaDir = Integer.parseInt(ppalView.getBalastoDir_jTextField().getText());
+        
+        if (nuevaDir<1||(nuevaDir)>64) {
+            JOptionPane.showMessageDialog(ppalView, "Debe digitar un numero entre 1 y 64");
+            return;
+        }
+        
+        nuevaDir=nuevaDir-1;
+                
         int[] dirB = new int[1];
         dirB[0] = nuevaDir;
 
@@ -629,16 +677,16 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         OperacionesDaoHilo h = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_CAMBIAR_DIR_BALASTO, dir, nuevaDir);
         h.setBar(ppalView.getBarraProgreso_jProgressBar());
         h.setLabel(ppalView.getStatusLabel());
-        h.getLabel().setText("Cambiando la direccion del balasto " + dir + " por " + nuevaDir);
+        h.getLabel().setText("Cambiando la direccion del balasto " + (dir+1) + " por " + (nuevaDir+1));
         h.execute();
         h.get();
         //MODO
 //            setMode(MODE_RUN);
 
         Logger.getLogger(BalastosConfiguracionControl.class.getName()).log(Level.INFO, "Balasto {0} cambiado por {1} correctamente", new Object[]{dir, nuevaDir});
-        ppalView.getStatusLabel().setText("Balasto " + dir + " cambiado por " + nuevaDir + " correctamente");
+        ppalView.getStatusLabel().setText("Balasto " + (dir+1) + " cambiado por " + (nuevaDir+1) + " correctamente");
 
-        JOptionPane.showMessageDialog(ppalView, ("El cambio de dirección del balasto " + nuevaDir + " fue exitoso"));
+        JOptionPane.showMessageDialog(ppalView, ("El cambio de dirección del balasto " + (nuevaDir+1) + " fue exitoso"));
 
         OperacionesDaoHilo h1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
         h1.setBar(ppalView.getBarraProgreso_jProgressBar());
@@ -647,9 +695,12 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         h1.execute();
         h1.get();
 
+        
+
+        cleanView(ppalView);
+        cargarBalastosEnRed(ppalView);
         refrescarVista(ppalView);
-
-
+        ppalView.getBalastoDir_jTextField().setText("0");
     }
 
     public void resetElement(PpalView ppalView) {
