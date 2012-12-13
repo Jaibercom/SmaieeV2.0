@@ -404,10 +404,10 @@ public class PpalView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jButton24 = new javax.swing.JButton();
-        enviarConfiguracion_jButton2 = new javax.swing.JButton();
+        configHoraSistema_jButton = new javax.swing.JButton();
+        configEnviar_jButton = new javax.swing.JButton();
         configuracionRed_jPanel = new javax.swing.JPanel();
-        cbIsStaticConfiguration = new javax.swing.JCheckBox();
+        configRedEstatica_JCheckbox = new javax.swing.JCheckBox();
         labelIp = new javax.swing.JLabel();
         ip_jTextField = new javax.swing.JTextField();
         mask_jTextField = new javax.swing.JFormattedTextField();
@@ -2098,10 +2098,10 @@ public class PpalView extends javax.swing.JFrame {
         jFormattedTextField1.setToolTipText("Formato hora: hh:mm");
         jFormattedTextField1.setEnabled(false);
 
-        jButton24.setText("Configurar");
-        jButton24.addActionListener(new java.awt.event.ActionListener() {
+        configHoraSistema_jButton.setText("Configurar");
+        configHoraSistema_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton24ActionPerformed(evt);
+                configHoraSistema_jButtonActionPerformed(evt);
             }
         });
 
@@ -2119,7 +2119,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton24)
+                .addComponent(configHoraSistema_jButton)
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -2130,26 +2130,26 @@ public class PpalView extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton24))
+                        .addComponent(configHoraSistema_jButton))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        enviarConfiguracion_jButton2.setText("Enviar");
-        enviarConfiguracion_jButton2.addActionListener(new java.awt.event.ActionListener() {
+        configEnviar_jButton.setText("Enviar");
+        configEnviar_jButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enviarConfiguracion_jButton2ActionPerformed(evt);
+                configEnviar_jButtonActionPerformed(evt);
             }
         });
 
         configuracionRed_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Configuración de red"));
         configuracionRed_jPanel.setPreferredSize(new java.awt.Dimension(560, 147));
 
-        cbIsStaticConfiguration.setText("Configuración estática");
-        cbIsStaticConfiguration.addActionListener(new java.awt.event.ActionListener() {
+        configRedEstatica_JCheckbox.setText("Configuración estática");
+        configRedEstatica_JCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbIsStaticConfigurationActionPerformed(evt);
+                configRedEstatica_JCheckboxActionPerformed(evt);
             }
         });
 
@@ -2201,14 +2201,14 @@ public class PpalView extends javax.swing.JFrame {
                 .addGap(171, 171, 171))
             .addGroup(configuracionRed_jPanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(cbIsStaticConfiguration)
+                .addComponent(configRedEstatica_JCheckbox)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         configuracionRed_jPanelLayout.setVerticalGroup(
             configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(configuracionRed_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cbIsStaticConfiguration)
+                .addComponent(configRedEstatica_JCheckbox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2239,7 +2239,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConfiguracionLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(enviarConfiguracion_jButton2)
+                .addComponent(configEnviar_jButton)
                 .addContainerGap())
         );
         panelConfiguracionLayout.setVerticalGroup(
@@ -2250,7 +2250,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(configuracionRed_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(enviarConfiguracion_jButton2)
+                .addComponent(configEnviar_jButton)
                 .addContainerGap(245, Short.MAX_VALUE))
         );
 
@@ -2985,6 +2985,8 @@ public class PpalView extends javax.swing.JFrame {
         this.generalCtrl.initConfiguration(this);
     }//GEN-LAST:event_selectConfiguracion
 
+    
+    
     /**
      * Select the ins
      *
@@ -3029,22 +3031,22 @@ public class PpalView extends javax.swing.JFrame {
     /**
      * Static ip configuration
      */
-    protected void cbIsStaticConfigurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIsStaticConfigurationActionPerformed
+    protected void configRedEstatica_JCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configRedEstatica_JCheckboxActionPerformed
         this.generalCtrl.enableIpConfig(this);
         this.generalCtrl.cargarVarolesIpConfig(this);
-    }//GEN-LAST:event_cbIsStaticConfigurationActionPerformed
+    }//GEN-LAST:event_configRedEstatica_JCheckboxActionPerformed
 
     /**
      * Enviar: Configuracion general
      *
      * @param evt
      */
-    protected void enviarConfiguracion_jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarConfiguracion_jButton2ActionPerformed
+    protected void configEnviar_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configEnviar_jButtonActionPerformed
         jDateChooser1.setEnabled(false);
         jFormattedTextField1.setEnabled(false);
         this.generalCtrl.saveConfiguration(this);
         threadManager.startThreadIfTerminated(ThreadManager.RTC_REFRESHING);
-    }//GEN-LAST:event_enviarConfiguracion_jButton2ActionPerformed
+    }//GEN-LAST:event_configEnviar_jButtonActionPerformed
 
     /**
      * Delete balast.
@@ -3754,7 +3756,7 @@ public class PpalView extends javax.swing.JFrame {
      *
      * @param evt
      */
-    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+    private void configHoraSistema_jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configHoraSistema_jButtonActionPerformed
         if (!jDateChooser1.isEnabled() && !jFormattedTextField1.isEnabled()) {
             jDateChooser1.setEnabled(true);
             jFormattedTextField1.setEnabled(true);
@@ -3764,7 +3766,7 @@ public class PpalView extends javax.swing.JFrame {
             jFormattedTextField1.setEnabled(false);
             threadManager.startThreadIfTerminated(ThreadManager.RTC_REFRESHING);
         }
-    }//GEN-LAST:event_jButton24ActionPerformed
+    }//GEN-LAST:event_configHoraSistema_jButtonActionPerformed
 
     private void entradaNumero_jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaNumero_jComboBoxActionPerformed
         // TODO add your handling code here:
@@ -3946,8 +3948,10 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.ButtonGroup botoneraComportamiento;
     private javax.swing.ButtonGroup botoneraTipoContacto;
     private javax.swing.JButton cambiarDir_jButton;
-    private javax.swing.JCheckBox cbIsStaticConfiguration;
     private javax.swing.ButtonGroup confRol;
+    private javax.swing.JButton configEnviar_jButton;
+    private javax.swing.JButton configHoraSistema_jButton;
+    private javax.swing.JCheckBox configRedEstatica_JCheckbox;
     private javax.swing.JMenuItem config_jMenuItem;
     private javax.swing.JPanel configuracionBalastos_jPanel;
     private javax.swing.JPanel configuracionRed_jPanel;
@@ -3960,7 +3964,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JTextField entradaFotoceldaNivelDeseado_jTextField;
     private javax.swing.JTextField entradaFotoceldaNivelIlum_jTextField;
     private javax.swing.JComboBox entradaNumero_jComboBox;
-    private javax.swing.JButton enviarConfiguracion_jButton2;
     private javax.swing.JButton enviarEscena_jButton;
     private javax.swing.JButton enviarEventos_jButton;
     private javax.swing.JButton enviarGrupo_jButton;
@@ -4010,7 +4013,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
@@ -4516,11 +4518,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JCheckBox getCbIsStaticConfiguration() {
-        return cbIsStaticConfiguration;
+        return configRedEstatica_JCheckbox;
     }
 
     public void setCbIsStaticConfiguration(JCheckBox cbIsStaticConfiguration) {
-        this.cbIsStaticConfiguration = cbIsStaticConfiguration;
+        this.configRedEstatica_JCheckbox = cbIsStaticConfiguration;
     }
 
     public ButtonGroup getConfRol() {
@@ -4716,11 +4718,11 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JButton getjButton22() {
-        return enviarConfiguracion_jButton2;
+        return configEnviar_jButton;
     }
 
     public void setjButton22(JButton jButton22) {
-        this.enviarConfiguracion_jButton2 = jButton22;
+        this.configEnviar_jButton = jButton22;
     }
 
     public JButton getjButton23() {
@@ -6999,7 +7001,7 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public javax.swing.JButton getEnviarConfiguracion_jButton2() {
-        return enviarConfiguracion_jButton2;
+        return configEnviar_jButton;
     }
 
     private void enviarEscenaSmaiee() {
@@ -7105,4 +7107,21 @@ public class PpalView extends javax.swing.JFrame {
             }
         }
     }
+
+    public javax.swing.JButton getConfigEnviar_jButton() {
+        return configEnviar_jButton;
+    }
+
+    public javax.swing.JButton getConfigHoraSistema_jButton() {
+        return configHoraSistema_jButton;
+    }
+
+    public javax.swing.JCheckBox getConfigRedEstatica_JCheckbox() {
+        return configRedEstatica_JCheckbox;
+    }
+
+    public javax.swing.JMenuItem getConfig_jMenuItem() {
+        return config_jMenuItem;
+    }
+    
 }

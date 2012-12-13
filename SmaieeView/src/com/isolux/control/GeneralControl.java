@@ -646,7 +646,27 @@ public class GeneralControl {
         ppalView.getThreadManager().stopAllCurrentThreads();
         ppalView.getThreadManager().startThreadIfTerminated(ThreadManager.RTC_REFRESHING);
         cl.show(ppalView.getPanelPpal(), "card3"); //Configuracion
+        activarGuiConfigGeneral(ppalView, false);
+        
+       
     }
+    
+    /**
+     * Desactiva los elementos de la interfaz de configuración general. Los pone en el estado por defecto
+     * @param ppalView
+     * @param activo si los activa o los desactiva.
+     */   
+    public void activarGuiConfigGeneral(PpalView ppalView, boolean activo){
+        SwingUtils.setEnableContainer(ppalView.getPanelConfiguracion(), activo);
+        ppalView.getConfigEnviar_jButton().setEnabled(true);
+        ppalView.getConfigHoraSistema_jButton().setEnabled(true);
+        ppalView.getConfigRedEstatica_JCheckbox().setEnabled(true);
+        ppalView.getConfigRedEstatica_JCheckbox().setSelected(false);
+        
+        
+    }
+            
+    
 //    /**
 //     * Loads the data to be showed in the view
 //     */

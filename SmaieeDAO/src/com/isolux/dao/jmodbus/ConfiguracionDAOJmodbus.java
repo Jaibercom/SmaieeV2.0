@@ -417,6 +417,9 @@ public class ConfiguracionDAOJmodbus {
     public String getPort() {
         return port;
     }
+    
+      
+    
     //TEST
 //    public static void main(String [] args){
 //        Calendar calen = Calendar.getInstance();
