@@ -652,6 +652,8 @@ public class GeneralControl {
                     threadManager.startThreadIfTerminated(ThreadManager.RTC_REFRESHING);
                     
                     cl.show(ppalView.getPanelPpal(), "card3"); //Configuracion
+//                   ppalView.getPanelConfiguracion
+//                    ppalView.getTabConfiguracion().requestFocusInWindow();
         } catch (Exception ex) {
             Logger.getLogger(GeneralControl.class.getName()).log(Level.SEVERE, null, ex);
         }
