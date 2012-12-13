@@ -308,6 +308,7 @@ public class Inicio extends javax.swing.JFrame {
                     //Show the main view.
                     PpalView ppal = new PpalView();
                     ppal.setLocationRelativeTo(null);
+                    ppal.setTitle(ppal.getTitle() + " - " + ip);
                     ppal.setVisible(true);
 //                    conn.cancel(true);
                     this.dispose(); //oculta la ventana actual (Inicio.java)

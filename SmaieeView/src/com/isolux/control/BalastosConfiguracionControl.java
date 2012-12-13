@@ -176,6 +176,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             h.setBar(ppalView.getBarraProgreso_jProgressBar());
             h.setLabel(ppalView.getStatusLabel());
             h.getLabel().setText("Escribiendo la informacion del balasto " + balastNumber);
+            h.setPpalView(ppalView.getTabbedPane());
             h.execute();
             h.get();
             //MODO
@@ -197,7 +198,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             h1.getLabel().setText("Volviendo a leer la informacion del balasto " + balastNumber);
             h1.execute();
             h1.get();
-            showSelectedElement(Integer.toString(balastNumber), ppalView);
+            showSelectedElement(Integer.toString(balastNumber+1), ppalView);
 
 
 
@@ -229,7 +230,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
     public void showSelectedElement(String num, PpalView ppalView) {
         try {
             //        BalastoDAOJmodbus dao=new BalastoDAOJmodbus(new DAOJmodbus());
-            Integer numeroBalasto = Integer.parseInt(num);
+            Integer numeroBalasto = Integer.parseInt(num)-1;// se hace la resta por el cambio de numeracion.
 
 //            Si el balasto no es el de fabrica se lee. 
             if (numeroBalasto!=Integer.parseInt(PropHandler.getProperty("balast.config.defabrica"))) {
@@ -241,7 +242,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
                 hilo.getLabel().setText("Cargando los valores del balasto " + num);
                 hilo.execute();
                 hilo.get();
-                Balasto selectedBalast = BalastoDAOJmodbus.readBalast(Integer.parseInt(num));
+                Balasto selectedBalast = BalastoDAOJmodbus.readBalast(numeroBalasto);
                 balasto = selectedBalast;
                 ppalView.getBalastoDir_jTextField().setText(String.valueOf(selectedBalast.getDir()));
                 ppalView.getBalastoMin_jTextField().setText(String.valueOf(selectedBalast.getMin()));
@@ -254,8 +255,8 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
                 ppalView.getjLabel41().setText(num);
                 //        ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
 
-                gruposPert(num, ppalView);
-                ecenasPert(num, ppalView);
+                gruposPert(String.valueOf(numeroBalasto), ppalView);
+                ecenasPert(String.valueOf(numeroBalasto), ppalView);
 
 
                 OperacionesDaoHilo hilo1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_SELECCIONAR_BALASTO, numeroBalasto);
@@ -653,11 +654,11 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
     public void resetElement(PpalView ppalView) {
         try {
 
-            Integer numBalasto = Integer.parseInt(ppalView.getBalastoConfiguracion_jComboBox().getSelectedItem().toString());
+            Integer numBalasto = Integer.parseInt(ppalView.getBalastoConfiguracion_jComboBox().getSelectedItem().toString())-1;
             int reset = JOptionPane.showConfirmDialog(ppalView, "¿Está seguro de que quiere resetar el balasto numero " + numBalasto + "?", "Resetear Balasto", JOptionPane.OK_CANCEL_OPTION);
             if (reset == JOptionPane.OK_OPTION) {
                 OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_RESET, numBalasto);
-                hilo.setBar(ppalView.getBarraProgreso_jProgressBar());
+                 hilo.setBar(ppalView.getBarraProgreso_jProgressBar());
                 hilo.setLabel(ppalView.getStatusLabel());
                 hilo.getLabel().setText("Reseteando balasto...");
                 hilo.setPpalView(ppalView.getTabbedPane());

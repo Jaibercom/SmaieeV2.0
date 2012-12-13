@@ -3547,31 +3547,7 @@ public class PpalView extends javax.swing.JFrame {
 
                     hilo.execute();
                     hilo.get();
-
-                    int intentosBalastosRed = 0;
-
-                    while (intentosBalastosRed < 5) {
-
-                        if (this.getBalastoConfiguracion_jComboBox().getItemAt(0) == null) {
-                            OperacionesDaoHilo hilo1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
-                            hilo1.setLabel(getStatusLabel());
-                            hilo1.getLabel().setText("Cargando los balastos en red. Intento: " + (intentosBalastosRed + 1));
-                            hilo1.setBar(getBarraProgreso_jProgressBar());
-                            hilo.setDelay(MapaDeMemoria.DELAY_OPERACIONES_LARGO);
-
-                            hilo1.execute();
-                            hilo1.get();
-                            intentosBalastosRed++;
-                            Thread.sleep(MapaDeMemoria.DELAY_OPERACIONES_CORTO);
-
-                            if (intentosBalastosRed == MapaDeMemoria.REINTENTOS) {
-                                JOptionPane.showMessageDialog(null, "Al parecer no hay balastos en la red. Verifique que si se encuentran conectados.\nSi estan conectados intente reiniciar el programa.", "", inType);
-                            }
-
-                        } else {
-                            intentosBalastosRed = 5;
-                        }
-                    }
+            cargarBalastosEnRed();
 
 
                     break;
@@ -7088,5 +7064,42 @@ public class PpalView extends javax.swing.JFrame {
 
     public javax.swing.JCheckBox getSelEscenaEntrada_jCheckBox() {
         return selEscenaEntrada_jCheckBox;
+    }
+
+    /**
+     * Carga los balastos en red. Intenta 6 veces para determinar si hay o no balastos en la red
+     * @throws HeadlessException 
+     */
+    public void cargarBalastosEnRed() throws HeadlessException {
+        int intentosBalastosRed = 0;
+
+        while (intentosBalastosRed < 5) {
+    String itemAt = this.getBalastoConfiguracion_jComboBox().getItemAt(0).toString();
+            if (itemAt == null||itemAt==String.valueOf(MapaDeMemoria.BALASTO_DE_FABRICA)) {
+                try {
+                    OperacionesDaoHilo hilo1 = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
+                    hilo1.setLabel(getStatusLabel());
+                    hilo1.getLabel().setText("Cargando los balastos en red. Intento: " + (intentosBalastosRed + 1));
+                    hilo1.setBar(getBarraProgreso_jProgressBar());
+                    hilo1.setDelay(MapaDeMemoria.DELAY_OPERACIONES_LARGO);
+
+                    hilo1.execute();
+                    hilo1.get();
+                    intentosBalastosRed++;
+    //                            Thread.sleep(MapaDeMemoria.DELAY_OPERACIONES_CORTO);
+
+                    if (intentosBalastosRed == MapaDeMemoria.REINTENTOS) {
+                        JOptionPane.showMessageDialog(null, "Al parecer no hay balastos en la red. Verifique que si se encuentran conectados.\nSi estan conectados intente reiniciar el programa.", "", inType);
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ExecutionException ex) {
+                    Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+                intentosBalastosRed = 5;
+            }
+        }
     }
 }
