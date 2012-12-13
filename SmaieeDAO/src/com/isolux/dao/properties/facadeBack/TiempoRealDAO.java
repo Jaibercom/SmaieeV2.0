@@ -326,8 +326,11 @@ public class TiempoRealDAO {
      */
     public static void saveBalast() {
         try {
+            setSingleReg(0, 1);
             setSingleReg(1, 12);
+            setSingleReg(0, 0);
         } catch (Exception e) {
+            Logger.getLogger(TiempoRealDAO.class.getName()).log(Level.SEVERE, "Error en tiempo real", e);
         }
     }
 

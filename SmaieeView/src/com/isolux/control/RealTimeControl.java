@@ -225,7 +225,7 @@ public class RealTimeControl {
 
                 //Saves the balast remotelly
                 BalastoDAOJmodbus bDao = new BalastoDAOJmodbus(ppalView.getDao());
-                bDao.saveRealTimeLevel(balastNumber, level);
+                bDao.saveRealTimeLevel(balastNumber-1, level);
                 TiempoRealDAO tDao = new TiempoRealDAO(ppalView.getDao());
                 tDao.saveBalast();
                 

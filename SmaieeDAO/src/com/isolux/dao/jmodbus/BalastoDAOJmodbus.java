@@ -329,9 +329,10 @@ public class BalastoDAOJmodbus implements OperacionesElemento_Interface {
             //level
             setSingleReg(initOffset, level);
 
-            setSingleReg(0, 0);
+//            setSingleReg(0, 0);
 
         } catch (Exception e) {
+            Logger.getLogger(BalastoDAOJmodbus.class.getName()).log(Level.SEVERE, "Error actualizando el nivel del balasto", e);
         }
     }
 

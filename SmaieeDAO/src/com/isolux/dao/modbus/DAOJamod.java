@@ -385,6 +385,9 @@ public class DAOJamod {
             Logger.getLogger(DAOJamod.class.getName()).log(Level.SEVERE, "No se pudo conectar", e);
             return connectionState;
 
+        }finally{
+           
+            con.close();
         }
     
         return connectionState;
