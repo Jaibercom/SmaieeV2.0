@@ -458,7 +458,7 @@ public class EntradaControl implements ElementoControl_Interface {
         }
         String[] selectedIdx = selected.split(",");
         for (int i = 0; i < selectedIdx.length; i++) {
-            selectedItems[Integer.parseInt(selectedIdx[i])] = 1;
+            selectedItems[Integer.parseInt(selectedIdx[i])-1] = 1;
         }
 
         return selectedItems;
@@ -502,10 +502,10 @@ public class EntradaControl implements ElementoControl_Interface {
                 ArrayList sel = new ArrayList();
                 for (int i = 0; i < selectedBalasts.length; i++) {
                     if (selectedBalasts[i] == 1) {
-                        Balasto sce = balasts.get(String.valueOf(i));
+                        Balasto sce = balasts.get(String.valueOf(i+1));
                         if (sce != null) {
                             inAffecBalasts.addElement((sce.getBalastNumber() + 1) + " - " + sce.getName());
-                            sel.add(String.valueOf(i));
+                            sel.add(String.valueOf(i+1));
                         }
                     }
                 }
@@ -527,19 +527,22 @@ public class EntradaControl implements ElementoControl_Interface {
             } else if (ppalView.getInOutType() == prefixGroup) { //Grupos
                 //Afected Groups
                 new GrupoControl().readElements(ppalView);
-                DefaultListModel groupBalasts = new DefaultListModel();
+                DefaultListModel groupsEntradas = new DefaultListModel();
                 int[] selectedGroups = selectedIn.getGrupos();
+                HashMap<String, Grupo> groupsHashMap = ppalView.getGroups();
                 ArrayList sel = new ArrayList();
+                
                 for (int i = 0; i < selectedGroups.length; i++) {
                     if (selectedGroups[i] == 1) {
-                        Grupo sce = ppalView.getGroups().get(String.valueOf(i));
+                        String aumen = String.valueOf(i+1);
+                        Grupo sce = groupsHashMap.get(aumen);
                         if (sce != null) {
-                            groupBalasts.addElement((sce.getGroupNumber() + 1) + " - " + sce.getName());
-                            sel.add(String.valueOf(i));
+                            groupsEntradas.addElement((sce.getGroupNumber() + 1) + " - " + sce.getName());
+                            sel.add(aumen);
                         }
                     }
                 }
-                affected.setModel(groupBalasts);
+                affected.setModel(groupsEntradas);
 
                 //Available Groups
                 DefaultListModel modelo = new DefaultListModel();
@@ -563,10 +566,11 @@ public class EntradaControl implements ElementoControl_Interface {
                 ArrayList sel = new ArrayList();
                 for (int i = 0; i < selectedBalasts.length; i++) {
                     if (selectedBalasts[i] == 1) {
-                        Escena sce = ppalView.getScenes().get(String.valueOf(i));
+                        String aum = String.valueOf(i+1);
+                        Escena sce = ppalView.getScenes().get(aum);
                         if (sce != null) {
                             sceneBalastsL.addElement((sce.getNumeroEscena() + 1) + " - " + sce.getNombre());
-                            sel.add(String.valueOf(i));
+                            sel.add(aum);
                         }
                     }
                 }
