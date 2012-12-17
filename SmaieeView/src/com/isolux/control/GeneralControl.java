@@ -269,7 +269,9 @@ public class GeneralControl {
                         eventCtrl.showAvailableEvents(ppalView);
                         eventCtrl.filterAddedElements(ppalView);
                     }
+                    eventCtrl.selectByDays(ppalView);
                     cl.show(ppalView.getPanelPpal(), "card7"); //Eventos
+                    
                     break;
 
                 case 't':
