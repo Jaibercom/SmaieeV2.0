@@ -209,6 +209,7 @@ public class PpalView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jTextField2 = new javax.swing.JTextField();
         botoneraComportamiento = new javax.swing.ButtonGroup();
@@ -485,8 +486,8 @@ public class PpalView extends javax.swing.JFrame {
         jLabel53 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
-        jSlider1 = new javax.swing.JSlider();
-        jSpinner3 = new javax.swing.JSpinner();
+        tiempoReal_jSlider = new javax.swing.JSlider();
+        tiempoReal_jSpinner = new javax.swing.JSpinner();
         jLabel56 = new javax.swing.JLabel();
         jButton44 = new javax.swing.JButton();
         jLabel65 = new javax.swing.JLabel();
@@ -2742,22 +2743,25 @@ public class PpalView extends javax.swing.JFrame {
 
         jLabel55.setText("Nivel");
 
-        jSlider1.setForeground(new java.awt.Color(0, 0, 0));
-        jSlider1.setPaintLabels(true);
-        jSlider1.setPaintTicks(true);
-        jSlider1.setSnapToTicks(true);
-        jSlider1.setToolTipText("Seleccione el nivel del balasto");
-        jSlider1.setValue(0);
-        jSlider1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tiempoReal_jSlider.setForeground(new java.awt.Color(0, 0, 0));
+        tiempoReal_jSlider.setPaintLabels(true);
+        tiempoReal_jSlider.setPaintTicks(true);
+        tiempoReal_jSlider.setSnapToTicks(true);
+        tiempoReal_jSlider.setToolTipText("Seleccione el nivel del balasto");
+        tiempoReal_jSlider.setValue(0);
+        tiempoReal_jSlider.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 saveBalastState(evt);
             }
         });
-        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+        tiempoReal_jSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 selectSliderValue(evt);
             }
         });
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, tiempoReal_jSlider, org.jdesktop.beansbinding.ELProperty.create("${value}"), tiempoReal_jSpinner, org.jdesktop.beansbinding.BeanProperty.create("value"));
+        bindingGroup.addBinding(binding);
 
         jLabel56.setBackground(new java.awt.Color(153, 153, 153));
         jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -2813,8 +2817,8 @@ public class PpalView extends javax.swing.JFrame {
                             .addGroup(panelTiempoRealLayout.createSequentialGroup()
                                 .addComponent(jLabel55)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tiempoReal_jSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tiempoReal_jSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelTiempoRealLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelTiempoRealLayout.createSequentialGroup()
                                     .addComponent(jLabel44)
@@ -2843,9 +2847,9 @@ public class PpalView extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addGroup(panelTiempoRealLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel55)
-                            .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tiempoReal_jSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tiempoReal_jSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
                         .addGroup(panelTiempoRealLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel44)
@@ -2972,6 +2976,8 @@ public class PpalView extends javax.swing.JFrame {
         mainMenuBar.add(archivo_jMenu);
 
         setJMenuBar(mainMenuBar);
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -4156,8 +4162,6 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
@@ -4236,7 +4240,10 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JPanel statusBar;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JTabbedPane tabbedPane;
+    private javax.swing.JSlider tiempoReal_jSlider;
+    private javax.swing.JSpinner tiempoReal_jSpinner;
     private javax.swing.JCheckBox viernes_jCheckBox;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
     //</editor-fold>
 
@@ -6031,19 +6038,19 @@ public class PpalView extends javax.swing.JFrame {
     }
 
     public JSlider getjSlider1() {
-        return jSlider1;
+        return tiempoReal_jSlider;
     }
 
     public void setjSlider1(JSlider jSlider1) {
-        this.jSlider1 = jSlider1;
+        this.tiempoReal_jSlider = jSlider1;
     }
 
     public JSpinner getjSpinner3() {
-        return jSpinner3;
+        return tiempoReal_jSpinner;
     }
 
     public void setjSpinner3(JSpinner jSpinner3) {
-        this.jSpinner3 = jSpinner3;
+        this.tiempoReal_jSpinner = jSpinner3;
     }
 
     public JTable getjTable1() {
