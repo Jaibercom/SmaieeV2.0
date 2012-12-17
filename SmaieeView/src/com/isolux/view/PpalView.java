@@ -743,7 +743,15 @@ public class PpalView extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SMAIEE - Configuración DALI");
+        setTitle("SMAIEE v2.0"); // NOI18N
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
 
         principal_jScrollPane.setPreferredSize(new java.awt.Dimension(1067, 703));
@@ -777,7 +785,6 @@ public class PpalView extends javax.swing.JFrame {
             }
         });
 
-        configuracionSmaiee_jPanel.setName("configuracionSmaie"); // NOI18N
         configuracionSmaiee_jPanel.setPreferredSize(new java.awt.Dimension(800, 574));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("SMAIEE");
@@ -3927,6 +3934,16 @@ public class PpalView extends javax.swing.JFrame {
         this.generalCtrl.cargarVarolesIpConfig(this);
         this.seleccionarConfigRed();
     }//GEN-LAST:event_configRedDinamica_jCheckBoxActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+       
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        modoRun();
+//        JOptionPane.showMessageDialog(null, "Está cerrando");
+//        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    }//GEN-LAST:event_formWindowClosing
 
     //</editor-fold>
     /**
@@ -7195,5 +7212,11 @@ public class PpalView extends javax.swing.JFrame {
         
     }
     
-    
+    public void modoRun(){
+        try {   
+            getGeneralCtrl().setRunMode(this);
+        } catch (Exception ex) {
+            Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, "Error tratando de poner en modo run la tarjeta", ex);
+        }
+    }
 }
