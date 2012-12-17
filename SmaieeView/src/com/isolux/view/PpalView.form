@@ -2940,19 +2940,21 @@
                                           </Group>
                                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="puerto_jTextField" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="puerto_jTextField" alignment="0" pref="150" max="32767" attributes="0"/>
                                               <Component id="mask_jTextField" alignment="0" max="32767" attributes="2"/>
                                               <Component id="ip_jTextField" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="labelGateway" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                                          <Component id="gateway_jTextField" max="32767" attributes="2"/>
+                                          <Component id="gateway_jTextField" pref="150" max="32767" attributes="2"/>
                                           <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="10" pref="10" max="10" attributes="0"/>
                                           <Component id="configRedEstatica_JCheckbox" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="configRedDinamica_jCheckBox" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -2961,7 +2963,10 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
-                                          <Component id="configRedEstatica_JCheckbox" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="configRedEstatica_JCheckbox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="configRedDinamica_jCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
@@ -2991,7 +2996,7 @@
                               <SubComponents>
                                 <Component class="javax.swing.JCheckBox" name="configRedEstatica_JCheckbox">
                                   <Properties>
-                                    <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n est&#xe1;tica"/>
+                                    <Property name="text" type="java.lang.String" value="Est&#xe1;tica"/>
                                   </Properties>
                                   <Events>
                                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="configRedEstatica_JCheckboxActionPerformed"/>
@@ -3046,6 +3051,15 @@
                                     <Property name="text" type="java.lang.String" value="Puerto"/>
                                     <Property name="enabled" type="boolean" value="false"/>
                                   </Properties>
+                                </Component>
+                                <Component class="javax.swing.JCheckBox" name="configRedDinamica_jCheckBox">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Din&#xe1;mica"/>
+                                    <Property name="toolTipText" type="java.lang.String" value="DHCP"/>
+                                  </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="configRedDinamica_jCheckBoxActionPerformed"/>
+                                  </Events>
                                 </Component>
                               </SubComponents>
                             </Container>

@@ -471,6 +471,8 @@ public class GeneralControl {
      * Enable or disable the static ip configuration.
      */
     public void enableIpConfig(PpalView ppalView) {
+        
+        
         if (ppalView.getCbIsStaticConfiguration().isSelected()) {
             ppalView.getFieldIp().setEnabled(true);
             ppalView.getFieldGateway().setEnabled(true);
@@ -598,6 +600,8 @@ public class GeneralControl {
                         Validacion.showAlertMessage("Gateway invalido.\nIntente de nuevo.");
                         return;
                     }
+                }else{ // es dinámica
+                    
                 }
 
 
@@ -615,11 +619,11 @@ public class GeneralControl {
                 //Save Network configuration
 //                String type = ppalView.getCbIsStaticConfiguration().isSelected() ? "1" : "0";
                 String type = ppalView.getCbIsStaticConfiguration().isSelected() ? "0" : "1";
-                if (ppalView.getCbIsStaticConfiguration().isSelected()) {
+//                if (ppalView.getCbIsStaticConfiguration().isSelected()) {
                     confDao.saveNetworkConf(type, ip, mask, gateway, port);
 
 
-                }
+//                }
                 JOptionPane.showMessageDialog(ppalView, "¡Guardada la configuracion exitosamente!");
             } catch (Exception e) {
 
@@ -652,8 +656,8 @@ public class GeneralControl {
                     threadManager.startThreadIfTerminated(ThreadManager.RTC_REFRESHING);
                     
                     cl.show(ppalView.getPanelPpal(), "card3"); //Configuracion
-//                   ppalView.getPanelConfiguracion
-//                    ppalView.getTabConfiguracion().requestFocusInWindow();
+
+                    ppalView.getTabbedPane().setSelectedIndex(0);
         } catch (Exception ex) {
             Logger.getLogger(GeneralControl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -672,9 +676,39 @@ public class GeneralControl {
         ppalView.getConfigEnviar_jButton().setEnabled(true);
         ppalView.getConfigHoraSistema_jButton().setEnabled(true);
         ppalView.getConfigRedEstatica_JCheckbox().setEnabled(true);
+        ppalView.getConfigRedDinamica_jCheckBox().setEnabled(true);
+        seleccionarTipoDeConfiguracionDeRed(ppalView);
+        
+        this.enableIpConfig(ppalView);
+        this.cargarVarolesIpConfig(ppalView);
+        ppalView.seleccionarConfigRed();
+        
+    }
+    
+    /**
+     * Selecciona desde la tarjeta el tipo de configuración de red en la GUI
+     * @param ppalView 
+     */
+    private void seleccionarTipoDeConfiguracionDeRed(PpalView ppalView){
         ppalView.getConfigRedEstatica_JCheckbox().setSelected(false);
-        
-        
+        ppalView.getConfigRedDinamica_jCheckBox().setSelected(false);
+        int[] regValue = ppalView.getDao().getRegValue(200, 1);
+        int type = regValue[0];
+        if (type==1) { //es dinamico
+            ppalView.getConfigRedDinamica_jCheckBox().setSelected(true);
+            ppalView.getConfigRedEstatica_JCheckbox().setSelected(false);
+            ppalView.getIp_jTextField().setEnabled(false);
+            ppalView.getGateway_jTextField().setEnabled(false);
+            ppalView.getPuerto_jTextField().setEnabled(false);
+            ppalView.getMask_jTextField().setEnabled(false);
+        }else{//es estatico
+            ppalView.getConfigRedDinamica_jCheckBox().setSelected(false);
+            ppalView.getConfigRedEstatica_JCheckbox().setSelected(true);
+            ppalView.getIp_jTextField().setEnabled(true);
+            ppalView.getGateway_jTextField().setEnabled(true);
+            ppalView.getPuerto_jTextField().setEnabled(true);
+            ppalView.getMask_jTextField().setEnabled(true);
+        }
     }
             
     
@@ -755,11 +789,18 @@ public class GeneralControl {
             String gateway = com.isolux.properties.PropHandler.getProperty("general.ip.gateway");
             String puerto = com.isolux.properties.PropHandler.getProperty("general.port");
 
-
+            if (ppalView.getConfigRedEstatica_JCheckbox().isSelected()) {
             ppalView.getIp_jTextField().setText(ip);
             ppalView.getMask_jTextField().setText(mask);
             ppalView.getGateway_jTextField().setText(gateway);
-            ppalView.getPuerto_jTextField().setText(puerto);
+            ppalView.getPuerto_jTextField().setText(puerto);    
+            }else{
+                ppalView.getIp_jTextField().setText("");
+            ppalView.getMask_jTextField().setText("");
+            ppalView.getGateway_jTextField().setText("");
+            ppalView.getPuerto_jTextField().setText("");
+            }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(ppalView, "Configurando por primera vez");
         }

@@ -128,80 +128,104 @@ public class ConfiguracionDAOJmodbus {
 
             int networkOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.network"));
             int[] network = new int[Integer.parseInt(PropHandler.getProperty("memory.network.size"))];
+//            if ("1".equals(type)) {
+//                ip = "192.168.0.0";
+//                mask = "255.255.255.0";
+//                gateway = "0.0.0.0";
+//                port = "502";
+//            }
 
 
             System.out.println("SAVING NETWORK CONF");
 
-            //MODO
+            //MODO config
             setSingleReg(0, 1);
 
             //TYPE - DHCP/STATIC
             network[0] = Integer.parseInt(type);
 
 
-            //STATIC IP
 
-            String[] ipArray = ip.split("\\.");
-            network[1] = Integer.parseInt(ipArray[0]);
-            network[2] = Integer.parseInt(ipArray[1]);
-            network[3] = Integer.parseInt(ipArray[2]);
-            network[4] = Integer.parseInt(ipArray[3]);
 
-            //MASK
-            String[] maskArray = mask.split("\\.");
-            network[5] = Integer.parseInt(maskArray[0]);
-            network[6] = Integer.parseInt(maskArray[1]);
-            network[7] = Integer.parseInt(maskArray[2]);
-            network[8] = Integer.parseInt(maskArray[3]);
 
-            //GATEWAY
-            String[] gatewayArray = gateway.split("\\.");
-            network[9] = Integer.parseInt(gatewayArray[0]);
-            network[10] = Integer.parseInt(gatewayArray[1]);
-            network[11] = Integer.parseInt(gatewayArray[2]);
-            network[12] = Integer.parseInt(gatewayArray[3]);
-
-            //PORT
-            network[13] = Integer.parseInt(port);
-            //Save array
-            boolean grabado = dao.setRegValue(networkOffset, network);
 //            System.out.println("Grabo la configuracion en el buffer?: " + grabado);
 
 
-            String ipTarjeta = com.isolux.properties.PropHandler.getProperty("general.ip");
-            String maskTarjeta = com.isolux.properties.PropHandler.getProperty("general.ip.mask");
-            String gatwayTarjeta = com.isolux.properties.PropHandler.getProperty("general.ip.gateway");
-            String portTarjeta = com.isolux.properties.PropHandler.getProperty("general.port");
+            if (type == "0") {
+                //STATIC IP
+
+                String[] ipArray = ip.split("\\.");
+                network[1] = Integer.parseInt(ipArray[0]);
+                network[2] = Integer.parseInt(ipArray[1]);
+                network[3] = Integer.parseInt(ipArray[2]);
+                network[4] = Integer.parseInt(ipArray[3]);
+
+                //MASK
+                String[] maskArray = mask.split("\\.");
+                network[5] = Integer.parseInt(maskArray[0]);
+                network[6] = Integer.parseInt(maskArray[1]);
+                network[7] = Integer.parseInt(maskArray[2]);
+                network[8] = Integer.parseInt(maskArray[3]);
+
+                //GATEWAY
+                String[] gatewayArray = gateway.split("\\.");
+                network[9] = Integer.parseInt(gatewayArray[0]);
+                network[10] = Integer.parseInt(gatewayArray[1]);
+                network[11] = Integer.parseInt(gatewayArray[2]);
+                network[12] = Integer.parseInt(gatewayArray[3]);
+
+                //PORT
+                network[13] = Integer.parseInt(port);
+                //Save array   
+                boolean grabado = dao.setRegValue(networkOffset, network);
+                String ipTarjeta = com.isolux.properties.PropHandler.getProperty("general.ip");
+                String maskTarjeta = com.isolux.properties.PropHandler.getProperty("general.ip.mask");
+                String gatwayTarjeta = com.isolux.properties.PropHandler.getProperty("general.ip.gateway");
+                String portTarjeta = com.isolux.properties.PropHandler.getProperty("general.port");
 
 //            if (ip == null ? com.isolux.properties.PropHandler.getProperty("general.ip") != null : !ip.equals(com.isolux.properties.PropHandler.getProperty("general.ip"))) {
-            if (ip != ipTarjeta || mask != maskTarjeta || gateway != gatwayTarjeta || port != portTarjeta) {
-                //cambiamos la ip
-                setSingleReg(1, 3);
+                if (!ip.equals(ipTarjeta) || !mask.equals(maskTarjeta) || !gateway.equals(gatwayTarjeta) || !port.equals(portTarjeta)) {
+                    //cambiamos la ip
+                    setSingleReg(1, 3);
 
-                //CONFIRM
-                setSingleReg(1, 1);
+                    //CONFIRM
+                    setSingleReg(1, 1);
 
 
-                //MODO
-                setSingleReg(0, 0);
+                    //MODO
+                    setSingleReg(0, 0);
 
-                Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.INFO, "Se cambió la ip correctamente");
+                    Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.INFO, "Se cambió la ip correctamente");
 
 //                System.out.println("NETWORK CONF saved");
 
-                PropHandler.setProperty("general.ip", ip);
-                PropHandler.setProperty("general.ip.mask", mask);
-                PropHandler.setProperty("general.ip.gateway", gateway);
-                PropHandler.setProperty("general.port", port);
+                    PropHandler.setProperty("general.ip", ip);
+                    PropHandler.setProperty("general.ip.mask", mask);
+                    PropHandler.setProperty("general.ip.gateway", gateway);
+                    PropHandler.setProperty("general.port", port);
 
 
+                    Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.INFO, "Se grabó la informacion de red correctamente");
+
+                    System.out.println("NETWORK CONF saved");
+
+                    JOptionPane.showMessageDialog(null, "Debe reiniciar el software para que el cambio de la ip sea exitoso.\nSe cerrará el programa.", "Cambio de la ip", JOptionPane.WARNING_MESSAGE);
+                    setSingleReg(0, 0);
+                    System.exit(1);
+                }
+            } else {
+                setSingleReg(networkOffset, 1);//se le pasa sólo el registro que indica que es dhcp
                 Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.INFO, "Se grabó la informacion de red correctamente");
 
                 System.out.println("NETWORK CONF saved");
 
-                JOptionPane.showMessageDialog(null, "Debe reiniciar el software para que el cambio de la ip sea exitoso.\nSe cerrará el programa.", "Cambio de la ip", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Se configuró la tarjeta como dinámica. \nReinicie el programa para que los cambios surtan efecto.", "La tarjeta es ahora dinámica", JOptionPane.WARNING_MESSAGE);
+                setSingleReg(1, 1);
+                setSingleReg(0, 0);
                 System.exit(1);
             }
+            setSingleReg(0, 0);
+
         } catch (Exception e) {
             Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.SEVERE, "Error grabando la información de red", e);
         }
@@ -384,9 +408,9 @@ public class ConfiguracionDAOJmodbus {
             setSingleReg(0, 1);
             setSingleReg(1, 7);
             setSingleReg(0, 0);
-            
-            
-            
+
+
+
             Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.INFO, "Memoria formateada");
         } catch (Exception e) {
             Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.SEVERE, "Error formateando la meoria", e);
@@ -417,9 +441,6 @@ public class ConfiguracionDAOJmodbus {
     public String getPort() {
         return port;
     }
-    
-      
-    
     //TEST
 //    public static void main(String [] args){
 //        Calendar calen = Calendar.getInstance();

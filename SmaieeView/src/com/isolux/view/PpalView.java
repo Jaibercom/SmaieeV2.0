@@ -416,6 +416,7 @@ public class PpalView extends javax.swing.JFrame {
         labelMascara = new javax.swing.JLabel();
         labelGateway = new javax.swing.JLabel();
         labelPuerto = new javax.swing.JLabel();
+        configRedDinamica_jCheckBox = new javax.swing.JCheckBox();
         configuracionBalastos_jPanel = new javax.swing.JPanel();
         balastoDali_jPanel = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
@@ -2146,7 +2147,7 @@ public class PpalView extends javax.swing.JFrame {
         configuracionRed_jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Configuración de red"));
         configuracionRed_jPanel.setPreferredSize(new java.awt.Dimension(560, 147));
 
-        configRedEstatica_JCheckbox.setText("Configuración estática");
+        configRedEstatica_JCheckbox.setText("Estática");
         configRedEstatica_JCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 configRedEstatica_JCheckboxActionPerformed(evt);
@@ -2179,6 +2180,14 @@ public class PpalView extends javax.swing.JFrame {
         labelPuerto.setText("Puerto");
         labelPuerto.setEnabled(false);
 
+        configRedDinamica_jCheckBox.setText("Dinámica");
+        configRedDinamica_jCheckBox.setToolTipText("DHCP");
+        configRedDinamica_jCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                configRedDinamica_jCheckBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout configuracionRed_jPanelLayout = new javax.swing.GroupLayout(configuracionRed_jPanel);
         configuracionRed_jPanel.setLayout(configuracionRed_jPanelLayout);
         configuracionRed_jPanelLayout.setHorizontalGroup(
@@ -2191,24 +2200,28 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(labelPuerto))
                 .addGap(13, 13, 13)
                 .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(puerto_jTextField)
+                    .addComponent(puerto_jTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                     .addComponent(mask_jTextField)
                     .addComponent(ip_jTextField))
                 .addGap(18, 18, 18)
                 .addComponent(labelGateway)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(gateway_jTextField)
+                .addComponent(gateway_jTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                 .addGap(171, 171, 171))
             .addGroup(configuracionRed_jPanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(configRedEstatica_JCheckbox)
+                .addGap(18, 18, 18)
+                .addComponent(configRedDinamica_jCheckBox)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         configuracionRed_jPanelLayout.setVerticalGroup(
             configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(configuracionRed_jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(configRedEstatica_JCheckbox)
+                .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(configRedEstatica_JCheckbox)
+                    .addComponent(configRedDinamica_jCheckBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(configuracionRed_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -3034,6 +3047,7 @@ public class PpalView extends javax.swing.JFrame {
     protected void configRedEstatica_JCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configRedEstatica_JCheckboxActionPerformed
         this.generalCtrl.enableIpConfig(this);
         this.generalCtrl.cargarVarolesIpConfig(this);
+        this.seleccionarConfigRed();
     }//GEN-LAST:event_configRedEstatica_JCheckboxActionPerformed
 
     /**
@@ -3900,6 +3914,14 @@ public class PpalView extends javax.swing.JFrame {
         this.eventCtrl.selectByDays(this);
     }//GEN-LAST:event_porDias_jCheckBoxStateChanged
 
+    private void configRedDinamica_jCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configRedDinamica_jCheckBoxActionPerformed
+     
+        this.getConfigRedEstatica_JCheckbox().setSelected(false);
+        this.generalCtrl.enableIpConfig(this);
+        this.generalCtrl.cargarVarolesIpConfig(this);
+        this.seleccionarConfigRed();
+    }//GEN-LAST:event_configRedDinamica_jCheckBoxActionPerformed
+
     //</editor-fold>
     /**
      * @param args the command line arguments
@@ -3953,6 +3975,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.ButtonGroup confRol;
     private javax.swing.JButton configEnviar_jButton;
     private javax.swing.JButton configHoraSistema_jButton;
+    private javax.swing.JCheckBox configRedDinamica_jCheckBox;
     private javax.swing.JCheckBox configRedEstatica_JCheckbox;
     private javax.swing.JMenuItem config_jMenuItem;
     private javax.swing.JPanel configuracionBalastos_jPanel;
@@ -7125,5 +7148,45 @@ public class PpalView extends javax.swing.JFrame {
     public javax.swing.JMenuItem getConfig_jMenuItem() {
         return config_jMenuItem;
     }
+
+    public javax.swing.JCheckBox getConfigRedDinamica_jCheckBox() {
+        return configRedDinamica_jCheckBox;
+    }
+
+    public void setConfigRedDinamica_jCheckBox(javax.swing.JCheckBox configRedDinamica_jCheckBox) {
+        this.configRedDinamica_jCheckBox = configRedDinamica_jCheckBox;
+    }
+    
+    
+    public void seleccionarConfigRed(){
+        boolean estaticaSelected = this.getConfigRedEstatica_JCheckbox().isSelected();
+        boolean dinamicaSelected = this.getConfigRedDinamica_jCheckBox().isSelected();
+        if (estaticaSelected) {
+            this.getConfigRedDinamica_jCheckBox().setSelected(!estaticaSelected);
+                    
+            
+            
+            
+            return;
+        }
+        else {
+//            this.getConfigRedEstatica_JCheckbox().setSelected(!estaticaSelected);
+            this.getConfigRedDinamica_jCheckBox().setSelected(!estaticaSelected);
+            this.getIp_jTextField().setText("");
+            this.getPuerto_jTextField().setText("");
+            this.getFieldMask().setText("");
+            this.getFieldGateway().setText("");
+                    
+            this.getIp_jTextField().setEnabled(false);
+            this.getPuerto_jTextField().setEnabled(false);
+            this.getFieldMask().setEnabled(false);
+            this.getFieldGateway().setEnabled(false);
+            return;
+        }
+    
+        
+        
+    }
+    
     
 }
