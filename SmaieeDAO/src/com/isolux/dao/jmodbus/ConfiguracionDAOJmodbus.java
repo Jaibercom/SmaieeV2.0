@@ -215,6 +215,7 @@ public class ConfiguracionDAOJmodbus {
                 }
             } else {
                 setSingleReg(networkOffset, 1);//se le pasa sólo el registro que indica que es dhcp
+                setSingleReg(1, 3);
                 Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.INFO, "Se grabó la informacion de red correctamente");
 
                 System.out.println("NETWORK CONF saved");
