@@ -476,6 +476,7 @@ public class PpalView extends javax.swing.JFrame {
         balastoResetConfig_jButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         cambiarDir_jButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         monitoreoTiempoReal_jPanel = new javax.swing.JPanel();
         panelTiempoReal = new javax.swing.JPanel();
         jComboBox2 = new javax.swing.JComboBox();
@@ -2628,6 +2629,13 @@ public class PpalView extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Leer balastos en red");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout balastoConfigBasico_jPanelLayout = new javax.swing.GroupLayout(balastoConfigBasico_jPanel);
         balastoConfigBasico_jPanel.setLayout(balastoConfigBasico_jPanelLayout);
         balastoConfigBasico_jPanelLayout.setHorizontalGroup(
@@ -2652,13 +2660,17 @@ public class PpalView extends javax.swing.JFrame {
                         .addContainerGap(109, Short.MAX_VALUE)
                         .addComponent(balastoResetConfig_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(balastoEscribirConfig_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(balastoEscribirConfig_jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, balastoConfigBasico_jPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         balastoConfigBasico_jPanelLayout.setVerticalGroup(
             balastoConfigBasico_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(balastoConfigBasico_jPanelLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addComponent(jButton1)
+                .addGap(9, 9, 9)
                 .addGroup(balastoConfigBasico_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(balastoConfiguracion_jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -3934,6 +3946,13 @@ public class PpalView extends javax.swing.JFrame {
 //        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     }//GEN-LAST:event_formWindowClosing
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        balastoConfigCtrl.cleanView(this);
+        balastoConfigCtrl.cargarBalastosEnRed(this);
+        balastoConfigCtrl.refrescarVista(this);
+        this.getBalastoDir_jTextField().setText("0");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     //</editor-fold>
     /**
      * @param args the command line arguments
@@ -4042,6 +4061,7 @@ public class PpalView extends javax.swing.JFrame {
     private javax.swing.JLabel headerImage;
     private javax.swing.JFormattedTextField horaDiasEvento_jFormattedTextField;
     private javax.swing.JTextField ip_jTextField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
