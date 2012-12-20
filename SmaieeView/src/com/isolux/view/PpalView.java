@@ -3552,6 +3552,8 @@ public class PpalView extends javax.swing.JFrame {
     private void selectTab(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_selectTab
         try {
             //        generalCtrl.continueConfigurationViewData(this);
+            
+             ElementoDAOJmobdus edaoj = new ElementoDAOJmobdus();
             this.realCtrl.showAreas(this);
             String panel = getTabbedPane().getSelectedComponent().getName();
             int numeroPanel = getTabbedPane().getSelectedIndex();
@@ -3560,37 +3562,24 @@ public class PpalView extends javax.swing.JFrame {
 
             switch (numeroPanel) {
                 case 0: //caso de smaiee
-
-
                     balastoCtrl.refrescarVista(this);
-
-
+                    edaoj.setMode(ElementoDAOJmobdus.MODE_RUN);//establecemos la tarjeta en modo run
                     break;
+                    
                 case 1: //caso del panel de configuracion de balastos.
-
-
-//                    OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_VERIFICA_RED);
-//                    hilo.setLabel(getStatusLabel());
-//                    hilo.getLabel().setText("Cargando elementos de la configuracion de balastos...");
-//                    hilo.setBar(getBarraProgreso_jProgressBar());
-//                    hilo.setPpalView(this.getTabbedPane());
-//
-//                    hilo.execute();
-//                    hilo.get();
                     cargarBalastosEnRed();
-
-
+                    edaoj.setMode(ElementoDAOJmobdus.MODE_CONFIG);//establecemos la tarjeta en modo config
                     break;
+
                 case 2://tiempo real
-                    ElementoDAOJmobdus edaoj = new ElementoDAOJmobdus(); //Modo config
-                    edaoj.setMode(ElementoDAOJmobdus.MODE_CONFIG);
+                    //Modo run
+                    edaoj.setMode(ElementoDAOJmobdus.MODE_RUN);//establecemos la tarjeta en modo run
                     break;
 
             }
         } catch (Exception ex) {
             Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, "Error en la seleccion de los tabbs", ex);
-//        } catch (ExecutionException ex) {
-//            Logger.getLogger(PpalView.class.getName()).log(Level.SEVERE, null, ex);
+
         }
 
 
