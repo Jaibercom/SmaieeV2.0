@@ -173,6 +173,7 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
     public boolean reset(int numBalasto) {
         try {
            
+            setSingleReg(0, 1);
             setSingleReg(regNumBalsat, numBalasto);
             setSingleReg(0, OPCODE_RESET);
             

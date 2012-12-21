@@ -710,7 +710,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
             int reset = JOptionPane.showConfirmDialog(ppalView, "¿Está seguro de que quiere resetar el balasto numero " + numBalasto + "?", "Resetear Balasto", JOptionPane.OK_CANCEL_OPTION);
             if (reset == JOptionPane.OK_OPTION) {
                 OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_RESET, numBalasto);
-                 hilo.setBar(ppalView.getBarraProgreso_jProgressBar());
+                hilo.setBar(ppalView.getBarraProgreso_jProgressBar());
                 hilo.setLabel(ppalView.getStatusLabel());
                 hilo.getLabel().setText("Reseteando balasto...");
                 hilo.setPpalView(ppalView.getTabbedPane());
