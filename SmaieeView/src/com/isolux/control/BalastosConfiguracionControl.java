@@ -707,7 +707,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
         try {
 
             Integer numBalasto = Integer.parseInt(ppalView.getBalastoConfiguracion_jComboBox().getSelectedItem().toString())-1;
-            int reset = JOptionPane.showConfirmDialog(ppalView, "¿Está seguro de que quiere resetar el balasto numero " + numBalasto + "?", "Resetear Balasto", JOptionPane.OK_CANCEL_OPTION);
+            int reset = JOptionPane.showConfirmDialog(ppalView, "¿Está seguro de que quiere resetar el balasto numero " + (numBalasto+1) + "?", "Resetear Balasto", JOptionPane.OK_CANCEL_OPTION);
             if (reset == JOptionPane.OK_OPTION) {
                 OperacionesDaoHilo hilo = new OperacionesDaoHilo(OperacionesBalastoConfiguracionDaoJmodbus.OPCODE_RESET, numBalasto);
                 hilo.setBar(ppalView.getBarraProgreso_jProgressBar());

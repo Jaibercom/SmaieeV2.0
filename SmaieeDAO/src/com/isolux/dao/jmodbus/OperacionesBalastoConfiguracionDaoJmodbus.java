@@ -106,7 +106,7 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
         if (numBalasto<64) {
             try {
 
-
+                setSingleReg(0,1);
                 //escribimos para obtener la info del buffer (el numero del balasto deseado.
                 setSingleReg(regNumBalsat, numBalasto);
                 //luego escribimos en el registro 1 la orden de lectura
@@ -175,7 +175,7 @@ public class OperacionesBalastoConfiguracionDaoJmodbus extends ElementoDAOJmobdu
            
             setSingleReg(0, 1);
             setSingleReg(regNumBalsat, numBalasto);
-            setSingleReg(0, OPCODE_RESET);
+            setSingleReg(1, OPCODE_RESET);
             
             leeValores(numBalasto);
             return true;
