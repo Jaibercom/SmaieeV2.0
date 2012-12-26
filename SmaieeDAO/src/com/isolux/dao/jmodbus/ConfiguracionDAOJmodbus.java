@@ -128,12 +128,6 @@ public class ConfiguracionDAOJmodbus {
 
             int networkOffset = Integer.parseInt(PropHandler.getProperty("memory.offset.network"));
             int[] network = new int[Integer.parseInt(PropHandler.getProperty("memory.network.size"))];
-//            if ("1".equals(type)) {
-//                ip = "192.168.0.0";
-//                mask = "255.255.255.0";
-//                gateway = "0.0.0.0";
-//                port = "502";
-//            }
 
 
             System.out.println("SAVING NETWORK CONF");
@@ -143,12 +137,6 @@ public class ConfiguracionDAOJmodbus {
 
             //TYPE - DHCP/STATIC
             network[0] = Integer.parseInt(type);
-
-
-
-
-
-//            System.out.println("Grabo la configuracion en el buffer?: " + grabado);
 
 
             if (type == "0") {
@@ -216,13 +204,15 @@ public class ConfiguracionDAOJmodbus {
             } else {
                 setSingleReg(networkOffset, 1);//se le pasa sólo el registro que indica que es dhcp
                 setSingleReg(1, 3);
+                setSingleReg(1, 1);
+                setSingleReg(0, 0);
+                
                 Logger.getLogger(ConfiguracionDAOJmodbus.class.getName()).log(Level.INFO, "Se grabó la informacion de red correctamente");
 
                 System.out.println("NETWORK CONF saved");
 
                 JOptionPane.showMessageDialog(null, "Se configuró la tarjeta como dinámica. \nReinicie el programa para que los cambios surtan efecto.", "La tarjeta es ahora dinámica", JOptionPane.WARNING_MESSAGE);
-                setSingleReg(1, 1);
-                setSingleReg(0, 0);
+                
                 System.exit(1);
             }
             setSingleReg(0, 0);

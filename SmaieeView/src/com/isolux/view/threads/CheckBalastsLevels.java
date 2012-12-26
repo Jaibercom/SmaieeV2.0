@@ -49,13 +49,15 @@ public class CheckBalastsLevels extends Thread{
 
                 }
                 
-
-                for (Integer object : selectedAreaBalasts) {
-                    Balasto readed = balasts.get(object);
-                    Object nuevo[] = {readed.getBalastNumber()+1, readed.getName(), readed.getLevel()};
-                    balastsTable.addRow(nuevo);
+                try {
+                    for (Integer object : selectedAreaBalasts) {
+                        Balasto readed = balasts.get(object);
+                        Object nuevo[] = {readed.getBalastNumber() + 1, readed.getName(), readed.getLevel()};
+                        balastsTable.addRow(nuevo);
+                    }
+                } catch (Exception e) {
+                    Logger.getLogger(CheckBalastsLevels.class.getName()).log(Level.INFO,"No se seleccionaron balastos en el control de tiempo real",e);
                 }
-
 //                System.out.println("Mostrando niveles...");
                 Thread.sleep(5 * 1000L);
             }
