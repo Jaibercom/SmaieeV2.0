@@ -189,7 +189,7 @@ public class GrupoControl implements ElementoControl_Interface{
     
     @Override
     public void cleanView(PpalView ppalView) {
-        ppalView.getGruposNum_jComboBox().setSelectedIndex(0);
+//        ppalView.getGruposNum_jComboBox().setSelectedIndex(0);
         ppalView.getjLabel58().setText("#");
         ppalView.getjTextField3().setText("");
         ppalView.setSelectedGroupNumber("");

@@ -197,7 +197,7 @@ public class EscenaControl implements ElementoControl_Interface {
      * Clean values fror group form.
      */
     public void cleanView(PpalView ppalView) {
-        ppalView.getEscenaNumero_jComboBox().setSelectedIndex(0);
+//        ppalView.getEscenaNumero_jComboBox().setSelectedIndex(0);
         ppalView.getjLabel61().setText("#");
         ppalView.getjLabel19().setText("#");
         ppalView.getNombreEscenaJTextField().setText("");

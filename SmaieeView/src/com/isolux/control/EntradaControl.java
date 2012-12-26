@@ -302,7 +302,8 @@ public class EntradaControl implements ElementoControl_Interface {
         DefaultListModel model = new DefaultListModel();
         ppalView.getjLabel63().setText("#");
         ppalView.setSelectedInNumber("");
-        ppalView.getEntradaNumero_jComboBox().setSelectedIndex(0);
+//        ppalView.getEntradaNumero_jComboBox().setSelectedIndex(0);
+       
 
         //Btnr
         ppalView.getjRadioButton1().setSelected(true);

@@ -246,7 +246,7 @@ public class BalastosControl implements OperacionesElemento_Interface, ElementoC
         ppalView.getjLabel41().setText("#");
 
         ppalView.setSelectedBalastNumber("");
-        ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
+//        ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
         elementosDisponibles(ppalView);
     }
 
