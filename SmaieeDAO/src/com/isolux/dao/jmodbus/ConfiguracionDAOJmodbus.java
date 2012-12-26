@@ -162,8 +162,9 @@ public class ConfiguracionDAOJmodbus {
                 network[11] = Integer.parseInt(gatewayArray[2]);
                 network[12] = Integer.parseInt(gatewayArray[3]);
 
+                network[13] = 1;
                 //PORT
-                network[13] = Integer.parseInt(port);
+                network[14] = Integer.parseInt(port);
                 //Save array   
                 boolean grabado = dao.setRegValue(networkOffset, network);
                 String ipTarjeta = com.isolux.properties.PropHandler.getProperty("general.ip");
