@@ -2346,6 +2346,11 @@ public class PpalView extends javax.swing.JFrame {
         balastoPot_jTextField.setText("0");
         balastoPot_jTextField.setToolTipText("Potencia");
         balastoPot_jTextField.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(100));
+        balastoPot_jTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                balastoPot_jTextFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout balastoDali_jPanelLayout = new javax.swing.GroupLayout(balastoDali_jPanel);
         balastoDali_jPanel.setLayout(balastoDali_jPanelLayout);
@@ -2858,7 +2863,7 @@ public class PpalView extends javax.swing.JFrame {
                             .addComponent(tiempoReal_jSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tiempoReal_jSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
                         .addGroup(panelTiempoRealLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel44)
                             .addComponent(jButton44))
@@ -2883,7 +2888,7 @@ public class PpalView extends javax.swing.JFrame {
         );
         monitoreoTiempoReal_jPanelLayout.setVerticalGroup(
             monitoreoTiempoReal_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 574, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
             .addGroup(monitoreoTiempoReal_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(panelTiempoReal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -3941,6 +3946,10 @@ public class PpalView extends javax.swing.JFrame {
         balastoConfigCtrl.refrescarVista(this);
         this.getBalastoDir_jTextField().setText("0");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void balastoPot_jTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_balastoPot_jTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_balastoPot_jTextFieldActionPerformed
 
     //</editor-fold>
     /**

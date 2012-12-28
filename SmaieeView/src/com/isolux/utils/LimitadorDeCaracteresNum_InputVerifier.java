@@ -45,7 +45,7 @@ public class LimitadorDeCaracteresNum_InputVerifier extends InputVerifier {
             try {
                 int numero = Integer.parseInt(texto);
 
-                if (numero > limiteMaximo) {
+                if (numero > limiteMaximo*10) {
                     throw new NumberFormatException();
 
                 } else {
@@ -64,7 +64,7 @@ public class LimitadorDeCaracteresNum_InputVerifier extends InputVerifier {
                 
                 editor.setForeground(Color.red);
                 ((JTextField)editor).selectAll();
-                JOptionPane.showMessageDialog(null, "El campo debe contener un numero entre 0 y " + limiteMaximo, "Error", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El campo debe contener un numero entre 0 y " + limiteMaximo*10, "Error", JOptionPane.WARNING_MESSAGE);
                 
             }
 

@@ -129,7 +129,7 @@ public class BalastosConfiguracionControl extends ElementoDAOJmobdus implements 
     @Override
     public void cleanView(PpalView ppalView) {
 
-        ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
+//        ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
         ppalView.getBalastoDir_jTextField().setText("0");
         ppalView.getBalastoMin_jTextField().setText("0");
         ppalView.getBalastoFR_jTextField().setText("0");

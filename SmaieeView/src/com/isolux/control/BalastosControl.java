@@ -225,7 +225,7 @@ public class BalastosControl implements OperacionesElemento_Interface, ElementoC
         ppalView.getBalastoLX_jTextField().setText(String.valueOf(selectedBalast.getLx()));
         ppalView.getBalastoPot_jTextField().setText(String.valueOf(selectedBalast.getPot()));
         ppalView.getjLabel41().setText(balastNumber);
-        ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
+//        ppalView.getBalastoNum_jComboBox().setSelectedIndex(0);
     }
 
     /**
