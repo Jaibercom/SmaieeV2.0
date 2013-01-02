@@ -205,6 +205,7 @@ public class BalastosControl implements OperacionesElemento_Interface, ElementoC
             ppalView.setBalastsStauts(true);
             ppalView.getStatusLabel().setText("Balastos leidos.");
         }
+//        ppalView.getArbol_jTree().setVisibleRowCount(10);
     }
 
     /**
