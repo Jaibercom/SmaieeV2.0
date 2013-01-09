@@ -352,9 +352,11 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus {
             //Out type
             eventArray[2] = 0;
 
+            dao.setRegValue(initOffset, eventArray);
+            
             //SAVE EVENT
             deleteElement(eventNumber);
-            dao.setRegValue(initOffset, eventArray);
+            
 
             //MODO
             setSingleReg(0, 0);
@@ -850,7 +852,7 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus {
                 seleBal = String.valueOf(i) + seleBal;
             }
 
-            //Get BitIntegers every 16 bits and store them in the card.
+            //Get BitIntegers every 16 bits and store them in the card.// hasta aqui va bien
             ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal);
             for (int i = name.size() - 1; i >= 0; i--) {
                 int[] nameValues = {name.get(i).intValue()};
