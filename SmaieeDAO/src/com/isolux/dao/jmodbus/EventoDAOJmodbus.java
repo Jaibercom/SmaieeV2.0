@@ -12,12 +12,14 @@ import com.isolux.dao.modbus.DAOJmodbus;
 import com.isolux.dao.properties.PropHandler;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Juan Diego Toro Cano
  */
-public class EventoDAOJmodbus extends OperacionesDaoJModbus{
+public class EventoDAOJmodbus extends OperacionesDaoJModbus {
 
     private static int initOffset = 0;
     private static DAOJmodbus dao;
@@ -34,7 +36,6 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
 //        int[] values = {mode};
 //        dao.setRegValue(pos, values);
 //    }
-
     /**
      * Saves the balast.
      *
@@ -43,8 +44,8 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
     @Override
     public boolean saveElement(Elemento evento1) {
 //        DAO4j dao = new DAO4j();
-        
-        Evento evento=(Evento)evento1;
+
+        Evento evento = (Evento) evento1;
         boolean state = false;
         int eventNumber = evento.getNumeroEvento();
 
@@ -229,6 +230,7 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
             state = true;
         } catch (Exception e) {
             state = false;
+//            Logger.getLogger(EventoDAOJmodbus.class.getName())log(Level.SEVERE);
             e.printStackTrace();
         }
 
@@ -236,14 +238,16 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
     }
 
     /**
-     * Método que borra el evento como tal de la memoria. Borra toda la información
-     * que tiene un evento relacionada, como numero, nombre, etc. Modifica el registro
-     * a partir del offset en el mapa de memoria que en este caso es 5000 .
+     * Método que borra el evento como tal de la memoria. Borra toda la
+     * información que tiene un evento relacionada, como numero, nombre, etc.
+     * Modifica el registro a partir del offset en el mapa de memoria que en
+     * este caso es 5000 .
+     *
      * @param eventNumbers Numero del evento que se pretende borrar.
-     * 
+     *
      */
     @Override
-    public  boolean deleteElement(String eventNumbers) {
+    public boolean deleteElement(String eventNumbers) {
 
         boolean state = false;
         int eventNumber = Integer.parseInt(eventNumbers);
@@ -260,25 +264,26 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
 
             //numeroEvento
             eventArray[0] = eventNumber;
-
+            eventArray[1] = 0;
+            eventArray[2] = 0;
             //nombre
-            int nameOffset = 1;
+            int nameOffset = 3;
             for (int i = 0; i < 5; i++) {
                 eventArray[nameOffset] = 0;
                 nameOffset++;
             }
 
-            eventArray[6] = 0;
-            eventArray[7] = 0;
             eventArray[8] = 0;
             eventArray[9] = 0;
             eventArray[10] = 0;
             eventArray[11] = 0;
             eventArray[12] = 0;
+            eventArray[13] = 0;
+            eventArray[14] = 0;
 
             //nivelBalasto
             Evento evento = new Evento();
-            int balastosOffset = 13;
+            int balastosOffset = 15;
             int[] nivelBalastos = evento.getNivelBalasto();
             for (int i = nivelBalastos.length - 1; i >= 0; i--) {
                 eventArray[balastosOffset] = nivelBalastos[i];
@@ -296,14 +301,14 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
 
             //Get BitIntegers every 16 bits and store them in the card.
             ArrayList<BigInteger> balastsRegisters = Utils.getSelectedItems(seleBal);
-            int affectedBalasts = 77;
+            int affectedBalasts = 97;
             for (int i = balastsRegisters.size() - 1; i >= 0; i--) {
                 eventArray[affectedBalasts] = 0;
                 affectedBalasts++;
             }
 
             //nivelGrupo
-            int gruposOffset = 81;
+            int gruposOffset = 79;
             int[] nivelGrupos = evento.getNivelGrupo();
             for (int i = nivelGrupos.length - 1; i >= 0; i--) {
                 eventArray[gruposOffset] = 0;
@@ -321,7 +326,7 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
 
             //Get BitIntegers every 16 bits and store them in the card.
             ArrayList<BigInteger> groupsRegisters = Utils.getSelectedItems(seleGroup);
-            int affectedGroups = 97;
+            int affectedGroups = 95;
             for (int i = groupsRegisters.size() - 1; i >= 0; i--) {
                 eventArray[affectedGroups] = 0;
                 affectedGroups++;
@@ -336,16 +341,16 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
                 seleScene = String.valueOf(i) + seleScene;
             }
 
-           
+
             ArrayList<BigInteger> scenesRegisters = Utils.getSelectedItems(seleScene);
-            int affecedScenes = 98;
+            int affecedScenes = 96;
             for (int i = scenesRegisters.size() - 1; i >= 0; i--) {
                 eventArray[affecedScenes] = 0;
                 affecedScenes++;
             }
 
             //Out type
-            eventArray[99] = 0;
+            eventArray[2] = 0;
 
             //SAVE EVENT
             deleteElement(eventNumber);
@@ -371,7 +376,7 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
      * @param balasto
      */
     @Override
-    public  Evento readElement(int eventNumber) {
+    public Evento readElement(int eventNumber) {
         Evento evento = new Evento();
 
         try {
@@ -449,7 +454,7 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
             evento.setNivelGrupo(nivelGrupos);
 
             int tamReg = 8;
-            
+
             //gruposAfectados//<editor-fold defaultstate="collapsed" desc="Codigo viejo Grupos Afectados">
             //            try {
             //                int groupsOffset = 95;
@@ -578,7 +583,7 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
      * @return
      */
     @Override
-    public  ArrayList<String> getAddedElements() {
+    public ArrayList<String> getAddedElements() {
         //<editor-fold defaultstate="collapsed" desc="Codigo viejo">
         //        ArrayList<String> addedBalasts = new ArrayList<String>();
         //         int eventNum = Integer.parseInt(PropHandler.getProperty("event.max.number"));
@@ -642,7 +647,7 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
             int usedRegisters = Integer.parseInt(PropHandler.getProperty("event.memory.registers"));
 //            int usedRegisters = 64;
             int tamReg = 8;
-            int bytesToRead = numEventos/tamReg;// si es correcto este valor? 128
+            int bytesToRead = numEventos / tamReg;// si es correcto este valor? 128
             int completacionCeros = 8;
 //            int tamReg = Integer.parseInt(PropHandler.getProperty("registro.tamanio.lectura"));
             elementosEnMemoria = UtilsJmodbus.getElementosEnMemoria(numEventos, dao, offsetInicial, usedRegisters, tamReg, bytesToRead, completacionCeros);
@@ -724,7 +729,7 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
      * @return
      */
     @Override
-    public  void addElement(int writtenEnevtNumber) {
+    public void addElement(int writtenEnevtNumber) {
         //<editor-fold defaultstate="collapsed" desc="Codigo antiguo">
         //        try {
         //            int initOffset = Integer.parseInt(PropHandler.getProperty("event.memory.added"));
@@ -778,7 +783,7 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
             for (int i = name.size() - 1; i >= 0; i--) {
                 int[] nameValues = {name.get(i).intValue()};
                 dao.setRegValue(offsetInicial, nameValues);
-                offsetInicial+=2;
+                offsetInicial += 2;
             }
 
         } catch (Exception e) {
@@ -789,13 +794,13 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
     }
 
     /**
-     * Método que borra un evento de la lista ed eventos adheridos.
-     * Lo que hace este método es que borra el bit correspondiente al evento adherido.
-     * En ningún momento borra la informacion del evento de la memoria. Sólo borra el 
-     * evento adherido.
+     * Método que borra un evento de la lista ed eventos adheridos. Lo que hace
+     * este método es que borra el bit correspondiente al evento adherido. En
+     * ningún momento borra la informacion del evento de la memoria. Sólo borra
+     * el evento adherido.
      *
      * @param writtenEventNumber
-     * 
+     *
      */
     @Override
     public void deleteElement(int writtenEventNumber) {
@@ -947,6 +952,4 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus{
     //
     //    }
     //</editor-fold>
-
-  
 }

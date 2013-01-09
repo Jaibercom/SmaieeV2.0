@@ -131,7 +131,16 @@ public class EventoControl implements ElementoControl_Interface {
                 for (int i = 0; i < selectedElements.getSize(); i++) {
                     try {
                         String item = selectedElements.getElementAt(i).toString();
-                        String[] level = item.split(": ");
+                        String[] level;
+                        if (item.contains(":")) {
+                         level = item.split(": ");    
+                        }else{
+                            level = item.split("- ");
+                            for (int j = 0; j < level.length; j++) {
+                                level[j]="0";
+                            }
+                        }
+                        
                         nivelBalasto[Integer.parseInt(item.split(" - ")[0])-1] = Integer.parseInt(level[level.length - 1]);
                     } catch (Exception e) {
                         Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "Error calculando niveles de balastos", e);

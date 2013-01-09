@@ -61,7 +61,7 @@ public class DAOJmodbus {
     synchronized public boolean setRegValue(int pos, int[] values) throws Exception {
         int length = values.length;
         boolean result = false;
-        if (length == 128) {
+        if (length == 128||length>129) {
             result = setRegValue128(pos, values);
 
         } else if (length >= 60) {
@@ -217,7 +217,7 @@ public class DAOJmodbus {
     synchronized private boolean setRegValue128(int pos, int[] values) {
         boolean result = false;
         int length = values.length;
-        if (length == 128) {
+        if (length == 128||length >129) {
             int len = length / 2;
 
             int[] values1 = ArrayUtils.subarray(values, 0, len);
