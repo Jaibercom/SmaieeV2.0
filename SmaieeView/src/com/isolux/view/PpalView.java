@@ -802,7 +802,7 @@ public class PpalView extends javax.swing.JFrame {
         );
         panelBienvenidaLayout.setVerticalGroup(
             panelBienvenidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 574, Short.MAX_VALUE)
+            .addGap(0, 573, Short.MAX_VALUE)
         );
 
         panelPpal.add(panelBienvenida, "card8");
@@ -875,7 +875,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addGroup(panelBalastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(balastoEnviar_jButton)
                     .addComponent(balastoEliminar_jButton))
-                .addContainerGap(347, Short.MAX_VALUE))
+                .addContainerGap(346, Short.MAX_VALUE))
         );
 
         panelPpal.add(panelBalastos, "card2");
@@ -946,7 +946,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addGroup(panelGruposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eliminarGrupo_jButton)
                     .addComponent(enviarGrupo_jButton))
-                .addContainerGap(346, Short.MAX_VALUE))
+                .addContainerGap(345, Short.MAX_VALUE))
         );
 
         panelPpal.add(panelGrupos, "card4");
@@ -1017,7 +1017,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addGroup(panelEscenasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enviarEscena_jButton)
                     .addComponent(eliminarEscena_jButton))
-                .addContainerGap(347, Short.MAX_VALUE))
+                .addContainerGap(346, Short.MAX_VALUE))
         );
 
         panelPpal.add(panelEscenas, "card5");
@@ -1048,7 +1048,7 @@ public class PpalView extends javax.swing.JFrame {
         );
         panelEntradaInitLayout.setVerticalGroup(
             panelEntradaInitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 509, Short.MAX_VALUE)
+            .addGap(0, 508, Short.MAX_VALUE)
         );
 
         panelConfEntradas.add(panelEntradaInit, "card5");
@@ -1167,7 +1167,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jCheckBox18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                    .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                         .addComponent(jButton31, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1382,7 +1382,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jCheckBox11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                     .addComponent(jScrollPane10, 0, 0, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
@@ -1573,7 +1573,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(fotoceldas_entrada_escenas_jCheckBox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+                    .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                         .addComponent(jButton35, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1684,7 +1684,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(jLabel62)
                     .addComponent(jLabel63))
                 .addGap(11, 11, 11)
-                .addComponent(panelConfEntradas, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE))
+                .addComponent(panelConfEntradas, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE))
         );
 
         panelPpal.add(panelEntradas, "card6");
@@ -1983,7 +1983,7 @@ public class PpalView extends javax.swing.JFrame {
                         .addComponent(jButton28, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton29, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
-                    .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -2051,7 +2051,7 @@ public class PpalView extends javax.swing.JFrame {
                     .addComponent(porFechaYHora_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(porDiasEvento_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelEventosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enviarEventos_jButton)
@@ -2241,7 +2241,7 @@ public class PpalView extends javax.swing.JFrame {
                 .addComponent(configuracionRed_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(configEnviar_jButton)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
 
         panelPpal.add(panelConfiguracion, "card3");
@@ -2348,7 +2348,7 @@ public class PpalView extends javax.swing.JFrame {
 
         balastoPot_jTextField.setText("0");
         balastoPot_jTextField.setToolTipText("Potencia");
-        balastoPot_jTextField.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(100));
+        balastoPot_jTextField.setInputVerifier(new LimitadorDeCaracteresNum_InputVerifier(1000));
         balastoPot_jTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 balastoPot_jTextFieldActionPerformed(evt);
