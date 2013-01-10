@@ -352,10 +352,14 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus {
             //Out type
             eventArray[2] = 0;
 
+            
+            
+             //SAVE EVENT
+            deleteElement(eventNumber);
+            
             dao.setRegValue(initOffset, eventArray);
             
-            //SAVE EVENT
-            deleteElement(eventNumber);
+           
             
 
             //MODO
@@ -366,7 +370,8 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus {
             state = true;
         } catch (Exception e) {
             state = false;
-            e.printStackTrace();
+            Logger.getLogger(EventoDAOJmodbus.class.getName()).log(Level.SEVERE, "Error borrando el evento", e);
+//            e.printStackTrace();
         }
 
         return state;
@@ -853,11 +858,11 @@ public class EventoDAOJmodbus extends OperacionesDaoJModbus {
             }
 
             //Get BitIntegers every 16 bits and store them in the card.// hasta aqui va bien
-            ArrayList<BigInteger> name = Utils.getSelectedItems(seleBal);
+            ArrayList<BigInteger> name = Utils.getSelectedItemsWritting(seleBal);
             for (int i = name.size() - 1; i >= 0; i--) {
                 int[] nameValues = {name.get(i).intValue()};
                 dao.setRegValue(offsetInicialEntrada, nameValues);
-                offsetInicialEntrada++;
+                offsetInicialEntrada=offsetInicialEntrada+2;//se pone asi porque se esta escribiendo de a 16 y no de a 8
             }
 
         } catch (Exception e) {
