@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import javax.swing.text.Position;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -321,10 +322,18 @@ public class EventoControl implements ElementoControl_Interface {
             for (int i = 0; i < selectedBalasts.length; i++) {
                 if (selectedBalasts[i] == 1) { //es porque esta seleccionado o afectado
 
-                    int numAumentado=i+1;
-                    Balasto balastoDeHash = hash.get(String.valueOf(numAumentado));
-                    sceneBalastsL.addElement((balastoDeHash.getBalastNumber() + 1) + " - " + balastoDeHash.getName() + ": " + selectedBalastsLevels[i]);
-                    sel.add(String.valueOf(numAumentado));
+                    try {
+                        int numAumentado = i + 1;
+                        Balasto balastoDeHash = hash.get(String.valueOf(numAumentado));
+                        sceneBalastsL.addElement((balastoDeHash.getBalastNumber() + 1) + " - " + balastoDeHash.getName() + ": " + selectedBalastsLevels[i]);
+                        sel.add(String.valueOf(numAumentado));
+                    } catch (Exception e) {
+                        Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "No se encuentran los balastos afectados", e);
+                        JOptionPane.showMessageDialog(ppalView, "No se encuentan los balastos afectados.\n"
+                                + "Este evento al parecer contiene balastos que no existen.\n"
+                                + "Para corregir la corrupción de datos, seleccione de la lista\n"
+                                + "los elementos que tenga disponibles. ", "Corrupción de datos.",JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
             //</editor-fold>
@@ -362,11 +371,20 @@ public class EventoControl implements ElementoControl_Interface {
             
             for (int i = 0; i < selectedGroups.length; i++) {
                 if (selectedGroups[i] == 1) {
-                    int numAumentado=i+1;
-                    new GrupoControl().readElements(ppalView);
-                    Grupo group = hmg.get(String.valueOf(numAumentado));
-                    sceneGroupsL.addElement((group.getGroupNumber()+1) + " - " + group.getName() + ": " + selectedGroupLevels[i]);
-                    selGroups.add(String.valueOf(numAumentado));
+                    try {
+                        int numAumentado = i + 1;
+                        new GrupoControl().readElements(ppalView);
+                        Grupo group = hmg.get(String.valueOf(numAumentado));
+                        sceneGroupsL.addElement((group.getGroupNumber() + 1) + " - " + group.getName() + ": " + selectedGroupLevels[i]);
+                        selGroups.add(String.valueOf(numAumentado));
+                    } catch (Exception e) {
+                        Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "No se encuentran los grupos afectados", e);
+                        JOptionPane.showMessageDialog(ppalView, "No se encuentan los gupos afectados.\n"
+                                + "Este evento al parecer contiene grupos que no existen.\n"
+                                + "Para corregir la corrupción de datos, seleccione de la lista\n"
+                                + "los elementos que tenga disponibles. ", "Corrupción de datos.",JOptionPane.ERROR_MESSAGE);
+                    }
+                    
                 }
             }
             ppalView.getjList13().setModel(sceneGroupsL);
@@ -402,12 +420,20 @@ public class EventoControl implements ElementoControl_Interface {
             
             for (int i = 0; i < selectedScenes.length; i++) {
                 if (selectedScenes[i] == 1) {
-                    int numAumentado=i+1;
-                    
-                    new EscenaControl().readElements(ppalView);
-                    Escena sce = ppalView.getScenes().get(String.valueOf(numAumentado));
-                    sceneScenesL.addElement((sce.getNumeroEscena()+1) + " - " + sce.getNombre());
-                    selScenes.add(String.valueOf(numAumentado));
+                    try {
+                        int numAumentado = i + 1;
+                        
+                        new EscenaControl().readElements(ppalView);
+                        Escena sce = ppalView.getScenes().get(String.valueOf(numAumentado));
+                        sceneScenesL.addElement((sce.getNumeroEscena() + 1) + " - " + sce.getNombre());
+                        selScenes.add(String.valueOf(numAumentado));
+                    } catch (Exception e) {
+                        Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "No se encuentran las escenas afectadas", e);
+                        JOptionPane.showMessageDialog(ppalView, "No se encuentan las escenas afectadas.\n"
+                                + "Este evento al parecer contiene escenas que no existen.\n"
+                                + "Para corregir la corrupción de datos, seleccione de la lista\n"
+                                + "los elementos que tenga disponibles. ", "Corrupción de datos.",JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
             ppalView.getjList13().setModel(sceneScenesL);
