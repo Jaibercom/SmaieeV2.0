@@ -134,15 +134,15 @@ public class EventoControl implements ElementoControl_Interface {
                         String item = selectedElements.getElementAt(i).toString();
                         String[] level;
                         if (item.contains(":")) {
-                         level = item.split(": ");    
-                        }else{
+                            level = item.split(": ");
+                        } else {
                             level = item.split("- ");
                             for (int j = 0; j < level.length; j++) {
-                                level[j]="0";
+                                level[j] = "0";
                             }
                         }
-                        
-                        nivelBalasto[Integer.parseInt(item.split(" - ")[0])-1] = Integer.parseInt(level[level.length - 1]);
+
+                        nivelBalasto[Integer.parseInt(item.split(" - ")[0]) - 1] = Integer.parseInt(level[level.length - 1]);
                     } catch (Exception e) {
                         Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "Error calculando niveles de balastos", e);
                     }
@@ -153,8 +153,17 @@ public class EventoControl implements ElementoControl_Interface {
                 for (int i = 0; i < selectedElements.getSize(); i++) {
                     try {
                         String item = selectedElements.getElementAt(i).toString();
-                        String[] level = item.split(": ");
-                        nivelGrupo[Integer.parseInt(item.split(" - ")[0])-1] = Integer.parseInt(level[level.length - 1]);
+//                        String[] level = item.split(": ");
+                        String[] level;
+                        if (item.contains(":")) {
+                            level = item.split(": ");
+                        } else {
+                            level = item.split("- ");
+                            for (int j = 0; j < level.length; j++) {
+                                level[j] = "0";
+                            }
+                        }
+                        nivelGrupo[Integer.parseInt(item.split(" - ")[0]) - 1] = Integer.parseInt(level[level.length - 1]);
                     } catch (Exception e) {
                         Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "Error calculando niveles de grupos", e);
                     }
@@ -173,7 +182,7 @@ public class EventoControl implements ElementoControl_Interface {
 //                    }
 //                }
 //            }
-            
+
             Evento newEvent = new Evento(
                     eventNumber - 1,
                     name,
@@ -257,8 +266,8 @@ public class EventoControl implements ElementoControl_Interface {
             DefaultTreeModel treeModel = (DefaultTreeModel) ppalView.getArbol_jTree().getModel();
             EventoDAOJmodbus dao = new EventoDAOJmodbus(ppalView.getDao());
             String selectedEventNumber = ppalView.getSelectedEventNumber();
-            Integer numero=(Integer.parseInt(selectedEventNumber)-1);
-            selectedEventNumber=numero.toString();
+            Integer numero = (Integer.parseInt(selectedEventNumber) - 1);
+            selectedEventNumber = numero.toString();
             dao.deleteElement(selectedEventNumber);
             treeModel.removeNodeFromParent(nodeToDelete);
             ppalView.getEvents().remove(ppalView.getSelectedEventNumber());
@@ -318,24 +327,29 @@ public class EventoControl implements ElementoControl_Interface {
 
             HashMap<String, Balasto> hash = ppalView.getBalasts();
             Set<String> keys = hash.keySet();
+            try {
+                for (int i = 0; i < selectedBalasts.length; i++) {
+                    if (selectedBalasts[i] == 1) { //es porque esta seleccionado o afectado
 
-            for (int i = 0; i < selectedBalasts.length; i++) {
-                if (selectedBalasts[i] == 1) { //es porque esta seleccionado o afectado
 
-                    try {
                         int numAumentado = i + 1;
                         Balasto balastoDeHash = hash.get(String.valueOf(numAumentado));
-                        sceneBalastsL.addElement((balastoDeHash.getBalastNumber() + 1) + " - " + balastoDeHash.getName() + ": " + selectedBalastsLevels[i]);
-                        sel.add(String.valueOf(numAumentado));
-                    } catch (Exception e) {
-                        Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "No se encuentran los balastos afectados", e);
-                        JOptionPane.showMessageDialog(ppalView, "No se encuentan los balastos afectados.\n"
-                                + "Este evento al parecer contiene balastos que no existen.\n"
-                                + "Para corregir la corrupción de datos, seleccione de la lista\n"
-                                + "los elementos que tenga disponibles. ", "Corrupción de datos.",JOptionPane.ERROR_MESSAGE);
+                        
+                        if (balastoDeHash!=null) {
+                            sceneBalastsL.addElement((balastoDeHash.getBalastNumber() + 1) + " - " + balastoDeHash.getName() + ": " + selectedBalastsLevels[i]);
+                            sel.add(String.valueOf(numAumentado));
+                        }
                     }
                 }
+            } catch (Exception e) {
+                Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "No se encuentran los balastos afectados", e);
+                JOptionPane.showMessageDialog(ppalView, "No se encuentan los balastos afectados.\n"
+                        + "Este evento al parecer contiene balastos que no existen.\n"
+                        + "Para corregir la corrupción de datos, seleccione de la lista\n"
+                        + "los elementos que tenga disponibles.\n"
+                        + "Si el problema persiste, borre el evento y créelo nuevamente.", "Corrupción de datos.", JOptionPane.ERROR_MESSAGE);
             }
+
             //</editor-fold>
 
 
@@ -345,8 +359,8 @@ public class EventoControl implements ElementoControl_Interface {
             //Available balasts
             DefaultListModel modelo = new DefaultListModel();
             ArrayList<String> addedBalasts = PropHandler.getAddedBalasts(ppalView.getDao());
-            
-            
+
+
             for (String balastNumber : keys) {
                 if (!sel.contains(balastNumber)) {
                     Balasto balasto = balasts.get(balastNumber);
@@ -364,44 +378,48 @@ public class EventoControl implements ElementoControl_Interface {
             int[] selectedGroups = selectedEvent.getGruposAfectados();
             int[] selectedGroupLevels = selectedEvent.getNivelGrupo();
             ArrayList selGroups = new ArrayList();
-            
-            HashMap<String, Grupo> hmg= ppalView.getGroups();
-            Set<String> keysg=hmg.keySet();
-            
-            
-            for (int i = 0; i < selectedGroups.length; i++) {
-                if (selectedGroups[i] == 1) {
-                    try {
+
+            HashMap<String, Grupo> hmg = ppalView.getGroups();
+            Set<String> keysg = hmg.keySet();
+
+            try {
+                for (int i = 0; i < selectedGroups.length; i++) {
+                    if (selectedGroups[i] == 1) {
+
                         int numAumentado = i + 1;
                         new GrupoControl().readElements(ppalView);
                         Grupo group = hmg.get(String.valueOf(numAumentado));
-                        sceneGroupsL.addElement((group.getGroupNumber() + 1) + " - " + group.getName() + ": " + selectedGroupLevels[i]);
-                        selGroups.add(String.valueOf(numAumentado));
-                    } catch (Exception e) {
-                        Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "No se encuentran los grupos afectados", e);
-                        JOptionPane.showMessageDialog(ppalView, "No se encuentan los gupos afectados.\n"
-                                + "Este evento al parecer contiene grupos que no existen.\n"
-                                + "Para corregir la corrupción de datos, seleccione de la lista\n"
-                                + "los elementos que tenga disponibles. ", "Corrupción de datos.",JOptionPane.ERROR_MESSAGE);
+                        if (group!=null) {
+                            sceneGroupsL.addElement((group.getGroupNumber() + 1) + " - " + group.getName() + ": " + selectedGroupLevels[i]);
+                            selGroups.add(String.valueOf(numAumentado));
+                        }
+
                     }
-                    
                 }
+                
+            } catch (Exception e) {
+                Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "No se encuentran los grupos afectados", e);
+                JOptionPane.showMessageDialog(ppalView, "No se encuentan los gupos afectados.\n"
+                        + "Este evento al parecer contiene grupos que no existen.\n"
+                        + "Para corregir la corrupción de datos, seleccione de la lista\n"
+                        + "los elementos que tenga disponibles. ", "Corrupción de datos.\n"
+                        + "Si el problema persiste, borre el evento y créelo nuevamente.", JOptionPane.ERROR_MESSAGE);
             }
             ppalView.getjList13().setModel(sceneGroupsL);
 
             //Available groups
             DefaultListModel modelGroups = new DefaultListModel();
             ArrayList<String> addedGroups = PropHandler.getAddedGroups(ppalView.getDao());
-            
-            
-            
+
+
+
             for (String groupNumber : addedGroups) {
-                Integer num=Integer.parseInt(groupNumber)+1;
-                String numg=num.toString();
-                
+                Integer num = Integer.parseInt(groupNumber) + 1;
+                String numg = num.toString();
+
                 if (!selGroups.contains(numg)) {
                     Grupo group = hmg.get(num.toString());
-                    modelGroups.addElement((group.getGroupNumber()+1) + " - " + group.getName());
+                    modelGroups.addElement((group.getGroupNumber() + 1) + " - " + group.getName());
                 }
             }
             ppalView.getSelGruposEntradas_jCheckBox().setSelected(true);
@@ -415,24 +433,27 @@ public class EventoControl implements ElementoControl_Interface {
             DefaultListModel sceneScenesL = new DefaultListModel();
             int[] selectedScenes = selectedEvent.getEscenasAfectadas();
             ArrayList selScenes = new ArrayList();
-            
-            
-            
+
+
+
             for (int i = 0; i < selectedScenes.length; i++) {
                 if (selectedScenes[i] == 1) {
                     try {
                         int numAumentado = i + 1;
-                        
+
                         new EscenaControl().readElements(ppalView);
                         Escena sce = ppalView.getScenes().get(String.valueOf(numAumentado));
-                        sceneScenesL.addElement((sce.getNumeroEscena() + 1) + " - " + sce.getNombre());
-                        selScenes.add(String.valueOf(numAumentado));
+                        if (sce!=null) {
+                            sceneScenesL.addElement((sce.getNumeroEscena() + 1) + " - " + sce.getNombre());
+                            selScenes.add(String.valueOf(numAumentado));
+                        }
                     } catch (Exception e) {
                         Logger.getLogger(EventoControl.class.getName()).log(Level.SEVERE, "No se encuentran las escenas afectadas", e);
                         JOptionPane.showMessageDialog(ppalView, "No se encuentan las escenas afectadas.\n"
                                 + "Este evento al parecer contiene escenas que no existen.\n"
                                 + "Para corregir la corrupción de datos, seleccione de la lista\n"
-                                + "los elementos que tenga disponibles. ", "Corrupción de datos.",JOptionPane.ERROR_MESSAGE);
+                                + "los elementos que tenga disponibles.\n"
+                                + "Si el problema persiste, borre el evento y créelo nuevamente.", "Corrupción de datos.", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -442,13 +463,13 @@ public class EventoControl implements ElementoControl_Interface {
             DefaultListModel modelScenes = new DefaultListModel();
             ArrayList<String> addedScenes = PropHandler.getAddedScenes(ppalView.getDao());
             for (String sceneNumber : addedScenes) {
-                
-                Integer num=Integer.parseInt(sceneNumber)+1;
-                String numg=num.toString();
-                
+
+                Integer num = Integer.parseInt(sceneNumber) + 1;
+                String numg = num.toString();
+
                 if (!selScenes.contains(numg)) {
                     Escena escena = ppalView.getScenes().get(num.toString());
-                    modelScenes.addElement((escena.getNumeroEscena()+1) + " - " + escena.getNombre());
+                    modelScenes.addElement((escena.getNumeroEscena() + 1) + " - " + escena.getNombre());
                 }
             }
             ppalView.getjCheckBox15().setSelected(true);
@@ -603,7 +624,7 @@ public class EventoControl implements ElementoControl_Interface {
         }
         String[] selectedIdx = selected.split(",");
         for (int i = 0; i < selectedIdx.length; i++) {
-            selectedItems[Integer.parseInt(selectedIdx[i])-1] = 1;
+            selectedItems[Integer.parseInt(selectedIdx[i]) - 1] = 1;
         }
 
         return selectedItems;

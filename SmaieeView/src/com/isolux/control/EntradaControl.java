@@ -403,8 +403,8 @@ public class EntradaControl implements ElementoControl_Interface {
             }
         } catch (NullPointerException e) {
             ppalView.setInStauts(false);
-            ppalView.getStatusLabel().setText("Entradas no leidas.");
-//            Logger.getLogger(EntradaControl.class.getName()).log(Level.OFF, "Error leyendo las entradas", e);
+            ppalView.getStatusLabel().setText("");
+            Logger.getLogger(EntradaControl.class.getName()).log(Level.WARNING, "Primera lectura de las entradas", e);
         }catch (Exception e){
             ppalView.setInStauts(false);
             ppalView.getStatusLabel().setText("Entradas no leidas.");
@@ -516,7 +516,7 @@ public class EntradaControl implements ElementoControl_Interface {
                 DefaultListModel modelo = new DefaultListModel();
 //            ArrayList<String> addedBalasts = PropHandler.getAddedBalasts(ppalView.getDao());
 
-                
+                // Seleccionamos los elemenos que se quedan en la lista izquierda
                 Set<String> addedBalasts = balasts.keySet();
                 for (String balastNumber : addedBalasts) {
                     if (!sel.contains(balastNumber)) {
@@ -524,7 +524,7 @@ public class EntradaControl implements ElementoControl_Interface {
                         modelo.addElement((balasto.getBalastNumber() + 1) + " - " + balasto.getName());
                     }
                 }
-                available.setModel(modelo);
+                available.setModel(modelo); //aqui ponemos los balstos que todavia estan dispon
             } else if (ppalView.getInOutType() == prefixGroup) { //Grupos
                 //Afected Groups
                 new GrupoControl().readElements(ppalView);
